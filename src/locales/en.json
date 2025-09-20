@@ -1,0 +1,14 @@
+{
+    "Home":"Home",
+      "langSwitch": "English",
+      "homeSection":{
+        "home":"Home",
+        "about":"About",
+        "ceo":"CEO",
+        "services":"Services",
+        "routes":"Routes",
+        "sustainability":"Sustainability",
+        "news":"News",
+        "career":"Career"
+      }
+}

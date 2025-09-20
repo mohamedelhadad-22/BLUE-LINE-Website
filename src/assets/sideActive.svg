@@ -1,0 +1,6 @@
+<template>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:v="https://vecta.io/nano" width="16.971" height="16.971" fill="none">
+        <path d="M8.485 0L0 8.485l8.485 8.485 8.485-8.485z" fill="#80FD66" />
+        <script xmlns="" />
+    </svg>
+</template>
