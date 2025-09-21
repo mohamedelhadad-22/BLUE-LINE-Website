@@ -12,13 +12,18 @@
   --color-secondary: #2b3990;
   --color-accent: #27aae1;
 }
-
+body{
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
 .content {
   min-height: 100dvh;
   min-width: 100dvw;
   font-family: tahoma, sans-serif;
   font-style: normal;
   font-weight: 400;
+  overflow-y: auto;
 }
 
 .container {
@@ -60,4 +65,8 @@
   .container {
     max-width: 1280px;
   }
+}
+
+.english {
+  font-family: 'FMSCFavorit', tahoma, arial, sans-serif;
 }
