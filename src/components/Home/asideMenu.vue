@@ -35,7 +35,7 @@ export default defineComponent({
 <template>
     <aside class="asideMenu">
         <div class="asideMenu__inner">
-            <ul class="asideMenu__items">
+            <ul class="asideMenu__items" :class="activeSection !== 'home' ? 'active' : 'transparent'">
                 <li class="asideMenu__item" :class="{ active: activeSection === section.id }"
                     v-for="section in sections" :key="section.id" @click="onClickSection(section.id)">
                     <a href="#" class="asideMenu__link" @click.prevent>
@@ -106,6 +106,14 @@ export default defineComponent({
     list-style: none;
 }
 
+.asideMenu__items.active {
+    background-color: #fff;
+}
+
+.asideMenu__items.active li a {
+    color: #000;
+}
+
 .arabic .asideMenu__items:before {
     left: 16px;
     right: unset;
@@ -159,8 +167,9 @@ export default defineComponent({
     background-color: #80fd66;
 }
 
-html:not([dir=rtl]) .asideMenu__item:after {
-    right: 0;
+.arabic .asideMenu__item:after {
+    left: 0;
+    right: unset;
 }
 
 .asideMenu__item.active:after {
@@ -181,5 +190,17 @@ html:not([dir=rtl]) .asideMenu__item:after {
     height: 12px;
     content: "";
     transform: rotate(45deg);
+    right: 0
+}
+
+.arabic .asideMenu__item {
+    padding-inline-end: 0;
+    padding-inline-start: 28px;
+}
+
+.arabic .asideMenu__items {
+    padding-inline-end: 0;
+    padding-inline-start: 10px;
+    align-items: flex-start;
 }
 </style>
