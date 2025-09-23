@@ -1,14 +1,39 @@
 {
-    "Home":"Home",
-      "langSwitch": "English",
-      "homeSection":{
-        "home":"Home",
-        "about":"About",
-        "ceo":"CEO",
-        "services":"Services",
-        "routes":"Routes",
-        "sustainability":"Sustainability",
-        "news":"News",
-        "career":"Career"
-      }
+    "Home": "Home",
+    "langSwitch": "English",
+    "homeSection": {
+        "home": "Home",
+        "mission": "Mission",
+        "about": "About",
+        "ceo": "CEO",
+        "services": "Services",
+        "routes": "Routes",
+        "sustainability": "Sustainability",
+        "news": "News",
+        "career": "Career"
+    },
+    "missionSection": {
+        "kicker": "Our pillars",
+        "title": "Mission. Vision. Purpose.",
+        "subtitle": "We are building a resilient logistics network that anticipates the needs of trade partners across the region and beyond.",
+        "items": {
+            "mission": {
+                "title": "Our Mission",
+                "body": "Deliver flexible and reliable solutions that create measurable value for every customer and stakeholder we serve."
+            },
+            "vision": {
+                "title": "Our Vision",
+                "body": "Lead regional liner and feeder operations throughout the Middle East while elevating the Kingdom of Saudi Arabia as a global logistics hub."
+            },
+            "purpose": {
+                "title": "Our Purpose",
+                "body": "Connect cultures and economies by facilitating sustainable, future-proof trade."
+            }
+        }
+    },
+    "aboutSection": {
+        "tag": "About us",
+        "headline": "Folk Maritime Services Company (Folk Maritime) leads as the foremost regional liner and feeder operator across the Middle East and beyond",
+        "headDescription": "Folk Maritime Services company was established in 2023 with the mission to connect regional ports seamlessly and catalyze trade across the Middle East, India, and East Africa. Our strategic goal aligns with Saudi Arabia's vision to become a global logistics hub, underlining the Kingdom's premier position in leading multiple high-growth industrial sectors. We are addressing the 'white space' in the region's maritime sector by offering the first-of-its-kind feeder and regional liner shipping services.\n\nFolk Maritime is creating new trade lanes and delivering end-to-end shipping solutions, connecting key transshipment routes in the Arabian Gulf, Red Sea, and beyond by delivering cost-effective and efficient logistics services that drive transformational trade growth.\n\nThe word \"Folk\" in Arabic evokes a deep maritime legacy, symbolizing a large sea vessel traditionally used for transporting cargo and conducting trade voyages, embodying strength, forward movement, and clear purpose, qualities central to our company's vision. Our visual identity draws inspiration from traditional Najdi geometric patterns and maritime signal flags, blending cultural authenticity with themes of communication, navigation, and purposeful progress."
+    }
 }

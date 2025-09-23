@@ -32,7 +32,12 @@ body{
   width: 100%;
   max-width: 1476px;
 }
-
+.arabic {
+  direction: rtl;
+}
+.english{
+  direction: ltr;
+}
 /* style.css or main.css */
 
 .container {

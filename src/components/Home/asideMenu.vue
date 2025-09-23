@@ -14,6 +14,7 @@ export default defineComponent({
         return {
             sections: [
                 { id: 'home', title: 'home' },
+                { id: 'mission', title: 'mission' },
                 { id: 'about', title: 'about' },
                 { id: 'ceo', title: 'ceo' },
                 { id: 'services', title: 'services' },
@@ -107,7 +108,7 @@ export default defineComponent({
 }
 
 .asideMenu__items.active {
-    background-color: #fff;
+    /* background-color: #fff; */
 }
 
 .asideMenu__items.active li a {
@@ -194,13 +195,13 @@ export default defineComponent({
 }
 
 .arabic .asideMenu__item {
-    padding-inline-end: 0;
-    padding-inline-start: 28px;
+    /* padding-inline-end: 0;
+    padding-inline-start: 28px; */
 }
 
 .arabic .asideMenu__items {
-    padding-inline-end: 0;
+    /* padding-inline-end: 0;
     padding-inline-start: 10px;
-    align-items: flex-start;
+    align-items: flex-start; */
 }
 </style>

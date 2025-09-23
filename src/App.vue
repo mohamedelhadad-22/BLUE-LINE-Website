@@ -8,9 +8,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="content">
+  <div class="content" :class="$i18n.locale == 'ar' ? 'arabic' : 'english'">
     <NavBar />
-    <div class="router_content" :class="$i18n.locale == 'ar' ? 'arabic' : 'english'">
+    <div class="router_content" >
       <RouterView />
     </div>
   </div>

@@ -2,6 +2,8 @@
 import { defineComponent } from 'vue';
 import Rellax from 'rellax';
 import BackgroundVideo from '@/components/Home/BackgroundVideo.vue';
+import OurMission from '@/components/Home/OurMission.vue';
+import AboutSection from '@/components/Home/About.vue';
 import asideMenu from '@/components/Home/asideMenu.vue';
 
 type ParallaxInstance = { destroy: () => void } | null;
@@ -10,6 +12,8 @@ export default defineComponent({
     name: 'HomeView',
     components: {
         BackgroundVideo,
+        OurMission,
+        AboutSection,
         asideMenu,
     },
     data() {
@@ -17,6 +21,7 @@ export default defineComponent({
             activeSection: 'home',
             sectionIds: [
                 'home',
+                'mission',
                 'about',
                 'ceo',
                 'services',
@@ -122,9 +127,9 @@ export default defineComponent({
 
         <asideMenu :activeSection="activeSection" @navigate="scrollToSection" />
 
-        <div class="about_section" id="about">
-            {{ $t('About') }}
-        </div>
+        <OurMission />
+
+        <AboutSection />
         <div class="ceo_section" id="ceo">
             {{ $t('ceo') }}
         </div>
@@ -147,7 +152,6 @@ export default defineComponent({
 </template>
 
 <style scoped>
-.about_section,
 .ceo_section,
 .services_section,
 .routes_section,
