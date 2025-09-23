@@ -1,5 +1,8 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, shallowRef } from "vue";
+import anchor from "@/assets/anchor.vue";
+import computerLine from "@/assets/computer-line.vue";
+import sunIcon from "@/assets/sun.vue";
 
 type ComposerLocale = {
   value: string;
@@ -27,14 +30,32 @@ export default defineComponent({
       return this.isArabic ? "ar" : "en";
     },
   },
+  data() {
+    return {
+      aboutUs__boxes: [
+        {
+          icon: shallowRef(anchor),
+          text: "Digitalinnovation",
+          id: 1,
+        },
+        {
+          icon: shallowRef(computerLine),
+          text: "Customer-centric",
+          id: 1,
+        },
+        {
+          icon: shallowRef(sunIcon),
+          text: "Innovativesolutions",
+          id: 1,
+        },
+      ],
+    };
+  },
 });
 </script>
 
 <template>
-  <section
-    id="about"
-    class="about-section"
-  >
+  <section id="about" class="about-section">
     <div class="about-shell">
       <div class="about-content">
         <div class="about-tag">
@@ -48,13 +69,32 @@ export default defineComponent({
           <span class="about-label">{{ $t("aboutSection.tag") }}</span>
         </div>
 
-        <p class="about-heading">
+        <h1 class="about-heading">
           {{ $t("aboutSection.headline") }}
+        </h1>
+        <p class="about-description">
+          {{ $t("aboutSection.headDescription") }}
         </p>
       </div>
 
       <div class="about-pattern" aria-hidden="true">
         <div class="pattern-block" v-for="n in 6" :key="n"></div>
+      </div>
+    </div>
+    <div class="aboutUs__boxes">
+      <div class="aboutUs__items">
+        <div
+          class="aboutUs__item"
+          v-for="boxe in aboutUs__boxes"
+          :key="boxe.id"
+        >
+          <div class="aboutUs__itemIcon">
+            <component :is="boxe.icon"></component>
+          </div>
+          <p class="aboutUs__itemText">
+            {{ $t(`aboutSection.${boxe.text}`) }}
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -65,7 +105,7 @@ export default defineComponent({
   position: relative;
   width: 100%;
   padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 8vw, 6rem);
-  background: #eef5f5;
+  background: #eff6f5;
   overflow: hidden;
 }
 
@@ -115,12 +155,9 @@ export default defineComponent({
 }
 
 .about-heading {
-  margin: 0;
-  font-size: clamp(1.9rem, 3vw, 2.75rem);
-  line-height: 1.3;
-  font-weight: 600;
-  color: #0f1729;
-  max-width: 32ch;
+  font-size: clamp(4rem, 3.6129032258vw, 5.6rem);
+  line-height: 1.2;
+  font-weight: 300;
 }
 
 .about-pattern {
@@ -149,7 +186,51 @@ export default defineComponent({
 .about-section[dir="rtl"] .about-content {
   text-align: right;
 }
+.about-description {
+  flex: 1;
+  line-height: 1.4;
+  font-size: 1.4rem;
+  color: var(--color-secondary);
+}
 
+.aboutUs__boxes {
+  margin-top: 8rem;
+}
+.aboutUs__items {
+  display: flex;
+  flex-direction: row;
+  gap: 2.8rem;
+  justify-content: space-between;
+  width: 100%;
+}
+.aboutUs__item {
+  display: flex;
+  position: relative;
+  flex: 1 0 30%;
+  gap: 1.6rem;
+  border: 1px solid #dadada;
+  border-radius: 8px;
+  padding: 1.6rem 2.4rem;
+  line-height: 1.4;
+  font-size: 2.4rem;
+}
+.aboutUs__itemIcon {
+  display: flex;
+  flex: 0 0 5rem;
+  align-items: center;
+  justify-content: center;
+  background-color: #2b39901e;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 2px;
+}
+.aboutUs__itemIcon svg {
+  width: 20px;
+  height: 20px;
+}
+.aboutUs__itemText {
+    flex: 1 0 70%;
+}
 @media (max-width: 960px) {
   .about-shell {
     grid-template-columns: 1fr;
@@ -175,5 +256,10 @@ export default defineComponent({
   .pattern-block:nth-child(5) {
     background: rgba(220, 235, 235, 0.9);
   }
+}
+</style>
+<style>
+.aboutUs__itemIcon svg path {
+  fill: var(--color-secondary);
 }
 </style>
