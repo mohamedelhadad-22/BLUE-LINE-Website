@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Logistics collaboration illustration</title>
+  <desc id="desc">Abstract illustration of logistics professionals working together</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0f5270" />
+      <stop offset="100%" stop-color="#1b8c76" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f5fffa" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#c8ffee" stop-opacity="0.55" />
+    </linearGradient>
+    <linearGradient id="table" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffe3b4" />
+      <stop offset="100%" stop-color="#ffb069" />
+    </linearGradient>
+  </defs>
+  <rect width="720" height="540" fill="url(#bg)" />
+  <path d="M0 320h720v220H0z" fill="#0c3941" opacity="0.55" />
+  <g transform="translate(120 100)">
+    <rect x="0" y="0" width="480" height="260" rx="28" fill="rgba(8, 20, 40, 0.45)" />
+    <rect x="40" y="36" width="400" height="120" rx="18" fill="url(#accent)" />
+    <rect x="80" y="70" width="120" height="26" rx="12" fill="#19a383" opacity="0.75" />
+    <rect x="220" y="70" width="160" height="22" rx="11" fill="#2754bf" opacity="0.65" />
+    <rect x="80" y="110" width="240" height="18" rx="9" fill="#1c3c5c" opacity="0.7" />
+    <rect x="80" y="138" width="180" height="14" rx="7" fill="#1c3c5c" opacity="0.55" />
+  </g>
+  <g transform="translate(40 210)">
+    <path d="M120 180c0-66 54-120 120-120s120 54 120 120z" fill="#f0cdb8" />
+    <path d="M320 180c0-66 54-120 120-120s120 54 120 120z" fill="#f8d9c4" />
+    <path d="M0 180h640l-54 96H54z" fill="url(#table)" />
+    <circle cx="180" cy="130" r="70" fill="#143f5a" />
+    <circle cx="420" cy="130" r="70" fill="#1c5772" />
+    <rect x="146" y="178" width="68" height="102" rx="30" fill="#143f5a" />
+    <rect x="386" y="178" width="68" height="102" rx="30" fill="#1c5772" />
+    <rect x="216" y="164" width="96" height="136" rx="40" fill="#1d7568" />
+    <rect x="304" y="164" width="96" height="136" rx="40" fill="#115d7c" />
+    <path d="M240 156c-10-44 18-80 60-80s70 36 60 80" fill="#142e45" />
+    <rect x="210" y="200" width="220" height="36" rx="18" fill="#093d53" opacity="0.75" />
+  </g>
+</svg>

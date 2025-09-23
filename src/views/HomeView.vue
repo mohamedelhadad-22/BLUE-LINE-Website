@@ -3,6 +3,9 @@ import { defineComponent } from 'vue';
 import Rellax from 'rellax';
 import BackgroundVideo from '@/components/Home/BackgroundVideo.vue';
 import OurMission from '@/components/Home/OurMission.vue';
+import CeoSection from '@/components/Home/CeoSection.vue';
+import ServicesSection from '@/components/Home/ServicesSection.vue';
+import CareersSection from '@/components/Home/CareersSection.vue';
 import AboutSection from '@/components/Home/About.vue';
 import asideMenu from '@/components/Home/asideMenu.vue';
 
@@ -13,6 +16,9 @@ export default defineComponent({
     components: {
         BackgroundVideo,
         OurMission,
+        CeoSection,
+        ServicesSection,
+        CareersSection,
         AboutSection,
         asideMenu,
     },
@@ -130,12 +136,8 @@ export default defineComponent({
         <OurMission />
 
         <AboutSection />
-        <div class="ceo_section" id="ceo">
-            {{ $t('ceo') }}
-        </div>
-        <div class="services_section" id="services">
-            {{ $t('services') }}
-        </div>
+        <CeoSection />
+        <ServicesSection />
         <div class="routes_section" id="routes">
             {{ $t('routes') }}
         </div>
@@ -145,19 +147,14 @@ export default defineComponent({
         <div class="news_section" id="news">
             {{ $t('news') }}
         </div>
-        <div class="career_section" id="career">
-            {{ $t('career') }}
-        </div>
+        <CareersSection />
     </div>
 </template>
 
 <style scoped>
-.ceo_section,
-.services_section,
 .routes_section,
 .sustainability_section,
-.news_section,
-.career_section {
+.news_section {
     height: 100vh;
 }
 
