@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800" role="img" aria-labelledby="title desc">
+  <title id="title">Executive portrait placeholder</title>
+  <desc id="desc">Abstract illustration representing a business executive</desc>
+  <defs>
+    <linearGradient id="bgGradient" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f0f4ff" />
+      <stop offset="100%" stop-color="#dfe9f6" />
+    </linearGradient>
+    <linearGradient id="suitGradient" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#152c53" />
+      <stop offset="100%" stop-color="#283d68" />
+    </linearGradient>
+    <linearGradient id="tieGradient" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#4c8fe5" />
+      <stop offset="100%" stop-color="#365fa4" />
+    </linearGradient>
+  </defs>
+  <rect width="640" height="800" fill="url(#bgGradient)" />
+  <g transform="translate(0 48)">
+    <ellipse cx="320" cy="232" rx="124" ry="144" fill="#f5d1bc" />
+    <path d="M205 386c18-74 239-74 258 0 7 31 9 73 9 143H196c0-70 2-112 9-143Z" fill="url(#suitGradient)" />
+    <path d="M320 330c54 0 84-44 84-118 0-75-37-122-84-122s-84 47-84 122c0 74 30 118 84 118Z" fill="#f5d1bc" />
+    <path d="M232 210c-4-75 36-126 88-126 54 0 102 51 88 132-8 45-176 45-176-6Z" fill="#585e7d" />
+    <path d="M240 500c32-45 128-45 160 0v80H240v-80Z" fill="#2d497a" />
+    <path d="M312 414h16l28 92h-72l28-92Z" fill="url(#tieGradient)" />
+    <path d="M226 394c30 22 188 22 218 0-24-78-194-78-218 0Z" fill="#0f1f3a" opacity="0.3" />
+    <path d="M216 543c60 24 148 24 208 0v90H216v-90Z" fill="#17315b" />
+    <path d="M232 633c56 18 120 18 176 0v45H232v-45Z" fill="#11223f" />
+    <circle cx="280" cy="244" r="12" fill="#2c3a4f" />
+    <circle cx="360" cy="244" r="12" fill="#2c3a4f" />
+    <path d="M276 216c4-14 32-14 36 0" stroke="#2c3a4f" stroke-width="8" stroke-linecap="round" fill="none" />
+    <path d="M328 216c4-14 32-14 36 0" stroke="#2c3a4f" stroke-width="8" stroke-linecap="round" fill="none" />
+  </g>
+</svg>

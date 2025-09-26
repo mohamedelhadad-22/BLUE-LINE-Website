@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Maritime technology illustration</title>
+  <desc id="desc">Abstract illustration of a vessel with digital overlays</desc>
+  <defs>
+    <linearGradient id="water" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#064f6b" />
+      <stop offset="100%" stop-color="#042f46" />
+    </linearGradient>
+    <linearGradient id="ship" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f7fafc" />
+      <stop offset="100%" stop-color="#dfe7f1" />
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.2" r="0.9">
+      <stop offset="0%" stop-color="#70f7d6" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#1d6f9b" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="720" height="540" fill="url(#water)" />
+  <circle cx="360" cy="120" r="160" fill="url(#glow)" />
+  <g transform="translate(180 90)">
+    <path d="M180 0c-44 0-88 72-108 186-18 104-14 146-14 146h244s4-42-14-146C268 72 224 0 180 0Z" fill="url(#ship)" />
+    <path d="M72 280h216v40H72z" fill="#092c3e" opacity="0.65" />
+    <path d="M0 320h360l-36 60H36z" fill="#052233" />
+    <rect x="128" y="86" width="104" height="94" rx="12" fill="#2a9c86" opacity="0.8" />
+    <rect x="144" y="106" width="72" height="12" rx="6" fill="#0b3a58" />
+    <rect x="144" y="130" width="92" height="12" rx="6" fill="#0b3a58" opacity="0.8" />
+    <rect x="144" y="154" width="64" height="12" rx="6" fill="#0b3a58" opacity="0.6" />
+    <rect x="160" y="212" width="40" height="28" rx="6" fill="#1f5b7b" />
+  </g>
+  <g transform="translate(60 60)" fill="#7ce9c9" opacity="0.5">
+    <rect x="0" y="0" width="112" height="8" rx="4" />
+    <rect x="480" y="24" width="132" height="8" rx="4" />
+    <rect x="520" y="56" width="88" height="8" rx="4" />
+    <rect x="72" y="96" width="104" height="8" rx="4" />
+    <rect x="40" y="32" width="60" height="8" rx="4" />
+    <rect x="320" y="12" width="92" height="8" rx="4" />
+  </g>
+  <g transform="translate(72 400)" fill="#0af5c2" opacity="0.35">
+    <circle cx="24" cy="24" r="24" />
+    <circle cx="120" cy="48" r="18" />
+    <circle cx="228" cy="28" r="20" />
+    <circle cx="432" cy="36" r="16" />
+    <circle cx="564" cy="20" r="22" />
+  </g>
+</svg>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Shipping containers illustration</title>
+  <desc id="desc">Abstract illustration of stacked shipping containers</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f9fbff" />
+      <stop offset="100%" stop-color="#d6e6f9" />
+    </linearGradient>
+    <linearGradient id="containerA" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0c4b63" />
+      <stop offset="100%" stop-color="#167971" />
+    </linearGradient>
+    <linearGradient id="containerB" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#115379" />
+      <stop offset="100%" stop-color="#1b6aa8" />
+    </linearGradient>
+  </defs>
+  <rect width="720" height="540" fill="url(#sky)" />
+  <rect y="340" width="720" height="200" fill="#1a4d63" />
+  <g transform="translate(60 140)">
+    <rect x="0" y="160" width="180" height="120" fill="url(#containerA)" rx="6" />
+    <rect x="180" y="160" width="180" height="120" fill="url(#containerB)" rx="6" />
+    <rect x="360" y="160" width="180" height="120" fill="url(#containerA)" rx="6" />
+    <rect x="90" y="60" width="180" height="120" fill="url(#containerB)" rx="6" />
+    <rect x="270" y="60" width="180" height="120" fill="url(#containerA)" rx="6" />
+    <rect x="180" y="-40" width="180" height="120" fill="url(#containerB)" rx="6" />
+    <g fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">
+      <text x="32" y="232">FOLK</text>
+      <text x="212" y="232">FOLK</text>
+      <text x="392" y="232">FOLK</text>
+      <text x="122" y="132">FOLK</text>
+      <text x="302" y="132">FOLK</text>
+      <text x="212" y="32">FOLK</text>
+    </g>
+    <g fill="#87d3c0" opacity="0.65">
+      <rect x="16" y="188" width="148" height="8" rx="4" />
+      <rect x="196" y="188" width="148" height="8" rx="4" />
+      <rect x="376" y="188" width="148" height="8" rx="4" />
+      <rect x="106" y="88" width="148" height="8" rx="4" />
+      <rect x="286" y="88" width="148" height="8" rx="4" />
+      <rect x="196" y="-12" width="148" height="8" rx="4" />
+    </g>
+  </g>
+  <path d="M0 360c52-28 116-28 168 0s116 28 168 0 116-28 168 0 116 28 168 0v180H0Z" fill="#0f3742" opacity="0.6" />
+</svg>

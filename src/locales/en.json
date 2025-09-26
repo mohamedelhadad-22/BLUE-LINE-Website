@@ -43,5 +43,351 @@
         "Customer-centric": "Customer-centric approach for mainline shippers",
         "Digitalinnovation": "Digital innovation to elevate logistical standards",
         "Innovativesolutions": "Innovative solutions to drive sustainability"
+    },
+    "ceoSection": {
+        "label": "Foreword from the CEO",
+        "headline": "Saudi Arabia has a strong ambition to harness its strategic geographical position to become a globally connected logistics hub, establishing itself at the heart of multiple industries, including shipping.",
+        "body": {
+            "first": "Folk Maritime was born out of this ambition and will play a critical role in making it a reality. The company fills a void in the regional maritime shipping market – offering the first feeder and liner services from Saudi Arabia, with a fleet of ships, including the first-Saudi flag container vessel owned by Folk Maritime.",
+            "second": "Harnessing essential connections with key transshipment routes across the region and beyond, Folk Maritime's liner services catalyze regional trade and create new opportunities for businesses to connect with fast-growing markets in India, the Arabian Gulf and along the Red Sea.",
+            "third": "Our commitment is to provide reliable, future-ready shipping solutions that strengthen the Kingdom's position at the forefront of global logistics."
+        },
+        "name": "Poul Hestbaek",
+        "role": "Chief Executive Officer",
+        "photoAlt": "Portrait of Poul Hestbaek"
+    },
+    "servicesSection": {
+        "label": "Services",
+        "subtitle": "Independent feeder operations seamlessly link smaller ports to larger hubs while our end-to-end shipping solutions create new trade opportunities across the region.",
+        "items": {
+            "logistics": {
+                "title": "Freight and Shipping Logistics",
+                "body": "Our coastal and regional liner services synchronize schedules, consolidate cargo, and manage customs documentation so partners stay focused on their supply chain priorities.",
+                "figureAlt": "Logistics specialists collaborating during a planning session"
+            },
+            "routes": {
+                "title": "New Trade Routes from the Kingdom of Saudi Arabia",
+                "body": "Dedicated feeder routes extend the Kingdom's ports to global networks, accelerating time-to-market for export goods while ensuring reliable connectivity for inbound cargo.",
+                "figureAlt": "Stacked Folk Maritime containers positioned at a port"
+            },
+            "technology": {
+                "title": "Integration of World-class Technology",
+                "body": "Smart port technologies, paperless processes, and real-time visibility tools streamline operations, enabling data-driven decisions across every voyage.",
+                "figureAlt": "Folk Maritime vessel underway viewed from the bow"
+            }
+        }
+    },
+    "careersSection": {
+        "label": "Careers at Folk",
+        "title": "Join Us and Set Sail Towards a Common Goal",
+        "body": "Discover a career path in an environment where diversity is the strength and inclusivity the compass. We empower individuals, embracing varied perspectives to drive innovation and collective success.",
+        "cta": "Explore Opportunities",
+        "ctaAria": "Explore open career opportunities at Folk Maritime",
+        "galleryAlt": {
+            "containers": "Stacked Folk Maritime containers under a clear sky",
+            "team": "Team members placing their hands together in unity",
+            "meeting": "Colleagues collaborating during a meeting",
+            "vessel": "Folk Maritime vessel departing pier",
+            "detail": "Uniform lapel pin with Folk Maritime branding"
+        }
+    },
+    "footer": {
+        "feedback": {
+            "text": "What you think matters. Please share your suggestions.",
+            "link": "Share your suggestions"
+        },
+        "sections": {
+            "about": {
+                "title": "About Folk",
+                "links": {
+                    "about": "About us",
+                    "stakeholders": "Stakeholders Relations",
+                    "careers": "Careers",
+                    "contact": "Contact us"
+                }
+            },
+            "business": {
+                "title": "Business areas",
+                "links": {
+                    "feeders": "Feeders services",
+                    "liner": "Regional Liner Services",
+                    "routes": "Routes & Agents Contacts",
+                    "faq": "FAQ & Glossary",
+                    "fleet": "Fleet"
+                }
+            },
+            "media": {
+                "title": "Media center",
+                "links": {
+                    "news": "News & Insights",
+                    "downloads": "Downloads"
+                }
+            }
+        },
+        "follow": "Follow us",
+        "legal": {
+            "copyright": "© Folk Maritime. All Rights Reserved 2025",
+            "privacy": "Privacy Policy",
+            "terms": "Terms & Conditions"
+        },
+        "backToTop": "Back to top",
+        "pifLabel": "A PIF COMPANY",
+        "modal": {
+            "title": "Comments & Suggestions",
+            "placeholder": "Enter your comments or suggestions",
+            "submit": "Submit",
+            "cancel": "Cancel",
+            "success": "Thanks for sharing your feedback!",
+            "error": "Please enter a message before submitting."
+        }
+    },
+    "pages": {
+        "stakeholders": {
+            "headline": "Stakeholders Relations",
+            "body": "We collaborate closely with regulators, investors, and community partners to keep dialogue transparent and accountable across every port we serve. A detailed stakeholder engagement framework will be published here soon.",
+            "highlights": {
+                "engagement": {
+                    "title": "Engagement pathways",
+                    "body": "Regular roundtables, digital forums, and quarterly reports keep every stakeholder group informed and aligned."
+                },
+                "governance": {
+                    "title": "Governance toolkit",
+                    "body": "Templates and policies supporting ESG commitments, risk registers, and disclosure expectations."
+                }
+            },
+            "cta": {
+                "label": "Download stakeholder handbook",
+                "description": "Toolkit release scheduled for Q3 2025.",
+                "link": "mailto:partnerships@folkmaritime.com"
+            }
+        },
+        "careers": {
+            "headline": "Careers",
+            "body": "Explore future openings and growth opportunities at Folk Maritime. This portal will soon provide role listings, hiring timelines, and talent development resources.",
+            "highlights": {
+                "culture": {
+                    "title": "Culture & values",
+                    "body": "Collaborative teams, continuous learning, and shared ownership of bold maritime goals."
+                },
+                "growth": {
+                    "title": "Growth journeys",
+                    "body": "Structured onboarding, mentorship, and mobility programmes across regional hubs."
+                }
+            },
+            "cta": {
+                "label": "Join our talent network",
+                "description": "Sign up to receive the first wave of openings.",
+                "link": "mailto:talent@folkmaritime.com"
+            }
+        },
+        "contact": {
+            "headline": "Contact Us",
+            "body": "We're finalizing our regional offices and support channels. A full directory and enquiry form will be available shortly.",
+            "highlights": {
+                "hq": {
+                    "title": "Head office",
+                    "body": "Kingdom Tower, Riyadh – dedicated client reception opening soon."
+                },
+                "support": {
+                    "title": "24/7 support",
+                    "body": "Logistics command centre to provide shipment tracking and incident response."
+                }
+            },
+            "cta": {
+                "label": "Email interim support",
+                "description": "Reach us at support@folkmaritime.com",
+                "link": "mailto:support@folkmaritime.com"
+            }
+        },
+        "feeders": {
+            "headline": "Feeders Services",
+            "body": "Technical specifications, schedules, and service commitments for our feeder network are on the way. Check back to download sailing plans and port guides.",
+            "highlights": {
+                "coverage": {
+                    "title": "Coverage map",
+                    "body": "Serving key ports across the Red Sea, Arabian Gulf, and Indian west coast."
+                },
+                "performance": {
+                    "title": "Performance assurance",
+                    "body": "Guaranteed cut-off windows and on-time reliability backed by service credits."
+                }
+            },
+            "cta": {
+                "label": "Request sailing schedule",
+                "description": "Schedule PDFs will be shared upon launch.",
+                "link": "mailto:schedules@folkmaritime.com"
+            }
+        },
+        "liner": {
+            "headline": "Regional Liner Services",
+            "body": "We're curating detailed route maps and transit times for our liner solutions. Soon you'll be able to review optimized port rotations and booking support.",
+            "highlights": {
+                "network": {
+                    "title": "Balanced rotations",
+                    "body": "Weekly strings designed to connect Saudi gateways with high-growth Asian and African ports."
+                },
+                "digital": {
+                    "title": "Digital booking",
+                    "body": "API-driven bookings with milestone visibility and automated compliance checks."
+                }
+            },
+            "cta": {
+                "label": "Talk to a liner specialist",
+                "description": "Our commercial team will tailor capacity to your lanes.",
+                "link": "mailto:liner@folkmaritime.com"
+            }
+        },
+        "routes": {
+            "headline": "Routes & Agents Contacts",
+            "body": "A comprehensive directory of agents, local representatives, and documentation requirements is coming soon.",
+            "highlights": {
+                "agents": {
+                    "title": "Accredited agents",
+                    "body": "Partner network across 18 countries ready to assist with bookings and port services."
+                },
+                "compliance": {
+                    "title": "Documentation hub",
+                    "body": "Certificates, customs forms, and port-specific advisories in one location."
+                }
+            },
+            "cta": {
+                "label": "Request agent list",
+                "description": "Email network@folkmaritime.com to receive the interim directory.",
+                "link": "mailto:network@folkmaritime.com"
+            }
+        },
+        "faq": {
+            "headline": "FAQ & Glossary",
+            "body": "We're preparing an interactive glossary of maritime terminology along with quick answers to frequently asked questions.",
+            "highlights": {
+                "glossary": {
+                    "title": "Glossary",
+                    "body": "Plain-language definitions covering liner terminology and digital shipping concepts."
+                },
+                "support": {
+                    "title": "Self-service help",
+                    "body": "Guided articles for booking, documentation, and sustainability reporting."
+                }
+            },
+            "cta": {
+                "label": "Ask a question",
+                "description": "Send us topics you would like to see covered.",
+                "link": "/contact"
+            }
+        },
+        "fleet": {
+            "headline": "Fleet",
+            "body": "Discover the capabilities, capacities, and sustainability features of our growing fleet. Fleet specifications will be published shortly.",
+            "highlights": {
+                "specs": {
+                    "title": "Vessel profiles",
+                    "body": "TEU capacity, draft, and fuel technology benchmarked for regional efficiency."
+                },
+                "sustainability": {
+                    "title": "Sustainability",
+                    "body": "Shore-power readiness and alternative fuels roadmap supporting Saudi Green Initiative."
+                }
+            },
+            "cta": {
+                "label": "Download fleet fact sheet",
+                "description": "Specs will be available as soon as fleet commissioning completes.",
+                "link": "mailto:fleet@folkmaritime.com"
+            }
+        },
+        "news": {
+            "headline": "News & Insights",
+            "body": "Stay tuned for press releases, market insights, and leadership commentary. Our newsroom will launch here soon.",
+            "highlights": {
+                "press": {
+                    "title": "Press releases",
+                    "body": "Latest announcements on partnerships, sailings, and milestones."
+                },
+                "analysis": {
+                    "title": "Market analysis",
+                    "body": "Quarterly outlook on regional trade lanes and logistics innovation."
+                }
+            },
+            "cta": {
+                "label": "Subscribe to updates",
+                "description": "Receive newsroom alerts in your inbox.",
+                "link": "mailto:media@folkmaritime.com"
+            }
+        },
+        "downloads": {
+            "headline": "Downloads",
+            "body": "Operational manuals, brand assets, and compliance documents will be housed here for quick reference.",
+            "highlights": {
+                "operations": {
+                    "title": "Operations kit",
+                    "body": "Tariffs, cut-off schedules, and port handling instructions."
+                },
+                "brand": {
+                    "title": "Brand assets",
+                    "body": "Logos, imagery, and guidelines to support media partners."
+                }
+            },
+            "cta": {
+                "label": "Request documents",
+                "description": "Contact documents@folkmaritime.com for interim files.",
+                "link": "mailto:documents@folkmaritime.com"
+            }
+        },
+        "privacy": {
+            "headline": "Privacy Policy",
+            "body": "We're finalizing our privacy governance. The full policy covering data processing and user rights will be published here shortly.",
+            "highlights": {
+                "data": {
+                    "title": "Data stewardship",
+                    "body": "How we collect, process, and retain information across digital platforms."
+                },
+                "rights": {
+                    "title": "Your rights",
+                    "body": "Processes for requesting access, correction, or deletion of personal data."
+                }
+            },
+            "cta": {
+                "label": "Contact data protection officer",
+                "description": "privacy@folkmaritime.com",
+                "link": "mailto:privacy@folkmaritime.com"
+            }
+        },
+        "terms": {
+            "headline": "Terms & Conditions",
+            "body": "Our service terms, contractual provisions, and website usage guidelines are being prepared. Please check back soon.",
+            "highlights": {
+                "services": {
+                    "title": "Service commitments",
+                    "body": "Service-level guarantees, liabilities, and exceptions defined clearly."
+                },
+                "website": {
+                    "title": "Website use",
+                    "body": "Guidelines for using digital tools, trademarks, and shared assets."
+                }
+            },
+            "cta": {
+                "label": "Request draft terms",
+                "description": "legal@folkmaritime.com",
+                "link": "mailto:legal@folkmaritime.com"
+            }
+        },
+        "suggestions": {
+            "headline": "Share Your Suggestions",
+            "body": "We value every idea that helps us deliver better maritime experiences. A full submission form will be live here soon. Meanwhile, please reach us via the channels listed on our contact page.",
+            "highlights": {
+                "channels": {
+                    "title": "Multiple channels",
+                    "body": "Use the footer feedback modal, contact email, or upcoming customer portal."
+                },
+                "response": {
+                    "title": "Response timeline",
+                    "body": "Submissions are acknowledged within 48 hours with next steps."
+                }
+            },
+            "cta": {
+                "label": "Open feedback form",
+                "description": "Scroll to the footer to share your idea instantly.",
+                "link": "#footer-feedback"
+            }
+        }
     }
 }

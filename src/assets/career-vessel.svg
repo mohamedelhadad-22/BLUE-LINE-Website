@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 360" role="img" aria-labelledby="title desc">
+  <title id="title">Vessel illustration</title>
+  <desc id="desc">Abstract ship sailing illustration</desc>
+  <defs>
+    <linearGradient id="water" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0a4a6a" />
+      <stop offset="100%" stop-color="#043049" />
+    </linearGradient>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#e4f4ff" />
+      <stop offset="100%" stop-color="#c0d6eb" />
+    </linearGradient>
+    <linearGradient id="ship" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f8fbff" />
+      <stop offset="100%" stop-color="#dfe8f2" />
+    </linearGradient>
+  </defs>
+  <rect width="520" height="360" fill="url(#sky)" />
+  <rect y="180" width="520" height="180" fill="url(#water)" />
+  <g transform="translate(140 60)">
+    <path d="M120 0c-38 0-76 60-92 150-14 80-12 110-12 110h208s2-30-12-110C196 58 158 0 120 0Z" fill="url(#ship)" />
+    <path d="M72 230h96v24H72z" fill="#083144" />
+    <path d="M40 254h160l-20 36H60z" fill="#042333" />
+    <rect x="94" y="74" width="54" height="70" rx="10" fill="#198d77" />
+    <rect x="102" y="90" width="36" height="10" rx="4" fill="#083a56" />
+    <rect x="102" y="112" width="48" height="10" rx="4" fill="#083a56" opacity="0.7" />
+  </g>
+</svg>
