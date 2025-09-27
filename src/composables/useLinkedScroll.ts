@@ -1,9 +1,8 @@
 // src/composables/useLinkedScroll.ts
 type Opts = {
   inner: HTMLElement; // .accordionSlider__content
-  sectionEl: HTMLElement; // section#services
-  wheelScale?: number; // قوة العجلة
-  easingMs?: number; // غير مستخدمة هنا (السناب داخل ServicesSection)
+  sectionEl: HTMLElement; // section#services (أو عنصر السكشن الخارجي)
+  wheelScale?: number; // قوة تأثير العجلة
 };
 
 export function useLinkedScroll({ inner, sectionEl, wheelScale = 1.05 }: Opts) {
@@ -18,15 +17,13 @@ export function useLinkedScroll({ inner, sectionEl, wheelScale = 1.05 }: Opts) {
   const atBottom = () =>
     Math.ceil(inner.scrollTop + inner.clientHeight) >= inner.scrollHeight - 1;
 
-  // نسمع لعجلة وتاتش في "القسم" نفسه (مش على window)
   const onWheel = (e: WheelEvent) => {
     if (!inView()) return;
     const dy = e.deltaY || 0;
-
-    // لو في مساحة للتمرير داخل العمود، امنع تمرير الصفحة وحرك الداخل
     const canDown = dy > 0 && !atBottom();
     const canUp = dy < 0 && !atTop();
 
+    // لو ينفع نتمرجح جوّا العمود الداخلي → امنع تمرير الصفحة ووجّه للداخل
     if (canDown || canUp) {
       e.preventDefault();
       e.stopPropagation();
@@ -38,10 +35,9 @@ export function useLinkedScroll({ inner, sectionEl, wheelScale = 1.05 }: Opts) {
         )
       );
     }
-    // لو مفيش مساحة (في القاع أو القمة)، سيب الحدث يطلع للصفحة عادي
+    // لو مفيش مساحة جوّا (وصلت القمة/القاع) → سيب الحدث يطلع للصفحة طبيعي
   };
 
-  // سوايب لمس بسيط لتوجيه التمرير للداخل فقط
   let startY = 0;
   const onTouchStart = (e: TouchEvent) => {
     if (!inView()) return;
@@ -53,6 +49,7 @@ export function useLinkedScroll({ inner, sectionEl, wheelScale = 1.05 }: Opts) {
     const dy = startY - y;
     const canDown = dy > 0 && !atBottom();
     const canUp = dy < 0 && !atTop();
+
     if (canDown || canUp) {
       e.preventDefault();
       inner.scrollTop = Math.max(
@@ -63,7 +60,7 @@ export function useLinkedScroll({ inner, sectionEl, wheelScale = 1.05 }: Opts) {
     }
   };
 
-  // اربط على الـ section مش على window
+  // اسمع على السكشن نفسه (مش window)
   sectionEl.addEventListener("wheel", onWheel as EventListener, {
     passive: false,
   });

@@ -10,7 +10,7 @@ type CardState = {
   visible: boolean;
   imageShift: number;
   contentShift: number;
-  progress: number; // 0-1 for smooth animations
+  progress: number;
   isActive: boolean;
 };
 type ComposerLocale = { value: string };
@@ -34,10 +34,6 @@ export default defineComponent({
       listenersAttached: false,
       activeIndex: 0,
       transitionInProgress: false,
-      lastScrollTime: 0,
-      scrollVelocity: 0,
-      prevScrollTop: 0,
-      momentumRaf: null as number | null,
       ro: null as ResizeObserver | null,
     };
   },
@@ -79,163 +75,41 @@ export default defineComponent({
 
     attachScrollListeners() {
       if (typeof window === "undefined" || this.listenersAttached) return;
-
-      const opt: AddEventListenerOptions = { passive: false }; // Changed to false for preventDefault
-      window.addEventListener("scroll", this.handleMainScroll, {
+      window.addEventListener("resize", this.scheduleParallax);
+      this.contentRef?.addEventListener("scroll", this.onContentScroll, {
         passive: true,
       });
-      window.addEventListener("resize", this.scheduleParallax);
-      this.contentRef?.addEventListener("scroll", this.handleInnerScroll, opt);
       this.listenersAttached = true;
     },
 
     detachScrollListeners() {
       if (typeof window === "undefined" || !this.listenersAttached) return;
-
-      window.removeEventListener("scroll", this.handleMainScroll);
       window.removeEventListener("resize", this.scheduleParallax);
-      this.contentRef?.removeEventListener("scroll", this.handleInnerScroll);
+      this.contentRef?.removeEventListener("scroll", this.onContentScroll);
       this.listenersAttached = false;
     },
 
-    handleMainScroll() {
+    onContentScroll() {
       this.scheduleParallax();
-    },
-
-    handleInnerScroll(e: Event) {
-      const now = performance.now();
-      const dt = now - this.lastScrollTime;
-
-      const currentScrollTop = (e.target as HTMLElement).scrollTop;
-
-      if (dt > 0) {
-        const delta = currentScrollTop - this.prevScrollTop; // use prev
-        this.scrollVelocity = delta / dt;
-      }
-
-      this.prevScrollTop = currentScrollTop; // update prev
-      this.lastScrollTime = now;
-
-      this.scheduleParallax();
-      this.handleMomentumScroll();
-    },
-
-    getLastScrollTop(): number {
-      return this.contentRef?.scrollTop ?? 0;
-    },
-
-    handleMomentumScroll() {
-      if (this.momentumRaf) {
-        cancelAnimationFrame(this.momentumRaf);
-      }
-
-      this.momentumRaf = requestAnimationFrame(() => {
-        if (Math.abs(this.scrollVelocity) < 0.1) {
-          this.snapToNearestCard();
-        }
-        this.scrollVelocity *= 0.95; // Decay velocity
-
-        if (Math.abs(this.scrollVelocity) > 0.01) {
-          this.handleMomentumScroll();
-        }
-      });
-    },
-
-    snapToNearestCard() {
-      if (!this.contentRef || this.transitionInProgress) return;
-
-      const container = this.contentRef;
-      const containerCenter = container.scrollTop + container.clientHeight / 2;
-
-      let nearestIndex = 0;
-      let nearestDistance = Infinity;
-
-      this.cardRefs.forEach((el, index) => {
-        if (!el) return;
-
-        const cardTop = el.offsetTop;
-        const cardHeight = el.offsetHeight;
-        const cardCenter = cardTop + cardHeight / 2;
-        const distance = Math.abs(cardCenter - containerCenter);
-
-        if (distance < nearestDistance) {
-          nearestDistance = distance;
-          nearestIndex = index;
-        }
-      });
-
-      if (nearestIndex !== this.activeIndex) {
-        this.smoothScrollToCard(nearestIndex);
-      }
-    },
-
-    smoothScrollToCard(index: number) {
-      if (
-        !this.contentRef ||
-        !this.cardRefs[index] ||
-        this.transitionInProgress
-      )
-        return;
-
-      this.transitionInProgress = true;
-      const container = this.contentRef;
-      const targetCard = this.cardRefs[index]!;
-
-      const targetTop =
-        targetCard.offsetTop -
-        (container.clientHeight - targetCard.offsetHeight) / 2;
-
-      this.smoothScrollTo(container, targetTop, 600, () => {
-        this.activeIndex = index;
-        this.transitionInProgress = false;
-      });
-    },
-
-    smoothScrollTo(
-      element: HTMLElement,
-      target: number,
-      duration: number,
-      callback?: () => void
-    ) {
-      const start = element.scrollTop;
-      const distance = target - start;
-      let startTime: number | null = null;
-
-      const easeInOutCubic = (t: number): number => {
-        return t < 0.5
-          ? 4 * t * t * t
-          : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-      };
-
-      const scroll = (currentTime: number) => {
-        if (startTime === null) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const progress = Math.min(timeElapsed / duration, 1);
-
-        element.scrollTop = start + distance * easeInOutCubic(progress);
-
-        if (progress < 1) {
-          requestAnimationFrame(scroll);
-        } else {
-          callback?.();
-        }
-      };
-
-      requestAnimationFrame(scroll);
     },
 
     initServicesInteractions() {
       this.initObserver();
       this.attachScrollListeners();
       this.scheduleParallax();
+
+      if (this.contentRef && "ResizeObserver" in window) {
+        this.ro = new ResizeObserver(() => this.scheduleParallax());
+        this.ro.observe(this.contentRef);
+      }
     },
 
     initObserver() {
       this.cardStates = this.services.map((_, idx) => ({
-        visible: this.cardStates[idx]?.visible ?? false,
+        visible: true,
         imageShift: 0,
         contentShift: 0,
-        progress: 0,
+        progress: idx === 0 ? 1 : 0,
         isActive: idx === 0,
       }));
 
@@ -244,16 +118,8 @@ export default defineComponent({
         this.observer = null;
       }
 
-      if (!this.contentRef || typeof IntersectionObserver === "undefined") {
-        this.cardStates = this.cardStates.map((_, idx) => ({
-          visible: true,
-          imageShift: 0,
-          contentShift: 0,
-          progress: idx === 0 ? 1 : 0,
-          isActive: idx === 0,
-        }));
+      if (!this.contentRef || typeof IntersectionObserver === "undefined")
         return;
-      }
 
       this.observer = new IntersectionObserver(
         (entries) => {
@@ -263,16 +129,14 @@ export default defineComponent({
             );
             if (index === -1 || !this.cardStates[index]) return;
 
-            if (entry.isIntersecting) {
-              this.cardStates[index].visible = true;
-            }
-
-            // Enhanced intersection ratio for smoother transitions
-            this.cardStates[index].progress = Math.max(
+            const ratio = Math.max(
               0,
               Math.min(1, entry.intersectionRatio * 1.5)
             );
+            this.cardStates[index].progress = ratio;
+            this.cardStates[index].visible = true;
           });
+          this.scheduleParallax();
         },
         {
           root: this.contentRef,
@@ -312,26 +176,21 @@ export default defineComponent({
         const distance = containerCenter - cardCenter;
         const absDistance = Math.abs(distance);
 
-        // Enhanced parallax with easing
-        const normalizedDistance = viewHeight
+        const normalized = viewHeight
           ? Math.max(-1, Math.min(1, distance / (viewHeight / 1.5)))
           : 0;
 
-        // Smoother parallax curves
-        const easedDistance =
-          this.easeInOutQuart(Math.abs(normalizedDistance)) *
-          Math.sign(normalizedDistance);
+        const eased =
+          this.easeInOutQuart(Math.abs(normalized)) * Math.sign(normalized);
 
-        state.imageShift = easedDistance * 60;
-        state.contentShift = easedDistance * 35;
+        state.imageShift = eased * 60;
+        state.contentShift = eased * 35;
 
-        // Update progress based on center proximity
         const progressRange = viewHeight * 0.4;
         state.progress = Math.max(
           0,
           Math.min(1, 1 - absDistance / progressRange)
         );
-
         state.isActive = absDistance < progressRange * 0.5;
 
         if (absDistance < closestDistance) {
@@ -340,7 +199,6 @@ export default defineComponent({
         }
       });
 
-      // Smooth active index transition
       if (closestIdx !== this.activeIndex && !this.transitionInProgress) {
         this.activeIndex = closestIdx;
       }
@@ -352,7 +210,6 @@ export default defineComponent({
       return t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t;
     },
 
-    // Keyboard navigation enhancement
     handleKeyNavigation(event: KeyboardEvent) {
       if (!this.contentRef) return;
 
@@ -386,21 +243,57 @@ export default defineComponent({
         this.smoothScrollToCard(targetIndex);
       }
     },
+
+    smoothScrollToCard(index: number) {
+      if (!this.contentRef || !this.cardRefs[index]) return;
+
+      this.transitionInProgress = true;
+      const container = this.contentRef;
+      const targetCard = this.cardRefs[index]!;
+
+      const targetTop =
+        targetCard.offsetTop -
+        (container.clientHeight - targetCard.offsetHeight) / 2;
+
+      this.smoothScrollTo(container, targetTop, 500, () => {
+        this.activeIndex = index;
+        this.transitionInProgress = false;
+      });
+    },
+
+    smoothScrollTo(
+      element: HTMLElement,
+      target: number,
+      duration: number,
+      callback?: () => void
+    ) {
+      const start = element.scrollTop;
+      const distance = target - start;
+      let startTime: number | null = null;
+
+      const easeInOutCubic = (t: number): number =>
+        t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+      const tick = (now: number) => {
+        if (startTime === null) startTime = now;
+        const elapsed = now - startTime;
+        const p = Math.min(elapsed / duration, 1);
+        element.scrollTop = start + distance * easeInOutCubic(p);
+        if (p < 1) requestAnimationFrame(tick);
+        else callback?.();
+      };
+
+      requestAnimationFrame(tick);
+    },
   },
 
   mounted() {
     this.$nextTick(() => {
       this.initServicesInteractions();
 
-      // Add keyboard navigation
       if (this.contentRef) {
-        this.prevScrollTop = this.contentRef.scrollTop; // NEW
         this.contentRef.addEventListener("keydown", this.handleKeyNavigation);
         this.contentRef.setAttribute("tabindex", "0");
-        if ("ResizeObserver" in window) {
-          this.ro = new ResizeObserver(() => this.scheduleParallax());
-          this.ro.observe(this.contentRef);
-        }
       }
     });
   },
@@ -415,27 +308,31 @@ export default defineComponent({
       window.cancelAnimationFrame(this.rafId);
       this.rafId = null;
     }
-    if (this.momentumRaf !== null && typeof window !== "undefined") {
-      window.cancelAnimationFrame(this.momentumRaf);
-      this.momentumRaf = null;
-    }
-    if (this.contentRef) {
-      this.contentRef.removeEventListener("keydown", this.handleKeyNavigation);
-    }
     if (this.ro) {
       this.ro.disconnect();
       this.ro = null;
+    }
+    if (this.contentRef) {
+      this.contentRef.removeEventListener("keydown", this.handleKeyNavigation);
     }
   },
 });
 </script>
 
 <template>
-  <section id="services" class="services-section" :dir="sectionDirection">
+  <section
+    id="services"
+    class="services-section hide-scrollbar"
+    :dir="sectionDirection"
+  >
     <div class="services_container">
       <div class="accordionSlider__inner">
         <!-- LEFT: sticky image stack -->
-        <div class="accordionSlider__wrapper" :ref="setStackRef">
+        <div
+          class="accordionSlider__wrapper"
+          :ref="setStackRef"
+          aria-hidden="true"
+        >
           <div
             class="accordionSlider__offset"
             data-accordion-slider-offset=""
@@ -450,7 +347,6 @@ export default defineComponent({
                 'is-visible': cardStates[index]?.visible,
               }"
               :style="cardStyles[index]"
-              aria-hidden="true"
             >
               <div class="image-container">
                 <img
@@ -466,7 +362,6 @@ export default defineComponent({
           </ul>
         </div>
 
-        <!-- RIGHT: scrolling content -->
         <div
           class="accordionSlider__content hide-scrollbar"
           :ref="setContentRef"
@@ -508,7 +403,17 @@ export default defineComponent({
                 {{ $t(`servicesSection.items.${service.key}.body`) }}
               </p>
             </div>
+
+            <div class="card-progress" aria-hidden="true">
+              <div
+                class="progress-bar"
+                :style="{
+                  width: `${(cardStates[index]?.progress ?? 0) * 100}%`,
+                }"
+              ></div>
+            </div>
           </div>
+
           <div class="scroll-spacer" aria-hidden="true"></div>
         </div>
       </div>
@@ -524,6 +429,8 @@ export default defineComponent({
   padding-inline: clamp(1.5rem, 6vw, 4rem);
   background: #ffffff;
   color: #13202d;
+  /* نخلي أي سكرول داخل السكشن ما يرجّع Bounce للصفحة */
+  overscroll-behavior: contain;
 }
 
 .services_container {
@@ -562,6 +469,7 @@ export default defineComponent({
   margin: 0;
   padding: 0;
   border-radius: 24px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
 }
 
 .accordionSlider__item {
@@ -633,15 +541,14 @@ export default defineComponent({
   flex: 0 0 51.062%;
   margin-block: 20vh;
   padding-inline-start: 8.51%;
-  max-height: 60vh;
+  max-height: 60vh; /* نحافظ على عمود داخلي */
   overflow-y: auto;
-  scroll-behavior: smooth;
-  scroll-snap-type: y proximity;
+  /* مهم: نخلّي السناب طبيعي بدون مومينتم يدوي */
+  scroll-behavior: auto; /* نمنع تضارب مع سموث JS والسناب */
+  scroll-snap-type: y proximity; /* سناب ناعم فقط */
+  scroll-padding-block: 20vh; /* تحسين التمركز */
   outline: none;
-  /* Enhanced momentum scrolling */
   -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
-  scroll-padding-block: 20vh;
 }
 
 .accordionSlider__content:focus {
@@ -675,13 +582,7 @@ export default defineComponent({
 .accordionSlider__contentBox.is-visible .service-content {
   transition-delay: 200ms;
 }
-
-.accordionSlider__contentBox.is-active .service-content {
-  transform: translateY(calc(0px - var(--content-shift, 0px))) translateX(0px)
-    scale(1);
-  opacity: 1;
-}
-
+.accordionSlider__contentBox.is-active .service-content,
 .accordionSlider__contentBox.is-center .service-content {
   transform: translateY(calc(0px - var(--content-shift, 0px))) translateX(0px)
     scale(1);
@@ -704,7 +605,6 @@ export default defineComponent({
   transition: all 600ms cubic-bezier(0.23, 1, 0.32, 1);
   transition-delay: calc(var(--progress, 0) * 400ms);
 }
-
 .accordionSlider__contentBox.is-visible .services-label {
   transform: translateY(0);
   opacity: 1;
@@ -721,7 +621,6 @@ export default defineComponent({
   box-shadow: 0 10px 24px rgba(38, 224, 152, 0.3);
   transition: all 400ms ease;
 }
-
 .accordionSlider__contentBox.is-active .services-label__icon {
   transform: scale(1.1) rotate(5deg);
   box-shadow: 0 15px 35px rgba(38, 224, 152, 0.4);
@@ -743,7 +642,6 @@ export default defineComponent({
   transition: all 700ms cubic-bezier(0.23, 1, 0.32, 1);
   transition-delay: calc(var(--progress, 0) * 200ms);
 }
-
 .accordionSlider__contentBox.is-visible .service-intro {
   transform: translateY(0);
   opacity: 1;
@@ -760,12 +658,10 @@ export default defineComponent({
   transition: all 800ms cubic-bezier(0.23, 1, 0.32, 1);
   transition-delay: calc(var(--progress, 0) * 300ms);
 }
-
 .accordionSlider__contentBox.is-visible .service-title {
   transform: translateY(0);
   opacity: 1;
 }
-
 .accordionSlider__contentBox.is-active .service-title {
   color: #26e098;
   text-shadow: 0 2px 10px rgba(38, 224, 152, 0.1);
@@ -781,15 +677,31 @@ export default defineComponent({
   transition: all 900ms cubic-bezier(0.23, 1, 0.32, 1);
   transition-delay: calc(var(--progress, 0) * 400ms);
 }
-
 .accordionSlider__contentBox.is-visible .service-body {
   transform: translateY(0);
   opacity: 1;
 }
 
+/* Progress indicator */
+.card-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(128, 253, 102, 0.1);
+  border-radius: 1.5px;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #8efd6f, #26e098);
+  border-radius: inherit;
+  transition: width 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 0 10px rgba(38, 224, 152, 0.3);
+}
 
-
-/* Hide scrollbar cross-browser */
+/* إخفاء الاسكرول بار (السكشن والعمود الداخلي) */
 .hide-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -799,12 +711,13 @@ export default defineComponent({
   height: 0;
 }
 
+/* Spacers لتنعيم السناب */
 .scroll-spacer {
   height: 20vh;
   flex: 0 0 auto;
 }
 
-/* Enhanced responsive design */
+/* Responsive */
 @media (max-width: 1024px) {
   .accordionSlider__inner {
     flex-direction: column;
@@ -825,9 +738,9 @@ export default defineComponent({
     margin-block: 10vh 0;
     gap: clamp(4rem, 8vh, 8rem);
   }
-
-  .accordionSlider__contentBox {
-    padding: 1.5rem 0;
+  /* على الشاشات الصغيرة نخلي سلوك الصفحة هو المسيطر */
+  .accordionSlider__content {
+    scroll-snap-type: y proximity;
   }
 }
 
@@ -835,32 +748,27 @@ export default defineComponent({
   .services-section {
     padding-inline: clamp(1.25rem, 6vw, 2rem);
   }
-
   .service-title {
     font-size: clamp(1.75rem, 6vw, 2.2rem);
   }
-
   .service-body {
     font-size: 0.98rem;
     line-height: 1.8;
   }
-
   .accordionSlider__items {
     border-radius: 16px;
   }
-
   .services-label {
     padding: 0.3rem 0.8rem;
     gap: 0.4rem;
   }
-
   .services-label__icon {
     width: 1.5rem;
     height: 1.5rem;
   }
 }
 
-/* Reduced motion support */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .accordionSlider__item,
   .service-content,
@@ -875,119 +783,51 @@ export default defineComponent({
     transform: none !important;
     animation: none !important;
   }
-
   .accordionSlider__content {
     scroll-behavior: auto;
   }
 }
-/* Add to ServicesSection styles */
-.accordionSlider__content {
-  /* Enhanced scroll performance */
-  scrollbar-width: thin;
-  scrollbar-color: rgba(128, 253, 102, 0.3) transparent;
 
-  /* Better momentum scrolling on iOS */
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
-
-  /* Prevent layout shifts */
-  contain: layout style paint;
-}
-
-.accordionSlider__content::-webkit-scrollbar {
-  width: 4px;
-}
-
-.accordionSlider__content::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.accordionSlider__content::-webkit-scrollbar-thumb {
-  background: rgba(128, 253, 102, 0.3);
-  border-radius: 2px;
-}
-
-.accordionSlider__content::-webkit-scrollbar-thumb:hover {
-  background: rgba(128, 253, 102, 0.5);
-}
-
-/* Enhanced focus styles for accessibility */
-.accordionSlider__content:focus-visible {
-  outline: 2px solid rgba(128, 253, 102, 0.8);
-  outline-offset: 2px;
-  border-radius: 8px;
-}
-
-/* Smooth state transitions */
-.accordionSlider__contentBox {
-  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* Performance optimizations */
-.accordionSlider__item {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  .accordionSlider__contentBox,
-  .accordionSlider__item,
-  .service-content {
-    transition-duration: 0.1ms !important;
-    animation-duration: 0.1ms !important;
-  }
-
-  .accordionSlider__content {
-    scroll-behavior: auto;
-  }
-}
-/* High contrast mode support */
+/* High contrast */
 @media (prefers-contrast: high) {
   .services-label {
     background: rgba(128, 253, 102, 0.3);
     border: 2px solid #104235;
   }
-
   .services-label__icon {
     background: #26e098;
     box-shadow: none;
   }
-
+  .card-progress {
+    background: rgba(0, 0, 0, 0.2);
+  }
   .progress-bar {
     background: #26e098;
     box-shadow: none;
   }
-
   .accordionSlider__content:focus {
     outline: 3px solid #26e098;
   }
 }
 
-/* Dark mode support */
+/* Dark mode */
 @media (prefers-color-scheme: dark) {
   .services-section {
     background: #0a1116;
     color: #e8f0f5;
   }
-
   .service-title {
     color: #ffffff;
   }
-
   .service-body {
     color: #b8c8d4;
   }
-
   .service-intro {
     color: #8fa0ac;
   }
-
   .accordionSlider__items {
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
   }
-
   .image-overlay {
     background: linear-gradient(
       135deg,

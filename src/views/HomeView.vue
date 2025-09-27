@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, shallowRef } from "vue";
 import Rellax from "rellax";
 import BackgroundVideo from "@/components/Home/BackgroundVideo.vue";
 import OurMission from "@/components/Home/OurMission.vue";
@@ -10,7 +10,10 @@ import CareersSection from "@/components/Home/CareersSection.vue";
 import AboutSection from "@/components/Home/About.vue";
 import asideMenu from "@/components/Home/asideMenu.vue";
 import { useLinkedScroll } from "@/composables/useLinkedScroll";
-
+import EsgVerticalSlider from "@/components/Home/EsgVerticalSlider.vue";
+import sliderOne from "@/assets/sustainability-03.large.webp"
+import sliderTow from "@/assets/WhatsApp-Image-1446-10-29-at-15-32-47.large.jpg"
+import sliderThree from "@/assets/WhatsApp-Image-1446-10-29-at-14-52-43.large.jpg"
 type ParallaxInstance = { destroy: () => void } | null;
 
 export default defineComponent({
@@ -24,6 +27,7 @@ export default defineComponent({
     CareersSection,
     AboutSection,
     asideMenu,
+    EsgVerticalSlider,
   },
   data() {
     return {
@@ -40,6 +44,28 @@ export default defineComponent({
       ],
       parallaxInstance: null as ParallaxInstance,
       _unlinkNested: null as null | (() => void),
+      slides: [
+        {
+          heading: "Folk Maritime Contributes to Global Sustainability Goals",
+          copy: "We are committed to maritime decarbonization and intend to implement sustainable solutions that mitigate the environmental impact of our activity.",
+          image: shallowRef(sliderOne),
+          alt: "Green valley and river",
+        },
+        {
+          heading:
+            "Leading Regional Liner and Feeder Operator Providing Flexible and Sustainable Solutions and Creating Value for Our Stakeholders",
+          copy: "Complying with IMO regulations, we uphold high sustainability standards, incorporating innovation into product development and fostering a workforce-centric approach.",
+          image: shallowRef(sliderTow),
+          alt: "Port crane and container vessel",
+        },
+        {
+          heading:
+            "Driving Change through Educational Programs for an Empowered Community",
+          copy: "We nurture local talent and promote careers in the maritime industry, aligning with our commitment to CSR initiatives.",
+          image: shallowRef(sliderThree),
+          alt: "Handshake indoors",
+        },
+      ],
     };
   },
   methods: {
@@ -82,33 +108,22 @@ export default defineComponent({
       });
     },
     linkServicesScroll() {
-      // Find Services elements
       const comp: any = this.$refs.servicesSectionRef;
       const sectionEl: HTMLElement | null = comp?.$el ?? null;
       const inner: HTMLElement | null =
         sectionEl?.querySelector(".accordionSlider__content") ?? null;
       if (!sectionEl || !inner) return;
 
-      // Accessibility: allow focusing inner for keyboard control
       inner.setAttribute("tabindex", "0");
 
-      // Start/refresh linker (cleanup first if exists)
       if (this._unlinkNested) {
         this._unlinkNested();
         this._unlinkNested = null;
       }
-      // In your Home component's linkServicesScroll method
       this._unlinkNested = useLinkedScroll({
         inner,
         sectionEl,
-        wheelScale: 1.15, // Slightly more responsive
-        easingMs: 280, // Smoother timing
-        snapThreshold: 120, // More forgiving snapping
-        velocityThreshold: 0.08, // Better velocity detection
-        dampening: 0.94, // More natural momentum decay
-        snapDelay: 180, // Optimal snap timing
-        momentumScale: 1.5, // Enhanced momentum feel
-        smoothness: 0.88, // Velocity smoothing factor
+        wheelScale: 1.05,
       });
     },
   },
@@ -117,7 +132,6 @@ export default defineComponent({
     this.handleScroll();
     this.initParallax();
 
-    // IMPORTANT: wire the Services linker after mount
     this.$nextTick(() => {
       this.linkServicesScroll();
     });
@@ -175,12 +189,13 @@ export default defineComponent({
     <AboutSection id="about" />
     <CeoSection id="ceo" />
 
-    <!-- The Services section is controlled by parent via the linker -->
+    <!-- Services section -->
     <ServicesSection ref="servicesSectionRef" />
 
-    <div class="sustainability_section" id="sustainability">
+    <EsgVerticalSlider :slides="slides" id="sustainability"/>
+    <!-- <div class="sustainability_section" id="sustainability">
       {{ $t("sustainability") }}
-    </div>
+    </div> -->
 
     <NewsSection id="news" />
     <CareersSection id="career" />
