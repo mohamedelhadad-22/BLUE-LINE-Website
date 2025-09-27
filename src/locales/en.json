@@ -31,6 +31,37 @@
             }
         }
     },
+    "homeNews": {
+        "kicker": "Latest news",
+        "title": "Get updated with Folk happenings and insights",
+        "cta": "Read more",
+        "posts": [
+            {
+                "id": "mala-awards",
+                "type": "Announcement",
+                "date": "2025-08-01",
+                "title": "Folk Maritime Wins \"Rising Star Organization\" at MALA Awards 2025",
+                "summary": "Folk Maritime is recognised at the MALA Awards for its rapid progress, innovation, and commitment to elevating regional logistics standards.",
+                "link": "/news-insights#mala-awards"
+            },
+            {
+                "id": "south-red-sea",
+                "type": "Announcement",
+                "date": "2025-07-07",
+                "title": "Folk Maritime Expands South Red Sea Service with Enhanced Jeddah-Centric Rotation",
+                "summary": "The strategic extension of Folk Maritime's South Red Sea Service strengthens regional connectivity and amplifies Saudi Arabia's role as a logistics hub.",
+                "link": "/news-insights#south-red-sea"
+            },
+            {
+                "id": "student-tour",
+                "type": "Community",
+                "date": "2025-06-03",
+                "title": "Folk Maritime Organizes Tour for Maritime Students Onboard Container Vessel \"Folk Jeddah\"",
+                "summary": "Students from King Abdulaziz University experience life onboard Folk Jeddah, gaining practical insight into modern vessel operations.",
+                "link": "/news-insights#student-tour"
+            }
+        ]
+    },
     "aboutSection": {
         "tag": "About us",
         "headline": "Folk Maritime Services Company (Folk Maritime) leads as the foremost regional liner and feeder operator across the Middle East and beyond",

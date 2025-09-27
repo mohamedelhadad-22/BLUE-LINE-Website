@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" role="img" aria-labelledby="title desc">
+  <title id="title">South Red Sea map illustration</title>
+  <desc id="desc">Abstract map showing sea routes around Jeddah with a vessel</desc>
+  <defs>
+    <linearGradient id="water" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0c4864" />
+      <stop offset="100%" stop-color="#062d46" />
+    </linearGradient>
+    <radialGradient id="glow" cx="0.6" cy="0.4" r="0.5">
+      <stop offset="0%" stop-color="#3fffd2" stop-opacity="0.65" />
+      <stop offset="100%" stop-color="#0c4864" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="600" height="360" fill="url(#water)" />
+  <circle cx="360" cy="160" r="160" fill="url(#glow)" />
+  <path d="M320 60c-26 0-52 68-64 168-8 68-6 104-6 104h140s2-36-6-104C372 128 346 60 320 60Z" fill="#f4fbff" />
+  <path d="M250 300h140l-18 28h-104z" fill="#072335" opacity="0.6" />
+  <rect x="300" y="168" width="40" height="48" rx="8" fill="#158c7b" />
+  <rect x="292" y="124" width="56" height="28" rx="10" fill="#1cb49c" opacity="0.8" />
+  <text x="170" y="110" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#a5f5dc">Port Sudan</text>
+  <text x="420" y="110" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#a5f5dc">Jeddah</text>
+  <text x="450" y="200" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#a5f5dc">Aden</text>
+  <text x="360" y="250" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#a5f5dc">Djibouti</text>
+  <path d="M200 160c60-40 120-40 180 0" fill="none" stroke="#65f7d4" stroke-width="3" stroke-dasharray="10 10" stroke-linecap="round" />
+  <path d="M220 200c60 30 120 30 180 0" fill="none" stroke="#65f7d4" stroke-width="2" stroke-dasharray="4 8" stroke-linecap="round" />
+</svg>
