@@ -18,7 +18,7 @@ export default defineComponent({
         { id: "about", title: "about" },
         { id: "ceo", title: "ceo" },
         { id: "services", title: "services" },
-        { id: "routes", title: "routes" },
+        // { id: "routes", title: "routes" },
         { id: "sustainability", title: "sustainability" },
         { id: "news", title: "news" },
         { id: "career", title: "career" },

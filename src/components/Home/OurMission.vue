@@ -193,13 +193,14 @@ export default defineComponent({
     font-size: 1.25rem;
     font-weight: 600;
     color: #101b2d;
+    margin-top: 10rem;
 }
 
 .mission-card__body {
     margin: 0;
     font-size: 0.98rem;
     line-height: 1.7;
-    color: #4f5e77;
+    color: var(--color-secondary);
 }
 
 @media (max-width: 1024px) {

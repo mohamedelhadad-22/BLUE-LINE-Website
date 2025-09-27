@@ -56,7 +56,7 @@ export default defineComponent({
 
 <template>
   <section id="about" class="about-section">
-    <div class="about-shell">
+    <div class="about-shell container">
       <div class="about-content">
         <div class="about-tag">
           <span class="about-icon" aria-hidden="true">
@@ -77,9 +77,9 @@ export default defineComponent({
         </p>
       </div>
 
-      <div class="about-pattern" aria-hidden="true">
+      <!-- <div class="about-pattern" aria-hidden="true">
         <div class="pattern-block" v-for="n in 6" :key="n"></div>
-      </div>
+      </div> -->
     </div>
     <div class="aboutUs__boxes">
       <div class="aboutUs__items">
@@ -104,17 +104,20 @@ export default defineComponent({
 .about-section {
   position: relative;
   width: 100%;
-  padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 8vw, 6rem);
+  /* padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 8vw, 6rem); */
   background: #eff6f5;
   overflow: hidden;
+  padding-top: clamp(64px, 9.2903225806vw, 144px);
+  padding-bottom: clamp(64px, 9.2903225806vw, 144px);
 }
 
 .about-shell {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(180px, 25vw, 260px);
+  display: flex;
+  flex-direction: column;
+  /* grid-template-columns: minmax(0, 1fr) clamp(180px, 25vw, 260px);
   align-items: stretch;
-  gap: clamp(2rem, 6vw, 4rem);
-  max-width: 1240px;
+  gap: clamp(2rem, 6vw, 4rem); */
+  max-width: 1476px;
   margin: 0 auto;
 }
 
@@ -123,7 +126,25 @@ export default defineComponent({
   flex-direction: column;
   gap: 1.75rem;
 }
-
+.about-content:after {
+  background-image: url(/src/assets/aboutPatern.svg);
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  background-position: 100% -1%;
+  background-repeat: repeat;
+  background-size: 100% 51%;
+  padding-top: 12.5rem;
+  width: 12.5rem;
+  height: 0;
+  content: "";
+  pointer-events: none;
+  right: 0;
+  padding-top: 24%;
+  width: 24%;
+  right: 0;
+  transform: scaleX(-1);
+}
 .about-tag {
   display: inline-flex;
   align-items: center;
@@ -155,9 +176,11 @@ export default defineComponent({
 }
 
 .about-heading {
-  font-size: clamp(4rem, 3.6129032258vw, 5.6rem);
+  font-size: clamp(4rem, 3.6129032258vw, 2rem);
   line-height: 1.2;
   font-weight: 300;
+  padding-inline: 0 80px;
+  max-width: 790px;
 }
 
 .about-pattern {
@@ -189,11 +212,14 @@ export default defineComponent({
 .about-description {
   flex: 1;
   line-height: 1.4;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: var(--color-secondary);
+  max-width: 790px;
 }
 
 .aboutUs__boxes {
+  max-width: 1476px;
+  margin: 0 auto;
   margin-top: 8rem;
 }
 .aboutUs__items {
@@ -229,7 +255,8 @@ export default defineComponent({
   height: 20px;
 }
 .aboutUs__itemText {
-    flex: 1 0 70%;
+  flex: 1 0 70%;
+  font-size: 1.4rem;
 }
 @media (max-width: 960px) {
   .about-shell {

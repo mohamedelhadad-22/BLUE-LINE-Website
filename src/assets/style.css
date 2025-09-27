@@ -147,6 +147,39 @@ input {
   vertical-align: baseline;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .accordionSlider__content {
+    scroll-behavior: auto;
+  }
+
+  .service-content {
+    transition: none;
+    transform: none !important;
+  }
+
+  .accordionSlider__item {
+    transition: none;
+  }
+}
+
+/* Global smooth scrolling improvements */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optimize scrolling performance */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(128, 253, 102, 0.3) transparent;
+}
+
+/* Enhance touch scrolling */
+@media (hover: none) and (pointer: coarse) {
+  .accordionSlider__content {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+}
 
 @media (min-width: 640px) {
   .container {

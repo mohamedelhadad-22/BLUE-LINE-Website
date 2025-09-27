@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" role="img" aria-labelledby="title desc">
+  <title id="title">Maritime student tour illustration</title>
+  <desc id="desc">Abstract group of trainees visiting a vessel</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#dff2ff" />
+      <stop offset="100%" stop-color="#9fc0e0" />
+    </linearGradient>
+    <linearGradient id="deck" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffeab0" />
+      <stop offset="100%" stop-color="#d0a86f" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="360" fill="url(#sky)" />
+  <rect y="240" width="600" height="120" fill="url(#deck)" />
+  <g transform="translate(80 130)">
+    <rect x="0" y="0" width="120" height="150" rx="16" fill="#0f5975" />
+    <circle cx="60" cy="40" r="22" fill="#ffe6d3" />
+    <rect x="26" y="66" width="68" height="62" rx="16" fill="#1a758f" />
+  </g>
+  <g transform="translate(210 120)">
+    <rect x="0" y="0" width="120" height="160" rx="18" fill="#11507a" />
+    <circle cx="60" cy="42" r="24" fill="#ffe0c7" />
+    <rect x="28" y="72" width="64" height="68" rx="18" fill="#20678f" />
+  </g>
+  <g transform="translate(340 140)">
+    <rect x="0" y="0" width="120" height="140" rx="16" fill="#186680" />
+    <circle cx="60" cy="36" r="20" fill="#ffe6d3" />
+    <rect x="30" y="60" width="60" height="60" rx="16" fill="#23899c" />
+  </g>
+  <g transform="translate(470 110)">
+    <rect x="0" y="0" width="120" height="180" rx="18" fill="#1f7b8f" />
+    <circle cx="60" cy="44" r="26" fill="#ffe0c7" />
+    <rect x="28" y="76" width="64" height="72" rx="18" fill="#2e97ac" />
+  </g>
+  <path d="M0 240h600" stroke="#bfa173" stroke-width="3" />
+  <path d="M140 320h320l-18 16H158z" fill="#ad8c5a" opacity="0.6" />
+  <circle cx="540" cy="60" r="32" fill="#1f7b8f" />
+  <path d="M540 42l10 18h-20z" fill="#ffe055" />
+</svg>
