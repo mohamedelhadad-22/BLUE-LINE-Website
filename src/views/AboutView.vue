@@ -61,7 +61,7 @@ export default defineComponent({
               </div>
               <p class="columnIcons__itemText">
                 Strategic location at the heart of global trade routes,
-                supporting the Kingdom of Saudi Arabia’s ambition to become a
+                supporting the Kingdom of Saudi Arabia's ambition to become a
                 global logistics hub
               </p>
             </li>
@@ -114,26 +114,29 @@ export default defineComponent({
         </div>
 
         <div class="columnIcons__text">
-          <h2 class="columnIcons__textTitle heading__h3">
-            Building a Global Logistics Hub through Transformative Shipping
-            Initiatives
-          </h2>
-          <div class="columnIcons__intro">
-            <div class="columnIcons__introText">
-              Folk Maritime spearheads the journey towards positioning Saudi
-              Arabia as a global logistics hub. Leveraging the country's
-              distinctive geographic advantage on the Red Sea and Arabian Gulf,
-              our strategic endeavors intend to improve connectivity, optimize
-              logistics efficiency, and reinforce sector capabilities. We are
-              committed to maritime sustainability, adhering to the IMO's target
-              of 40% GHG reduction by 2030. We also support transformative
-              technologies and the uptake of alternative zero—and near-zero GHG
-              fuels. As a leading regional player in the maritime feeder and
-              liner services, we actively strive to increase private sector
-              participation in industries reliant on seamless logistics. Aligned
-              with Saudi Arabia's Vision 2030 objectives, our commitment extends
-              to enhancing export, re-export, and domestic cargo volumes,
-              building a prosperous and influential future for the nation.
+          <div class="columnIcons__text-sticky">
+            <h2 class="columnIcons__textTitle heading__h3">
+              Building a Global Logistics Hub through Transformative Shipping
+              Initiatives
+            </h2>
+            <div class="columnIcons__intro">
+              <div class="columnIcons__introText">
+                Folk Maritime spearheads the journey towards positioning Saudi
+                Arabia as a global logistics hub. Leveraging the country's
+                distinctive geographic advantage on the Red Sea and Arabian
+                Gulf, our strategic endeavors intend to improve connectivity,
+                optimize logistics efficiency, and reinforce sector
+                capabilities. We are committed to maritime sustainability,
+                adhering to the IMO's target of 40% GHG reduction by 2030. We
+                also support transformative technologies and the uptake of
+                alternative zero—and near-zero GHG fuels. As a leading regional
+                player in the maritime feeder and liner services, we actively
+                strive to increase private sector participation in industries
+                reliant on seamless logistics. Aligned with Saudi Arabia's
+                Vision 2030 objectives, our commitment extends to enhancing
+                export, re-export, and domestic cargo volumes, building a
+                prosperous and influential future for the nation.
+              </div>
             </div>
           </div>
         </div>
@@ -184,6 +187,7 @@ export default defineComponent({
 .about-us {
   position: relative;
   background-color: #eff6f5;
+  padding-bottom: 8rem;
 }
 .about-us:after {
   background-image: url(/src/assets/aboutPatern.svg);
@@ -327,36 +331,44 @@ export default defineComponent({
     align-items: flex-start;
     justify-content: space-between;
     margin-top: 8rem;
+    padding-inline: 5.42%;
+    padding-bottom: 8rem;
   }
 }
 .columnIcons__content {
   display: flex;
-  /* flex-direction: column-reverse; */
   margin-top: 4.8rem;
   gap: 6rem;
-}
-
-@media (min-width: 1024px) {
-  .columnIcons__boxes {
-    margin-top: 0;
-    width: calc(40% - 70px);
-  }
+  position: relative;
 }
 .columnIcons__boxes {
   /* margin-top: 4.8rem; */
   width: 100%;
 }
-
 @media (min-width: 1024px) {
-  .columnIcons__text {
-    position: sticky;
-    top: 4rem;
-    width: calc(60% - 70px);
+  .columnIcons__boxes {
+    margin-top: 0;
+    width: calc(40% - 0px);
   }
 }
+
 .columnIcons__text {
   width: 100%;
 }
+
+@media (min-width: 1024px) {
+  .columnIcons__text {
+    width: calc(60% - 70px);
+  }
+
+  .columnIcons__text-sticky {
+    position: sticky;
+    top: 120px;
+    align-self: flex-start;
+    z-index: 1;
+  }
+}
+
 @media (min-width: 768px) {
   .columnIcons__items {
     gap: 3.2rem;
