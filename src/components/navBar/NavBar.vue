@@ -1,5 +1,5 @@
 <template>
-    <header :class="['header', { 'header--open': isOpen }]">
+    <header :class="['header', route.path === '/' ? 'header--absolute' : 'header--relative', { 'header--open': isOpen } ]">
         <div class="container header__row">
             <a class="logo" href="#"><img src="@/assets/logo.png" alt="logo" /></a>
 
@@ -19,6 +19,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import MegaMenu from './BurgerMenue.vue';
+import { useRoute } from 'vue-router';
 
 type LinkItem = { label: string; href?: string; external?: boolean; chevron?: boolean; };
 type SocialItem = { href?: string; iconText?: string };
@@ -27,6 +28,10 @@ type Group = { title: string; items: LinkItem[]; extras?: LinkItem[]; social?: S
 export default defineComponent({
     name: 'NavBar',
     components: { MegaMenu },
+    setup() {
+        const route = useRoute();
+        return { route };
+    },
     data() {
         return {
             isOpen: false as boolean,
@@ -90,13 +95,20 @@ export default defineComponent({
 <style scoped>
 .header {
     --header-height: 72px;
-    position: absolute;
-    inset-inline: 0;
-    top: 0;
     z-index: 120;
     width: 100%;
     background: transparent;
     transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.header--absolute {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+}
+
+.header--relative {
+    position: relative;
 }
 
 
@@ -208,7 +220,6 @@ export default defineComponent({
     }
 }
 </style>
-
 
 
 
