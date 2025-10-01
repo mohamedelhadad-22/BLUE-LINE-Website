@@ -1,11 +1,197 @@
 <script lang="ts">
 import { defineComponent } from "vue";
+import TeamMemberModal from "@/components/TeamMemberModal.vue";
 export default defineComponent({
   name: "aboutView",
+  components: { TeamMemberModal },
   data() {
-    return {};
+    return {
+      activeIndex: 0,
+      lastImageIndex: 0,
+      boardMembers: [
+        {
+          id: 1,
+          name: "Abdullah Mohammed Alzamil",
+          role: "Chairman",
+          image:
+            "https://folkmaritime.com/storage/media/70/Abdullah-Alzamil_preview_rev_1.png",
+          bio: "Bio placeholder for Chairman.",
+        },
+        {
+          id: 2,
+          name: "Bakr AlMuhanna",
+          role: "Vice Chairman",
+          image:
+            "https://folkmaritime.com/storage/media/71/Bakr-AlMuhanna_preview_rev_1.png",
+          bio: "Bio placeholder for Vice Chairman.",
+        },
+        {
+          id: 3,
+          name: "Abdullah Alsalem",
+          role: "Member",
+          image:
+            "https://folkmaritime.com/storage/media/72/100-(1)_preview_rev_1.png",
+          bio: "Bio placeholder for member.",
+        },
+        {
+          id: 4,
+          name: "Faris AlJarboa",
+          role: "Member",
+          image:
+            "https://folkmaritime.com/storage/media/73/0Q7A9933-2-edited_preview_rev_1.png",
+          bio: "Bio placeholder for member.",
+        },
+        {
+          id: 5,
+          name: "Ranjith Powell",
+          role: "Member",
+          image:
+            "https://folkmaritime.com/storage/media/74/Ranjith-Powell-Photo_preview_rev_1.png",
+          bio: "Bio placeholder for member.",
+        },
+        {
+          id: 6,
+          name: "Jesper Kjaedegaard",
+          role: "Member",
+          image:
+            "https://folkmaritime.com/storage/media/75/Jesper-Kjaedegaard---Will-send-you-another-picture_preview_rev_1.png",
+          bio: "Bio placeholder for member.",
+        },
+        {
+          id: 7,
+          name: "Peter Ford",
+          role: "Member",
+          image:
+            "https://folkmaritime.com/storage/media/76/Peter-Ford_preview_rev_1.png",
+          bio: "Bio placeholder for member.",
+        },
+        {
+          id: 8,
+          name: "Basil Abulhamayel",
+          role: "Member",
+          image:
+            "https://folkmaritime.com/storage/media/99/Basil-Abulhamayel-1.png",
+          bio: "Bio placeholder for member.",
+        },
+      ],
+      execMembers: [
+        {
+          id: 1,
+          name: "Poul Hestbaek",
+          role: "Chief Executive Officer",
+          image:
+            "https://folkmaritime.com/storage/media/16/conversions/team-poul_hestbaek.medium.webp",
+          bio:
+            "Poul is a seasoned maritime industry leader with executive experience across Europe, Latin America, and APAC.",
+        },
+        {
+          id: 2,
+          name: "Kim Kennet Larsen",
+          role: "Chief Commercial Officer",
+          image: "https://folkmaritime.com/storage/media/174/222kim.gif",
+          bio:
+            "Kim brings extensive commercial leadership and strategy execution across global shipping markets.",
+        },
+        {
+          id: 3,
+          name: "Khalid Fawzi",
+          role: "Chief Financial Officer",
+          image: "https://folkmaritime.com/storage/media/177/khalid-fawzi.png",
+          bio:
+            "Khalid Fawzi is a highly experienced financial leader with over 20 years of expertise across Saudi Arabia.",
+        },
+        {
+          id: 1,
+          name: "Poul Hestbaek",
+          role: "Chief Executive Officer",
+          image:
+            "https://folkmaritime.com/storage/media/16/conversions/team-poul_hestbaek.medium.webp",
+          bio:
+            "Poul is a seasoned maritime industry leader with executive experience across Europe, Latin America, and APAC.",
+        },
+        {
+          id: 2,
+          name: "Kim Kennet Larsen",
+          role: "Chief Commercial Officer",
+          image: "https://folkmaritime.com/storage/media/174/222kim.gif",
+          bio:
+            "Kim brings extensive commercial leadership and strategy execution across global shipping markets.",
+        },
+        {
+          id: 1,
+          name: "Poul Hestbaek",
+          role: "Chief Executive Officer",
+          image:
+            "https://folkmaritime.com/storage/media/16/conversions/team-poul_hestbaek.medium.webp",
+          bio:
+            "Poul is a seasoned maritime industry leader with executive experience across Europe, Latin America, and APAC.",
+        },
+        {
+          id: 2,
+          name: "Kim Kennet Larsen",
+          role: "Chief Commercial Officer",
+          image: "https://folkmaritime.com/storage/media/174/222kim.gif",
+          bio:
+            "Kim brings extensive commercial leadership and strategy execution across global shipping markets.",
+        },
+      ],
+      modalOpen: false,
+      selectedMember: null as any,
+    };
   },
-  methods: {},
+  methods: {
+    toggleItem(index: number) {
+      // Toggle open/close; close if same, open otherwise
+      const next = this.activeIndex === index ? -1 : index;
+      // if opening, update last image index to this index
+      if (next !== -1) {
+        this.lastImageIndex = next;
+      } else {
+        // if closing the current open item, keep lastImageIndex unchanged
+      }
+      this.activeIndex = next;
+    },
+    // Smooth height transitions for accordion bodies
+    onEnter(el: Element) {
+      const element = el as HTMLElement;
+      element.style.height = "0px";
+      element.style.opacity = "0";
+      const target = element.scrollHeight;
+      // force reflow
+      void element.offsetHeight;
+      element.style.transition = "height 300ms ease, opacity 300ms ease";
+      element.style.height = target + "px";
+      element.style.opacity = "1";
+    },
+    onAfterEnter(el: Element) {
+      const element = el as HTMLElement;
+      element.style.height = "auto";
+      element.style.transition = "";
+    },
+    onLeave(el: Element) {
+      const element = el as HTMLElement;
+      const start = element.scrollHeight;
+      element.style.height = start + "px";
+      element.style.opacity = "1";
+      // force reflow
+      void element.offsetHeight;
+      element.style.transition = "height 300ms ease, opacity 300ms ease";
+      element.style.height = "0px";
+      element.style.opacity = "0";
+    },
+    openMember(member: any) {
+      this.selectedMember = member;
+      this.modalOpen = true;
+    },
+    closeModal() {
+      this.modalOpen = false;
+      this.selectedMember = null;
+      console.log(this.modalOpen);
+    },
+    isActive(index: number) {
+      return this.activeIndex === index;
+    },
+  },
   mounted() {},
 });
 </script>
@@ -196,28 +382,88 @@ export default defineComponent({
           <div class="valuesAccordion__image">
             <img
               class="valuesAccordion__img"
-              style="opacity: 1; z-index: 2"
+              :style="{
+                opacity: (
+                  activeIndex === -1 ? lastImageIndex === 0 : activeIndex === 0
+                )
+                  ? '1'
+                  : '0',
+                zIndex:
+                  activeIndex === -1
+                    ? lastImageIndex === 0
+                      ? 2
+                      : 1
+                    : activeIndex === 0
+                      ? 2
+                      : 1,
+                transition: 'opacity 0.3s',
+              }"
               src="https://folkmaritime.com/storage/media/159/conversions/11-02.medium.jpg"
               alt="image"
               data-values-accordion-image="0"
             />
             <img
               class="valuesAccordion__img"
-              style="z-index: 1; opacity: 1"
+              :style="{
+                opacity: (
+                  activeIndex === -1 ? lastImageIndex === 1 : activeIndex === 1
+                )
+                  ? '1'
+                  : '0',
+                zIndex:
+                  activeIndex === -1
+                    ? lastImageIndex === 1
+                      ? 2
+                      : 1
+                    : activeIndex === 1
+                      ? 2
+                      : 1,
+                transition: 'opacity 0.3s',
+              }"
               src="https://folkmaritime.com/storage/media/160/conversions/222222222222222-01.medium.jpg"
               alt="image"
               data-values-accordion-image="1"
             />
             <img
               class="valuesAccordion__img"
-              style="z-index: 1; opacity: 1"
+              :style="{
+                opacity: (
+                  activeIndex === -1 ? lastImageIndex === 2 : activeIndex === 2
+                )
+                  ? '1'
+                  : '0',
+                zIndex:
+                  activeIndex === -1
+                    ? lastImageIndex === 2
+                      ? 2
+                      : 1
+                    : activeIndex === 2
+                      ? 2
+                      : 1,
+                transition: 'opacity 0.3s',
+              }"
               src="https://folkmaritime.com/storage/media/161/conversions/33333333333333-02.medium.jpg"
               alt="image"
               data-values-accordion-image="2"
             />
             <img
               class="valuesAccordion__img"
-              style="z-index: 1; opacity: 1"
+              :style="{
+                opacity: (
+                  activeIndex === -1 ? lastImageIndex === 3 : activeIndex === 3
+                )
+                  ? '1'
+                  : '0',
+                zIndex:
+                  activeIndex === -1
+                    ? lastImageIndex === 3
+                      ? 2
+                      : 1
+                    : activeIndex === 3
+                      ? 2
+                      : 1,
+                transition: 'opacity 0.3s',
+              }"
               src="https://folkmaritime.com/storage/media/162/conversions/4445444-01.medium.jpg"
               alt="image"
               data-values-accordion-image="3"
@@ -238,108 +484,230 @@ export default defineComponent({
 
             <div class="valuesAccordion__items margin-6-t">
               <div
-                class="valuesAccordion__item valuesAccordion__item--opened"
+                class="valuesAccordion__item"
+                :class="{ 'valuesAccordion__item--opened': isActive(0) }"
                 data-values-accordion-item="0"
               >
                 <button
                   type="button"
                   class="valuesAccordion__itemHead"
                   data-values-accordion-head=""
+                  @click="toggleItem(0)"
                 >
                   <span class="valuesAccordion__itemTitle"
                     >Customer Focus | Connecting Your Focus to Customer
                     Success<span> </span
                   ></span>
                 </button>
-                <div
-                  class="valuesAccordion__itemBody"
-                  data-values-accordion-body=""
-                  style=""
+                <transition
+                  @enter="onEnter"
+                  @after-enter="onAfterEnter"
+                  @leave="onLeave"
                 >
-                  <div class="valuesAccordion__itemBodyInner p">
-                    We prioritize our customers' needs, ensuring we meet their
-                    expectations through a balance of personal attention and
-                    efficient technology, striving to build strong, lasting
-                    relationships.
+                  <div
+                    v-show="isActive(0)"
+                    class="valuesAccordion__itemBody"
+                    data-values-accordion-body=""
+                  >
+                    <div class="valuesAccordion__itemBodyInner p">
+                      We prioritize our customers' needs, ensuring we meet their
+                      expectations through a balance of personal attention and
+                      efficient technology, striving to build strong, lasting
+                      relationships.
+                    </div>
                   </div>
-                </div>
+                </transition>
               </div>
-              <div class="valuesAccordion__item" data-values-accordion-item="1">
+              <div
+                class="valuesAccordion__item"
+                data-values-accordion-item="1"
+                :class="{ 'valuesAccordion__item--opened': isActive(1) }"
+              >
                 <button
                   type="button"
                   class="valuesAccordion__itemHead"
                   data-values-accordion-head=""
+                  @click="toggleItem(1)"
                 >
                   <span class="valuesAccordion__itemTitle"
                     >Integrity | Building Bridges of Trust: Integrity in Every
                     Action<span> </span
                   ></span>
                 </button>
-                <div
-                  class="valuesAccordion__itemBody"
-                  data-values-accordion-body=""
-                  style=""
+                <transition
+                  @enter="onEnter"
+                  @after-enter="onAfterEnter"
+                  @leave="onLeave"
                 >
-                  <div class="valuesAccordion__itemBodyInner p">
-                    We are committed to transparency, honesty, and
-                    accountability, striving to make ethical decisions that
-                    positively impact our stakeholders, our community, and the
-                    world around us
+                  <div
+                    v-show="isActive(1)"
+                    class="valuesAccordion__itemBody"
+                    data-values-accordion-body=""
+                  >
+                    <div class="valuesAccordion__itemBodyInner p">
+                      We are committed to transparency, honesty, and
+                      accountability, striving to make ethical decisions that
+                      positively impact our stakeholders, our community, and the
+                      world around us
+                    </div>
                   </div>
-                </div>
+                </transition>
               </div>
-              <div class="valuesAccordion__item" data-values-accordion-item="2">
+              <div
+                class="valuesAccordion__item"
+                data-values-accordion-item="2"
+                :class="{ 'valuesAccordion__item--opened': isActive(2) }"
+              >
                 <button
                   type="button"
                   class="valuesAccordion__itemHead"
                   data-values-accordion-head=""
+                  @click="toggleItem(2)"
                 >
                   <span class="valuesAccordion__itemTitle"
                     >Innovation | Driving Excellence: Innovation, our north
                     star<span> </span
                   ></span>
                 </button>
-                <div
-                  class="valuesAccordion__itemBody"
-                  data-values-accordion-body=""
-                  style=""
+                <transition
+                  @enter="onEnter"
+                  @after-enter="onAfterEnter"
+                  @leave="onLeave"
                 >
-                  <div class="valuesAccordion__itemBodyInner p">
-                    Experience the future of ship management and service with
-                    our advanced IoT and technology solutions, delivering cost
-                    efficiency and innovative shipping solutions to the benefit
-                    of our costumers.
+                  <div
+                    v-show="isActive(2)"
+                    class="valuesAccordion__itemBody"
+                    data-values-accordion-body=""
+                  >
+                    <div class="valuesAccordion__itemBodyInner p">
+                      Experience the future of ship management and service with
+                      our advanced IoT and technology solutions, delivering cost
+                      efficiency and innovative shipping solutions to the
+                      benefit of our costumers.
+                    </div>
                   </div>
-                </div>
+                </transition>
               </div>
-              <div class="valuesAccordion__item" data-values-accordion-item="3">
+              <div
+                class="valuesAccordion__item"
+                data-values-accordion-item="3"
+                :class="{ 'valuesAccordion__item--opened': isActive(3) }"
+              >
                 <button
                   type="button"
                   class="valuesAccordion__itemHead"
                   data-values-accordion-head=""
+                  @click="toggleItem(3)"
                 >
                   <span class="valuesAccordion__itemTitle"
                     >Sustainability | Sailing Towards Tomorrow: Sustainability
                     in Action<span> </span
                   ></span>
                 </button>
-                <div
-                  class="valuesAccordion__itemBody"
-                  data-values-accordion-body=""
-                  style=""
+                <transition
+                  @enter="onEnter"
+                  @after-enter="onAfterEnter"
+                  @leave="onLeave"
                 >
-                  <div class="valuesAccordion__itemBodyInner p">
-                    Dedicated to minimizing our environmental impact through
-                    fuel-efficient vessels and cleaner operations, extending
-                    this commitment to sustainable practices in our workplaces.
+                  <div
+                    v-show="isActive(3)"
+                    class="valuesAccordion__itemBody"
+                    data-values-accordion-body=""
+                  >
+                    <div class="valuesAccordion__itemBodyInner p">
+                      Dedicated to minimizing our environmental impact through
+                      fuel-efficient vessels and cleaner operations, extending
+                      this commitment to sustainable practices in our
+                      workplaces.
+                    </div>
                   </div>
-                </div>
+                </transition>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="textBanner">
+      <div class="textBanner__inner">
+        <div class="textBanner__image">
+          <img
+            class="textBanner__img"
+            src="https://folkmaritime.com/storage/media/144/conversions/Untitled-511.xlarge.jpg"
+            alt="image"
+          />
+        </div>
+
+        <div class="textBanner__content">
+          <h3 class="textBanner__title">Meet our leaders</h3>
+          <p class="textBanner__text p margin-4-t">
+            Our dedicated and inspiring leaders have charted a transformative
+            path, inviting us to join their shared endeavors.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="peopleList">
+      <div class="peopleList__inner">
+        <div class="peopleList__decor label label--decor">
+          Board of directors
+        </div>
+        <div class="peopleList__items">
+          <div v-for="m in boardMembers" :key="m.id" class="peopleList__item">
+            <div class="peopleList__image">
+              <img class="peopleList__img" :src="m.image" :alt="m.name" />
+            </div>
+            <div class="peopleList__name margin-3-t">{{ m.name }}</div>
+            <div class="peopleList__function margin-1-t">{{ m.role }}</div>
+            <div>
+              <button
+                class="peopleList__link link margin-6-t"
+                @click="openMember(m)"
+              >
+                Read more
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="peopleList Ourteam">
+      <div class="peopleList__inner">
+        <div class="peopleList__decor label label--decor">Our team</div>
+        <h2 class="heading__h3 margin-3-t">Executive management team</h2>
+        <div class="peopleList__text"></div>
+        <div class="peopleList__items">
+          <div
+            v-for="member in execMembers"
+            :key="member.id"
+            class="peopleList__item"
+          >
+            <div class="peopleList__image">
+              <img class="peopleList__img" :src="member.image" :alt="member.name" />
+            </div>
+            <div class="peopleList__name margin-3-t">{{ member.name }}</div>
+            <div class="peopleList__function margin-1-t">{{ member.role }}</div>
+            <div>
+              <button
+                class="peopleList__link link margin-6-t"
+                @click="openMember(member)"
+              >
+                Read more
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <TeamMemberModal
+      :open="modalOpen"
+      :member="selectedMember"
+      @close="closeModal"
+    />
   </div>
 </template>
 
@@ -701,7 +1069,7 @@ export default defineComponent({
 }
 .p {
   line-height: 1.4;
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   font-weight: 400;
 }
 .margin-2-t {
@@ -797,11 +1165,7 @@ export default defineComponent({
   color: #fff;
   padding-inline-start: 4.2rem;
 }
-.p {
-  line-height: 1.4;
-  font-size: 1.8rem;
-  font-weight: 400;
-}
+
 .margin-2-t {
   margin-top: 16px;
 }
@@ -835,14 +1199,15 @@ button {
 }
 @media (min-width: 768px) {
   .valuesAccordion__itemTitle {
-    font-size: 2.4rem;
+    font-size: 2rem;
   }
 }
 .valuesAccordion__itemTitle {
   transition: color 0.3s;
   line-height: 1.4;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 300;
+  text-align: start;
 }
 
 .valuesAccordion__itemHead:after {
@@ -891,8 +1256,173 @@ html:not([dir="rtl"]) .valuesAccordion__itemHead:after {
   padding-inline: 3rem;
   line-height: 1.4;
   color: #fff;
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   font-weight: 300;
   font-style: normal;
+}
+.valuesAccordion__item + .valuesAccordion__item {
+  border-top: 1px solid #80fd66;
+}
+.textBanner {
+  margin-inline: -2rem;
+}
+@media (min-width: 768px) {
+  .textBanner {
+    margin-inline: 0;
+  }
+}
+.textBanner__inner {
+  padding-block: clamp(64px, 9.2903225806vw, 144px);
+  position: relative;
+  background-color: #eff6f5;
+}
+.textBanner__image {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.textBanner__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.textBanner__content {
+  padding: max(24px, min(2.5806451613vw, 40px));
+  padding: clamp(24px, 2.5806451613vw, 40px);
+  position: relative;
+  z-index: 2;
+  margin-inline: 2rem;
+  background-color: #fff;
+}
+@media (min-width: 768px) {
+  .textBanner__content {
+    margin: 0 auto;
+    max-width: 35rem;
+  }
+}
+@media (min-width: 768px) {
+  .textBanner__title {
+    font-size: 5.6rem;
+  }
+}
+.textBanner__title {
+  line-height: 1.2;
+  font-size: 3rem;
+  font-weight: 300;
+}
+.textBanner__text {
+  color: #003832;
+}
+
+.margin-4-t {
+  margin-top: 32px;
+}
+.peopleList {
+  margin-inline: -2rem;
+}
+.peopleList__inner {
+  padding-block: max(64px, min(9.2903225806vw, 144px));
+  padding-block: clamp(64px, 9.2903225806vw, 144px);
+  padding-inline: 2rem;
+  overflow: hidden;
+}
+@media (min-width: 768px) and (min-width: 768px) {
+  .peopleList__inner {
+    padding-inline: 5.42%;
+  }
+}
+
+.peopleList__decor {
+  padding-top: 5px;
+}
+.label {
+  display: inline-flex;
+  align-items: center;
+  text-transform: uppercase;
+  line-height: 1.25;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+.heading__h3 {
+  font-size: max(3.2rem, min(3.0967741935vw, 4.8rem));
+  font-size: clamp(3.2rem, 3.0967741935vw, 4.8rem);
+  line-height: 1.2;
+  font-weight: 300;
+}
+.margin-3-t {
+  margin-top: 24px;
+}
+.peopleList__text {
+  opacity: 0.72;
+  line-height: 1.4;
+  font-size: 1.8rem;
+}
+@media (min-width: 768px) {
+  .peopleList__text {
+    font-size: 2rem;
+  }
+}
+
+.peopleList__items {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 32px;
+  margin-top: 3.2rem;
+}
+
+@media (min-width: 768px) {
+  .peopleList__items {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 86px 28px;
+    margin-top: 6.4rem;
+  }
+}
+.peopleList__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.peopleList__image {
+  display: flex;
+  position: relative;
+  align-items: flex-end;
+  justify-content: center;
+  background-color: #eff6f5;
+  padding-top: 3.4rem;
+  padding-inline-end: 2.4rem;
+}
+
+.peopleList__img {
+  width: 80%;
+  aspect-ratio: 1 / 1;
+}
+@media (min-width: 768px) {
+  .peopleList__img {
+    width: 60%;
+  }
+}
+.peopleList__name {
+  line-height: 1.2;
+  font-size: 1.6rem;
+}
+@media (min-width: 768px) {
+  .peopleList__name {
+    font-size: 1.8rem;
+  }
+}
+.peopleList__function {
+  opacity: 0.72;
+  line-height: 1.4;
+  font-size: 0.8rem;
+}
+@media (min-width: 768px) {
+  .peopleList__function {
+    font-size: 1.2rem;
+  }
 }
 </style>
