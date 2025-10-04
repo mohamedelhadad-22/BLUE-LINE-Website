@@ -7,9 +7,26 @@ import about1 from "@/assets/about-1.jpg";
 import about2 from "@/assets/about-2.jpg";
 import about3 from "@/assets/about-3.jpg";
 import teamIcon from "@/assets/svg/teamIcon.vue";
+import mapPointerIcon from "@/assets/svg/mapPointerIcon.vue";
+import arrowsInIcon from "@/assets/svg/arrowsInIcon.vue";
+import anchorIcon from "@/assets/svg/anchorIcon.vue";
+import computerLine from "@/assets/computer-line.vue";
+import shipIcon from "@/assets/svg/shipIcon.vue";
+import sun from "@/assets/sun.vue";
 export default defineComponent({
   name: "aboutView",
-  components: { TeamMemberModal, arrow, EsgVerticalSlider, teamIcon },
+  components: {
+    TeamMemberModal,
+    arrow,
+    EsgVerticalSlider,
+    teamIcon,
+    mapPointerIcon,
+    arrowsInIcon,
+    anchorIcon,
+    computerLine,
+    shipIcon,
+    sun,
+  },
   data() {
     return {
       activeIndex: 0,
@@ -136,27 +153,37 @@ export default defineComponent({
       ],
       modalOpen: false,
       selectedMember: null as any,
-      esgSlides: [
-        {
-          heading: this.$t("aboutSection.esg.slide1.title"),
-          copy: this.$t("aboutSection.esg.slide1.desc"),
-          image: shallowRef(about1),
-          alt: "Sustainability image",
-        },
-        {
-          heading: this.$t("aboutSection.esg.slide2.title"),
-          copy: this.$t("aboutSection.esg.slide2.desc"),
-          image: shallowRef(about2),
-          alt: "Sustainability image",
-        },
-        {
-          heading: this.$t("aboutSection.esg.slide3.title"),
-          copy: this.$t("aboutSection.esg.slide3.desc"),
-          image: shallowRef(about3),
-          alt: "Sustainability image",
-        },
-      ],
+      // slides now computed to reflect locale changes
     };
+  },
+  computed: {
+    esgSlides(): Array<{
+      heading: string;
+      copy?: string;
+      image: string;
+      alt?: string;
+    }> {
+      return [
+        {
+          heading: this.$t("aboutPage.esg.slide1.title") as string,
+          copy: this.$t("aboutPage.esg.slide1.desc") as string,
+          image: about1 as unknown as string,
+          alt: "Sustainability image",
+        },
+        {
+          heading: this.$t("aboutPage.esg.slide2.title") as string,
+          copy: this.$t("aboutPage.esg.slide2.desc") as string,
+          image: about2 as unknown as string,
+          alt: "Sustainability image",
+        },
+        {
+          heading: this.$t("aboutPage.esg.slide3.title") as string,
+          copy: this.$t("aboutPage.esg.slide3.desc") as string,
+          image: about3 as unknown as string,
+          alt: "Sustainability image",
+        },
+      ];
+    },
   },
   methods: {
     toggleItem(index: number) {
@@ -221,8 +248,8 @@ export default defineComponent({
       <div class="heroGeneric">
         <div class="heroGeneric__content">
           <h1>
-            <span>Connecting</span>
-            {{ $t("Continents, Cultures, and Cargo") }}
+            <span>{{ $t("aboutPage.Connecting") }}</span>
+            {{ $t("aboutPage.ConnectingDesc") }}
           </h1>
         </div>
       </div>
@@ -231,12 +258,14 @@ export default defineComponent({
         <div class="breadcrumbs__inner">
           <ul class="breadcrumbs__items">
             <li class="breadcrumbs__item">
-              <router-link to="/" class="breadcrumbs__link"
-                >Homepage</router-link
-              >
+              <router-link to="/" class="breadcrumbs__link">{{
+                $t("aboutPage.home")
+              }}</router-link>
             </li>
             <li class="breadcrumbs__item">
-              <span class="breadcrumbs__text">About us</span>
+              <span class="breadcrumbs__text">{{
+                $t("aboutPage.Aboutus")
+              }}</span>
             </li>
           </ul>
         </div>
@@ -265,57 +294,50 @@ export default defineComponent({
             <ul class="columnIcons__items">
               <li class="columnIcons__item">
                 <div class="columnIcons__itemIcon">
-                  <span class="columnIcons__icon icon-pointer"></span>
+                  <mapPointerIcon />
                 </div>
                 <p class="columnIcons__itemText">
-                  Strategic location at the heart of global trade routes,
-                  supporting the Kingdom of Saudi Arabia's ambition to become a
-                  global logistics hub
+                  {{ $t("aboutPage.points.point1") }}
                 </p>
               </li>
               <li class="columnIcons__item">
                 <div class="columnIcons__itemIcon">
-                  <span class="columnIcons__icon icon-arrows-in"></span>
+                  <arrowsInIcon />
                 </div>
                 <p class="columnIcons__itemText">
-                  Enhanced supply chain transparency and reliability through
-                  agile local and regional connectivity
+                  {{ $t("aboutPage.points.point2") }}
                 </p>
               </li>
               <li class="columnIcons__item">
                 <div class="columnIcons__itemIcon">
-                  <span class="columnIcons__icon icon-anchor"></span>
+                  <anchorIcon />
                 </div>
                 <p class="columnIcons__itemText">
-                  Committed to sustainable shipping practices, in alignment with
-                  the IMO's target of 40% Greenhouse gas (GHG) reduction by 2030
+                  {{ $t("aboutPage.points.point3") }}
                 </p>
               </li>
               <li class="columnIcons__item">
                 <div class="columnIcons__itemIcon">
-                  <span class="columnIcons__icon icon-computer"></span>
+                  <computerLine />
                 </div>
                 <p class="columnIcons__itemText">
-                  Efficiency steers our endeavors, charting the course for
-                  groundbreaking industry standards
+                  {{ $t("aboutPage.points.point4") }}
                 </p>
               </li>
               <li class="columnIcons__item">
                 <div class="columnIcons__itemIcon">
-                  <span class="columnIcons__icon icon-ship"></span>
+                  <shipIcon />
                 </div>
                 <p class="columnIcons__itemText">
-                  Our vessels, schedules, and routes are customized to meet the
-                  unique preferences of our customers
+                  {{ $t("aboutPage.points.point5") }}
                 </p>
               </li>
               <li class="columnIcons__item">
-                <div class="columnIcons__itemIcon">
-                  <span class="columnIcons__icon icon-sun"></span>
+                <div class="columnIcons__itemIcon sun-icon">
+                  <sun />
                 </div>
                 <p class="columnIcons__itemText">
-                  Dedicated to advancing skills, employment, and career growth
-                  within the maritime sector of the Kingdom of Saudi Arabia
+                  {{ $t("aboutPage.points.point6") }}
                 </p>
               </li>
             </ul>
@@ -324,26 +346,11 @@ export default defineComponent({
           <div class="columnIcons__text">
             <div class="columnIcons__text-sticky">
               <h2 class="columnIcons__textTitle heading__h3">
-                Building a Global Logistics Hub through Transformative Shipping
-                Initiatives
+                {{ $t("aboutPage.sectionTitle") }}
               </h2>
               <div class="columnIcons__intro">
                 <div class="columnIcons__introText">
-                  Folk Maritime spearheads the journey towards positioning Saudi
-                  Arabia as a global logistics hub. Leveraging the country's
-                  distinctive geographic advantage on the Red Sea and Arabian
-                  Gulf, our strategic endeavors intend to improve connectivity,
-                  optimize logistics efficiency, and reinforce sector
-                  capabilities. We are committed to maritime sustainability,
-                  adhering to the IMO's target of 40% GHG reduction by 2030. We
-                  also support transformative technologies and the uptake of
-                  alternative zero—and near-zero GHG fuels. As a leading
-                  regional player in the maritime feeder and liner services, we
-                  actively strive to increase private sector participation in
-                  industries reliant on seamless logistics. Aligned with Saudi
-                  Arabia's Vision 2030 objectives, our commitment extends to
-                  enhancing export, re-export, and domestic cargo volumes,
-                  building a prosperous and influential future for the nation.
+                  {{ $t("aboutPage.sectionBody") }}
                 </div>
               </div>
             </div>
@@ -360,13 +367,10 @@ export default defineComponent({
                   class="valuesAccordion__decor label label--decor label--decor03"
                 ></div>
                 <h3 class="valuesAccordion__tileTitle heading__h3">
-                  Our Mission
+                  {{ $t("aboutPage.values.mission.title") }}
                 </h3>
                 <p class="valuesAccordion__tileText p margin-2-t">
-                  To deliver flexible and reliable solutions for our customers
-                  and create value for our shareholders while supporting the
-                  development of the logistics ecosystem within Kingdom Saudi
-                  Arabia and across the region.
+                  {{ $t("aboutPage.values.mission.body") }}
                 </p>
               </div>
               <div class="valuesAccordion__tileImage">
@@ -384,12 +388,10 @@ export default defineComponent({
                   class="valuesAccordion__decor label label--decor label--decor04"
                 ></div>
                 <h3 class="valuesAccordion__tileTitle heading__h3">
-                  Our Vision
+                  {{ $t("missionSection.items.vision.title") }}
                 </h3>
                 <p class="valuesAccordion__tileText p margin-2-t">
-                  To be the leading liner and feeder operator in the Middle East
-                  and the surrounding region, further strengthening the Kingdom
-                  of Saudi Arabia’s position as a global logistics hub.
+                  {{ $t("missionSection.items.vision.body") }}
                 </p>
               </div>
               <div class="valuesAccordion__tileImage">
@@ -527,8 +529,8 @@ export default defineComponent({
                     @click="toggleItem(0)"
                   >
                     <span class="valuesAccordion__itemTitle"
-                      >Customer Focus | Connecting Your Focus to Customer
-                      Success<span> </span
+                      >{{ $t("aboutPage.values.items.customer.title")
+                      }}<span> </span
                     ></span>
                   </button>
                   <transition
@@ -542,10 +544,7 @@ export default defineComponent({
                       data-values-accordion-body=""
                     >
                       <div class="valuesAccordion__itemBodyInner p">
-                        We prioritize our customers' needs, ensuring we meet
-                        their expectations through a balance of personal
-                        attention and efficient technology, striving to build
-                        strong, lasting relationships.
+                        {{ $t("aboutPage.values.items.customer.body") }}
                       </div>
                     </div>
                   </transition>
@@ -562,8 +561,8 @@ export default defineComponent({
                     @click="toggleItem(1)"
                   >
                     <span class="valuesAccordion__itemTitle"
-                      >Integrity | Building Bridges of Trust: Integrity in Every
-                      Action<span> </span
+                      >{{ $t("aboutPage.values.items.integrity.title")
+                      }}<span> </span
                     ></span>
                   </button>
                   <transition
@@ -577,10 +576,7 @@ export default defineComponent({
                       data-values-accordion-body=""
                     >
                       <div class="valuesAccordion__itemBodyInner p">
-                        We are committed to transparency, honesty, and
-                        accountability, striving to make ethical decisions that
-                        positively impact our stakeholders, our community, and
-                        the world around us
+                        {{ $t("aboutPage.values.items.integrity.body") }}
                       </div>
                     </div>
                   </transition>
@@ -597,8 +593,8 @@ export default defineComponent({
                     @click="toggleItem(2)"
                   >
                     <span class="valuesAccordion__itemTitle"
-                      >Innovation | Driving Excellence: Innovation, our north
-                      star<span> </span
+                      >{{ $t("aboutPage.values.items.innovation.title")
+                      }}<span> </span
                     ></span>
                   </button>
                   <transition
@@ -612,10 +608,7 @@ export default defineComponent({
                       data-values-accordion-body=""
                     >
                       <div class="valuesAccordion__itemBodyInner p">
-                        Experience the future of ship management and service
-                        with our advanced IoT and technology solutions,
-                        delivering cost efficiency and innovative shipping
-                        solutions to the benefit of our costumers.
+                        {{ $t("aboutPage.values.items.innovation.body") }}
                       </div>
                     </div>
                   </transition>
@@ -632,8 +625,8 @@ export default defineComponent({
                     @click="toggleItem(3)"
                   >
                     <span class="valuesAccordion__itemTitle"
-                      >Sustainability | Sailing Towards Tomorrow: Sustainability
-                      in Action<span> </span
+                      >{{ $t("aboutPage.values.items.sustainability.title")
+                      }}<span> </span
                     ></span>
                   </button>
                   <transition
@@ -647,10 +640,7 @@ export default defineComponent({
                       data-values-accordion-body=""
                     >
                       <div class="valuesAccordion__itemBodyInner p">
-                        Dedicated to minimizing our environmental impact through
-                        fuel-efficient vessels and cleaner operations, extending
-                        this commitment to sustainable practices in our
-                        workplaces.
+                        {{ $t("aboutPage.values.items.sustainability.body") }}
                       </div>
                     </div>
                   </transition>
@@ -672,10 +662,11 @@ export default defineComponent({
           </div>
 
           <div class="textBanner__content">
-            <h3 class="textBanner__title">Meet our leaders</h3>
+            <h3 class="textBanner__title">
+              {{ $t("aboutPage.leaders.title") }}
+            </h3>
             <p class="textBanner__text p margin-4-t">
-              Our dedicated and inspiring leaders have charted a transformative
-              path, inviting us to join their shared endeavors.
+              {{ $t("aboutPage.leaders.body") }}
             </p>
           </div>
         </div>
@@ -685,7 +676,7 @@ export default defineComponent({
         <div class="peopleList__inner">
           <div class="peopleList__decor label label--decor">
             <teamIcon />
-            Board of directors
+            {{ $t("aboutPage.board.title") }}
           </div>
           <div class="peopleList__items">
             <div v-for="m in boardMembers" :key="m.id" class="peopleList__item">
@@ -696,7 +687,7 @@ export default defineComponent({
               <div class="peopleList__function margin-1-t">{{ m.role }}</div>
               <div class="read_more_btn margin-6-t">
                 <a class="peopleList__link link" @click="openMember(m)">
-                  Read more
+                  {{ $t("aboutPage.readMore") }}
                   <arrow />
                 </a>
               </div>
@@ -707,8 +698,12 @@ export default defineComponent({
 
       <div class="peopleList Ourteam">
         <div class="peopleList__inner">
-          <div class="peopleList__decor label label--decor"> <teamIcon /> Our team</div>
-          <h2 class="heading__h3 margin-3-t">Executive management team</h2>
+          <div class="peopleList__decor label label--decor">
+            <teamIcon /> {{ $t("aboutPage.team.kicker") }}
+          </div>
+          <h2 class="heading__h3 margin-3-t">
+            {{ $t("aboutPage.team.title") }}
+          </h2>
           <div class="peopleList__text"></div>
           <div class="peopleList__items">
             <div
@@ -729,7 +724,7 @@ export default defineComponent({
               </div>
               <div class="read_more_btn margin-6-t">
                 <a class="peopleList__link link" @click="openMember(member)">
-                  Read more
+                  {{ $t("aboutPage.readMore") }}
                   <arrow />
                 </a>
               </div>
@@ -777,6 +772,9 @@ export default defineComponent({
   flex-direction: column;
   gap: 16px;
   padding: 0 0 0 60px;
+}
+.arabic .heroGeneric__content {
+  padding: 0px 60px 0 0px;
 }
 .heroGeneric__content h1 {
   font-size: clamp(4.8rem, 4.6451612903vw, 7.2rem);
@@ -1028,7 +1026,10 @@ export default defineComponent({
   width: 5rem;
   height: 5rem;
 }
-
+.columnIcons__itemIcon svg {
+  width: 2rem;
+  height: 2rem;
+}
 @media (min-width: 768px) {
   .valuesAccordion {
     margin-inline: 0px;
@@ -1369,7 +1370,7 @@ html:not([dir="rtl"]) .valuesAccordion__itemHead:after {
     padding-inline: 5.42%;
   }
 }
-.peopleList__decor svg{
+.peopleList__decor svg {
   width: 30px;
   height: 30px;
 }
@@ -1477,12 +1478,23 @@ html:not([dir="rtl"]) .valuesAccordion__itemHead:after {
   width: 20px;
   transition: all 0.3s ease-in-out;
 }
+
 .peopleList__link:hover {
   color: var(--color-accent);
   border-bottom: 1px solid var(--color-accent);
 }
 .peopleList__link:hover svg {
   transform: translate(6px);
+}
+.arabic .read_more_btn svg {
+  transform: rotate(-180deg);
+}
+.arabic .peopleList__link:hover svg {
+  transform: translate(-10px);
+  transform: rotate(-180deg);
+}
+.sun-icon svg {
+  width: 2rem;
 }
 </style>
 <style>
@@ -1509,5 +1521,12 @@ html:not([dir="rtl"]) .valuesAccordion__itemHead:after {
 .sustainability-about .panel-inner .media {
   max-width: 50%;
   width: 100%;
+}
+.columnIcons__itemIcon svg path {
+  stroke: #262262;
+}
+.sun-icon svg path{
+  stroke: #262262;
+  fill: transparent;
 }
 </style>

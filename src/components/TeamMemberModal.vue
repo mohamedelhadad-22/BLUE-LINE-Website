@@ -113,6 +113,10 @@ export default defineComponent({
   width: 34px;
   height: 34px;
 }
+.arabic .tm-modal__close {
+  left: 10px;
+  right: unset;
+}
 .tm-modal__body {
   display: grid;
   grid-template-columns: 240px 1fr;

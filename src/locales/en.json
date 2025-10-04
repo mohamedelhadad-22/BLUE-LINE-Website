@@ -40,23 +40,23 @@
                 "id": "mala-awards",
                 "type": "Announcement",
                 "date": "2025-08-01",
-                "title": "Folk Maritime Wins \"Rising Star Organization\" at MALA Awards 2025",
-                "summary": "Folk Maritime is recognised at the MALA Awards for its rapid progress, innovation, and commitment to elevating regional logistics standards.",
+                "title": "Blue Line Wins \"Rising Star Organization\" at MALA Awards 2025",
+                "summary": "Blue Line is recognised at the MALA Awards for its rapid progress, innovation, and commitment to elevating regional logistics standards.",
                 "link": "/news-insights#mala-awards"
             },
             {
                 "id": "south-red-sea",
                 "type": "Announcement",
                 "date": "2025-07-07",
-                "title": "Folk Maritime Expands South Red Sea Service with Enhanced Jeddah-Centric Rotation",
-                "summary": "The strategic extension of Folk Maritime's South Red Sea Service strengthens regional connectivity and amplifies Saudi Arabia's role as a logistics hub.",
+                "title": "Blue Line Expands South Red Sea Service with Enhanced Jeddah-Centric Rotation",
+                "summary": "The strategic extension of Blue Line's South Red Sea Service strengthens regional connectivity and amplifies Saudi Arabia's role as a logistics hub.",
                 "link": "/news-insights#south-red-sea"
             },
             {
                 "id": "student-tour",
                 "type": "Community",
                 "date": "2025-06-03",
-                "title": "Folk Maritime Organizes Tour for Maritime Students Onboard Container Vessel \"Folk Jeddah\"",
+                "title": "Blue Line Organizes Tour for Maritime Students Onboard Container Vessel \"Folk Jeddah\"",
                 "summary": "Students from King Abdulaziz University experience life onboard Folk Jeddah, gaining practical insight into modern vessel operations.",
                 "link": "/news-insights#student-tour"
             }
@@ -64,11 +64,11 @@
     },
     "aboutSection": {
         "tag": "About us",
-        "headline": "Folk Maritime Services Company (Folk Maritime) leads as the foremost regional liner and feeder operator across the Middle East and beyond",
-        "headDescription": "Folk Maritime Services company was established in 2023 with the mission to connect regional ports seamlessly and catalyze trade across the Middle East, India, and East Africa. Our strategic goal aligns with Saudi Arabia's vision to become a global logistics hub, underlining the Kingdom's premier position in leading multiple high-growth industrial sectors. We are addressing the 'white space' in the region's maritime sector by offering the first-of-its-kind feeder and regional liner shipping services.\n\nFolk Maritime is creating new trade lanes and delivering end-to-end shipping solutions, connecting key transshipment routes in the Arabian Gulf, Red Sea, and beyond by delivering cost-effective and efficient logistics services that drive transformational trade growth.\n\nThe word \"Folk\" in Arabic evokes a deep maritime legacy, symbolizing a large sea vessel traditionally used for transporting cargo and conducting trade voyages, embodying strength, forward movement, and clear purpose, qualities central to our company's vision. Our visual identity draws inspiration from traditional Najdi geometric patterns and maritime signal flags, blending cultural authenticity with themes of communication, navigation, and purposeful progress.",
-        "descOne": "Folk Maritime Services company, was established in 2023, with the mission to connect regional ports seamlessly, and catalyze trade across the Middle East, India, and East Africa.",
+        "headline": "Blue Line Services Company (Blue Line) leads as the foremost regional liner and feeder operator across the Middle East and beyond",
+        "headDescription": "Blue Line Services company was established in 2023 with the mission to connect regional ports seamlessly and catalyze trade across the Middle East, India, and East Africa. Our strategic goal aligns with Saudi Arabia's vision to become a global logistics hub, underlining the Kingdom's premier position in leading multiple high-growth industrial sectors. We are addressing the 'white space' in the region's maritime sector by offering the first-of-its-kind feeder and regional liner shipping services.\n\nBlue Line is creating new trade lanes and delivering end-to-end shipping solutions, connecting key transshipment routes in the Arabian Gulf, Red Sea, and beyond by delivering cost-effective and efficient logistics services that drive transformational trade growth.\n\nThe word \"Folk\" in Arabic evokes a deep maritime legacy, symbolizing a large sea vessel traditionally used for transporting cargo and conducting trade voyages, embodying strength, forward movement, and clear purpose, qualities central to our company's vision. Our visual identity draws inspiration from traditional Najdi geometric patterns and maritime signal flags, blending cultural authenticity with themes of communication, navigation, and purposeful progress.",
+        "descOne": "Blue Line Services company, was established in 2023, with the mission to connect regional ports seamlessly, and catalyze trade across the Middle East, India, and East Africa.",
         "descTow": "Our strategic goal is aligned with Saudi Arabia's vision to become a global logistics hub, underlining the Kingdom’s premier position in leading multiple high-growth industrial sectors.We are addressing the ‘white space’ in the region’s maritime sector by offering the first-of-its-kind feeder and regional liner shipping services.",
-        "descThree": "Folk Maritime is creating new trade lanes and delivering end-to-end shipping solutions, connecting key transshipment routes in the Arabian Gulf, Red Sea, and beyond, by delivering cost-effective and efficient logistics services that will drive transformational trade growth.",
+        "descThree": "Blue Line is creating new trade lanes and delivering end-to-end shipping solutions, connecting key transshipment routes in the Arabian Gulf, Red Sea, and beyond, by delivering cost-effective and efficient logistics services that will drive transformational trade growth.",
         "descFour": " in Arabic evokes a deep maritime legacy, symbolizing a large sea vessel traditionally used for transporting cargo and conducting trade voyages, embodying strength, forward movement, and clear purpose, qualities central to our company's vision. Our visual identity draws inspiration from traditional Najdi geometric patterns and maritime signal flags, blending cultural authenticity with themes of communication, navigation, and purposeful progress.",
         "aboutStrong": "The word “Folk”",
         "Customer-centric": "Customer-centric approach for mainline shippers",
@@ -76,7 +76,7 @@
         "Innovativesolutions": "Innovative solutions to drive sustainability",
         "esg": {
             "slide1": {
-                "title": "Folk Maritime Contributes to Global Sustainability Goals",
+                "title": "Blue Line Contributes to Global Sustainability Goals",
                 "desc": "We minimize our footprint and implement sustainable solutions that mitigate environmental impact."
             },
             "slide2": {
@@ -93,8 +93,8 @@
         "label": "Foreword from the CEO",
         "headline": "Saudi Arabia has a strong ambition to harness its strategic geographical position to become a globally connected logistics hub, establishing itself at the heart of multiple industries, including shipping.",
         "body": {
-            "first": "Folk Maritime was born out of this ambition and will play a critical role in making it a reality. The company fills a void in the regional maritime shipping market – offering the first feeder and liner services from Saudi Arabia, with a fleet of ships, including the first-Saudi flag container vessel owned by Folk Maritime.",
-            "second": "Harnessing essential connections with key transshipment routes across the region and beyond, Folk Maritime's liner services catalyze regional trade and create new opportunities for businesses to connect with fast-growing markets in India, the Arabian Gulf and along the Red Sea.",
+            "first": "Blue Line was born out of this ambition and will play a critical role in making it a reality. The company fills a void in the regional maritime shipping market – offering the first feeder and liner services from Saudi Arabia, with a fleet of ships, including the first-Saudi flag container vessel owned by Blue Line.",
+            "second": "Harnessing essential connections with key transshipment routes across the region and beyond, Blue Line's liner services catalyze regional trade and create new opportunities for businesses to connect with fast-growing markets in India, the Arabian Gulf and along the Red Sea.",
             "third": "Our commitment is to provide reliable, future-ready shipping solutions that strengthen the Kingdom's position at the forefront of global logistics."
         },
         "name": "Poul Hestbaek",
@@ -113,12 +113,12 @@
             "routes": {
                 "title": "New Trade Routes from the Kingdom of Saudi Arabia",
                 "body": "Dedicated feeder routes extend the Kingdom's ports to global networks, accelerating time-to-market for export goods while ensuring reliable connectivity for inbound cargo.",
-                "figureAlt": "Stacked Folk Maritime containers positioned at a port"
+                "figureAlt": "Stacked Blue Line containers positioned at a port"
             },
             "technology": {
                 "title": "Integration of World-class Technology",
                 "body": "Smart port technologies, paperless processes, and real-time visibility tools streamline operations, enabling data-driven decisions across every voyage.",
-                "figureAlt": "Folk Maritime vessel underway viewed from the bow"
+                "figureAlt": "Blue Line vessel underway viewed from the bow"
             }
         }
     },
@@ -127,13 +127,13 @@
         "title": "Join Us and Set Sail Towards a Common Goal",
         "body": "Discover a career path in an environment where diversity is the strength and inclusivity the compass. We empower individuals, embracing varied perspectives to drive innovation and collective success.",
         "cta": "Explore Opportunities",
-        "ctaAria": "Explore open career opportunities at Folk Maritime",
+        "ctaAria": "Explore open career opportunities at Blue Line",
         "galleryAlt": {
-            "containers": "Stacked Folk Maritime containers under a clear sky",
+            "containers": "Stacked Blue Line containers under a clear sky",
             "team": "Team members placing their hands together in unity",
             "meeting": "Colleagues collaborating during a meeting",
-            "vessel": "Folk Maritime vessel departing pier",
-            "detail": "Uniform lapel pin with Folk Maritime branding"
+            "vessel": "Blue Line vessel departing pier",
+            "detail": "Uniform lapel pin with Blue Line branding"
         }
     },
     "footer": {
@@ -171,7 +171,7 @@
         },
         "follow": "Follow us",
         "legal": {
-            "copyright": "© Folk Maritime. All Rights Reserved 2025",
+            "copyright": "© Blue Line. All Rights Reserved 2025",
             "privacy": "Privacy Policy",
             "terms": "Terms & Conditions"
         },
@@ -208,7 +208,7 @@
         },
         "careers": {
             "headline": "Careers",
-            "body": "Explore future openings and growth opportunities at Folk Maritime. This portal will soon provide role listings, hiring timelines, and talent development resources.",
+            "body": "Explore future openings and growth opportunities at Blue Line. This portal will soon provide role listings, hiring timelines, and talent development resources.",
             "highlights": {
                 "culture": {
                     "title": "Culture & values",
@@ -432,6 +432,72 @@
                 "label": "Open feedback form",
                 "description": "Scroll to the footer to share your idea instantly.",
                 "link": "#footer-feedback"
+            }
+        }
+    },
+    "aboutPage": {
+        "Aboutus": "About Us",
+        "home": "Home",
+        "Connecting": "Connecting",
+        "ConnectingDesc": "Continents, Cultures, and Cargo",
+        "points": {
+            "point1": "Strategic location at the heart of global trade routes, supporting the Kingdom of Saudi Arabia's ambition to become a global logistics hub",
+            "point2": "Enhanced supply chain transparency and reliability through agile local and regional connectivity",
+            "point3": "Committed to sustainable shipping practices, in alignment with the IMO's target of 40% Greenhouse gas (GHG) reduction by 2030",
+            "point4": "Efficiency steers our endeavors, charting the course for groundbreaking industry standards",
+            "point5": "Our vessels, schedules, and routes are customized to meet the unique preferences of our customers",
+            "point6": "Dedicated to advancing skills, employment, and career growth within the maritime sector of the Kingdom of Saudi Arabia"
+        },
+        "sectionTitle": "Building a Global Logistics Hub through Transformative Shipping Initiatives",
+        "sectionBody": "Folk Maritime spearheads the journey towards positioning Saudi Arabia as a global logistics hub. Leveraging the country's distinctive geographic advantage on the Red Sea and Arabian Gulf, our strategic endeavors intend to improve connectivity, optimize logistics efficiency, and reinforce sector capabilities. We are committed to maritime sustainability, adhering to the IMO's target of 40% GHG reduction by 2030. We also support transformative technologies and the uptake of alternative zero—and near-zero GHG fuels. As a leading regional player in the maritime feeder and liner services, we actively strive to increase private sector participation in industries reliant on seamless logistics. Aligned with Saudi Arabia's Vision 2030 objectives, our commitment extends to enhancing export, re-export, and domestic cargo volumes, building a prosperous and influential future for the nation.",
+        "values": {
+            "mission": {
+                "title": "Our Mission",
+                "body": "To deliver flexible and reliable solutions for our customers and create value for our shareholders."
+            },
+            "items": {
+                "customer": {
+                    "title": "Customer Focus | Connecting Your Focus to Customer Success",
+                    "body": "We prioritize our customers' needs, ensuring we meet their expectations through a balance of personal attention and efficient technology, striving to build strong, lasting relationships."
+                },
+                "integrity": {
+                    "title": "Integrity | Building Bridges of Trust: Integrity in Every Action",
+                    "body": "We are committed to transparency, honesty, and accountability, striving to make ethical decisions that positively impact our stakeholders, our community, and the world around us."
+                },
+                "innovation": {
+                    "title": "Innovation | Driving Excellence: Innovation, our north star",
+                    "body": "Experience the future of ship management and service with our advanced IoT and technology solutions, delivering cost efficiency and innovative shipping solutions to the benefit of our customers."
+                },
+                "sustainability": {
+                    "title": "Sustainability | Sailing Towards Tomorrow: Sustainability in Action",
+                    "body": "Dedicated to minimizing our environmental impact through fuel-efficient vessels and cleaner operations, extending this commitment to sustainable practices in our workplaces."
+                }
+            }
+        },
+        "leaders": {
+            "title": "Meet our leaders",
+            "body": "Our dedicated and inspiring leaders have charted a transformative path, inviting us to join their shared endeavors."
+        },
+        "board": {
+            "title": "Board of directors"
+        },
+        "team": {
+            "kicker": "Our team",
+            "title": "Executive management team"
+        },
+        "readMore": "Read more",
+        "esg": {
+            "slide1": {
+                "title": "Decarbonization in Motion",
+                "desc": "Investing in fuel‑efficient vessels, voyage optimization, and data‑driven operations to lower emissions across our network."
+            },
+            "slide2": {
+                "title": "People, Safety, Community",
+                "desc": "Embedding a safety‑first culture while supporting talent development and community initiatives across our ports."
+            },
+            "slide3": {
+                "title": "Governance With Purpose",
+                "desc": "Transparent governance and responsible procurement that align with Vision 2030 and international best practices."
             }
         }
     }
