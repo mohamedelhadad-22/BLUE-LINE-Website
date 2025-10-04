@@ -500,5 +500,45 @@
                 "desc": "Transparent governance and responsible procurement that align with Vision 2030 and international best practices."
             }
         }
+    },
+    "careersPage": {
+        "kicker": "Careers",
+        "title": "Join our Team",
+        "intro": "At Folk, our pursuit of excellence is steadfast. Whether you're a seasoned professional or just beginning your career, if you have the drive and determination to thrive in the fast-paced world of global shipping and logistics and are excited to collaborate with our exceptional team. Find out more about working and growing with us.",
+        "apply": "Aplly",
+        "sections": {
+            "why": {
+                "title": "Why Blue Line",
+                "points": [
+                    "Meaningful work shaping trade across the Middle East and beyond",
+                    "A culture built on integrity, learning, and collaboration",
+                    "Opportunities to grow your career across functions and regions"
+                ]
+            },
+            "life": {
+                "title": "Life at Blue Line",
+                "body": "We combine maritime heritage with a modern, tech‑enabled mindset. You’ll find supportive teammates, clear goals, and space to innovate."
+            },
+            "openings": {
+                "title": "Open roles",
+                "empty": "We’re preparing our openings. Join our talent network to hear first."
+            }
+        },
+        "cta": {
+            "label": "Join our talent network",
+            "desc": "Send your CV and a brief note about your interests.",
+            "mailto": "mailto:talent@folkmaritime.com"
+        },
+        "LIFEATBLUE": "LIFE AT BLUE LINE",
+        "LIFEATFOLKDesc": "Begin a journey of continuous learning in one of the world’s most crucial industries.",
+        "LIFEATBLUEiNTORO": "Folk is not just a workplace; it's a vibrant community where every voice matters, creative freedom thrives, and your career growth is paramount. We are dedicated to creating a dynamic culture that fosters collaboration, cultural diversity, and champions work-life balance.",
+        "valuesTitle": "Our values are rooted in our DNA.",
+        "valuesDesc": "An organization like ours is guided by a steadfast set of values. Here’s what makes Folk stand out from the rest:",
+        "SustainableSolutions": "Sustainable Solutions",
+        "SustainableDesc": "Innovating responsibly, we develop sustainable solutions for a thriving future.",
+        "PositiveImpact": "Positive Impact",
+        "ImpactDesc": "We are committed to ensuring that every action contributes to positive societal change.",
+        "Customercentricity": "Customer-centricity",
+        "centricityDesc": "Our relentless pursuit of excellence puts our customers first, centered around tailored solutions and exceptional experiences."
     }
 }

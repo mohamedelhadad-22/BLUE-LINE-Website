@@ -12,8 +12,14 @@
   --color-primary: #262262;
   --color-secondary: #2b3990;
   --color-accent: #27aae1;
+  --ink: #0b1020;
+  --muted-ink: #606b85;
+  --surface: #0f1530;
+  --surface-2: #131a3a;
+  --card: #0e1433;
+  --border: #2a3569;
+  --ring: rgba(39, 170, 225, 0.4);
 }
-
 body {
   overflow-x: hidden;
   width: 100%;
