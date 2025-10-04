@@ -22,7 +22,7 @@
         <div class="slider_container">
           <div class="panel-inner">
             <div class="text">
-              <p class="eyebrow">
+              <p v-if="eyebrow" class="eyebrow">
                 <span class="glyph">✕</span>
                 {{ eyebrow }}
               </p>
@@ -76,7 +76,7 @@ export default defineComponent({
   name: "EsgVerticalSlider",
   props: {
     slides: { type: Array as () => Slide[], required: true },
-    eyebrow: { type: String, default: "ESG INITIATIVES" },
+    eyebrow: { type: String, default: "" },
     ariaLabel: { type: String, default: "ESG vertical slider" },
     snapMs: { type: Number, default: 650 },
     snapEasing: { type: String, default: "ease-out" },

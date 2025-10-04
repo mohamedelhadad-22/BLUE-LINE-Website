@@ -18,67 +18,67 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/stakeholders-relations",
     name: "stakeholders-relations",
-    component: () => import('@/views/footer/StakeholdersRelationsView.vue'),
+    component: () => import('@/views/Pages/StakeholdersRelationsView.vue'),
   },
   {
     path: "/careers",
     name: "careers",
-    component: () => import('@/views/footer/CareersView.vue'),
+    component: () => import('@/views/Pages/CareersView.vue'),
   },
   {
     path: "/contact",
     name: "contact",
-    component: () => import('@/views/footer/ContactView.vue'),
+    component: () => import('@/views/Pages/ContactView.vue'),
   },
   {
     path: "/feeders-services",
     name: "feeders-services",
-    component: () => import('@/views/footer/FeedersServicesView.vue'),
+    component: () => import('@/views/Pages/FeedersServicesView.vue'),
   },
   {
     path: "/regional-liner-services",
     name: "regional-liner-services",
-    component: () => import('@/views/footer/RegionalLinerServicesView.vue'),
+    component: () => import('@/views/Pages/RegionalLinerServicesView.vue'),
   },
   {
     path: "/routes-agents",
     name: "routes-agents",
-    component: () => import('@/views/footer/RoutesAgentsView.vue'),
+    component: () => import('@/views/Pages/RoutesAgentsView.vue'),
   },
   {
     path: "/faq-glossary",
     name: "faq-glossary",
-    component: () => import('@/views/footer/FaqGlossaryView.vue'),
+    component: () => import('@/views/Pages/FaqGlossaryView.vue'),
   },
   {
     path: "/fleet",
     name: "fleet",
-    component: () => import('@/views/footer/FleetView.vue'),
+    component: () => import('@/views/Pages/FleetView.vue'),
   },
   {
     path: "/news-insights",
     name: "news-insights",
-    component: () => import('@/views/footer/NewsInsightsView.vue'),
+    component: () => import('@/views/Pages/NewsInsightsView.vue'),
   },
   {
     path: "/downloads",
     name: "downloads",
-    component: () => import('@/views/footer/DownloadsView.vue'),
+    component: () => import('@/views/Pages/DownloadsView.vue'),
   },
   {
     path: "/privacy-policy",
     name: "privacy-policy",
-    component: () => import('@/views/footer/PrivacyPolicyView.vue'),
+    component: () => import('@/views/Pages/PrivacyPolicyView.vue'),
   },
   {
     path: "/terms-conditions",
     name: "terms-conditions",
-    component: () => import('@/views/footer/TermsConditionsView.vue'),
+    component: () => import('@/views/Pages/TermsConditionsView.vue'),
   },
   {
     path: "/suggestions",
     name: "suggestions",
-    component: () => import('@/views/footer/SuggestionsView.vue'),
+    component: () => import('@/views/Pages/SuggestionsView.vue'),
   },
 ];
 
