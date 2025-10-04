@@ -62,6 +62,25 @@ body {
   /* 16px */
 }
 
+.breadcrumbs {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-bottom: 16px;
+  padding-inline: 5.42%;
+  padding-top: 3.2rem;
+}
+.breadcrumbs a {
+  color: #00000077;
+  text-decoration: none;
+}
+.breadcrumbs .sep {
+  margin: 0 8px;
+  opacity: 0.5;
+}
+.breadcrumbs .current {
+  color: #000;
+  opacity: 0.9;
+}
 
 html,
 body,
