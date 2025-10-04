@@ -543,5 +543,16 @@
         "WorkingTogether": "Working together towards a shared vision.",
         "WorkingTogetherDesc": "As we look for new candidates to join our growing team, we are mindful of each candidate's unique journey and distinctive skills. Your potential is our focus. We look forward to welcoming you into our dynamic team, where your skills align with our forward-thinking approach to work.",
         "applicationprocess": "We are here to guide you along the application process."
+    },
+    "stakeholders": {
+        "Stakeholders": "Stakeholders",
+        "StakeholdersRelations": "Stakeholders Relations",
+        "StakeholdersDesc": "At Folk, we see our stakeholders as partners in progress and value their insights, feedback, and collaboration. We cultivate deep partnerships underpinned by an ethos of transparency and a drive for a shared future of prosperity. Whether an investor, a customer, or a community member, the involvement of our stakeholders shapes our journey and enables our bold vision.",
+        "ContactUs": "Contact Us",
+        "StrategicObjectives": "Strategic Objectives for a Promising Future",
+        "million": "Million",
+        "Desc1": "Aligning with Saudi Arabia’s NIDLP, supporting the logistics sector’s goal to transport 40 million TEU through Saudi ports by 2030.",
+        "Desc2": "Aiming to enhance Saudi Arabia’s logistics sector by capturing approximately 15-20% of the demand in the MENA region by 2030.",
+        "Desc3": "Launched three services in 2024, aiming to add more regional and global expansion services."
     }
 }
