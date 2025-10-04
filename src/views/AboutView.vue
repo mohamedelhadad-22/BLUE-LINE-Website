@@ -1,9 +1,15 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, shallowRef } from "vue";
 import TeamMemberModal from "@/components/TeamMemberModal.vue";
+import arrow from "@/assets/svg/arrow.vue";
+import EsgVerticalSlider from "@/components/Home/EsgVerticalSlider.vue";
+import about1 from "@/assets/about-1.jpg";
+import about2 from "@/assets/about-2.jpg";
+import about3 from "@/assets/about-3.jpg";
+import teamIcon from "@/assets/svg/teamIcon.vue";
 export default defineComponent({
   name: "aboutView",
-  components: { TeamMemberModal },
+  components: { TeamMemberModal, arrow, EsgVerticalSlider, teamIcon },
   data() {
     return {
       activeIndex: 0,
@@ -81,24 +87,21 @@ export default defineComponent({
           role: "Chief Executive Officer",
           image:
             "https://folkmaritime.com/storage/media/16/conversions/team-poul_hestbaek.medium.webp",
-          bio:
-            "Poul is a seasoned maritime industry leader with executive experience across Europe, Latin America, and APAC.",
+          bio: "Poul is a seasoned maritime industry leader with executive experience across Europe, Latin America, and APAC.",
         },
         {
           id: 2,
           name: "Kim Kennet Larsen",
           role: "Chief Commercial Officer",
           image: "https://folkmaritime.com/storage/media/174/222kim.gif",
-          bio:
-            "Kim brings extensive commercial leadership and strategy execution across global shipping markets.",
+          bio: "Kim brings extensive commercial leadership and strategy execution across global shipping markets.",
         },
         {
           id: 3,
           name: "Khalid Fawzi",
           role: "Chief Financial Officer",
           image: "https://folkmaritime.com/storage/media/177/khalid-fawzi.png",
-          bio:
-            "Khalid Fawzi is a highly experienced financial leader with over 20 years of expertise across Saudi Arabia.",
+          bio: "Khalid Fawzi is a highly experienced financial leader with over 20 years of expertise across Saudi Arabia.",
         },
         {
           id: 1,
@@ -106,16 +109,14 @@ export default defineComponent({
           role: "Chief Executive Officer",
           image:
             "https://folkmaritime.com/storage/media/16/conversions/team-poul_hestbaek.medium.webp",
-          bio:
-            "Poul is a seasoned maritime industry leader with executive experience across Europe, Latin America, and APAC.",
+          bio: "Poul is a seasoned maritime industry leader with executive experience across Europe, Latin America, and APAC.",
         },
         {
           id: 2,
           name: "Kim Kennet Larsen",
           role: "Chief Commercial Officer",
           image: "https://folkmaritime.com/storage/media/174/222kim.gif",
-          bio:
-            "Kim brings extensive commercial leadership and strategy execution across global shipping markets.",
+          bio: "Kim brings extensive commercial leadership and strategy execution across global shipping markets.",
         },
         {
           id: 1,
@@ -123,20 +124,38 @@ export default defineComponent({
           role: "Chief Executive Officer",
           image:
             "https://folkmaritime.com/storage/media/16/conversions/team-poul_hestbaek.medium.webp",
-          bio:
-            "Poul is a seasoned maritime industry leader with executive experience across Europe, Latin America, and APAC.",
+          bio: "Poul is a seasoned maritime industry leader with executive experience across Europe, Latin America, and APAC.",
         },
         {
           id: 2,
           name: "Kim Kennet Larsen",
           role: "Chief Commercial Officer",
           image: "https://folkmaritime.com/storage/media/174/222kim.gif",
-          bio:
-            "Kim brings extensive commercial leadership and strategy execution across global shipping markets.",
+          bio: "Kim brings extensive commercial leadership and strategy execution across global shipping markets.",
         },
       ],
       modalOpen: false,
       selectedMember: null as any,
+      esgSlides: [
+        {
+          heading: this.$t("aboutSection.esg.slide1.title"),
+          copy: this.$t("aboutSection.esg.slide1.desc"),
+          image: shallowRef(about1),
+          alt: "Sustainability image",
+        },
+        {
+          heading: this.$t("aboutSection.esg.slide2.title"),
+          copy: this.$t("aboutSection.esg.slide2.desc"),
+          image: shallowRef(about2),
+          alt: "Sustainability image",
+        },
+        {
+          heading: this.$t("aboutSection.esg.slide3.title"),
+          copy: this.$t("aboutSection.esg.slide3.desc"),
+          image: shallowRef(about3),
+          alt: "Sustainability image",
+        },
+      ],
     };
   },
   methods: {
@@ -197,512 +216,530 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="about_page container">
-    <div class="heroGeneric">
-      <div class="heroGeneric__content">
-        <h1>
-          <span>Connecting</span>
-          {{ $t("Continents, Cultures, and Cargo") }}
-        </h1>
-      </div>
-    </div>
-
-    <div class="about-us container">
-      <div class="breadcrumbs__inner">
-        <ul class="breadcrumbs__items">
-          <li class="breadcrumbs__item">
-            <router-link to="/" class="breadcrumbs__link">Homepage</router-link>
-          </li>
-          <li class="breadcrumbs__item">
-            <span class="breadcrumbs__text">About us</span>
-          </li>
-        </ul>
-      </div>
-
-      <div class="columnIcons__inner">
-        <div class="about-tag">
-          <span class="about-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48">
-              <path
-                d="M24 8l10 10-10 10-10-10 10-10zm0 12l10 10-10 10-10-10 10-10z"
-              />
-            </svg>
-          </span>
-          <span class="about-label">{{ $t("aboutSection.tag") }}</span>
+  <div class="about_page">
+    <div class="container">
+      <div class="heroGeneric">
+        <div class="heroGeneric__content">
+          <h1>
+            <span>Connecting</span>
+            {{ $t("Continents, Cultures, and Cargo") }}
+          </h1>
         </div>
-        <h1 class="about-heading">
-          {{ $t("aboutSection.headline") }}
-        </h1>
-        <p class="columnIcons__intro">
-          {{ $t("aboutSection.headDescription") }}
-        </p>
       </div>
 
-      <div class="columnIcons__content">
-        <div class="columnIcons__boxes">
-          <ul class="columnIcons__items">
-            <li class="columnIcons__item">
-              <div class="columnIcons__itemIcon">
-                <span class="columnIcons__icon icon-pointer"></span>
-              </div>
-              <p class="columnIcons__itemText">
-                Strategic location at the heart of global trade routes,
-                supporting the Kingdom of Saudi Arabia's ambition to become a
-                global logistics hub
-              </p>
+      <div class="about-us container">
+        <div class="breadcrumbs__inner">
+          <ul class="breadcrumbs__items">
+            <li class="breadcrumbs__item">
+              <router-link to="/" class="breadcrumbs__link"
+                >Homepage</router-link
+              >
             </li>
-            <li class="columnIcons__item">
-              <div class="columnIcons__itemIcon">
-                <span class="columnIcons__icon icon-arrows-in"></span>
-              </div>
-              <p class="columnIcons__itemText">
-                Enhanced supply chain transparency and reliability through agile
-                local and regional connectivity
-              </p>
-            </li>
-            <li class="columnIcons__item">
-              <div class="columnIcons__itemIcon">
-                <span class="columnIcons__icon icon-anchor"></span>
-              </div>
-              <p class="columnIcons__itemText">
-                Committed to sustainable shipping practices, in alignment with
-                the IMO's target of 40% Greenhouse gas (GHG) reduction by 2030
-              </p>
-            </li>
-            <li class="columnIcons__item">
-              <div class="columnIcons__itemIcon">
-                <span class="columnIcons__icon icon-computer"></span>
-              </div>
-              <p class="columnIcons__itemText">
-                Efficiency steers our endeavors, charting the course for
-                groundbreaking industry standards
-              </p>
-            </li>
-            <li class="columnIcons__item">
-              <div class="columnIcons__itemIcon">
-                <span class="columnIcons__icon icon-ship"></span>
-              </div>
-              <p class="columnIcons__itemText">
-                Our vessels, schedules, and routes are customized to meet the
-                unique preferences of our customers
-              </p>
-            </li>
-            <li class="columnIcons__item">
-              <div class="columnIcons__itemIcon">
-                <span class="columnIcons__icon icon-sun"></span>
-              </div>
-              <p class="columnIcons__itemText">
-                Dedicated to advancing skills, employment, and career growth
-                within the maritime sector of the Kingdom of Saudi Arabia
-              </p>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__text">About us</span>
             </li>
           </ul>
         </div>
 
-        <div class="columnIcons__text">
-          <div class="columnIcons__text-sticky">
-            <h2 class="columnIcons__textTitle heading__h3">
-              Building a Global Logistics Hub through Transformative Shipping
-              Initiatives
-            </h2>
-            <div class="columnIcons__intro">
-              <div class="columnIcons__introText">
-                Folk Maritime spearheads the journey towards positioning Saudi
-                Arabia as a global logistics hub. Leveraging the country's
-                distinctive geographic advantage on the Red Sea and Arabian
-                Gulf, our strategic endeavors intend to improve connectivity,
-                optimize logistics efficiency, and reinforce sector
-                capabilities. We are committed to maritime sustainability,
-                adhering to the IMO's target of 40% GHG reduction by 2030. We
-                also support transformative technologies and the uptake of
-                alternative zero—and near-zero GHG fuels. As a leading regional
-                player in the maritime feeder and liner services, we actively
-                strive to increase private sector participation in industries
-                reliant on seamless logistics. Aligned with Saudi Arabia's
-                Vision 2030 objectives, our commitment extends to enhancing
-                export, re-export, and domestic cargo volumes, building a
-                prosperous and influential future for the nation.
+        <div class="columnIcons__inner">
+          <div class="about-tag">
+            <span class="about-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48">
+                <path
+                  d="M24 8l10 10-10 10-10-10 10-10zm0 12l10 10-10 10-10-10 10-10z"
+                />
+              </svg>
+            </span>
+            <span class="about-label">{{ $t("aboutSection.tag") }}</span>
+          </div>
+          <h1 class="about-heading">
+            {{ $t("aboutSection.headline") }}
+          </h1>
+          <p class="columnIcons__intro">
+            {{ $t("aboutSection.headDescription") }}
+          </p>
+        </div>
+
+        <div class="columnIcons__content">
+          <div class="columnIcons__boxes">
+            <ul class="columnIcons__items">
+              <li class="columnIcons__item">
+                <div class="columnIcons__itemIcon">
+                  <span class="columnIcons__icon icon-pointer"></span>
+                </div>
+                <p class="columnIcons__itemText">
+                  Strategic location at the heart of global trade routes,
+                  supporting the Kingdom of Saudi Arabia's ambition to become a
+                  global logistics hub
+                </p>
+              </li>
+              <li class="columnIcons__item">
+                <div class="columnIcons__itemIcon">
+                  <span class="columnIcons__icon icon-arrows-in"></span>
+                </div>
+                <p class="columnIcons__itemText">
+                  Enhanced supply chain transparency and reliability through
+                  agile local and regional connectivity
+                </p>
+              </li>
+              <li class="columnIcons__item">
+                <div class="columnIcons__itemIcon">
+                  <span class="columnIcons__icon icon-anchor"></span>
+                </div>
+                <p class="columnIcons__itemText">
+                  Committed to sustainable shipping practices, in alignment with
+                  the IMO's target of 40% Greenhouse gas (GHG) reduction by 2030
+                </p>
+              </li>
+              <li class="columnIcons__item">
+                <div class="columnIcons__itemIcon">
+                  <span class="columnIcons__icon icon-computer"></span>
+                </div>
+                <p class="columnIcons__itemText">
+                  Efficiency steers our endeavors, charting the course for
+                  groundbreaking industry standards
+                </p>
+              </li>
+              <li class="columnIcons__item">
+                <div class="columnIcons__itemIcon">
+                  <span class="columnIcons__icon icon-ship"></span>
+                </div>
+                <p class="columnIcons__itemText">
+                  Our vessels, schedules, and routes are customized to meet the
+                  unique preferences of our customers
+                </p>
+              </li>
+              <li class="columnIcons__item">
+                <div class="columnIcons__itemIcon">
+                  <span class="columnIcons__icon icon-sun"></span>
+                </div>
+                <p class="columnIcons__itemText">
+                  Dedicated to advancing skills, employment, and career growth
+                  within the maritime sector of the Kingdom of Saudi Arabia
+                </p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="columnIcons__text">
+            <div class="columnIcons__text-sticky">
+              <h2 class="columnIcons__textTitle heading__h3">
+                Building a Global Logistics Hub through Transformative Shipping
+                Initiatives
+              </h2>
+              <div class="columnIcons__intro">
+                <div class="columnIcons__introText">
+                  Folk Maritime spearheads the journey towards positioning Saudi
+                  Arabia as a global logistics hub. Leveraging the country's
+                  distinctive geographic advantage on the Red Sea and Arabian
+                  Gulf, our strategic endeavors intend to improve connectivity,
+                  optimize logistics efficiency, and reinforce sector
+                  capabilities. We are committed to maritime sustainability,
+                  adhering to the IMO's target of 40% GHG reduction by 2030. We
+                  also support transformative technologies and the uptake of
+                  alternative zero—and near-zero GHG fuels. As a leading
+                  regional player in the maritime feeder and liner services, we
+                  actively strive to increase private sector participation in
+                  industries reliant on seamless logistics. Aligned with Saudi
+                  Arabia's Vision 2030 objectives, our commitment extends to
+                  enhancing export, re-export, and domestic cargo volumes,
+                  building a prosperous and influential future for the nation.
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="valuesAccordion">
-      <div class="valuesAccordion__inner">
-        <div class="valuesAccordion__tiles">
-          <div class="valuesAccordion__tile">
-            <div class="valuesAccordion__tileContent">
+      <div class="valuesAccordion">
+        <div class="valuesAccordion__inner">
+          <div class="valuesAccordion__tiles">
+            <div class="valuesAccordion__tile">
+              <div class="valuesAccordion__tileContent">
+                <div
+                  class="valuesAccordion__decor label label--decor label--decor03"
+                ></div>
+                <h3 class="valuesAccordion__tileTitle heading__h3">
+                  Our Mission
+                </h3>
+                <p class="valuesAccordion__tileText p margin-2-t">
+                  To deliver flexible and reliable solutions for our customers
+                  and create value for our shareholders while supporting the
+                  development of the logistics ecosystem within Kingdom Saudi
+                  Arabia and across the region.
+                </p>
+              </div>
+              <div class="valuesAccordion__tileImage">
+                <img
+                  class="valuesAccordion__tileImg"
+                  src="https://folkmaritime.com/storage/media/147/conversions/Untitled-5121212.medium.jpg"
+                  alt="image"
+                />
+              </div>
+            </div>
+
+            <div class="valuesAccordion__tile">
+              <div class="valuesAccordion__tileContent">
+                <div
+                  class="valuesAccordion__decor label label--decor label--decor04"
+                ></div>
+                <h3 class="valuesAccordion__tileTitle heading__h3">
+                  Our Vision
+                </h3>
+                <p class="valuesAccordion__tileText p margin-2-t">
+                  To be the leading liner and feeder operator in the Middle East
+                  and the surrounding region, further strengthening the Kingdom
+                  of Saudi Arabia’s position as a global logistics hub.
+                </p>
+              </div>
+              <div class="valuesAccordion__tileImage">
+                <img
+                  class="valuesAccordion__tileImg"
+                  src="https://folkmaritime.com/storage/media/120/conversions/WhatsApp-Image-1446-10-29-at-15-06-28.medium.jpg"
+                  alt="image"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="valuesAccordion__content">
+            <div class="valuesAccordion__image">
+              <img
+                class="valuesAccordion__img"
+                :style="{
+                  opacity: (
+                    activeIndex === -1
+                      ? lastImageIndex === 0
+                      : activeIndex === 0
+                  )
+                    ? '1'
+                    : '0',
+                  zIndex:
+                    activeIndex === -1
+                      ? lastImageIndex === 0
+                        ? 2
+                        : 1
+                      : activeIndex === 0
+                        ? 2
+                        : 1,
+                  transition: 'opacity 0.3s',
+                }"
+                src="https://folkmaritime.com/storage/media/159/conversions/11-02.medium.jpg"
+                alt="image"
+                data-values-accordion-image="0"
+              />
+              <img
+                class="valuesAccordion__img"
+                :style="{
+                  opacity: (
+                    activeIndex === -1
+                      ? lastImageIndex === 1
+                      : activeIndex === 1
+                  )
+                    ? '1'
+                    : '0',
+                  zIndex:
+                    activeIndex === -1
+                      ? lastImageIndex === 1
+                        ? 2
+                        : 1
+                      : activeIndex === 1
+                        ? 2
+                        : 1,
+                  transition: 'opacity 0.3s',
+                }"
+                src="https://folkmaritime.com/storage/media/160/conversions/222222222222222-01.medium.jpg"
+                alt="image"
+                data-values-accordion-image="1"
+              />
+              <img
+                class="valuesAccordion__img"
+                :style="{
+                  opacity: (
+                    activeIndex === -1
+                      ? lastImageIndex === 2
+                      : activeIndex === 2
+                  )
+                    ? '1'
+                    : '0',
+                  zIndex:
+                    activeIndex === -1
+                      ? lastImageIndex === 2
+                        ? 2
+                        : 1
+                      : activeIndex === 2
+                        ? 2
+                        : 1,
+                  transition: 'opacity 0.3s',
+                }"
+                src="https://folkmaritime.com/storage/media/161/conversions/33333333333333-02.medium.jpg"
+                alt="image"
+                data-values-accordion-image="2"
+              />
+              <img
+                class="valuesAccordion__img"
+                :style="{
+                  opacity: (
+                    activeIndex === -1
+                      ? lastImageIndex === 3
+                      : activeIndex === 3
+                  )
+                    ? '1'
+                    : '0',
+                  zIndex:
+                    activeIndex === -1
+                      ? lastImageIndex === 3
+                        ? 2
+                        : 1
+                      : activeIndex === 3
+                        ? 2
+                        : 1,
+                  transition: 'opacity 0.3s',
+                }"
+                src="https://folkmaritime.com/storage/media/162/conversions/4445444-01.medium.jpg"
+                alt="image"
+                data-values-accordion-image="3"
+              />
+            </div>
+
+            <div class="valuesAccordion__accordion">
               <div
                 class="valuesAccordion__decor label label--decor label--decor03"
               ></div>
-              <h3 class="valuesAccordion__tileTitle heading__h3">
-                Our Mission
-              </h3>
-              <p class="valuesAccordion__tileText p margin-2-t">
-                To deliver flexible and reliable solutions for our customers and
-                create value for our shareholders while supporting the
-                development of the logistics ecosystem within Kingdom Saudi
-                Arabia and across the region.
+              <h3 class="valuesAccordion__title heading__h3">Our Values</h3>
+              <p class="valuesAccordion__text p margin-2-t">
+                Folk Maritime is a dynamic, innovative, and reliable logistics
+                company committed to advancing Saudi Arabia’s transportation and
+                logistics ambitions through continuous progress and consistent
+                delivery.
               </p>
-            </div>
-            <div class="valuesAccordion__tileImage">
-              <img
-                class="valuesAccordion__tileImg"
-                src="https://folkmaritime.com/storage/media/147/conversions/Untitled-5121212.medium.jpg"
-                alt="image"
-              />
-            </div>
-          </div>
 
-          <div class="valuesAccordion__tile">
-            <div class="valuesAccordion__tileContent">
-              <div
-                class="valuesAccordion__decor label label--decor label--decor04"
-              ></div>
-              <h3 class="valuesAccordion__tileTitle heading__h3">Our Vision</h3>
-              <p class="valuesAccordion__tileText p margin-2-t">
-                To be the leading liner and feeder operator in the Middle East
-                and the surrounding region, further strengthening the Kingdom of
-                Saudi Arabia’s position as a global logistics hub.
-              </p>
-            </div>
-            <div class="valuesAccordion__tileImage">
-              <img
-                class="valuesAccordion__tileImg"
-                src="https://folkmaritime.com/storage/media/120/conversions/WhatsApp-Image-1446-10-29-at-15-06-28.medium.jpg"
-                alt="image"
-              />
+              <div class="valuesAccordion__items margin-6-t">
+                <div
+                  class="valuesAccordion__item"
+                  :class="{ 'valuesAccordion__item--opened': isActive(0) }"
+                  data-values-accordion-item="0"
+                >
+                  <button
+                    type="button"
+                    class="valuesAccordion__itemHead"
+                    data-values-accordion-head=""
+                    @click="toggleItem(0)"
+                  >
+                    <span class="valuesAccordion__itemTitle"
+                      >Customer Focus | Connecting Your Focus to Customer
+                      Success<span> </span
+                    ></span>
+                  </button>
+                  <transition
+                    @enter="onEnter"
+                    @after-enter="onAfterEnter"
+                    @leave="onLeave"
+                  >
+                    <div
+                      v-show="isActive(0)"
+                      class="valuesAccordion__itemBody"
+                      data-values-accordion-body=""
+                    >
+                      <div class="valuesAccordion__itemBodyInner p">
+                        We prioritize our customers' needs, ensuring we meet
+                        their expectations through a balance of personal
+                        attention and efficient technology, striving to build
+                        strong, lasting relationships.
+                      </div>
+                    </div>
+                  </transition>
+                </div>
+                <div
+                  class="valuesAccordion__item"
+                  data-values-accordion-item="1"
+                  :class="{ 'valuesAccordion__item--opened': isActive(1) }"
+                >
+                  <button
+                    type="button"
+                    class="valuesAccordion__itemHead"
+                    data-values-accordion-head=""
+                    @click="toggleItem(1)"
+                  >
+                    <span class="valuesAccordion__itemTitle"
+                      >Integrity | Building Bridges of Trust: Integrity in Every
+                      Action<span> </span
+                    ></span>
+                  </button>
+                  <transition
+                    @enter="onEnter"
+                    @after-enter="onAfterEnter"
+                    @leave="onLeave"
+                  >
+                    <div
+                      v-show="isActive(1)"
+                      class="valuesAccordion__itemBody"
+                      data-values-accordion-body=""
+                    >
+                      <div class="valuesAccordion__itemBodyInner p">
+                        We are committed to transparency, honesty, and
+                        accountability, striving to make ethical decisions that
+                        positively impact our stakeholders, our community, and
+                        the world around us
+                      </div>
+                    </div>
+                  </transition>
+                </div>
+                <div
+                  class="valuesAccordion__item"
+                  data-values-accordion-item="2"
+                  :class="{ 'valuesAccordion__item--opened': isActive(2) }"
+                >
+                  <button
+                    type="button"
+                    class="valuesAccordion__itemHead"
+                    data-values-accordion-head=""
+                    @click="toggleItem(2)"
+                  >
+                    <span class="valuesAccordion__itemTitle"
+                      >Innovation | Driving Excellence: Innovation, our north
+                      star<span> </span
+                    ></span>
+                  </button>
+                  <transition
+                    @enter="onEnter"
+                    @after-enter="onAfterEnter"
+                    @leave="onLeave"
+                  >
+                    <div
+                      v-show="isActive(2)"
+                      class="valuesAccordion__itemBody"
+                      data-values-accordion-body=""
+                    >
+                      <div class="valuesAccordion__itemBodyInner p">
+                        Experience the future of ship management and service
+                        with our advanced IoT and technology solutions,
+                        delivering cost efficiency and innovative shipping
+                        solutions to the benefit of our costumers.
+                      </div>
+                    </div>
+                  </transition>
+                </div>
+                <div
+                  class="valuesAccordion__item"
+                  data-values-accordion-item="3"
+                  :class="{ 'valuesAccordion__item--opened': isActive(3) }"
+                >
+                  <button
+                    type="button"
+                    class="valuesAccordion__itemHead"
+                    data-values-accordion-head=""
+                    @click="toggleItem(3)"
+                  >
+                    <span class="valuesAccordion__itemTitle"
+                      >Sustainability | Sailing Towards Tomorrow: Sustainability
+                      in Action<span> </span
+                    ></span>
+                  </button>
+                  <transition
+                    @enter="onEnter"
+                    @after-enter="onAfterEnter"
+                    @leave="onLeave"
+                  >
+                    <div
+                      v-show="isActive(3)"
+                      class="valuesAccordion__itemBody"
+                      data-values-accordion-body=""
+                    >
+                      <div class="valuesAccordion__itemBodyInner p">
+                        Dedicated to minimizing our environmental impact through
+                        fuel-efficient vessels and cleaner operations, extending
+                        this commitment to sustainable practices in our
+                        workplaces.
+                      </div>
+                    </div>
+                  </transition>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="valuesAccordion__content">
-          <div class="valuesAccordion__image">
+      <div class="textBanner">
+        <div class="textBanner__inner">
+          <div class="textBanner__image">
             <img
-              class="valuesAccordion__img"
-              :style="{
-                opacity: (
-                  activeIndex === -1 ? lastImageIndex === 0 : activeIndex === 0
-                )
-                  ? '1'
-                  : '0',
-                zIndex:
-                  activeIndex === -1
-                    ? lastImageIndex === 0
-                      ? 2
-                      : 1
-                    : activeIndex === 0
-                      ? 2
-                      : 1,
-                transition: 'opacity 0.3s',
-              }"
-              src="https://folkmaritime.com/storage/media/159/conversions/11-02.medium.jpg"
+              class="textBanner__img"
+              src="https://folkmaritime.com/storage/media/144/conversions/Untitled-511.xlarge.jpg"
               alt="image"
-              data-values-accordion-image="0"
-            />
-            <img
-              class="valuesAccordion__img"
-              :style="{
-                opacity: (
-                  activeIndex === -1 ? lastImageIndex === 1 : activeIndex === 1
-                )
-                  ? '1'
-                  : '0',
-                zIndex:
-                  activeIndex === -1
-                    ? lastImageIndex === 1
-                      ? 2
-                      : 1
-                    : activeIndex === 1
-                      ? 2
-                      : 1,
-                transition: 'opacity 0.3s',
-              }"
-              src="https://folkmaritime.com/storage/media/160/conversions/222222222222222-01.medium.jpg"
-              alt="image"
-              data-values-accordion-image="1"
-            />
-            <img
-              class="valuesAccordion__img"
-              :style="{
-                opacity: (
-                  activeIndex === -1 ? lastImageIndex === 2 : activeIndex === 2
-                )
-                  ? '1'
-                  : '0',
-                zIndex:
-                  activeIndex === -1
-                    ? lastImageIndex === 2
-                      ? 2
-                      : 1
-                    : activeIndex === 2
-                      ? 2
-                      : 1,
-                transition: 'opacity 0.3s',
-              }"
-              src="https://folkmaritime.com/storage/media/161/conversions/33333333333333-02.medium.jpg"
-              alt="image"
-              data-values-accordion-image="2"
-            />
-            <img
-              class="valuesAccordion__img"
-              :style="{
-                opacity: (
-                  activeIndex === -1 ? lastImageIndex === 3 : activeIndex === 3
-                )
-                  ? '1'
-                  : '0',
-                zIndex:
-                  activeIndex === -1
-                    ? lastImageIndex === 3
-                      ? 2
-                      : 1
-                    : activeIndex === 3
-                      ? 2
-                      : 1,
-                transition: 'opacity 0.3s',
-              }"
-              src="https://folkmaritime.com/storage/media/162/conversions/4445444-01.medium.jpg"
-              alt="image"
-              data-values-accordion-image="3"
             />
           </div>
 
-          <div class="valuesAccordion__accordion">
-            <div
-              class="valuesAccordion__decor label label--decor label--decor03"
-            ></div>
-            <h3 class="valuesAccordion__title heading__h3">Our Values</h3>
-            <p class="valuesAccordion__text p margin-2-t">
-              Folk Maritime is a dynamic, innovative, and reliable logistics
-              company committed to advancing Saudi Arabia’s transportation and
-              logistics ambitions through continuous progress and consistent
-              delivery.
+          <div class="textBanner__content">
+            <h3 class="textBanner__title">Meet our leaders</h3>
+            <p class="textBanner__text p margin-4-t">
+              Our dedicated and inspiring leaders have charted a transformative
+              path, inviting us to join their shared endeavors.
             </p>
+          </div>
+        </div>
+      </div>
 
-            <div class="valuesAccordion__items margin-6-t">
-              <div
-                class="valuesAccordion__item"
-                :class="{ 'valuesAccordion__item--opened': isActive(0) }"
-                data-values-accordion-item="0"
-              >
-                <button
-                  type="button"
-                  class="valuesAccordion__itemHead"
-                  data-values-accordion-head=""
-                  @click="toggleItem(0)"
-                >
-                  <span class="valuesAccordion__itemTitle"
-                    >Customer Focus | Connecting Your Focus to Customer
-                    Success<span> </span
-                  ></span>
-                </button>
-                <transition
-                  @enter="onEnter"
-                  @after-enter="onAfterEnter"
-                  @leave="onLeave"
-                >
-                  <div
-                    v-show="isActive(0)"
-                    class="valuesAccordion__itemBody"
-                    data-values-accordion-body=""
-                  >
-                    <div class="valuesAccordion__itemBodyInner p">
-                      We prioritize our customers' needs, ensuring we meet their
-                      expectations through a balance of personal attention and
-                      efficient technology, striving to build strong, lasting
-                      relationships.
-                    </div>
-                  </div>
-                </transition>
+      <div class="peopleList">
+        <div class="peopleList__inner">
+          <div class="peopleList__decor label label--decor">
+            <teamIcon />
+            Board of directors
+          </div>
+          <div class="peopleList__items">
+            <div v-for="m in boardMembers" :key="m.id" class="peopleList__item">
+              <div class="peopleList__image">
+                <img class="peopleList__img" :src="m.image" :alt="m.name" />
               </div>
-              <div
-                class="valuesAccordion__item"
-                data-values-accordion-item="1"
-                :class="{ 'valuesAccordion__item--opened': isActive(1) }"
-              >
-                <button
-                  type="button"
-                  class="valuesAccordion__itemHead"
-                  data-values-accordion-head=""
-                  @click="toggleItem(1)"
-                >
-                  <span class="valuesAccordion__itemTitle"
-                    >Integrity | Building Bridges of Trust: Integrity in Every
-                    Action<span> </span
-                  ></span>
-                </button>
-                <transition
-                  @enter="onEnter"
-                  @after-enter="onAfterEnter"
-                  @leave="onLeave"
-                >
-                  <div
-                    v-show="isActive(1)"
-                    class="valuesAccordion__itemBody"
-                    data-values-accordion-body=""
-                  >
-                    <div class="valuesAccordion__itemBodyInner p">
-                      We are committed to transparency, honesty, and
-                      accountability, striving to make ethical decisions that
-                      positively impact our stakeholders, our community, and the
-                      world around us
-                    </div>
-                  </div>
-                </transition>
+              <div class="peopleList__name margin-3-t">{{ m.name }}</div>
+              <div class="peopleList__function margin-1-t">{{ m.role }}</div>
+              <div class="read_more_btn margin-6-t">
+                <a class="peopleList__link link" @click="openMember(m)">
+                  Read more
+                  <arrow />
+                </a>
               </div>
-              <div
-                class="valuesAccordion__item"
-                data-values-accordion-item="2"
-                :class="{ 'valuesAccordion__item--opened': isActive(2) }"
-              >
-                <button
-                  type="button"
-                  class="valuesAccordion__itemHead"
-                  data-values-accordion-head=""
-                  @click="toggleItem(2)"
-                >
-                  <span class="valuesAccordion__itemTitle"
-                    >Innovation | Driving Excellence: Innovation, our north
-                    star<span> </span
-                  ></span>
-                </button>
-                <transition
-                  @enter="onEnter"
-                  @after-enter="onAfterEnter"
-                  @leave="onLeave"
-                >
-                  <div
-                    v-show="isActive(2)"
-                    class="valuesAccordion__itemBody"
-                    data-values-accordion-body=""
-                  >
-                    <div class="valuesAccordion__itemBodyInner p">
-                      Experience the future of ship management and service with
-                      our advanced IoT and technology solutions, delivering cost
-                      efficiency and innovative shipping solutions to the
-                      benefit of our costumers.
-                    </div>
-                  </div>
-                </transition>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="peopleList Ourteam">
+        <div class="peopleList__inner">
+          <div class="peopleList__decor label label--decor"> <teamIcon /> Our team</div>
+          <h2 class="heading__h3 margin-3-t">Executive management team</h2>
+          <div class="peopleList__text"></div>
+          <div class="peopleList__items">
+            <div
+              v-for="member in execMembers"
+              :key="member.id"
+              class="peopleList__item"
+            >
+              <div class="peopleList__image">
+                <img
+                  class="peopleList__img"
+                  :src="member.image"
+                  :alt="member.name"
+                />
               </div>
-              <div
-                class="valuesAccordion__item"
-                data-values-accordion-item="3"
-                :class="{ 'valuesAccordion__item--opened': isActive(3) }"
-              >
-                <button
-                  type="button"
-                  class="valuesAccordion__itemHead"
-                  data-values-accordion-head=""
-                  @click="toggleItem(3)"
-                >
-                  <span class="valuesAccordion__itemTitle"
-                    >Sustainability | Sailing Towards Tomorrow: Sustainability
-                    in Action<span> </span
-                  ></span>
-                </button>
-                <transition
-                  @enter="onEnter"
-                  @after-enter="onAfterEnter"
-                  @leave="onLeave"
-                >
-                  <div
-                    v-show="isActive(3)"
-                    class="valuesAccordion__itemBody"
-                    data-values-accordion-body=""
-                  >
-                    <div class="valuesAccordion__itemBodyInner p">
-                      Dedicated to minimizing our environmental impact through
-                      fuel-efficient vessels and cleaner operations, extending
-                      this commitment to sustainable practices in our
-                      workplaces.
-                    </div>
-                  </div>
-                </transition>
+              <div class="peopleList__name margin-3-t">{{ member.name }}</div>
+              <div class="peopleList__function margin-1-t">
+                {{ member.role }}
+              </div>
+              <div class="read_more_btn margin-6-t">
+                <a class="peopleList__link link" @click="openMember(member)">
+                  Read more
+                  <arrow />
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="textBanner">
-      <div class="textBanner__inner">
-        <div class="textBanner__image">
-          <img
-            class="textBanner__img"
-            src="https://folkmaritime.com/storage/media/144/conversions/Untitled-511.xlarge.jpg"
-            alt="image"
-          />
-        </div>
-
-        <div class="textBanner__content">
-          <h3 class="textBanner__title">Meet our leaders</h3>
-          <p class="textBanner__text p margin-4-t">
-            Our dedicated and inspiring leaders have charted a transformative
-            path, inviting us to join their shared endeavors.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="peopleList">
-      <div class="peopleList__inner">
-        <div class="peopleList__decor label label--decor">
-          Board of directors
-        </div>
-        <div class="peopleList__items">
-          <div v-for="m in boardMembers" :key="m.id" class="peopleList__item">
-            <div class="peopleList__image">
-              <img class="peopleList__img" :src="m.image" :alt="m.name" />
-            </div>
-            <div class="peopleList__name margin-3-t">{{ m.name }}</div>
-            <div class="peopleList__function margin-1-t">{{ m.role }}</div>
-            <div>
-              <button
-                class="peopleList__link link margin-6-t"
-                @click="openMember(m)"
-              >
-                Read more
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="peopleList Ourteam">
-      <div class="peopleList__inner">
-        <div class="peopleList__decor label label--decor">Our team</div>
-        <h2 class="heading__h3 margin-3-t">Executive management team</h2>
-        <div class="peopleList__text"></div>
-        <div class="peopleList__items">
-          <div
-            v-for="member in execMembers"
-            :key="member.id"
-            class="peopleList__item"
-          >
-            <div class="peopleList__image">
-              <img class="peopleList__img" :src="member.image" :alt="member.name" />
-            </div>
-            <div class="peopleList__name margin-3-t">{{ member.name }}</div>
-            <div class="peopleList__function margin-1-t">{{ member.role }}</div>
-            <div>
-              <button
-                class="peopleList__link link margin-6-t"
-                @click="openMember(member)"
-              >
-                Read more
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <EsgVerticalSlider :slides="esgSlides" class="sustainability-about" />
+    <!-- <SustainabilitySlider :slides="esgSlides" /> -->
     <TeamMemberModal
       :open="modalOpen"
       :member="selectedMember"
@@ -770,6 +807,10 @@ export default defineComponent({
   right: 0;
   padding-top: 34%;
   transform: scaleX(-1);
+}
+.arabic .about-us::after {
+  right: unset;
+  left: 0px;
 }
 .breadcrumbs__inner {
   padding-top: 3.2rem;
@@ -1140,14 +1181,7 @@ export default defineComponent({
   top: 0.5rem;
   inset-inline-start: 0;
 }
-.label {
-  display: inline-flex;
-  align-items: center;
-  text-transform: uppercase;
-  line-height: 1.25;
-  font-size: 1.6rem;
-  font-weight: 500;
-}
+
 .valuesAccordion__title {
   padding-inline-start: 4.2rem;
   line-height: 1.2;
@@ -1199,13 +1233,12 @@ button {
 }
 @media (min-width: 768px) {
   .valuesAccordion__itemTitle {
-    font-size: 2rem;
+    font-size: 1.2rem;
   }
 }
 .valuesAccordion__itemTitle {
   transition: color 0.3s;
-  line-height: 1.4;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 300;
   text-align: start;
 }
@@ -1336,17 +1369,12 @@ html:not([dir="rtl"]) .valuesAccordion__itemHead:after {
     padding-inline: 5.42%;
   }
 }
-
+.peopleList__decor svg{
+  width: 30px;
+  height: 30px;
+}
 .peopleList__decor {
   padding-top: 5px;
-}
-.label {
-  display: inline-flex;
-  align-items: center;
-  text-transform: uppercase;
-  line-height: 1.25;
-  font-size: 1.6rem;
-  font-weight: 500;
 }
 .heading__h3 {
   font-size: max(3.2rem, min(3.0967741935vw, 4.8rem));
@@ -1391,7 +1419,7 @@ html:not([dir="rtl"]) .valuesAccordion__itemHead:after {
   display: flex;
   position: relative;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: flex-end;
   background-color: #eff6f5;
   padding-top: 3.4rem;
   padding-inline-end: 2.4rem;
@@ -1424,5 +1452,62 @@ html:not([dir="rtl"]) .valuesAccordion__itemHead:after {
   .peopleList__function {
     font-size: 1.2rem;
   }
+}
+
+.read_more_btn {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  gap: 20px;
+}
+
+.peopleList__link {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  gap: 20px;
+  background: none;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  border-bottom: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  font-size: 1rem;
+}
+.read_more_btn svg {
+  width: 20px;
+  transition: all 0.3s ease-in-out;
+}
+.peopleList__link:hover {
+  color: var(--color-accent);
+  border-bottom: 1px solid var(--color-accent);
+}
+.peopleList__link:hover svg {
+  transform: translate(6px);
+}
+</style>
+<style>
+.peopleList__link:hover svg path {
+  stroke: var(--color-accent);
+}
+.sustainability-about {
+  margin-bottom: 40px;
+}
+.sustainability-about .rail {
+  height: 60dvh;
+}
+.sustainability-about .panel {
+  min-height: 60dvh;
+  padding: 0 60px 0 40px;
+}
+.sustainability-about .heading {
+  font-size: 1.4rem;
+}
+.sustainability-about .panel-inner {
+  display: flex;
+  justify-content: space-between;
+}
+.sustainability-about .panel-inner .media {
+  max-width: 50%;
+  width: 100%;
 }
 </style>

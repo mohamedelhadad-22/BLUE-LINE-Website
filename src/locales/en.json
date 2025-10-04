@@ -73,7 +73,21 @@
         "aboutStrong": "The word “Folk”",
         "Customer-centric": "Customer-centric approach for mainline shippers",
         "Digitalinnovation": "Digital innovation to elevate logistical standards",
-        "Innovativesolutions": "Innovative solutions to drive sustainability"
+        "Innovativesolutions": "Innovative solutions to drive sustainability",
+        "esg": {
+            "slide1": {
+                "title": "Folk Maritime Contributes to Global Sustainability Goals",
+                "desc": "We minimize our footprint and implement sustainable solutions that mitigate environmental impact."
+            },
+            "slide2": {
+                "title": "Leading Regional Liner & Feeder Operator",
+                "desc": "Flexible solutions, stakeholder value, and compliance with IMO regulations."
+            },
+            "slide3": {
+                "title": "Driving Change through Educational Programs",
+                "desc": "Developing local talent and promoting maritime careers as part of CSR."
+            }
+        }
     },
     "ceoSection": {
         "label": "Foreword from the CEO",

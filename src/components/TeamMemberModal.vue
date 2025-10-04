@@ -13,11 +13,12 @@
       <div class="tm-modal__overlay" @click="emitClose" />
       <div class="tm-modal__panel">
         <button class="tm-modal__close" @click="emitClose" aria-label="Close">
-          ×
+          <colseIcon />
         </button>
         <div class="tm-modal__body" v-if="member">
           <div class="tm-modal__media">
             <img :src="member.image" :alt="member.name" />
+            <TripleZigzag width="168" height="168" />
           </div>
           <div class="tm-modal__content">
             <h3 class="tm-modal__name" :id="labelId">{{ member.name }}</h3>
@@ -33,6 +34,9 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import type { PropType } from "vue";
+import colseIcon from "@/assets/svg/colseIcon.vue";
+import TripleZigzag from "@/assets/svg/TripleZigzag.vue";
+
 export interface TeamMember {
   id: number;
   name: string;
@@ -43,6 +47,7 @@ export interface TeamMember {
 
 export default defineComponent({
   name: "TeamMemberModal",
+  components: { colseIcon, TripleZigzag },
   props: {
     open: { type: Boolean, required: true },
     member: { type: Object as PropType<TeamMember | null>, default: null },
@@ -64,7 +69,7 @@ export default defineComponent({
   },
   methods: {
     emitClose() {
-      console.log('closeModal')
+      console.log("closeModal");
       this.$emit("close");
     },
   },
@@ -98,9 +103,15 @@ export default defineComponent({
   top: 12px;
   right: 12px;
   background: transparent;
-  font-size: 24px;
-  line-height: 1;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+.tm-modal__close svg {
+  width: 34px;
+  height: 34px;
 }
 .tm-modal__body {
   display: grid;
@@ -142,5 +153,14 @@ export default defineComponent({
   .tm-modal__body {
     grid-template-columns: 1fr;
   }
+}
+.tm-modal__media svg {
+  width: 100%;
+}
+</style>
+<style>
+.tm-modal__media svg path {
+  width: 100%;
+  min-width: 200px;
 }
 </style>
