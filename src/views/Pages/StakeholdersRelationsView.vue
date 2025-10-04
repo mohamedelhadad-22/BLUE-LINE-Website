@@ -11,7 +11,11 @@ export default defineComponent({
   data() {
     return {
       heroImg: shallowRef(heroImg),
-      BlueLinenumbers: [
+    };
+  },
+  computed: {
+    BlueLinenumbers() {
+      const value = [
         {
           id: 1,
           number: "40" + " " + this.$t("stakeholders.million"),
@@ -27,8 +31,9 @@ export default defineComponent({
           number: "2024",
           desc: this.$t("stakeholders.Desc3"),
         },
-      ],
-    };
+      ];
+      return value;
+    },
   },
 });
 </script>
@@ -72,6 +77,35 @@ export default defineComponent({
           </div>
         </div>
       </div>
+    </section>
+    <section class="why_blue_line">
+      <div class="container">
+        <div class="why_content">
+          <div class="left_side">
+            <h6 class="title">{{ $t("stakeholders.whyBlueLine") }}</h6>
+            <h1>{{ $t("stakeholders.whyBlueLineTitle") }}</h1>
+            <p>{{ $t("stakeholders.whyBlueLineDesc") }}</p>
+
+            <div class="saudi_falg">
+              <img src="@/assets/image-(4)٦.png" alt="" />
+            </div>
+          </div>
+          <div class="right_side">
+            <div class="box_label">
+              <h3>{{ $t("stakeholders.StrategicGlobal") }}</h3>
+              <p>{{ $t("stakeholders.StrategicGlobalDesc") }}</p>
+            </div>
+            <div class="box_label">
+              <h3>{{ $t("stakeholders.EnhancedGlobal") }}</h3>
+              <p>{{ $t("stakeholders.EnhancedGlobalDesc") }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section_line container container--noPadding">
+      <div class="dividerLine__inner"></div>
     </section>
   </section>
 </template>
@@ -143,5 +177,124 @@ export default defineComponent({
 }
 .breadcrumbs * {
   color: #fff;
+}
+.why_blue_line {
+  width: 100%;
+}
+.why_content {
+  display: flex;
+  flex-direction: row;
+  gap: 12.764%;
+  padding-inline: 5.42%;
+  padding-block: clamp(64px, 9.2903225806vw, 144px);
+  background-color: #eff6f5;
+}
+.why_content .left_side {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 50%;
+}
+.left_side h6 {
+  font-size: 1rem;
+}
+.left_side h1 {
+  font-size: 3.2rem;
+  font-weight: 500;
+}
+.left_side p {
+  margin-top: 20px;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+.why_content .right_side {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  /* justify-content: center; */
+  max-width: 50%;
+}
+
+.right_side .box_label {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-block: clamp(24px, 2.064516129vw, 32px);
+  border-top: 1px solid #dadada;
+}
+.right_side h3 {
+  line-height: 1.4;
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
+.right_side p {
+  line-height: 1.4;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+.saudi_falg {
+  margin-top: clamp(40px, 5.1612903226vw, 80px);
+}
+.saudi_falg img {
+  width: 100%;
+  height: 100%;
+}
+.container--noPadding {
+  padding-right: 0;
+  padding-left: 0;
+}
+.dividerLine {
+  position: relative;
+  z-index: 0;
+}
+.section_line {
+  position: relative;
+  display: flex;
+  height: 12rem;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+  padding-right: 12%;
+}
+.section_line::after {
+  background-image: url("@/assets/dividerLine.svg");
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  background-position: 100% -1%;
+  background-repeat: repeat;
+  background-size: 100% 51%;
+  padding-top: 12.5rem;
+  width: 12.5rem;
+  height: 0;
+  content: "";
+  pointer-events: none;
+  right: 0;
+  padding-top: 24%;
+  width: 24%;
+  right: 0;
+  transform: scaleX(-1);
+}
+@media (min-width: 768px) {
+  .dividerLine__inner {
+    /* padding-inline: 5.42%; */
+  }
+}
+.dividerLine__inner.dvider {
+  width: 100%;
+}
+.dividerLine__inner {
+  display: block;
+  background-color: #dadada;
+  height: 1px;
+  width: 100%;
+  /* margin-top: 6rem; */
+}
+@media (min-width: 768px) {
+  .dividerLine--line .dividerLine__inner:before {
+    width: calc(100% - 16px);
+  }
 }
 </style>
