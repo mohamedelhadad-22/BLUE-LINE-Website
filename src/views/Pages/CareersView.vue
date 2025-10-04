@@ -1,12 +1,69 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useI18n } from "vue-i18n";
-
+import InfiniteTicker from "@/components/resuble/InfiniteTicker.vue";
+import accordionComponent from "@/components/resuble/accordionComponent.vue";
+type Step = {
+  title: string;
+  description: string;
+};
 export default defineComponent({
   name: "CareersView",
+  components: { InfiniteTicker, accordionComponent },
   setup() {
     const { t, locale } = useI18n();
     return { t, locale };
+  },
+  data() {
+    return {
+      openIndex: this.initiallyOpen,
+      focusIndex: this.initiallyOpen,
+      heading: "",
+      steps: [
+        {
+          title: "Interview with a recruiter",
+          description:
+            "Discuss your work experience and aspirations with our expert recruiter.",
+        },
+        {
+          title: "Interview with the team",
+          description:
+            "Meet your future teammates and talk through real scenarios and expectations.",
+        },
+        {
+          title: "Portfolio showcase and assessment",
+          description:
+            "Share relevant work and complete a short, practical task (if applicable).",
+        },
+        {
+          title: "Job offer and streamlined onboarding process",
+          description:
+            "We align on details and prepare you for a smooth, confident start.",
+        },
+      ],
+    };
+  },
+  computed: {
+    ouerValues() {
+      const values = [
+        {
+          id: 1,
+          title: this.$t("careersPage.SustainableSolutions"),
+          desc: this.$t("careersPage.SustainableDesc"),
+        },
+        {
+          id: 2,
+          title: this.$t("careersPage.PositiveImpact"),
+          desc: this.$t("careersPage.ImpactDesc"),
+        },
+        {
+          id: 3,
+          title: this.$t("careersPage.Customercentricity"),
+          desc: this.$t("careersPage.centricityDesc"),
+        },
+      ];
+      return values;
+    },
   },
 });
 </script>
@@ -21,7 +78,7 @@ export default defineComponent({
         <button class="apply_btn">{{ $t("careersPage.apply") }}</button>
       </div>
     </header>
-    <nav class="container breadcrumbs" aria-label="breadcrumb">
+    <nav class="breadcrumbs" aria-label="breadcrumb">
       <a href="/">{{ t("Home") }}</a>
       <span class="sep" aria-hidden="true">/</span>
       <span class="current">{{ t("pages.careers.headline") }}</span>
@@ -36,58 +93,54 @@ export default defineComponent({
         </div>
       </div>
     </section>
-    <section class="careers-highlights">
-      <div class="container grid">
-        <div class="card">
-          <h3>{{ t("careersPage.sections.why.title") }}</h3>
-          <ul class="list">
-            <li>{{ t("careersPage.sections.why.points[0]") }}</li>
-            <li>{{ t("careersPage.sections.why.points[1]") }}</li>
-            <li>{{ t("careersPage.sections.why.points[2]") }}</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>{{ t("careersPage.sections.life.title") }}</h3>
-          <p>{{ t("careersPage.sections.life.body") }}</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="careers-cta">
+    <section class="ouer_values">
       <div class="container">
-        <a
-          :href="t('careersPage.cta.mailto')"
-          class="btn"
-          :aria-label="t('careersSection.ctaAria')"
-        >
-          {{ t("careersPage.cta.label") }}
-        </a>
-        <p class="note">{{ t("careersPage.cta.desc") }}</p>
+        <div class="content_values">
+          <h2>
+            {{ $t("careersPage.valuesTitle") }}
+          </h2>
+          <p>{{ $t("careersPage.valuesDesc") }}</p>
+        </div>
+        <div class="values_sections">
+          <div class="box" v-for="value in ouerValues">
+            <div class="circle">{{ value.id }}</div>
+            <h4>{{ value.title }}</h4>
+            <p>{{ value.desc }}</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="careers-gallery">
-      <div class="container thumbs">
-        <img
-          src="/src/assets/career-containers.svg"
-          :alt="t('careersSection.galleryAlt.containers')"
-        />
-        <img
-          src="/src/assets/career-team.svg"
-          :alt="t('careersSection.galleryAlt.team')"
-        />
-        <img
-          src="/src/assets/career-meeting.svg"
-          :alt="t('careersSection.galleryAlt.meeting')"
-        />
-        <img
-          src="/src/assets/career-vessel.svg"
-          :alt="t('careersSection.galleryAlt.vessel')"
-        />
-        <img
-          src="/src/assets/career-detail.svg"
-          :alt="t('careersSection.galleryAlt.detail')"
-        />
+    <section class="infinite_slider container">
+      <InfiniteTicker
+        :items="['Working together towards a shared vision.']"
+        :speed="280"
+        :gap="30"
+        direction="ltr"
+        :pauseOnHover="false"
+      />
+    </section>
+    <section class="RecruitmentSteps">
+      <div class="container">
+        <div class="apply-steps-div">
+          <div class="apply-steps__grid">
+            <h5>{{ $t("careersPage.WorkingTogether") }}</h5>
+            <figure class="apply-steps__media">
+              <img
+                src="@/assets/WhatsApp-Image-1446-10-29-at-15-01-57.large.jpg"
+                alt="imageAlt"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+          <div class="accordiong">
+            <p>
+              {{ $t("careersPage.WorkingTogetherDesc") }}
+            </p>
+            <h4>{{ $t("careersPage.applicationprocess") }}</h4>
+            <accordionComponent :steps="steps" />
+          </div>
+        </div>
       </div>
     </section>
   </section>
@@ -158,6 +211,7 @@ export default defineComponent({
   flex-direction: column;
   gap: 20px;
   padding-inline: 5.42%;
+  margin-bottom: 6rem;
 }
 .life_at_blueline .life_content {
   display: flex;
@@ -174,16 +228,134 @@ export default defineComponent({
   font-weight: 500;
 }
 .life_content h3 {
-    font-size: clamp(1rem, 3.6129032258vw, 4rem);
-    line-height: 1.2;
-    font-weight: 300;
+  font-size: clamp(1rem, 3.6129032258vw, 4rem);
+  line-height: 1.2;
+  font-weight: 300;
 }
 .life_content p {
-    font-size: 2rem;
-    color: #2b3990d7;
-    margin-top: 2rem;
-    line-height: 1.4;
-    font-weight: 300;
+  font-size: 2rem;
+  color: #2b3990d7;
+  margin-top: 2rem;
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+.ouer_values {
+  padding-block: clamp(64px, 9.2903225806vw, 144px);
+  background-color: #262262;
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .ouer_values {
+    padding-inline: 5.42%;
+  }
+}
+.content_values {
+  margin-inline-end: 40.424%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.content_values h2 {
+  font-size: clamp(3rem, 3.6129032258vw, 4.6rem);
+  line-height: 1.2;
+  font-weight: 300;
+}
+.content_values p {
+  font-size: clamp(1.2rem, 1.5483870968vw, 2.4rem);
+  line-height: 1.4;
+  font-weight: 300;
+}
+.values_sections {
+  display: flex;
+  gap: 20px;
+  margin-top: 4.8rem;
+}
+.values_sections .box {
+  border-right: 1px solid#27a9e198;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-inline: clamp(32px, 2.5806451613vw, 40px);
+}
+.arabic .values_sections .box {
+  border-left: 1px solid#27a9e198;
+  border-right: none;
+}
+.values_sections .box:last-of-type {
+  border: none;
+}
+.values_sections .box .circle {
+  width: 60px;
+  height: 60px;
+  border: 2px solid#27aae1;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.values_sections .box h4 {
+  font-size: 1.5rem;
+}
+.values_sections .box p {
+  font-size: 16px;
+}
+
+.infinite_slider {
+  display: flex;
+  width: 100%;
+  padding: 120px 0;
+}
+.RecruitmentSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 70px;
+  padding: 0 100px 90px;
+}
+.apply-steps-div {
+  display: flex;
+  width: 100%;
+  gap: 10.638%;
+  justify-content: space-between;
+}
+.apply-steps__grid {
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.apply-steps__grid h5 {
+  font-size: clamp(1rem, 2.064516129vw, 2rem);
+  font-weight: 300;
+  color: #000;
+}
+.apply-steps__media img {
+  width: 100%;
+  height: clamp(350px, 38.7096774194vw, 600px);
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+.accordiong {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 50%;
+}
+.accordiong p {
+  line-height: 1.4;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+.accordiong h4 {
+  margin-top: clamp(32px, 2.7096774194vw, 42px);
+  margin-bottom: clamp(16px, 1.5483870968vw, 24px);
+  text-transform: uppercase;
+  line-height: 1.25;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 .kicker {
   letter-spacing: 0.08em;
@@ -315,3 +487,4 @@ export default defineComponent({
   direction: rtl;
 }
 </style>
+<style></style>
