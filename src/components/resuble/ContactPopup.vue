@@ -1,63 +1,67 @@
 <template>
-  <div
-    v-if="open"
-    class="popup-overlay"
-    @click.self="close"
-    :dir="rtl ? 'rtl' : 'ltr'"
-  >
-    <div
-      class="popup"
-      role="dialog"
-      :aria-labelledby="ids.title"
-      aria-modal="true"
-    >
-      <button class="popup-close" @click="close" :aria-label="t('Close')">
-        ×
-      </button>
-      <h2 class="popup-title" :id="ids.title">{{ t("Contact us") }}</h2>
+  <transition name="overlay-fade">
+    <div v-if="open" class="popup-overlay" @click.self="close">
+      <transition name="popup-scale">
+        <div
+          class="popup"
+          role="dialog"
+          :aria-labelledby="ids.title"
+          aria-modal="true"
+        >
+          <button class="popup-close" @click="close" :aria-label="$t('Close')">
+            <ColseIcon />
+          </button>
+          <h2 class="popup-title" :id="ids.title">
+            {{ $t("stakeholders.ContactUs") }}
+          </h2>
 
-      <form class="popup-form" @submit.prevent="submit">
-        <label class="popup-field">
-          <span>{{ t("Name of the Company") }}</span>
-          <input
-            v-model="form.company"
-            :placeholder="t('Enter the company name')"
-            autocomplete="organization"
-            required
-          />
-        </label>
+          <form class="popup-form" @submit.prevent="submit">
+            <label class="popup-field">
+              <span>{{ $t("stakeholders.CompanyName") }}</span>
+              <input
+                v-model="form.company"
+                :placeholder="$t('stakeholders.CompanyName')"
+                autocomplete="organization"
+                required
+              />
+            </label>
 
-        <label class="popup-field">
-          <span>{{ t("Industry") }}</span>
-          <input
-            v-model="form.industry"
-            :placeholder="t('Enter the industry')"
-            autocomplete="organization-title"
-            required
-          />
-        </label>
+            <label class="popup-field">
+              <span>{{ $t("stakeholders.Industry") }}</span>
+              <input
+                v-model="form.industry"
+                :placeholder="$t('stakeholders.Industry')"
+                autocomplete="organization-title"
+                required
+              />
+            </label>
 
-        <label class="popup-field">
-          <span>{{ t("Commercial Registration") }}</span>
-          <input
-            v-model="form.registration"
-            :placeholder="t('Enter commercial registration number')"
-            inputmode="numeric"
-            required
-          />
-        </label>
+            <label class="popup-field">
+              <span>{{ $t("stakeholders.CommercialRegistration") }}</span>
+              <input
+                v-model="form.registration"
+                :placeholder="$t('stakeholders.CommercialRegistration')"
+                inputmode="numeric"
+                required
+              />
+            </label>
 
-        <button type="submit" class="popup-submit">{{ t("Submit") }}</button>
-      </form>
+            <button type="button" @click="submitForm" class="popup-submit">
+              {{ $t("stakeholders.submit") }}
+            </button>
+          </form>
+        </div>
+      </transition>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script lang="ts">
+import ColseIcon from "@/assets/svg/colseIcon.vue";
 import { defineComponent } from "vue";
-
 export default defineComponent({
   name: "ContactPopup",
+  components: { ColseIcon },
   props: {
     open: { type: Boolean, default: false },
     rtl: { type: Boolean, default: false },
@@ -69,15 +73,10 @@ export default defineComponent({
     };
   },
   methods: {
-    t(key: string) {
-      // vue-i18n passthrough (fallback to key if $t not present)
-      // @ts-ignore
-      return typeof this.$t === "function" ? this.$t(key) : key;
-    },
     close() {
       this.$emit("close");
     },
-    submit() {
+    submitForm() {
       this.$emit("submit", { ...this.form });
       this.form.company = "";
       this.form.industry = "";
@@ -89,6 +88,28 @@ export default defineComponent({
 </script>
 
 <style scoped>
+/* Transitions */
+.overlay-fade-enter-active,
+.overlay-fade-leave-active {
+  transition: opacity 200ms ease;
+}
+.overlay-fade-enter-from,
+.overlay-fade-leave-to {
+  opacity: 0;
+}
+
+.popup-scale-enter-active,
+.popup-scale-leave-active {
+  transition:
+    transform 220ms ease,
+    opacity 220ms ease;
+}
+.popup-scale-enter-from,
+.popup-scale-leave-to {
+  transform: translateY(10px) scale(0.98);
+  opacity: 0;
+}
+
 /* Overlay */
 .popup-overlay {
   position: fixed;
@@ -102,12 +123,12 @@ export default defineComponent({
 /* Panel */
 .popup {
   width: min(640px, 92vw);
-  background: #041a15;
+  background: #262262;
   color: #fff;
   border-radius: 8px;
   padding: 28px 24px 18px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  border: 1px solid #0c2c24;
+  border: 1px solid #2b3990;
   position: relative;
 }
 
@@ -118,21 +139,15 @@ export default defineComponent({
   right: 12px;
   width: 28px;
   height: 28px;
-  border-radius: 50%;
-  border: 1px solid #1b593e;
-  color: #89ff7a;
-  background: transparent;
   cursor: pointer;
-  font-size: 18px;
-  line-height: 1;
-  display: grid;
-  place-items: center;
+  background: none;
+  border: none;
+  outline: none;
 }
-.popup-close:focus-visible {
-  outline: 2px solid #89ff7a;
-  outline-offset: 2px;
+.arabic .popup-close {
+  left: 12px;
+  right: unset;
 }
-
 /* Title */
 .popup-title {
   margin: 0 0 18px;
@@ -152,7 +167,7 @@ export default defineComponent({
 .popup-field span {
   font-size: 14px;
   font-weight: 600;
-  color: #cfe7de;
+  color: #fff;
 }
 
 /* Inputs */
@@ -160,14 +175,14 @@ export default defineComponent({
   height: 44px;
   padding: 10px 12px;
   border-radius: 8px;
-  border: 1px solid #0e3027;
+  border: 1px solid #2b3990;
   background: #fff;
   color: #0a1b17;
   outline: none;
 }
 .popup-field input:focus-visible {
-  box-shadow: 0 0 0 2px #89ff7a;
-  border-color: #1c6349;
+  box-shadow: 0 0 0 2px #27a9e148;
+  border-color: #2b3990;
 }
 
 /* Submit */
@@ -177,13 +192,18 @@ export default defineComponent({
   border-radius: 6px;
   width: 100%;
   border: none;
-  background: #78ff7d;
+  background: #27aae1;
   color: #041a15;
   font-weight: 800;
   cursor: pointer;
 }
 .popup-submit:focus-visible {
-  outline: 2px solid #c9ffd3;
+  outline: 2px solid #27a9e148;
   outline-offset: 2px;
+}
+</style>
+<style>
+.popup-close svg path {
+  stroke: #fff;
 }
 </style>

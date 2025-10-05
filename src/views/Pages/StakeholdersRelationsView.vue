@@ -2,15 +2,16 @@
 import { defineComponent, shallowRef } from "vue";
 import HeroBanner from "@/components/resuble/HeroBanner.vue";
 import commonButton from "@/components/resuble/common_button.vue";
-
+import ContactPopup from "@/components/resuble/ContactPopup.vue";
 import heroImg from "@/assets/2Untitled-5.xlarge.jpg?url";
 
 export default defineComponent({
   name: "StakeholdersRelationsView",
-  components: { HeroBanner, commonButton },
+  components: { HeroBanner, commonButton, ContactPopup },
   data() {
     return {
       heroImg: shallowRef(heroImg),
+      showModal: false,
     };
   },
   computed: {
@@ -35,6 +36,11 @@ export default defineComponent({
       return value;
     },
   },
+  methods: {
+    toggelModal() {
+      this.showModal = !this.showModal;
+    },
+  },
 });
 </script>
 
@@ -47,7 +53,11 @@ export default defineComponent({
         :media-src="heroImg"
         :with-img="true"
       >
-        <commonButton :text="$t('stakeholders.ContactUs')" buttonType="XL" />
+        <commonButton
+          :text="$t('stakeholders.ContactUs')"
+          buttonType="XL"
+          @click="toggelModal"
+        />
       </HeroBanner>
     </div>
 
@@ -107,6 +117,8 @@ export default defineComponent({
     <section class="section_line container container--noPadding">
       <div class="dividerLine__inner"></div>
     </section>
+
+    <ContactPopup :open="showModal" @close="toggelModal"/>
   </section>
 </template>
 

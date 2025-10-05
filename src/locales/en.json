@@ -560,6 +560,10 @@
         "StrategicGlobal": "Strategic Global Connectivity",
         "StrategicGlobalDesc": "Capitalizing on Saudi Arabia’s ambitions, connecting global trade routes to foster trade growth.",
         "EnhancedGlobal": "Enhanced Global Supply Chain",
-        "EnhancedGlobalDesc": "First Saudi feeder and regional liner operator, bridging market gaps by servicing existing and new MENA trade routes."
+        "EnhancedGlobalDesc": "First Saudi feeder and regional liner operator, bridging market gaps by servicing existing and new MENA trade routes.",
+        "CompanyName": "Name of the Company",
+        "Industry": "Industry",
+        "CommercialRegistration": "Commercial Registration",
+        "submit": "Submit"
     }
 }
