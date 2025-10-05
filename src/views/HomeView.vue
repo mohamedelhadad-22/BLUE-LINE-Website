@@ -169,7 +169,7 @@ export default defineComponent({
           <p class="hero-subtitle js-parallax" data-rellax-speed="-1">
             Seamless experiences from booking to delivery.
           </p>
-          <div class="hero-ornaments">
+          <!-- <div class="hero-ornaments">
             <span
               class="hero-ornament hero-ornament--primary js-parallax"
               data-rellax-speed="3"
@@ -178,7 +178,7 @@ export default defineComponent({
               class="hero-ornament hero-ornament--secondary js-parallax"
               data-rellax-speed="5"
             ></span>
-          </div>
+          </div> -->
         </div>
       </BackgroundVideo>
     </div>
@@ -243,7 +243,7 @@ export default defineComponent({
   line-height: 1.1;
 }
 .hero-line--accent {
-  color: #80fd66;
+  color: #262262;
 }
 
 .hero-subtitle {

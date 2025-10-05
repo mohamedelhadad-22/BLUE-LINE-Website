@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import type { ComponentPublicInstance } from 'vue';
 import galleryContainers from '@/assets/career-containers.svg';
 import galleryDetail from '@/assets/career-detail.svg';
 import galleryVessel from '@/assets/career-vessel.svg';
@@ -50,8 +51,19 @@ export default defineComponent({
         },
     },
     methods: {
-        setRootRef(el: Element | null) {
-            this.rootRef = (el as HTMLElement) ?? null;
+        resolveElement(el: Element | ComponentPublicInstance | null): HTMLElement | null {
+            if (!el) {
+                return null;
+            }
+
+            if (typeof (el as ComponentPublicInstance).$el !== 'undefined') {
+                return ((el as ComponentPublicInstance).$el as HTMLElement) ?? null;
+            }
+
+            return (el as HTMLElement) ?? null;
+        },
+        setRootRef(el: Element | ComponentPublicInstance | null) {
+            this.rootRef = this.resolveElement(el);
         },
         initObserver() {
             if (typeof window === 'undefined') {

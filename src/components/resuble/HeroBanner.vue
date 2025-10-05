@@ -1,5 +1,6 @@
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent } from "vue";
+import type { PropType, CSSProperties } from "vue";
 type Align = "left" | "center" | "right" | "auto";
 type VAlign = "top" | "middle" | "bottom";
 
@@ -80,8 +81,8 @@ export default defineComponent({
         "hero--bottom": this.valign === "bottom",
       };
     },
-    mediaStyle(): Record<string, string> {
-      const base =
+    mediaStyle(): CSSProperties {
+      const base: CSSProperties =
         this.withImg && this.mediaSrc
           ? {
               backgroundImage: `url('${this.mediaSrc}')`,

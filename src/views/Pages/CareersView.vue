@@ -3,10 +3,6 @@ import { defineComponent } from "vue";
 import { useI18n } from "vue-i18n";
 import InfiniteTicker from "@/components/resuble/InfiniteTicker.vue";
 import accordionComponent from "@/components/resuble/accordionComponent.vue";
-type Step = {
-  title: string;
-  description: string;
-};
 export default defineComponent({
   name: "CareersView",
   components: { InfiniteTicker, accordionComponent },

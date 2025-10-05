@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, shallowRef } from "vue";
+import { defineComponent } from "vue";
 import TeamMemberModal from "@/components/TeamMemberModal.vue";
 import arrow from "@/assets/svg/arrow.vue";
 import EsgVerticalSlider from "@/components/Home/EsgVerticalSlider.vue";

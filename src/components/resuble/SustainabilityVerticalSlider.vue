@@ -7,7 +7,7 @@
     <!-- Side dots -->
     <nav class="fm-dots" role="tablist" aria-label="Slide navigation">
       <button
-        v-for="(s, i) in slides"
+        v-for="(_, i) in slides"
         :key="i"
         class="dot"
         :class="{ active: i === activeIndex }"

@@ -109,8 +109,8 @@ export default defineComponent({
       <div class="footer-top">
         <div class="footer-brand">
           <div class="footer-logo" aria-hidden="true">
-            <span class="footer-logo__mark">FOLK</span>
-            <span class="footer-logo__text">Maritime</span>
+            <span class="footer-logo__mark">Blue</span>
+            <span class="footer-logo__text">Line</span>
           </div>
         </div>
         <div class="footer-feedback">

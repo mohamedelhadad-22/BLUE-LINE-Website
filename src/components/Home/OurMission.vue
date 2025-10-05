@@ -179,7 +179,7 @@ export default defineComponent({
     justify-content: center;
     margin-bottom: 1.5rem;
     background: linear-gradient(160deg, rgba(128, 82, 255, 0.9), rgba(82, 224, 255, 0.65));
-    box-shadow: 0 14px 30px rgba(128, 82, 255, 0.45);
+    /* box-shadow: 0 14px 30px rgba(128, 82, 255, 0.45); */
 }
 
 .mission-icon svg {

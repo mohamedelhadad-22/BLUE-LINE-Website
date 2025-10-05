@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import L, { Map as LMap, Polyline, LatLngTuple, Marker, ImageOverlay } from 'leaflet';
+import type { Map as LMap, Polyline, LatLngTuple, Marker, ImageOverlay } from 'leaflet';
+import L from 'leaflet';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
@@ -95,9 +96,12 @@ export default defineComponent({
   },
   computed: {
     activeRoute(): Route {
-      return (
-        this.routes.find((route) => route.id === this.activeRouteId) ?? this.routes[0]
-      );
+      const fallback = this.routes[0];
+      if (!fallback) {
+        throw new Error('Routes collection is empty');
+      }
+
+      return this.routes.find((route) => route.id === this.activeRouteId) ?? fallback;
     },
   },
   created() {
@@ -155,7 +159,7 @@ export default defineComponent({
         return;
       }
 
-      this.markers.forEach((marker) => marker.remove());
+      this.markers.forEach((marker: Marker) => marker.remove());
       this.markers = [];
 
       if (this.polyline) {

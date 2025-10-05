@@ -45,7 +45,7 @@
           </div>
           <!-- Dots / diamonds -->
           <ul class="dots" role="tablist" aria-label="Slide navigation">
-            <li v-for="(s, i) in slides" :key="'dot-' + i" role="presentation">
+            <li v-for="(_, i) in slides" :key="'dot-' + i" role="presentation">
               <button
                 class="dot"
                 role="tab"

@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent } from "vue";
+import type { ComponentPublicInstance } from "vue";
 import serviceLogistics from "@/assets/srvice-1.jpg";
 import serviceRoutes from "@/assets/service-2.jpg";
 import serviceTechnology from "@/assets/service-3.jpg";
@@ -60,17 +61,24 @@ export default defineComponent({
     },
   },
   methods: {
-    setStackRef(el: Element | null) {
-      this.stackRef = (el as HTMLElement) ?? null;
+    resolveElement(el: Element | ComponentPublicInstance | null): HTMLElement | null {
+      if (!el) return null;
+      if (typeof (el as ComponentPublicInstance).$el !== "undefined") {
+        return ((el as ComponentPublicInstance).$el as HTMLElement) ?? null;
+      }
+      return (el as HTMLElement) ?? null;
+    },
+    setStackRef(el: Element | ComponentPublicInstance | null) {
+      this.stackRef = this.resolveElement(el);
       if (this.stackRef && !this.listenersAttached) {
         this.$nextTick(() => this.initServicesInteractions());
       }
     },
-    setContentRef(el: Element | null) {
-      this.contentRef = (el as HTMLElement) ?? null;
+    setContentRef(el: Element | ComponentPublicInstance | null) {
+      this.contentRef = this.resolveElement(el);
     },
-    setCardRef(el: Element | null, index: number) {
-      this.cardRefs[index] = (el as HTMLElement) ?? null;
+    setCardRef(el: Element | ComponentPublicInstance | null, index: number) {
+      this.cardRefs[index] = this.resolveElement(el);
     },
 
     attachScrollListeners() {
