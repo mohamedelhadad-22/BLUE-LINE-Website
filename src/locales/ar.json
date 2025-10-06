@@ -241,6 +241,60 @@
                 "label": "راسل فريق الدعم",
                 "description": "support@folkmaritime.com",
                 "link": "mailto:support@folkmaritime.com"
+            },
+            "form": {
+                "breadcrumb": {
+                    "home": "الرئيسية",
+                    "contact": "اتصل بنا"
+                },
+                "title": "اتصل بنا",
+                "whytitle": "كيف يمكننا مساعدتك",
+                "subtitle": "في فُلك البحرية، نولي أولوية قصوى لتعزيز التواصل الشفاف مع عملائنا. نحن على أتم الاستعداد لمساعدتك في كل ما تحتاجه عبر تعبئة نموذج التواصل أدناه.",
+                "info": {
+                    "headOffice": "المقر الرئيسي",
+                    "address": "مجمع الفناء الشمالي من عود، المبنى رقم 456،<br />طريق الأمير تركي بن عبدالعزيز الأول، حي الملقا",
+                    "postal": "الرمز البريدي: 13524 - 6790<br />الرياض، المملكة العربية السعودية",
+                    "getInTouch": "تواصل معنا",
+                    "followUs": "تابعنا"
+                },
+                "fields": {
+                    "fullName": "الاسم الكامل",
+                    "companyName": "اسم الشركة",
+                    "email": "البريد الإلكتروني",
+                    "phone": "رقم الهاتف",
+                    "subject": "الموضوع",
+                    "country": "الدولة",
+                    "message": "الرسالة",
+                    "privacyLabel": "لقد قرأت ووافقت على",
+                    "privacyLink": "سياسة الخصوصية",
+                    "required": "*"
+                },
+                "placeholders": {
+                    "fullName": "أدخل اسمك الكامل",
+                    "companyName": "أدخل اسم شركتك",
+                    "email": "you@company.com",
+                    "phone": "5 1234 5678",
+                    "subject": "كيف يمكننا مساعدتك؟",
+                    "message": "أخبرنا المزيد عن استفسارك..."
+                },
+                "validation": {
+                    "fullNameRequired": "الاسم الكامل مطلوب.",
+                    "emailRequired": "البريد الإلكتروني مطلوب.",
+                    "emailInvalid": "يُرجى إدخال بريد إلكتروني صحيح.",
+                    "phoneRequired": "رقم الهاتف مطلوب.",
+                    "phoneInvalid": "يُرجى إدخال رقم هاتف صحيح.",
+                    "subjectRequired": "الموضوع مطلوب.",
+                    "subjectMinLength": "يجب أن يحتوي الموضوع على 3 أحرف على الأقل.",
+                    "subjectMaxLength": "الموضوع طويل جداً.",
+                    "countryRequired": "الدولة مطلوبة.",
+                    "messageRequired": "الرسالة مطلوبة.",
+                    "messageMinLength": "يجب أن تحتوي الرسالة على 10 أحرف على الأقل.",
+                    "privacyRequired": "يجب الموافقة على سياسة الخصوصية."
+                },
+                "submit": "إرسال الرسالة",
+                "submitting": "جارٍ الإرسال...",
+                "success": "شكراً لك! سنتواصل معك قريباً.",
+                "error": "حدث خطأ ما. يُرجى المحاولة مرة أخرى."
             }
         },
         "feeders": {

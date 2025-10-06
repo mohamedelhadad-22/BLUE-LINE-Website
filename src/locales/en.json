@@ -242,6 +242,60 @@
                 "label": "Email interim support",
                 "description": "Reach us at support@folkmaritime.com",
                 "link": "mailto:support@folkmaritime.com"
+            },
+            "form": {
+                "breadcrumb": {
+                    "home": "Home",
+                    "contact": "Contact Us"
+                },
+                "title": "Contact Us",
+                "whytitle":"How can we help you?",
+                "subtitle": "At Folk, fostering open communication is our priority. Our dedicated team is ready to assist you with whatever you may need, so please use the contact form below to get in touch.",
+                "info": {
+                    "headOffice": "Head Office",
+                    "address": "North Yard Complex from Oud, Building No. 456,<br />Prince Turki Bin Abdulaziz AlAwwal Road,<br />Al-Malqa District",
+                    "postal": "Postal Code: 13524 - 6790<br />Riyadh, Kingdom of Saudi Arabia",
+                    "getInTouch": "Get in Touch",
+                    "followUs": "Follow Us"
+                },
+                "fields": {
+                    "fullName": "Full Name",
+                    "companyName": "Company Name",
+                    "email": "Email Address",
+                    "phone": "Phone Number",
+                    "subject": "Subject",
+                    "country": "Country",
+                    "message": "Message",
+                    "privacyLabel": "I have read and agree to the",
+                    "privacyLink": "Privacy Policy",
+                    "required": "*"
+                },
+                "placeholders": {
+                    "fullName": "Enter your full name",
+                    "companyName": "Enter your company name",
+                    "email": "you@company.com",
+                    "phone": "5 1234 5678",
+                    "subject": "How can we help you?",
+                    "message": "Tell us more about your inquiry..."
+                },
+                "validation": {
+                    "fullNameRequired": "Full name is required.",
+                    "emailRequired": "Email is required.",
+                    "emailInvalid": "Enter a valid email address.",
+                    "phoneRequired": "Phone number is required.",
+                    "phoneInvalid": "Please enter a valid phone number.",
+                    "subjectRequired": "Subject is required.",
+                    "subjectMinLength": "Subject must be at least 3 characters.",
+                    "subjectMaxLength": "Subject is too long.",
+                    "countryRequired": "Country is required.",
+                    "messageRequired": "Message is required.",
+                    "messageMinLength": "Message must be at least 10 characters.",
+                    "privacyRequired": "You must accept the Privacy Policy."
+                },
+                "submit": "Send Message",
+                "submitting": "Sending...",
+                "success": "Thank you! We'll get back to you shortly.",
+                "error": "Something went wrong. Please try again."
             }
         },
         "feeders": {
