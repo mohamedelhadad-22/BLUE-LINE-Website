@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, type PropType } from "vue";
 type Align = "left" | "center" | "right" | "auto";
 type VAlign = "top" | "middle" | "bottom";
 
@@ -81,7 +81,7 @@ export default defineComponent({
       };
     },
     mediaStyle(): Record<string, string> {
-      const base =
+      const base: Record<string, string> =
         this.withImg && this.mediaSrc
           ? {
               backgroundImage: `url('${this.mediaSrc}')`,
