@@ -249,7 +249,7 @@
                     "contact": "Contact Us"
                 },
                 "title": "Contact Us",
-                "whytitle":"How can we help you?",
+                "whytitle": "How can we help you?",
                 "subtitle": "At Folk, fostering open communication is our priority. Our dedicated team is ready to assist you with whatever you may need, so please use the contact form below to get in touch.",
                 "info": {
                     "headOffice": "Head Office",
@@ -495,109 +495,316 @@
             "subtitle": "Maritime shipping terms and definitions"
         },
         "A": [
-            { "term": "Affiliate", "definition": "A company or entity that is associated with another through ownership, control, or a business relationship." },
-            { "term": "Automatic Identification System - AIS", "definition": "A tracking system used by ships and vessel traffic services to identify and locate vessels by electronically exchanging data." },
-            { "term": "Agent", "definition": "A representative who acts on behalf of a shipowner, charterer, or operator in a specific port or region." },
-            { "term": "All Risks Coverage", "definition": "An insurance policy that provides the broadest form of protection for cargo during transit." },
-            { "term": "Ad Valorem", "definition": "A tariff or duty based on the value of the goods being shipped, expressed as a percentage of the total value." }
+            {
+                "term": "Affiliate",
+                "definition": "A company or entity that is associated with another through ownership, control, or a business relationship."
+            },
+            {
+                "term": "Automatic Identification System - AIS",
+                "definition": "A tracking system used by ships and vessel traffic services to identify and locate vessels by electronically exchanging data."
+            },
+            {
+                "term": "Agent",
+                "definition": "A representative who acts on behalf of a shipowner, charterer, or operator in a specific port or region."
+            },
+            {
+                "term": "All Risks Coverage",
+                "definition": "An insurance policy that provides the broadest form of protection for cargo during transit."
+            },
+            {
+                "term": "Ad Valorem",
+                "definition": "A tariff or duty based on the value of the goods being shipped, expressed as a percentage of the total value."
+            }
         ],
         "B": [
-            { "term": "Ballast", "definition": "Heavy material, such as water, used to provide stability to a vessel." },
-            { "term": "Backhaul", "definition": "The return leg of a liner service voyage, typically from the destination port back to the origin." },
-            { "term": "Base Cargo", "definition": "The minimum amount of cargo a ship should carry to ensure it operates efficiently and economically." },
-            { "term": "Bill of Lading - B/L", "definition": "A legal document issued by a carrier to a shipper, detailing the type, quantity, and destination of the goods being shipped." },
-            { "term": "Bill of Exchange - B/E", "definition": "A written financial document used in international trade where one party orders another party to pay a specified amount." }
+            {
+                "term": "Ballast",
+                "definition": "Heavy material, such as water, used to provide stability to a vessel."
+            },
+            {
+                "term": "Backhaul",
+                "definition": "The return leg of a liner service voyage, typically from the destination port back to the origin."
+            },
+            {
+                "term": "Base Cargo",
+                "definition": "The minimum amount of cargo a ship should carry to ensure it operates efficiently and economically."
+            },
+            {
+                "term": "Bill of Lading - B/L",
+                "definition": "A legal document issued by a carrier to a shipper, detailing the type, quantity, and destination of the goods being shipped."
+            },
+            {
+                "term": "Bill of Exchange - B/E",
+                "definition": "A written financial document used in international trade where one party orders another party to pay a specified amount."
+            }
         ],
         "C": [
-            { "term": "Cabotage", "definition": "Transport of goods between two places in the same country by a vessel from another country." },
-            { "term": "Cargo", "definition": "Goods or merchandise carried by a ship, airplane, truck, or other transportation means." },
-            { "term": "Cargo Manifest", "definition": "A detailed list of all cargo on board a liner vessel for customs clearance and tracking." },
-            { "term": "Certificate of Origin", "definition": "A document certifying goods are produced or manufactured in a particular country." },
-            { "term": "Charter Party", "definition": "A contract between a vessel owner and a charterer who rents the vessel or cargo space." },
-            { "term": "Coastal Shipping", "definition": "Transportation of goods along the coast within a specific regional area." },
-            { "term": "Common Carrier", "definition": "A shipping line offering services to the public, transporting goods on a non-discriminatory basis." },
-            { "term": "Containerization", "definition": "Using standardized containers to transport goods efficiently across transportation modes." }
+            {
+                "term": "Cabotage",
+                "definition": "Transport of goods between two places in the same country by a vessel from another country."
+            },
+            {
+                "term": "Cargo",
+                "definition": "Goods or merchandise carried by a ship, airplane, truck, or other transportation means."
+            },
+            {
+                "term": "Cargo Manifest",
+                "definition": "A detailed list of all cargo on board a liner vessel for customs clearance and tracking."
+            },
+            {
+                "term": "Certificate of Origin",
+                "definition": "A document certifying goods are produced or manufactured in a particular country."
+            },
+            {
+                "term": "Charter Party",
+                "definition": "A contract between a vessel owner and a charterer who rents the vessel or cargo space."
+            },
+            {
+                "term": "Coastal Shipping",
+                "definition": "Transportation of goods along the coast within a specific regional area."
+            },
+            {
+                "term": "Common Carrier",
+                "definition": "A shipping line offering services to the public, transporting goods on a non-discriminatory basis."
+            },
+            {
+                "term": "Containerization",
+                "definition": "Using standardized containers to transport goods efficiently across transportation modes."
+            }
         ],
         "D": [
-            { "term": "Deadweight Tonnage - DWT", "definition": "The total weight a ship can safely carry, including cargo, fuel, crew, and provisions." },
-            { "term": "Demurrage", "definition": "A penalty fee charged for delaying a ship's departure beyond the agreed-upon laytime." },
-            { "term": "Dry Dock", "definition": "A specialized facility for vessel maintenance, repairs, or inspection out of water." }
+            {
+                "term": "Deadweight Tonnage - DWT",
+                "definition": "The total weight a ship can safely carry, including cargo, fuel, crew, and provisions."
+            },
+            {
+                "term": "Demurrage",
+                "definition": "A penalty fee charged for delaying a ship's departure beyond the agreed-upon laytime."
+            },
+            {
+                "term": "Dry Dock",
+                "definition": "A specialized facility for vessel maintenance, repairs, or inspection out of water."
+            }
         ],
         "E": [
-            { "term": "E-Navigation", "definition": "Using electronic systems to enhance navigational safety and efficiency." }
+            {
+                "term": "E-Navigation",
+                "definition": "Using electronic systems to enhance navigational safety and efficiency."
+            }
         ],
         "F": [
-            { "term": "Feeder Service", "definition": "A shipping service transporting containers from smaller ports to larger ports." },
-            { "term": "Freight", "definition": "Goods transported from one place to another, or the cost of transportation." },
-            { "term": "Freight Forwarder", "definition": "A company arranging shipping and handling of goods on behalf of shippers." }
+            {
+                "term": "Feeder Service",
+                "definition": "A shipping service transporting containers from smaller ports to larger ports."
+            },
+            {
+                "term": "Freight",
+                "definition": "Goods transported from one place to another, or the cost of transportation."
+            },
+            {
+                "term": "Freight Forwarder",
+                "definition": "A company arranging shipping and handling of goods on behalf of shippers."
+            }
         ],
         "G": [
-            { "term": "Gateway Port", "definition": "A port that acts as an entry or exit point for regional maritime trade, often linked to major international shipping routes." },
-            { "term": "Gross Tonnage - GT", "definition": "The total internal volume of a ship, including all enclosed spaces, used to determine its size and capacity." },
-            { "term": "Gross Weight", "definition": "The total weight of a shipment, including the cargo and its packaging or container." }
+            {
+                "term": "Gateway Port",
+                "definition": "A port that acts as an entry or exit point for regional maritime trade, often linked to major international shipping routes."
+            },
+            {
+                "term": "Gross Tonnage - GT",
+                "definition": "The total internal volume of a ship, including all enclosed spaces, used to determine its size and capacity."
+            },
+            {
+                "term": "Gross Weight",
+                "definition": "The total weight of a shipment, including the cargo and its packaging or container."
+            }
         ],
         "H": [
-            { "term": "Harbor", "definition": "A sheltered coastal area where ships can dock, anchor, and seek protection." }
+            {
+                "term": "Harbor",
+                "definition": "A sheltered coastal area where ships can dock, anchor, and seek protection."
+            }
         ],
         "I": [
-            { "term": "Incoterms", "definition": "International Commercial Terms defining buyer and seller responsibilities in goods transportation." }
+            {
+                "term": "Incoterms",
+                "definition": "International Commercial Terms defining buyer and seller responsibilities in goods transportation."
+            }
         ],
         "L": [
-            { "term": "Laytime", "definition": "The agreed time for loading and unloading a vessel." },
-            { "term": "Liner Service", "definition": "A regular, scheduled service by shipping companies between specified ports." }
+            {
+                "term": "Laytime",
+                "definition": "The agreed time for loading and unloading a vessel."
+            },
+            {
+                "term": "Liner Service",
+                "definition": "A regular, scheduled service by shipping companies between specified ports."
+            }
         ],
         "M": [
-            { "term": "Manifest", "definition": "A detailed list of a ship's cargo, passengers, and crew." }
+            {
+                "term": "Manifest",
+                "definition": "A detailed list of a ship's cargo, passengers, and crew."
+            }
         ],
         "N": [
-            { "term": "Non-Vessel Operating Common Carrier - NVOCC", "definition": "A company offering shipping services without operating ships." }
+            {
+                "term": "Non-Vessel Operating Common Carrier - NVOCC",
+                "definition": "A company offering shipping services without operating ships."
+            }
         ],
         "P": [
-            { "term": "Port Authority", "definition": "The organization responsible for managing and regulating activities within a port, including cargo handling and vessel operations." },
-            { "term": "Port Connectivity", "definition": "The ability of ports within a region to effectively link with each other and with global shipping routes, supported by infrastructure and logistics systems." },
-            { "term": "Port of Call", "definition": "A scheduled stop at a port during a ship's voyage for cargo loading or unloading." },
-            { "term": "Port of Loading", "definition": "The port where cargo is loaded onto a vessel." },
-            { "term": "Port of Discharge", "definition": "The port where cargo is unloaded from a vessel." },
-            { "term": "Port Rotation", "definition": "The sequence of ports that a feeder vessel visits during its scheduled voyage, often linking smaller ports to a central hub." },
-            { "term": "Port Tariff", "definition": "A published schedule of fees and charges for services provided at a port, such as docking, loading, and unloading." },
-            { "term": "Port Community System - PCS", "definition": "An electronic platform that facilitates information exchange and coordination among port stakeholders." },
-            { "term": "Protection and Indemnity - P&I Insurance", "definition": "A type of marine insurance covering third-party liabilities, including injury, loss of life, or damage to cargo." }
+            {
+                "term": "Port Authority",
+                "definition": "The organization responsible for managing and regulating activities within a port, including cargo handling and vessel operations."
+            },
+            {
+                "term": "Port Connectivity",
+                "definition": "The ability of ports within a region to effectively link with each other and with global shipping routes, supported by infrastructure and logistics systems."
+            },
+            {
+                "term": "Port of Call",
+                "definition": "A scheduled stop at a port during a ship's voyage for cargo loading or unloading."
+            },
+            {
+                "term": "Port of Loading",
+                "definition": "The port where cargo is loaded onto a vessel."
+            },
+            {
+                "term": "Port of Discharge",
+                "definition": "The port where cargo is unloaded from a vessel."
+            },
+            {
+                "term": "Port Rotation",
+                "definition": "The sequence of ports that a feeder vessel visits during its scheduled voyage, often linking smaller ports to a central hub."
+            },
+            {
+                "term": "Port Tariff",
+                "definition": "A published schedule of fees and charges for services provided at a port, such as docking, loading, and unloading."
+            },
+            {
+                "term": "Port Community System - PCS",
+                "definition": "An electronic platform that facilitates information exchange and coordination among port stakeholders."
+            },
+            {
+                "term": "Protection and Indemnity - P&I Insurance",
+                "definition": "A type of marine insurance covering third-party liabilities, including injury, loss of life, or damage to cargo."
+            }
         ],
         "R": [
-            { "term": "Roll-on/Roll-off - Ro-Ro Ship", "definition": "A type of vessel designed to carry wheeled cargo, such as cars and trucks, that are driven on and off the ship." },
-            { "term": "Reefer", "definition": "A refrigerated container or ship designed to transport perishable goods that require temperature control." },
-            { "term": "Relay Service", "definition": "A service that involves the transfer of cargo between vessels at an intermediate port." },
-            { "term": "Regional Connectivity Index", "definition": "A measure of how well regional ports and shipping routes are integrated and connected." },
-            { "term": "Regional Shipping", "definition": "Shipping services that operate within a specific region or set of ports." },
-            { "term": "Regional Trade Agreement", "definition": "An agreement between countries within a region to facilitate trade and improve maritime connectivity." }
+            {
+                "term": "Roll-on/Roll-off - Ro-Ro Ship",
+                "definition": "A type of vessel designed to carry wheeled cargo, such as cars and trucks, that are driven on and off the ship."
+            },
+            {
+                "term": "Reefer",
+                "definition": "A refrigerated container or ship designed to transport perishable goods that require temperature control."
+            },
+            {
+                "term": "Relay Service",
+                "definition": "A service that involves the transfer of cargo between vessels at an intermediate port."
+            },
+            {
+                "term": "Regional Connectivity Index",
+                "definition": "A measure of how well regional ports and shipping routes are integrated and connected."
+            },
+            {
+                "term": "Regional Shipping",
+                "definition": "Shipping services that operate within a specific region or set of ports."
+            },
+            {
+                "term": "Regional Trade Agreement",
+                "definition": "An agreement between countries within a region to facilitate trade and improve maritime connectivity."
+            }
         ],
         "S": [
-            { "term": "Safety of Life at Sea - SOLAS", "definition": "An international maritime treaty ensuring that ships comply with minimum safety standards in construction, equipment, and operation." },
-            { "term": "Sailing Schedule", "definition": "The published itinerary of a liner service, detailing the departure and arrival dates and times for each port of call." },
-            { "term": "Sea Freight", "definition": "The movement of goods by sea, often in containers, bulk carriers, or tankers, typically used for international shipments." },
-            { "term": "Shipping", "definition": "The process of transporting goods or cargo from one location to another by sea, air, rail, or road." },
-            { "term": "Shipping line", "definition": "A company that operates ships and provides maritime transportation services." },
-            { "term": "Shipbroker", "definition": "A person or firm that arranges the hiring or sale of ships on behalf of shipowners or charterers." },
-            { "term": "Ship-to-Shore Communication", "definition": "The exchange of information between ships and port facilities or other shore-based entities, including data on cargo, navigation, and safety." },
-            { "term": "Ship's Agent", "definition": "A representative in a port who handles a ship's business and administrative tasks on behalf of the shipowner or charterer." },
-            { "term": "Ship Management System", "definition": "Software used to manage the operational aspects of a vessel, including maintenance, crew management, and compliance." },
-            { "term": "Short Sea Shipping", "definition": "The transportation of goods by sea over relatively short distances, typically within the same continent or region." },
-            { "term": "Slot Charter", "definition": "An agreement where a shipping line leases space (slots) on a feeder vessel operated by another company." },
-            { "term": "Slot Sharing", "definition": "An arrangement where different shipping lines share space on each other's vessels." },
-            { "term": "Spot Market", "definition": "The market for immediate, one-time cargo shipping contracts." }
+            {
+                "term": "Safety of Life at Sea - SOLAS",
+                "definition": "An international maritime treaty ensuring that ships comply with minimum safety standards in construction, equipment, and operation."
+            },
+            {
+                "term": "Sailing Schedule",
+                "definition": "The published itinerary of a liner service, detailing the departure and arrival dates and times for each port of call."
+            },
+            {
+                "term": "Sea Freight",
+                "definition": "The movement of goods by sea, often in containers, bulk carriers, or tankers, typically used for international shipments."
+            },
+            {
+                "term": "Shipping",
+                "definition": "The process of transporting goods or cargo from one location to another by sea, air, rail, or road."
+            },
+            {
+                "term": "Shipping line",
+                "definition": "A company that operates ships and provides maritime transportation services."
+            },
+            {
+                "term": "Shipbroker",
+                "definition": "A person or firm that arranges the hiring or sale of ships on behalf of shipowners or charterers."
+            },
+            {
+                "term": "Ship-to-Shore Communication",
+                "definition": "The exchange of information between ships and port facilities or other shore-based entities, including data on cargo, navigation, and safety."
+            },
+            {
+                "term": "Ship's Agent",
+                "definition": "A representative in a port who handles a ship's business and administrative tasks on behalf of the shipowner or charterer."
+            },
+            {
+                "term": "Ship Management System",
+                "definition": "Software used to manage the operational aspects of a vessel, including maintenance, crew management, and compliance."
+            },
+            {
+                "term": "Short Sea Shipping",
+                "definition": "The transportation of goods by sea over relatively short distances, typically within the same continent or region."
+            },
+            {
+                "term": "Slot Charter",
+                "definition": "An agreement where a shipping line leases space (slots) on a feeder vessel operated by another company."
+            },
+            {
+                "term": "Slot Sharing",
+                "definition": "An arrangement where different shipping lines share space on each other's vessels."
+            },
+            {
+                "term": "Spot Market",
+                "definition": "The market for immediate, one-time cargo shipping contracts."
+            }
         ],
         "T": [
-            { "term": "Transshipment", "definition": "The transfer of goods from one vessel to another during their journey to the final destination." },
-            { "term": "TEU - Twenty-foot Equivalent Unit", "definition": "A standard unit of measurement for container capacity, based on a 20-foot container." }
+            {
+                "term": "Transshipment",
+                "definition": "The transfer of goods from one vessel to another during their journey to the final destination."
+            },
+            {
+                "term": "TEU - Twenty-foot Equivalent Unit",
+                "definition": "A standard unit of measurement for container capacity, based on a 20-foot container."
+            }
         ],
         "V": [
-            { "term": "Vessel Traffic Service - VTS", "definition": "A shore-based system that monitors and manages vessel traffic within a designated area to ensure safety and efficiency." },
-            { "term": "Vessel Sharing Agreement - VSA", "definition": "An agreement between shipping lines to share space on each other's vessels to optimize capacity and efficiency." },
-            { "term": "Vessel Rotation", "definition": "The sequence of ports that a liner vessel visits on its scheduled route, crucial for maintaining the fixed schedule of liner services." },
-            { "term": "Vessel Tracking", "definition": "The process of monitoring the location and movement of vessels using GPS and other tracking technologies." }
+            {
+                "term": "Vessel Traffic Service - VTS",
+                "definition": "A shore-based system that monitors and manages vessel traffic within a designated area to ensure safety and efficiency."
+            },
+            {
+                "term": "Vessel Sharing Agreement - VSA",
+                "definition": "An agreement between shipping lines to share space on each other's vessels to optimize capacity and efficiency."
+            },
+            {
+                "term": "Vessel Rotation",
+                "definition": "The sequence of ports that a liner vessel visits on its scheduled route, crucial for maintaining the fixed schedule of liner services."
+            },
+            {
+                "term": "Vessel Tracking",
+                "definition": "The process of monitoring the location and movement of vessels using GPS and other tracking technologies."
+            }
         ],
         "W": [
-            { "term": "Warehousing", "definition": "The storage of goods in a facility before they are transported to their final destination." }
+            {
+                "term": "Warehousing",
+                "definition": "The storage of goods in a facility before they are transported to their final destination."
+            }
         ]
     },
     "aboutPage": {
@@ -730,5 +937,24 @@
         "Industry": "Industry",
         "CommercialRegistration": "Commercial Registration",
         "submit": "Submit"
+    },
+    "FeedersServices": {
+        "heroTitle": "Feeder services",
+        "heroDesc": "At the forefront of maritime shipping, our feeder services are setting a new benchmark in the industry by connecting ports, empowering commerce, and optimizing global logistics.",
+        "FeedersServices": "Feeders Services",
+        "FeederservicesTitle": "Folk Maritime orchestrates the seamless transshipment of merchandise, enhancing regional connectivity and fostering global trade.",
+        "FeederservicesDesc": "Our feeder services enable cost-competitive shipping, ensuring lasting reliability in the global supply chain. Embracing maritime decarbonization, we support transformative technologies and actively promote the uptake of alternative zero—and near-zero Greenhouse gas (GHG) fuels.",
+        "Internationaltrade": "At Folk Maritime, we recognize the significance of feeder services in expanding international trade.",
+        "InternationaltradeDesc": "Capitalizing on the power of these services, we maximize global trade opportunities by linking small ports to major hubs. By optimizing routes and enhancing connectivity, we are creating a name for ourselves in the dynamic market of international trade.",
+        "Oursolutions": "Our solutions",
+        "OursolutionsDesc": "Integrating Innovative Technology for Operational Excellence",
+        "TransportationTitle": "Advantages of Using Feeder Transportation",
+        "TransportationDesc": "As your trusted third-party provider, we excel in seamlessly transporting container boxes for mainliners from source to freight sub-ports or freight sub-ports to destination ports. We promise reliability, cost-effectiveness, and customer-centric solutions. Our advanced tracking system ensures transparency, while our digital quotation system enhances efficiency, providing you with exceptional service.",
+        "heroOne": "Tailor-Made Feeder Schedules and Automated Transshipment",
+        "heroOneDesc": "We combine customized feeder schedules to connect seamlessly with mainliner services at key hub ports. Our automated transshipment planning at strategic locations also ensures smooth cargo transfers, minimizing delays throughout the feeder journey.",
+        "heroTow": "Variety of Container Options and On-Time Delivery",
+        "heroTowDesc": "Leveraging container types and liner shipping efficiency, our extensive range of containers caters to diverse cargo needs, from perishable goods to oversized equipment. Furthermore, our reliable liner shipping services ensure your cargo arrives at its final destination on time and intact.",
+        "heroThree": "Flexible Capacity and Scalable Solutions",
+        "heroThreeDesc": "We understand cargo volumes can fluctuate. Our feeder services offer flexible capacity to accommodate these variations. We scale our solutions to meet your specific needs, ensuring efficient and cost-effective cargo movement regardless of seasonal peaks or troughs."
     }
 }
