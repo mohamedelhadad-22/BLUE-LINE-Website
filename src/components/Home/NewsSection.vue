@@ -28,6 +28,17 @@ export default defineComponent({
   components: {
     NewsCard,
   },
+  props: {
+    newsData: {
+      type: Object as () => {
+        kicker?: string;
+        title?: string;
+        cta?: string;
+        posts?: RawPost[];
+      },
+      default: () => ({}),
+    },
+  },
   data() {
     return {
       imageMap: {
@@ -79,12 +90,17 @@ export default defineComponent({
     direction(): "rtl" | "ltr" {
       return this.isArabic ? "rtl" : "ltr";
     },
-    newsData(): {
+    computedNewsData(): {
       kicker?: string;
       title?: string;
       cta?: string;
       posts?: RawPost[];
     } {
+      // Use prop data if provided, otherwise fallback to i18n
+      if (this.newsData && Object.keys(this.newsData).length > 0) {
+        return this.newsData;
+      }
+      
       const messages = (
         this.$i18n as unknown as { messages?: Record<string, any> }
       ).messages;
@@ -105,8 +121,8 @@ export default defineComponent({
       });
 
       const sourcePosts =
-        (this.newsData.posts?.length
-          ? this.newsData.posts
+        (this.computedNewsData.posts?.length
+          ? this.computedNewsData.posts
           : this.fallbackPosts) ?? [];
 
       return sourcePosts.map((post) => {
@@ -128,7 +144,7 @@ export default defineComponent({
       };
     },
     ctaLabel(): string {
-      return this.newsData.cta ?? "";
+      return this.computedNewsData.cta ?? "";
     },
   },
 });
@@ -140,10 +156,10 @@ export default defineComponent({
       <div class="news-header">
         <span class="news-kicker">
           <span class="news-kicker__icon" aria-hidden="true">✦</span>
-          {{ newsData.kicker }}
+          {{ computedNewsData.kicker }}
         </span>
         <h2 class="news-title">
-          {{ newsData.title }}
+          {{ computedNewsData.title }}
         </h2>
       </div>
       <div class="news-grid" :class="layoutClass">
