@@ -72,7 +72,7 @@
             :aria-label="rtl ? 'المؤشر' : 'pagination'"
           >
             <button
-              v-for="(s, i) in slides"
+              v-for="(_, i) in slides"
               :key="i"
               class="dot"
               :class="{ active: i === index }"
@@ -114,6 +114,12 @@ type Slide = {
   isAd?: boolean;
 };
 
+const EMPTY_SLIDE: Slide = Object.freeze({
+  image: "",
+  title: "",
+  date: "",
+});
+
 const props = defineProps<{
   slides: Slide[];
   startAt?: number;
@@ -135,7 +141,7 @@ const timer = ref<number | null>(null);
 const playing = ref(false);
 
 const total = computed(() => props.slides.length);
-const current = computed(() => props.slides[index.value] ?? props.slides[0]);
+const current = computed(() => props.slides[index.value] ?? EMPTY_SLIDE);
 
 function clamp(i: number) {
   if (total.value === 0) return 0;
@@ -205,7 +211,7 @@ function onPointerUp(e: PointerEvent) {
   const dy = Math.abs(e.clientY - startY);
   dragging = false;
   if (Math.abs(dx) > 40 && dy < 60) {
-    if ((dx > 0) ^ rtl.value) prev();
+    if ((dx > 0) !== rtl.value) prev();
     else next();
   }
 }

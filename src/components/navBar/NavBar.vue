@@ -7,7 +7,9 @@
     ]"
   >
     <div class="container header__row">
-      <a class="logo" href="#"><img src="@/assets/logo.png" alt="logo" /></a>
+      <RouterLink class="logo" to="/">
+        <img src="@/assets/logo.png" alt="logo" />
+      </RouterLink>
 
       <div class="actions">
         <button class="lang" @click="toggleLang">
@@ -42,6 +44,7 @@ import { useRoute } from "vue-router";
 type LinkItem = {
   label: string;
   href?: string;
+  to?: string;
   external?: boolean;
   chevron?: boolean;
 };
@@ -67,27 +70,27 @@ export default defineComponent({
         {
           title: "About Folk",
           items: [
-            { label: "About us", href: "#about" },
-            { label: "Stakeholders Relations", href: "#stakeholders" },
-            { label: "Career", href: "#career" },
-            { label: "Contact us", href: "#contact" },
+            { label: "About us", to: "/about" },
+            { label: "Stakeholders Relations", to: "/stakeholders-relations" },
+            { label: "Career", to: "/careers" },
+            { label: "Contact us", to: "/contact" },
           ],
         },
         {
           title: "Business Areas",
           items: [
-            { label: "Feeder services", href: "#feeder" },
-            { label: "Regional Liner Services", href: "#liner" },
-            { label: "Routes & Agents Contacts", href: "#routes" },
-            { label: "Fleet", href: "#fleet" },
-            { label: "FAQ & Glossary", href: "#faq" },
+            { label: "Feeder services", to: "/feeders-services" },
+            { label: "Regional Liner Services", to: "/regional-liner-services" },
+            { label: "Routes & Agents Contacts", to: "/routes-agents" },
+            { label: "Fleet", to: "/fleet" },
+            { label: "FAQ & Glossary", to: "/faq-glossary" },
           ],
         },
         {
           title: "Media center",
           items: [
-            { label: "News & Insights", href: "#news" },
-            { label: "Downloads", href: "#downloads" },
+            { label: "News & Insights", to: "/news-insights" },
+            { label: "Downloads", to: "/downloads" },
           ],
           extras: [{ label: "E-commerce", href: "#shop", chevron: true }],
           social: [

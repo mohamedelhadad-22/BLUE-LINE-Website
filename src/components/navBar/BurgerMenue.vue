@@ -20,7 +20,15 @@
                         <h3 class="mm-col-title">{{ group.title }}</h3>
                         <ul class="mm-links">
                             <li v-for="(item, ii) in group.items" :key="ii">
-                                <a :href="item.href || '#'" class="mm-link"
+                                <RouterLink v-if="item.to && !item.external" :to="item.to" class="mm-link"
+                                    @click="onNavigate(item)" ref="focusable">
+                                    <span>{{ item.label }}</span>
+                                    <svg v-if="item.chevron" width="18" height="18" viewBox="0 0 24 24"
+                                        aria-hidden="true">
+                                        <path d="M9 18l6-6-6-6" fill="none" stroke="currentColor" stroke-width="2" />
+                                    </svg>
+                                </RouterLink>
+                                <a v-else :href="item.href || '#'" class="mm-link"
                                     :target="item.external ? '_blank' : undefined"
                                     :rel="item.external ? 'noopener noreferrer' : undefined" @click="onNavigate(item)"
                                     ref="focusable">
@@ -34,13 +42,24 @@
                         </ul>
 
                         <div v-if="group.extras || (group.social && group.social.length)" class="mm-extras">
-                            <a v-for="(extra, ei) in group.extras || []" :key="ei" class="mm-extra"
-                                :href="extra.href || '#'" @click="onNavigate(extra)">
-                                <span>{{ extra.label }}</span>
-                                <svg v-if="extra.chevron" width="18" height="18" viewBox="0 0 24 24">
-                                    <path d="M9 18l6-6-6-6" fill="none" stroke="currentColor" stroke-width="2" />
-                                </svg>
-                            </a>
+                            <template v-for="(extra, ei) in group.extras || []" :key="ei">
+                                <RouterLink v-if="extra.to && !extra.external" class="mm-extra" :to="extra.to"
+                                    @click="onNavigate(extra)" ref="focusable">
+                                    <span>{{ extra.label }}</span>
+                                    <svg v-if="extra.chevron" width="18" height="18" viewBox="0 0 24 24">
+                                        <path d="M9 18l6-6-6-6" fill="none" stroke="currentColor" stroke-width="2" />
+                                    </svg>
+                                </RouterLink>
+                                <a v-else-if="extra.href" class="mm-extra" :href="extra.href"
+                                    :target="extra.external ? '_blank' : undefined"
+                                    :rel="extra.external ? 'noopener noreferrer' : undefined" @click="onNavigate(extra)"
+                                    ref="focusable">
+                                    <span>{{ extra.label }}</span>
+                                    <svg v-if="extra.chevron" width="18" height="18" viewBox="0 0 24 24">
+                                        <path d="M9 18l6-6-6-6" fill="none" stroke="currentColor" stroke-width="2" />
+                                    </svg>
+                                </a>
+                            </template>
                             <div v-if="group.social && group.social.length" class="mm-social">
                                 <span>Follow us</span>
                                 <a v-for="(s, si) in group.social" :key="si" class="mm-social-icon"
@@ -61,10 +80,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import type { PropType } from 'vue';
+import { RouterLink } from 'vue-router';
 
 type LinkItem = {
     label: string;
     href?: string;
+    to?: string;
     external?: boolean;
     chevron?: boolean;
 };
@@ -83,6 +104,9 @@ type Group = {
 
 export default defineComponent({
     name: 'MegaMenu',
+    components: {
+        RouterLink,
+    },
     props: {
         modelValue: { type: Boolean, required: true },
         groups: { type: Array as PropType<Group[]>, required: true },
@@ -338,11 +362,6 @@ export default defineComponent({
     border: 0;
 }
 </style>
-
-
-
-
-
 
 
 
