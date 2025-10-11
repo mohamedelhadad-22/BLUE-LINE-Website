@@ -958,5 +958,27 @@
         "heroThreeDesc": "We understand cargo volumes can fluctuate. Our feeder services offer flexible capacity to accommodate these variations. We scale our solutions to meet your specific needs, ensuring efficient and cost-effective cargo movement regardless of seasonal peaks or troughs.",
         "newsKicker": "SUGGESTIONS OF ARTICLES",
         "newsTitle": "Check out useful information about Feeder services"
+    },
+    "RegionalLiner": {
+        "heroTitle": "Kingdom’s leading liner service provider",
+        "heroDesc": "Folk Maritime is further strengthening the regional shipping sector as the Kingdom’s first liner service provider. Operating ‘Folk Jeddah,’ the first-ever and only Saudi-flagged container ship, Folk Maritime is strengthening regional maritime connectivity with India and Red Sea markets. Promising reliability and efficiency to cargo owners and freight forwarders at every stage. Folk Maritime catalyzes regional trade and creates more opportunities for businesses to connect with fast-growing markets in India, the Arabian Gulf and along the Red Sea.",
+        "RegionalLiner": "REGIONAL LINER SERVICES",
+        "services_title": "Empowering Trade, Enhancing Connectivity, and Driving Efficiency",
+        "services_desc": "Folk Maritime's regional liner services optimize coastal connectivity for efficient container movement. Our dynamic and sustainable solutions strengthen regional trade, adeptly linking ports along the Red Sea, the Arabian Gulf and the Indian Subcontinent, and offer fast and reliable transport contributing to enhanced logistics integration.",
+        "Strategically_situated": "Strategically situated along key maritime routes, Saudi Arabia serves as a pivotal hub for regional short-sea services.",
+        "Strategically_desc": "Its central location facilitates efficient maritime connectivity between the US East Coast, Europe, Africa, and Asia. Moreover, Saudi Arabia’s commitment to developing state-of-the-art infrastructure, exemplified by ports like King Abdullah, located in King Abdullah Economic City (KAEC), and King Fahd Industrial, located in Jubail Industrial City, compliment its vision to elevate its role as a global logistics hub. Proximity to key markets positions Saudi Arabia at an ideal intersection for streamlined, cost-effective, and economically diversified maritime trade within the Middle East and neighboring regions."
+    },
+    "Advantages": {
+        "Advantages": "Advantages",
+        "Advantages_title": "Experience Optimized Regional Trade and Economic Growth through Liner Services",
+        "Advantages_desc": "The emergence of regional liner services from Saudi Arabia through Folk Maritime promises a transformative era for commerce, particularly in the flourishing maritime landscape of Saudi Arabia. Through its modern ports and terminals, the Kingdom is fostering connectivity, job creation, and investment attraction, marking a progressive chapter in the maritime evolution of the region. Liner services from the Kingdom offer a range of advantages, including cost-effectiveness, environmental sustainability, access to coastal areas, flexibility, and cargo capacity, making it a compelling choice for certain transport needs.",
+        "CostEffective": "Cost-effective and customer-centric solutions",
+        "Consistent": "Consistent, reliable, and timely services with guaranteed transit times",
+        "Competitive": "Competitive alternative to road transport, reducing traffic congestion",
+        "LinerShipping": "Liner shipping boosts regional economic development"
+    },
+    "ourOffer": {
+        "ourOffer_title": "Our Offer",
+        "ourOffer_Desc": "Simplifying Operations with Our Logistics Offerings"
     }
 }
