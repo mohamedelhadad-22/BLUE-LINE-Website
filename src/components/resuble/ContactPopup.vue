@@ -15,7 +15,7 @@
             {{ $t("stakeholders.ContactUs") }}
           </h2>
 
-          <form class="popup-form" @submit.prevent="submit">
+          <form class="popup-form" @submit.prevent="submitForm">
             <label class="popup-field">
               <span>{{ $t("stakeholders.CompanyName") }}</span>
               <input
