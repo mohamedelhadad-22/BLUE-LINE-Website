@@ -8,9 +8,9 @@ import hover1 from "@/assets/hover-1.jpg";
 import hover2 from "@/assets/hover-2.jpg";
 import hover3 from "@/assets/hover-3.jpg";
 import hoverIcon from "@/assets/hover-box-icon.svg";
-import news1 from "@/assets/hover-1.jpg";
-import news2 from "@/assets/hover-1.jpg";
-import news3 from "@/assets/hover-1.jpg";
+import news1 from "@/assets/new2.jpg";
+import news2 from "@/assets/new3.jpg";
+import news3 from "@/assets/news1.jpg";
 
 interface hoverBoxs {
   title: string;

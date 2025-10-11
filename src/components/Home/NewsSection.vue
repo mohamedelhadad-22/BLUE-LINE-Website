@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
 import NewsCard from "@/components/Home/NewsCard.vue";
 import newsMalaAwards from "@/assets/news-mala-awards.svg";
 import newsSouthRedSea from "@/assets/news-south-red-sea.svg";
@@ -12,6 +12,7 @@ type RawPost = {
   title?: string;
   summary?: string;
   link?: string;
+  image?: string;
 };
 
 type ImageMap = Record<string, string>;
@@ -23,6 +24,63 @@ type FormattedPost = Required<Pick<RawPost, "id" | "title" | "summary">> & {
   image: string;
 };
 
+const DEFAULT_IMAGE_MAP: ImageMap = {
+  "mala-awards": newsMalaAwards,
+  "south-red-sea": newsSouthRedSea,
+  "student-tour": newsStudentTour,
+};
+
+const DEFAULT_FALLBACK_POSTS: RawPost[] = [
+  {
+    id: "mala-awards",
+    type: "Announcement",
+    date: "2025-08-01",
+    title:
+      'Folk Maritime Wins "Rising Star Organization" at MALA Awards 2025',
+    summary:
+      "Folk Maritime is recognised at the MALA Awards for its rapid progress, innovation, and commitment to elevating regional logistics standards.",
+    link: "/news-insights#mala-awards",
+    image: newsMalaAwards,
+  },
+  {
+    id: "south-red-sea",
+    type: "Announcement",
+    date: "2025-07-07",
+    title:
+      "Folk Maritime Expands South Red Sea Service with Enhanced Jeddah-Centric Rotation",
+    summary:
+      "The strategic extension of Folk Maritime's South Red Sea Service strengthens regional connectivity and amplifies Saudi Arabia's role as a logistics hub.",
+    link: "/news-insights#south-red-sea",
+    image: newsSouthRedSea,
+  },
+  {
+    id: "student-tour",
+    type: "Community",
+    date: "2025-06-03",
+    title:
+      'Folk Maritime Organizes Tour for Maritime Students Onboard Container Vessel "Folk Jeddah"',
+    summary:
+      "Students from King Abdulaziz University experience life onboard Folk Jeddah, gaining practical insight into modern vessel operations.",
+    link: "/news-insights#student-tour",
+    image: newsStudentTour,
+  },
+];
+
+const DEFAULT_FALLBACK_IMAGE = newsMalaAwards;
+
+const getNestedValue = <T,>(
+  source: Record<string, any> | undefined,
+  path: string
+): T | undefined => {
+  if (!source || !path) return undefined;
+  return path.split(".").reduce<any>((acc, key) => {
+    if (acc && typeof acc === "object" && key in acc) {
+      return acc[key];
+    }
+    return undefined;
+  }, source);
+};
+
 export default defineComponent({
   name: "NewsSection",
   components: {
@@ -30,55 +88,33 @@ export default defineComponent({
   },
   props: {
     newsData: {
-      type: Object as () => {
+      type: Object as PropType<{
         kicker?: string;
         title?: string;
         cta?: string;
         posts?: RawPost[];
-      },
+      }>,
       default: () => ({}),
     },
-  },
-  data() {
-    return {
-      imageMap: {
-        "mala-awards": newsMalaAwards,
-        "south-red-sea": newsSouthRedSea,
-        "student-tour": newsStudentTour,
-      } as ImageMap,
-      fallbackPosts: [
-        {
-          id: "mala-awards",
-          type: "Announcement",
-          date: "2025-08-01",
-          title:
-            'Folk Maritime Wins "Rising Star Organization" at MALA Awards 2025',
-          summary:
-            "Folk Maritime is recognised at the MALA Awards for its rapid progress, innovation, and commitment to elevating regional logistics standards.",
-          link: "/news-insights#mala-awards",
-        },
-        {
-          id: "south-red-sea",
-          type: "Announcement",
-          date: "2025-07-07",
-          title:
-            "Folk Maritime Expands South Red Sea Service with Enhanced Jeddah-Centric Rotation",
-          summary:
-            "The strategic extension of Folk Maritime's South Red Sea Service strengthens regional connectivity and amplifies Saudi Arabia's role as a logistics hub.",
-          link: "/news-insights#south-red-sea",
-        },
-        {
-          id: "student-tour",
-          type: "Community",
-          date: "2025-06-03",
-          title:
-            'Folk Maritime Organizes Tour for Maritime Students Onboard Container Vessel "Folk Jeddah"',
-          summary:
-            "Students from King Abdulaziz University experience life onboard Folk Jeddah, gaining practical insight into modern vessel operations.",
-          link: "/news-insights#student-tour",
-        },
-      ] as RawPost[],
-    };
+    translationsKey: {
+      type: String,
+      default: "homeNews",
+    },
+    imageMap: {
+      type: Object as PropType<ImageMap>,
+      default: () => ({ ...DEFAULT_IMAGE_MAP }),
+    },
+    fallbackPosts: {
+      type: Array as PropType<RawPost[]>,
+      default: () =>
+        DEFAULT_FALLBACK_POSTS.map((post) => ({
+          ...post,
+        })),
+    },
+    fallbackImage: {
+      type: String,
+      default: DEFAULT_FALLBACK_IMAGE,
+    },
   },
   computed: {
     composerLocale(): string {
@@ -105,7 +141,13 @@ export default defineComponent({
         this.$i18n as unknown as { messages?: Record<string, any> }
       ).messages;
       const localeMessages = messages?.[this.composerLocale] ?? {};
-      return (localeMessages.homeNews ?? {}) as {
+      const fallbackFromLocale = getNestedValue<{
+        kicker?: string;
+        title?: string;
+        cta?: string;
+        posts?: RawPost[];
+      }>(localeMessages, this.translationsKey);
+      return (fallbackFromLocale ?? {}) as {
         kicker?: string;
         title?: string;
         cta?: string;
@@ -134,7 +176,10 @@ export default defineComponent({
           title: post.title ?? "",
           summary: post.summary ?? "",
           link: post.link ?? "#",
-          image: this.imageMap[post.id] ?? newsMalaAwards,
+          image:
+            post.image ??
+            this.imageMap[post.id] ??
+            this.fallbackImage,
         };
       });
     },
