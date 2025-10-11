@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, markRaw } from "vue";
+import { defineComponent } from "vue";
 import HeroBanner from "@/components/resuble/HeroBanner.vue";
 import herBg from "@/assets/WhatsApp-Image-1446-10-29-at-16-18-30.xlarge.jpg";
 
@@ -18,7 +18,7 @@ export default defineComponent({
   data() {
     return {
       selectedLetter: "A" as string,
-      herBg: markRaw(herBg),
+      herBg: herBg as string,
       activeTab: "company" as string,
     };
   },

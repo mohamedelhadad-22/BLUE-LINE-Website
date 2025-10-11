@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, markRaw } from "vue";
+import { defineComponent } from "vue";
 import HeroBanner from "@/components/resuble/HeroBanner.vue";
 import heroBg from "@/assets/feeder-services-hero.xlarge.webp";
 import accordionComponent from "@/components/resuble/accordionComponent.vue";
@@ -24,7 +24,7 @@ export default defineComponent({
   components: { HeroBanner, accordionComponent, NewsSection },
   data() {
     return {
-      heroBg: markRaw(heroBg),
+      heroBg: heroBg as string,
       steps: [
         {
           title: "Interview with a recruiter",

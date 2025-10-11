@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, type PropType } from "vue";
 import NewsCard from "@/components/Home/NewsCard.vue";
 import newsMalaAwards from "@/assets/news-mala-awards.svg";
 import newsSouthRedSea from "@/assets/news-south-red-sea.svg";

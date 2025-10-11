@@ -10,7 +10,7 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <!-- Draw the 8 squares; center (1,1) is empty -->
-    <template v-for="(p, i) in positions" :key="i">
+    <template v-for="p in positions" :key="`${p.x}-${p.y}`">
       <rect
         :x="p.x * (tile + gap)"
         :y="p.y * (tile + gap)"
