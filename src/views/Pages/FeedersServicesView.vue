@@ -154,8 +154,18 @@ export default defineComponent({
           <h1>{{ $t("FeedersServices.Oursolutions") }}</h1>
           <p class="titDesc">{{ $t("FeedersServices.OursolutionsDesc") }}</p>
           <div class="imageHover">
-            <div class="imgBox" v-for="box in hoverBoxs" :key="box.id" :class="{ active: activeIndex === box.id }"
-              @click="toggleActive(box.id)">
+            <div
+              class="imgBox"
+              v-for="box in hoverBoxs"
+              :key="box.id"
+              :class="{ active: activeIndex === box.id }"
+              role="button"
+              tabindex="0"
+              :aria-pressed="activeIndex === box.id"
+              @click="toggleActive(box.id)"
+              @keyup.enter.prevent="toggleActive(box.id)"
+              @keyup.space.prevent="toggleActive(box.id)"
+            >
               <img :src="box.img" :alt="box.title" />
               <div class="text">
                 <img :src="box.icon" alt="" />
@@ -190,672 +200,366 @@ export default defineComponent({
 .services {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  margin-top: 9rem;
+  gap: clamp(1.6rem, 2.5vw, 2.4rem);
+  margin-top: clamp(2.4rem, 4vw, 3.2rem);
 }
 
 .services h1 {
   text-transform: uppercase;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
 }
 
 .services .titDesc {
-  font-size: clamp(3rem, 3.0967741935vw, 4rem);
-  line-height: 1.2;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  line-height: 1.25;
   font-weight: 300;
-  max-width: 80%;
+  max-width: none;
 }
 
 .desc_row {
-  display: flex;
-  flex-direction: row;
-  gap: 8rem;
-  margin-top: 4rem;
-  justify-content: space-between;
-  width: 100%;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 4vw, 3.2rem);
+  margin-top: clamp(2.4rem, 4vw, 3.6rem);
+  align-items: start;
 }
 
 .desc_row .accordion {
-  max-width: 65%;
   width: 100%;
 }
 
 .accordion p {
-  line-height: 1.4;
-  font-size: 1.6rem;
+  line-height: 1.5;
+  font-size: clamp(1.3rem, 3vw, 1.6rem);
   font-weight: 500;
 }
 
 .desc_row .image {
-  max-width: 30%;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
-  gap: 20px;
+  gap: clamp(1.4rem, 2.5vw, 2rem);
 }
 
 .desc_row .image img {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.desc_row .image h3 {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.desc_row .image p {
+  font-size: clamp(1.4rem, 3.5vw, 1.6rem);
+  line-height: 1.5;
 }
 
 .oursolutions {
-  margin-top: 8rem;
+  margin-top: clamp(4rem, 6vw, 6rem);
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
 .oursolutions h1 {
-  display: inline-flex;
-  align-items: center;
   text-transform: uppercase;
   line-height: 1.25;
-  font-size: 1.4rem;
+  font-size: clamp(1.2rem, 3vw, 1.4rem);
   font-weight: 500;
 }
 
 .oursolutions p {
-  font-size: clamp(3.2rem, 3.0967741935vw, 4.8rem);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
   line-height: 1.2;
   font-weight: 300;
 }
 
 .imageHover {
-  margin-top: 3rem;
-  display: flex;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(1.6rem, 2.5vw, 2.8rem);
   width: 100%;
-  justify-content: space-between;
-  min-height: clamp(360px, 51.6129032258vw, 800px);
-  gap: 0;
 }
 
 .imgBox {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  border: 1px solid#FFF;
-  border-block: none;
-  border-inline: 1px solid transparent;
-  /* Use flex-basis for smoother width transitions in flex containers */
-  flex: 1 1 25%;
-  max-width: 50%;
-  transition:
-    flex-basis 450ms ease,
-    max-width 450ms ease,
-    transform 300ms ease,
-    box-shadow 300ms ease;
-  cursor: pointer;
+  border-radius: 12px;
   overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(16, 24, 40, 0.08);
+  transition: transform 240ms ease, box-shadow 240ms ease;
 }
 
-.imgBox:hover {
-  transform: translateY(-2px);
-}
-
-.imgBox:focus-within {
-  outline: 2px solid var(--primary, #1a73e8);
-  outline-offset: -2px;
-}
-
-.imgBox.active {
-  /* Expand the active box for emphasis */
-  flex-basis: 50%;
-  max-width: 60%;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+.imgBox:focus-visible {
+  outline: 2px solid var(--color-primary, #1a73e8);
+  outline-offset: 3px;
 }
 
 .imgBox img {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  object-position: center;
 }
 
-.text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  position: absolute;
-  transform: scale(1);
-  transition:
-    opacity 0.6s 0.3s,
-    visibility 0.6s 0.3s,
-    transform 0.6s 0.3s;
-  visibility: visible;
-  opacity: 1;
-}
-
-.text img {
-  width: 100px;
-  height: 100px;
-  opacity: 0;
-}
-
-.imgBox:before {
-  display: block;
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  /* above image, below text */
-  /* Subtle top fade to full dim at bottom for readability */
-  background: linear-gradient(to bottom,
-      rgba(0, 0, 0, 0.1) 0%,
-      rgba(0, 0, 0, 0.25) 35%,
-      rgba(0, 0, 0, 0.45) 100%);
-  content: "";
-  transition: opacity 300ms ease;
-}
-
-.imgBox.active:before {
-  /* Slightly stronger overlay when active for best contrast */
-  background: linear-gradient(to bottom,
-      rgba(0, 0, 0, 0.452) 0%,
-      rgba(0, 0, 0, 0.568) 35%,
-      rgba(0, 0, 0, 0.55) 100%);
-}
-
-/* Better text readability and subtle reveal on activate */
 .imgBox .text {
-  color: #fff;
-  text-align: center;
-  padding: 1rem;
-  z-index: 2;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
+  padding: clamp(1.6rem, 3vw, 2.4rem);
+  background: #fff;
+  color: var(--text-primary, #0f172a);
+  text-align: left;
+  flex-grow: 1;
 }
 
-.imgBox:not(.active) .text h3 {
-  font-size: 30px;
+.imgBox .text img {
+  width: 56px;
+  height: 56px;
+  opacity: 1;
 }
 
 .imgBox .text h3 {
-  font-size: clamp(2rem, 3.0967741935vw, 3rem);
-  line-height: 1.2;
-  font-weight: 300;
-  max-width: 70%;
+  font-size: clamp(1.6rem, 4vw, 2rem);
+  line-height: 1.3;
+  font-weight: 500;
 }
 
 .imgBox .text p {
-  max-width: 36ch;
-  font-size: 20px;
+  font-size: clamp(1.4rem, 3.5vw, 1.6rem);
+  line-height: 1.5;
   opacity: 1;
 }
 
-.imgBox:not(.active) .text p {
-  opacity: 0;
-}
-
-.imgBox.active .text {
-  transform: scale(1.03);
-}
-
-.imgBox.active .text img {
-  opacity: 1;
+@media (hover: hover) {
+  .imgBox:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px rgba(15, 24, 40, 0.18);
+  }
 }
 
 .Transportation_text {
-  margin-top: 6rem;
-  display: flex;
-  align-items: flex-start;
-  width: 100%;
-  overflow: hidden;
-  max-height: 29rem;
-  margin-bottom: 4rem;
-}
-
-.Transportation_text .image_box {
-  max-width: 50%;
-  flex-grow: 1;
-  position: relative;
-  min-height: 100%;
+  margin-top: clamp(4rem, 6vw, 6rem);
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
 }
 
 .Transportation_text .image_box img {
   width: 100%;
+  border-radius: 12px;
   object-fit: cover;
-  min-height: 100%;
 }
 
 .Transportation_text .content_box {
-  max-width: 50%;
+  border-radius: 12px;
   background-color: var(--color-primary);
   color: #fff;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  height: 100%;
-  padding-inline: 5.42%;
-  min-height: 100%;
-  padding-block: 6.4rem;
+  gap: clamp(1.2rem, 3vw, 2rem);
+  padding: clamp(2.4rem, 5vw, 4rem);
 }
 
-.content_box h4 {
+.content_box .h4 {
   line-height: 1.4;
-  font-size: 2.3rem;
-  font-weight: 400;
+  font-size: clamp(1.8rem, 4vw, 2.3rem);
+  font-weight: 500;
 }
 
 .content_box p {
-  line-height: 1.4;
-  font-size: 1.4rem;
+  line-height: 1.5;
+  font-size: clamp(1.4rem, 3.5vw, 1.6rem);
   font-weight: 400;
 }
 
-/* Reduce motion for users that prefer it */
-@media (prefers-reduced-motion: reduce) {
-  .imgBox {
-    transition: none;
-  }
-
-  .text {
-    transition: none;
-  }
-}
-
-/* Responsive styles */
-@media (max-width: 1200px) {
+@media (min-width: 768px) {
   .services {
-    margin-top: 6rem;
-  }
-
-  .services .titDesc {
-    max-width: 90%;
-  }
-
-  .desc_row {
-    gap: 4rem;
-  }
-
-  .oursolutions {
-    margin-top: 6rem;
-  }
-
-  .text img {
-    max-width: 50px;
-    height: 50px;
-  }
-
-  .imgBox .text h3 {
-    max-width: 90%;
-    font-size: 22px
-  }
-
-  .imgBox .text p {
-    font-size: 18px
-  }
-
-  .imgBox:not(.active) .text p {
-    display: none;
-  }
-
-  .imgBox:not(.active) .text h3 {
-    font-size: 22px;
-  }
-
-  .Transportation_text {
-    min-height: 22rem;
-  }
-
-  .Transportation_text .content_box {
-    padding-block: 2rem;
-    min-height: 20rem;
-  }
-
-  .content_box p {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .services {
-    margin-top: 4rem;
-    gap: 1.5rem;
-  }
-
-  .services .titDesc {
-    max-width: 95%;
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
-  }
-
-  .desc_row {
-    gap: 3rem;
-    margin-top: 3rem;
-  }
-
-  .desc_row .accordion {
-    max-width: 60%;
-  }
-
-  .desc_row .image {
-    max-width: 35%;
-  }
-
-  .oursolutions {
-    margin-top: 5rem;
-  }
-
-  .oursolutions p {
-    font-size: clamp(2.8rem, 4vw, 4.2rem);
-  }
-
-  .imageHover {
-    margin-top: 2.5rem;
-    min-height: clamp(300px, 45vw, 600px);
-  }
-
-  .imgBox .text p {
-    font-size: 18px;
-  }
-
-  .content_box p {
-    line-height: 1;
-    font-size: 1rem;
-  }
-
-  .Transportation_text .image_box img {
-    min-height: 24rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .breadcrumbs {
-    font-size: 1.4rem;
-    margin-bottom: 2rem;
-  }
-
-  .breadcrumbs a,
-  .breadcrumbs .current {
-    display: inline-block;
-    max-width: 150px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .services {
-    margin-top: 3rem;
-    gap: 1.2rem;
+    margin-top: clamp(3.2rem, 4vw, 4.8rem);
+    gap: clamp(2rem, 3vw, 3rem);
   }
 
   .services h1 {
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-size: clamp(2rem, 3vw, 2.8rem);
   }
 
   .services .titDesc {
-    max-width: 100%;
-    font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+    font-size: clamp(2.4rem, 3.6vw, 3.4rem);
+    max-width: min(90%, 60ch);
   }
 
   .desc_row {
-    flex-direction: column;
-    gap: 2.5rem;
-    margin-top: 2.5rem;
-  }
-
-  .desc_row .accordion,
-  .desc_row .image {
-    max-width: 100%;
+    gap: clamp(2.4rem, 3vw, 4rem);
   }
 
   .accordion p {
-    font-size: 1.4rem;
-  }
-
-  .oursolutions {
-    margin-top: 4rem;
-  }
-
-  .oursolutions h1 {
-    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
-  }
-
-  .oursolutions p {
-    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-size: clamp(1.4rem, 2.5vw, 1.7rem);
   }
 
   .imageHover {
-    flex-direction: column;
-    margin-top: 2rem;
-    min-height: auto;
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .imgBox .text {
+    padding: clamp(2rem, 3vw, 2.8rem);
+  }
+
+  .Transportation_text {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    align-items: stretch;
+  }
+
+  .Transportation_text .content_box {
+    padding: clamp(3rem, 4vw, 4.8rem);
+  }
+}
+
+@media (min-width: 900px) {
+  .desc_row {
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.9fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .services h1 {
+    font-size: clamp(2.2rem, 2.4vw, 3rem);
+  }
+
+  .services .titDesc {
+    font-size: clamp(2.8rem, 3vw, 3.8rem);
+  }
+
+  .desc_row {
+    margin-top: clamp(3.6rem, 4vw, 4.8rem);
+    gap: clamp(3rem, 4vw, 5rem);
+  }
+
+  .oursolutions {
+    margin-top: clamp(5rem, 6vw, 7rem);
+  }
+
+  .oursolutions p {
+    font-size: clamp(3.2rem, 3vw, 4.4rem);
+  }
+
+  .imageHover {
+    display: flex;
+    gap: clamp(1.8rem, 2.2vw, 2.4rem);
   }
 
   .imgBox {
-    flex: 1 1 auto;
-    max-width: 100%;
-    min-height: 250px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
+    flex: 1 1 0;
+    min-height: clamp(360px, 30vw, 520px);
+    box-shadow: none;
+  }
+
+  .imgBox img {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .imgBox::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.45) 65%, rgba(0, 0, 0, 0.65) 100%);
+    transition: opacity 240ms ease;
+    opacity: 1;
+  }
+
+  .imgBox .text {
+    position: absolute;
+    inset: 0;
+    background: none;
+    color: #fff;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .imgBox .text img {
+    width: clamp(74px, 8vw, 100px);
+    height: clamp(74px, 8vw, 100px);
+    opacity: 0;
+    transition: opacity 240ms ease;
+  }
+
+  .imgBox .text h3 {
+    font-size: clamp(2rem, 2.6vw, 3rem);
+    max-width: 70%;
+  }
+
+  .imgBox .text p {
+    max-width: 36ch;
+    opacity: 0;
+    transition: opacity 240ms ease;
   }
 
   .imgBox.active {
-    flex-basis: auto;
-    max-width: 100%;
-    transform: scale(1.02);
-    min-height: 460px;
+    flex-grow: 1.35;
+    box-shadow: 0 18px 48px rgba(15, 24, 40, 0.3);
+    transform: translateY(-2px);
   }
 
-  .imgBox.active>img {
-    min-height: 420px;
+  .imgBox.active::before {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.32) 0%, rgba(0, 0, 0, 0.58) 65%, rgba(0, 0, 0, 0.65) 100%);
   }
 
-  .imgBox .text h3 {
-    font-size: clamp(1.2rem, 4vw, 2rem);
-    max-width: 90%;
+  .imgBox.active .text {
+    transform: scale(1.03);
   }
 
-  .imgBox .text p {
-    font-size: 1.2rem;
-    max-width: 90%;
-  }
-
-  .imgBox:not(.active) .text p {
+  .imgBox.active .text img,
+  .imgBox.active .text p {
     opacity: 1;
   }
-}
 
-@media (max-width: 480px) {
-  .container {
-    padding-inline: 1rem;
+  .imgBox:not(.active) .text h3 {
+    font-size: clamp(1.8rem, 2.3vw, 2.6rem);
   }
 
-  .breadcrumbs {
-    font-size: 1.2rem;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .breadcrumbs a,
-  .breadcrumbs .current {
-    max-width: 120px;
-  }
-
-  .services {
-    margin-top: 2rem;
-    gap: 1rem;
-  }
-
-  .services h1 {
-    font-size: clamp(1.6rem, 4vw, 2rem);
-  }
-
-  .services .titDesc {
-    font-size: clamp(1.8rem, 5vw, 2.8rem);
-  }
-
-  .desc_row {
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .accordion p {
-    font-size: 1.3rem;
-  }
-
-  .oursolutions {
-    margin-top: 3rem;
-  }
-
-  .oursolutions h1 {
-    font-size: clamp(1.1rem, 3vw, 1.3rem);
-  }
-
-  .oursolutions p {
-    font-size: clamp(1rem, 6vw, 3.2rem);
-  }
-
-  .imageHover {
-    margin-top: 1.5rem;
-    gap: 0.8rem;
-  }
-
-  .imgBox {
-    min-height: 200px;
-    border-radius: 6px;
-  }
-
-  .imgBox.active>img {
-    min-height: 520px;
-  }
-
-  .imgBox .text {
-    padding: 0.8rem;
-    gap: 0.8rem;
-  }
-
-  .imgBox .text img {
-    width: 40px;
-    height: 40px;
-  }
-
-  .imgBox .text h3 {
-    font-size: clamp(1rem, 4.5vw, 1.6rem);
-    max-width: 95%;
-  }
-
-  .imgBox .text p {
-    font-size: 1rem;
-    max-width: 95%;
-    line-height: 1.3;
-  }
-}
-
-@media (max-width: 320px) {
-  .container {
-    padding-inline: 0.8rem;
-  }
-
-  .services {
-    margin-top: 1.5rem;
-  }
-
-  .services .titDesc {
-    font-size: clamp(1.6rem, 6vw, 2.4rem);
-  }
-
-  .desc_row {
-    gap: 1.5rem;
-  }
-
-  .oursolutions {
-    margin-top: 2.5rem;
-  }
-
-  .oursolutions p {
-    font-size: clamp(1rem, 7vw, 2.8rem);
-  }
-
-  .imageHover {
-    gap: 0.6rem;
-  }
-
-  .imgBox {
-    min-height: 180px;
-  }
-
-  .imgBox .text {
-    padding: 0.6rem;
-  }
-
-  .imgBox .text img {
-    width: 50px;
-    height: 50px;
-  }
-
-  .imgBox .text h3 {
-    font-size: clamp(1.2rem, 5vw, 1.8rem);
-  }
-
-  .imgBox .text p {
-    font-size: 1.2rem;
-  }
-}
-
-
-
-/* Responsive layout for Transportation_text */
-@media (max-width: 1024px) {
   .Transportation_text {
-    max-height: none;
-  }
-
-  .Transportation_text .content_box {
-    padding-block: 4.8rem;
-    padding-inline: 4%;
-  }
-}
-
-@media (max-width: 768px) {
-  .Transportation_text {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 2rem;
-  }
-
-  .Transportation_text .image_box,
-  .Transportation_text .content_box {
-    max-width: 100%;
-    min-height: auto;
+    grid-template-columns: minmax(320px, 1.1fr) minmax(280px, 0.9fr);
+    gap: clamp(2.8rem, 3vw, 4rem);
+    margin-bottom: 4rem;
   }
 
   .Transportation_text .image_box img {
-    height: auto;
-    max-height: 50vh;
-  }
-
-  .content_box h4 {
-    font-size: 2rem;
-  }
-
-  .content_box p {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .Transportation_text {
-    margin-top: 4rem;
-    margin-bottom: 3rem;
+    height: 100%;
+    border-radius: 12px 0 0 12px;
   }
 
   .Transportation_text .content_box {
-    padding-block: 3.6rem;
-    padding-inline: 6%;
-    gap: 1.2rem;
+    border-radius: 0 12px 12px 0;
+    align-self: stretch;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1200px) {
+  .services {
+    margin-top: 8rem;
   }
 
-  .content_box h4 {
-    font-size: 1.8rem;
+  .Transportation_text {
+    margin-top: 6.4rem;
   }
+}
 
-  .content_box p {
-    font-size: 1rem;
+@media (prefers-reduced-motion: reduce) {
+  .imgBox,
+  .imgBox::before,
+  .imgBox .text,
+  .imgBox .text img,
+  .imgBox .text p {
+    transition: none !important;
   }
 }
 </style>

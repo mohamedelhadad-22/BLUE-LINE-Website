@@ -805,7 +805,11 @@
                 "term": "Warehousing",
                 "definition": "The storage of goods in a facility before they are transported to their final destination."
             }
-        ]
+        ],
+        "Company":"Company",
+        "Booking": "Booking",
+        "PriorBooking": "Prior to Booking",
+        "Documentation": "Documentation"
     },
     "aboutPage": {
         "Aboutus": "About Us",
