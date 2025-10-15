@@ -16,7 +16,7 @@ export default defineComponent({
         { id: "home", title: "home" },
         { id: "mission", title: "mission" },
         { id: "about", title: "about" },
-        { id: "ceo", title: "ceo" },
+        // { id: "ceo", title: "ceo" },
         { id: "services", title: "services" },
         // { id: "routes", title: "routes" },
         { id: "sustainability", title: "sustainability" },
