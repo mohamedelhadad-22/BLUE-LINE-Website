@@ -1,6 +1,5 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import FeedbackModal from "@/components/common/FeedbackModal.vue";
 
 type FooterLink = {
   labelKey: string;
@@ -14,9 +13,6 @@ type FooterSection = {
 
 export default defineComponent({
   name: "AppFooter",
-  components: {
-    FeedbackModal,
-  },
   data() {
     return {
       sections: [
@@ -51,7 +47,6 @@ export default defineComponent({
               labelKey: "footer.sections.business.links.faq",
               to: "/faq-glossary",
             },
-            { labelKey: "footer.sections.business.links.fleet", to: "/fleet" },
           ],
         },
         {
@@ -68,17 +63,6 @@ export default defineComponent({
           ],
         },
       ] as FooterSection[],
-      socialLinks: [
-        { id: "linkedin", href: "https://www.linkedin.com", label: "LinkedIn" },
-        { id: "x", href: "https://www.twitter.com", label: "X" },
-        {
-          id: "instagram",
-          href: "https://www.instagram.com",
-          label: "Instagram",
-        },
-        { id: "facebook", href: "https://www.facebook.com", label: "Facebook" },
-      ],
-      isFeedbackOpen: false,
     };
   },
   computed: {
@@ -89,17 +73,6 @@ export default defineComponent({
       return this.isArabic ? "rtl" : "ltr";
     },
   },
-  methods: {
-    scrollToTop() {
-      if (typeof window === "undefined") {
-        return;
-      }
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    },
-    openFeedback() {
-      this.isFeedbackOpen = true;
-    },
-  },
 });
 </script>
 
@@ -108,25 +81,24 @@ export default defineComponent({
     <div class="footer-shell">
       <div class="footer-top">
         <div class="footer-brand">
-          <div class="footer-logo" aria-hidden="true">
-            <span class="footer-logo__mark">Blue</span>
-            <span class="footer-logo__text">Line</span>
+          <div class="logo_svg">
+            <img src="@/assets/BL_Logo Png-03 1.svg" alt="" />
+          </div>
+          <div class="text">
+            <div class="footer-logo">
+              <span class="footer-logo__mark">Blueline</span>
+            </div>
+            <p class="footer-tagline">
+              Seamless experiences from booking to delivery.
+            </p>
+            <p class="footer-description">
+              Blue Line Services company was established in 2023 with a mission
+              to connect regional ports seamlessly and catalyze trade across the
+              Middle East, India, and East Africa.
+            </p>
           </div>
         </div>
-        <div class="footer-feedback">
-          <button
-            class="footer-feedback__cta"
-            type="button"
-            @click="openFeedback"
-          >
-            {{ $t("footer.feedback.text") }}
-          </button>
-        </div>
-      </div>
 
-      <hr class="footer-divider" />
-
-      <div class="footer-body">
         <div class="footer-columns">
           <section
             v-for="section in sections"
@@ -145,163 +117,98 @@ export default defineComponent({
             </ul>
           </section>
         </div>
-
-        <div class="footer-badge">
-          <div class="footer-badge__seal" aria-hidden="true">
-            <span>⛵</span>
-          </div>
-          <span class="footer-badge__text">{{ $t("footer.pifLabel") }}</span>
-        </div>
       </div>
-
-      <hr class="footer-divider" />
 
       <div class="footer-bottom">
         <div class="footer-legal">
-          <span>{{ $t("footer.legal.copyright") }}</span>
-          <RouterLink to="/privacy-policy">
-            {{ $t("footer.legal.privacy") }}
-          </RouterLink>
-          <RouterLink to="/terms-conditions">
-            {{ $t("footer.legal.terms") }}
-          </RouterLink>
-        </div>
-
-        <button class="footer-top__button" type="button" @click="scrollToTop">
-          <span class="footer-top__icon" aria-hidden="true">⌃</span>
-          <span class="sr-only">{{ $t("footer.backToTop") }}</span>
-        </button>
-
-        <div class="footer-social">
-          <span class="footer-social__label">{{ $t("footer.follow") }}</span>
-          <ul class="footer-social__list">
-            <li v-for="item in socialLinks" :key="item.id">
-              <a
-                :href="item.href"
-                target="_blank"
-                rel="noopener"
-                :aria-label="item.label"
-              >
-                <span
-                  :class="['icon', `icon--${item.id}`]"
-                  aria-hidden="true"
-                ></span>
-              </a>
-            </li>
-          </ul>
+          <span>© Blue Line. All Rights Reserved 2025</span>
+          <RouterLink to="/privacy-policy">Privacy Policy</RouterLink>
+          <RouterLink to="/terms-conditions">Terms & Conditions</RouterLink>
         </div>
       </div>
     </div>
   </footer>
-  <FeedbackModal v-model="isFeedbackOpen" />
 </template>
 
 <style scoped>
 .footer {
-  background: var(--color-primary);
-  color: rgba(255, 255, 255, 0.82);
-  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 6vw, 4rem);
+  background: #1d3a8f;
+  color: #fff;
+  padding: 100px 20px 30px 20px;
   display: flex;
   justify-content: center;
 }
 
 .footer-shell {
   width: 100%;
-  max-width: 1240px;
+  max-width: 1400px;
   display: flex;
   flex-direction: column;
-  gap: clamp(2rem, 4vw, 3rem);
+  gap: 48px;
 }
 
 .footer-top {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1.5rem;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 60px;
+  align-items: start;
 }
 
 .footer-brand {
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  gap: 33px;
 }
-
-.footer-logo {
-  display: inline-flex;
+.footer-brand .logo_svg img {
+  width: 118px;
+  height: 118px;
+  aspect-ratio: 1/1;
+}
+.text {
+  display: flex;
   flex-direction: column;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--color-primary);
+  gap: 16px;
+  max-width: 400px;
+}
+.footer-logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .footer-logo__mark {
-  font-size: 1.8rem;
-  line-height: 1;
+  font-size: 24px;
+  font-weight: 700;
   color: #fff;
+  letter-spacing: 0.5px;
 }
 
-.footer-logo__text {
-  font-size: 0.75rem;
-  color: #fff;
-}
-
-.footer-feedback__cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.85rem 1.75rem;
-  border-radius: 9px;
-  background: var(--color-accent);
-  color: #fff;
-  font-weight: 600;
-  font-size: 0.95rem;
-  text-align: center;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-  min-width: 240px;
-  border: none;
-  cursor: pointer;
-}
-
-.footer-feedback__cta:hover,
-.footer-feedback__cta:focus-visible {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 32px var(--color-accent);
-}
-
-.footer-feedback__cta:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 3px;
-}
-
-.footer-divider {
-  border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+.footer-tagline {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
   margin: 0;
+  line-height: 1.5;
 }
 
-.footer-body {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(2rem, 4vw, 3rem);
-  justify-content: space-between;
+.footer-description {
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin: 0;
 }
 
 .footer-columns {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(2rem, 3vw, 3rem);
-  flex: 1 1 60%;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
 }
 
 .footer-column__title {
-  margin: 0 0 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
 }
 
 .footer-links {
@@ -310,201 +217,91 @@ export default defineComponent({
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 12px;
 }
 
 .footer-links a {
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 0.98rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
   text-decoration: none;
   transition: color 0.2s ease;
+  line-height: 1.5;
 }
 
 .footer-links a:hover,
 .footer-links a:focus-visible {
-  color: var(--color-accent);
-}
-
-.footer-badge {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  min-width: 200px;
-  align-self: flex-start;
-}
-
-.footer-badge__seal {
-  width: 68px;
-  height: 68px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: var(--color-accent);
-  background: var(--color-accent);
-}
-
-.footer-badge__text {
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.82);
+  color: #fff;
+  text-decoration: underline;
 }
 
 .footer-bottom {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1.5rem;
-  justify-content: space-between;
+  justify-content: center;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-legal {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 16px;
   align-items: center;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  justify-content: center;
 }
 
 .footer-legal a {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .footer-legal a:hover,
 .footer-legal a:focus-visible {
-  color: var(--color-accent);
+  color: #fff;
+  text-decoration: underline;
 }
 
-.footer-top__button {
-  border: none;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 0.25rem 0.5rem;
-  border-radius: 6px;
-  transition:
-    color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.footer-top__button:hover,
-.footer-top__button:focus-visible {
-  color: var(--color-accent);
-  transform: translateY(-2px);
-}
-
-.footer-social {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.footer-social__label {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.footer-social__list {
-  display: flex;
-  gap: 0.75rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-social__list a {
-  display: inline-flex;
-  width: 36px;
-  height: 36px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.82);
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
-}
-
-.footer-social__list a:hover,
-.footer-social__list a:focus-visible {
-  background: rgba(127, 253, 99, 0.2);
-  transform: translateY(-1px);
-}
-
-.icon {
-  font-size: 0.9rem;
-}
-
-.icon--linkedin::before {
-  content: "in";
-  font-weight: 700;
-}
-
-.icon--x::before {
-  content: "𝕏";
-}
-
-.icon--instagram::before {
-  content: "◎";
-}
-
-.icon--facebook::before {
-  content: "f";
-  font-weight: 700;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-@media (max-width: 960px) {
-  .footer-columns {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .footer-badge {
-    order: -1;
-  }
-}
-
-@media (max-width: 640px) {
-  .footer-shell {
-    gap: 2rem;
-  }
-
+/* Responsive Styles */
+@media (max-width: 1024px) {
   .footer-top {
-    flex-direction: column;
-    align-items: flex-start;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .footer-brand {
+    max-width: 100%;
+  }
+
+  .footer-columns {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 20px 20px;
+  }
+
+  .footer-shell {
+    gap: 32px;
   }
 
   .footer-columns {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   .footer-bottom {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+    padding-top: 20px;
   }
 
-  .footer-social {
-    width: 100%;
-    justify-content: flex-start;
+  .footer-legal {
+    flex-direction: column;
+    gap: 12px;
+    font-size: 13px;
   }
 }
 </style>

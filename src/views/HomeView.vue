@@ -36,7 +36,7 @@ export default defineComponent({
         "home",
         "mission",
         "about",
-        "ceo",
+        // "ceo",
         "services",
         "sustainability",
         "news",
@@ -187,7 +187,7 @@ export default defineComponent({
 
     <OurMission id="mission" />
     <AboutSection id="about" />
-    <CeoSection id="ceo" />
+    <!-- <CeoSection id="ceo" /> -->
 
     <!-- Services section -->
     <ServicesSection ref="servicesSectionRef" />

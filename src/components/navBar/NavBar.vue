@@ -11,10 +11,21 @@
         <img src="@/assets/logo.png" alt="logo" />
       </RouterLink>
 
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav">
+        <RouterLink class="nav-link" to="/">Home</RouterLink>
+        <RouterLink class="nav-link" to="/about">About Us</RouterLink>
+        <RouterLink class="nav-link" to="/contact">Contact Us</RouterLink>
+        <RouterLink class="nav-link" to="/faq-glossary">FAQ</RouterLink>
+      </nav>
+
       <div class="actions">
-        <button class="lang" @click="toggleLang">
-          {{ $t?.("langSwitch") ?? "AR/EN" }}
-        </button>
+        <!-- <button class="lang" @click="toggleLang">
+          {{ currentLang === 'en' ? 'EN' : 'AR' }}
+        </button> -->
+        <RouterLink class="contact-btn" to="/contact">
+          Contact Us
+        </RouterLink>
         <button
           class="burger"
           :aria-expanded="isOpen"
@@ -167,18 +178,88 @@ export default defineComponent({
   object-fit: contain;
 }
 
+/* Desktop Navigation */
+.desktop-nav {
+  display: none;
+  gap: 32px;
+  align-items: center;
+  margin-inline-start: auto;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  opacity: 0.8;
+}
+
+.nav-link.router-link-active {
+  font-weight: 500;
+}
+
+.header--relative .nav-link {
+  color: #0d3a34;
+}
+
 .actions {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   align-items: center;
+  margin-inline-start: auto;
 }
 
 .lang {
   background: none;
   border: 0;
   color: #fff;
-  padding: 8px 10px;
+  padding: 8px 12px;
   cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.lang:hover {
+  opacity: 0.8;
+}
+
+.header--relative .lang {
+  color: #0d3a34;
+}
+
+.contact-btn {
+  display: none;
+  padding: 10px 24px;
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.contact-btn:hover {
+  background: #fff;
+  color: #0d3a34;
+}
+
+.header--relative .contact-btn {
+  border-color: #0d3a34;
+  color: #0d3a34;
+}
+
+.header--relative .contact-btn:hover {
+  background: #0d3a34;
+  color: #fff;
 }
 
 .burger {
@@ -245,11 +326,39 @@ export default defineComponent({
 .header--open .burger span {
   background: #0d3a34;
 }
-@media (prefers-color-scheme: light) {
-  .lang,
-  .burger span {
-    color: #0d3a34;
-    /* background: #0d3a34; */
+
+/* Responsive Styles */
+/* Desktop: Show horizontal nav, hide burger */
+@media (min-width: 1024px) {
+  .desktop-nav {
+    display: flex;
+  }
+
+  .contact-btn {
+    display: inline-block;
+  }
+
+  .burger {
+    display: none;
+  }
+
+  .actions {
+    margin-inline-start: 32px;
+  }
+}
+
+/* Tablet and Mobile: Hide horizontal nav, show burger */
+@media (max-width: 1023px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .contact-btn {
+    display: none;
+  }
+
+  .burger {
+    display: block;
   }
 }
 </style>
