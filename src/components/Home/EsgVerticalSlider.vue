@@ -6,7 +6,7 @@
     :aria-label="ariaLabel"
   >
     <div
-      class="rail"
+      class="rail container"
       ref="rail"
       @wheel.passive="onWheel"
       @scroll.passive="onScroll"
@@ -183,6 +183,11 @@ function buildThresholds() {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   scrollbar-width: none;
+  padding-right: 30px;
+}
+.arabic .rail {
+  padding-right: 0;
+  padding-left: 30px;
 }
 .rail::-webkit-scrollbar {
   width: 0;
@@ -271,28 +276,26 @@ function buildThresholds() {
   left: -30px;
 }
 .dot {
-  width: 12px;
-  height: 12px;
-  transform: rotate(45deg);
-  border: 2px solid #204a42;
+  width: 22px;
+  height: 22px;
   background: transparent;
-  border-radius: 2px;
   cursor: pointer;
   transition:
     transform 0.25s ease,
     background-color 0.25s ease,
     border-color 0.25s ease;
+  border: none;
+  outline: none;
+  background: url("@/assets/shield-01.svg");
 }
 .dot:hover {
-  transform: rotate(45deg) scale(1.1);
+  transform: scale(1.1);
 }
 .dot.active {
-  background: #22c55e;
-  border-color: #22c55e;
+  background: url("@/assets/shield-active.svg");
 }
 .dot.active:nth-child(odd) {
-  background: #7c3aed;
-  border-color: #7c3aed;
+  background: url("@/assets/shield-active.svg");
 }
 
 @media (max-width: 960px) {

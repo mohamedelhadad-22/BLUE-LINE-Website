@@ -9,12 +9,14 @@ import NewsSection from "@/components/Home/NewsSection.vue";
 import CareersSection from "@/components/Home/CareersSection.vue";
 import AboutSection from "@/components/Home/About.vue";
 import asideMenu from "@/components/Home/asideMenu.vue";
+import OurLocations from "@/components/Home/OurLocations.vue";
 import { useLinkedScroll } from "@/composables/useLinkedScroll";
 import EsgVerticalSlider from "@/components/Home/EsgVerticalSlider.vue";
-import sliderOne from "@/assets/sustainability-03.large.webp"
-import sliderTow from "@/assets/WhatsApp-Image-1446-10-29-at-15-32-47.large.jpg"
-import sliderThree from "@/assets/WhatsApp-Image-1446-10-29-at-14-52-43.large.jpg"
+import sliderOne from "@/assets/sustainability-03.large.webp";
+import sliderTow from "@/assets/WhatsApp-Image-1446-10-29-at-15-32-47.large.jpg";
+import sliderThree from "@/assets/WhatsApp-Image-1446-10-29-at-14-52-43.large.jpg";
 type ParallaxInstance = { destroy: () => void } | null;
+import commonButton from "@/components/resuble/common_button.vue";
 
 export default defineComponent({
   name: "HomeView",
@@ -27,7 +29,9 @@ export default defineComponent({
     CareersSection,
     AboutSection,
     asideMenu,
+    OurLocations,
     EsgVerticalSlider,
+    commonButton,
   },
   data() {
     return {
@@ -39,6 +43,7 @@ export default defineComponent({
         // "ceo",
         "services",
         "sustainability",
+        "locations",
         "news",
         "career",
       ],
@@ -169,6 +174,12 @@ export default defineComponent({
           <p class="hero-subtitle js-parallax" data-rellax-speed="-1">
             Seamless experiences from booking to delivery.
           </p>
+          <commonButton
+            :text="$t('Discover More')"
+            buttonType="XL"
+            :click="scrollToSection('mission')"
+            :isBlueColor="true"
+          />
           <!-- <div class="hero-ornaments">
             <span
               class="hero-ornament hero-ornament--primary js-parallax"
@@ -192,10 +203,12 @@ export default defineComponent({
     <!-- Services section -->
     <ServicesSection ref="servicesSectionRef" />
 
-    <EsgVerticalSlider :slides="slides" id="sustainability"/>
+    <EsgVerticalSlider :slides="slides" id="sustainability" />
     <!-- <div class="sustainability_section" id="sustainability">
       {{ $t("sustainability") }}
     </div> -->
+
+    <OurLocations id="locations" />
 
     <NewsSection id="news" />
     <CareersSection id="career" />
@@ -237,19 +250,22 @@ export default defineComponent({
   font-size: clamp(2.5rem, 4vw + 1rem, 4.5rem);
   font-weight: 700;
   margin: 0;
+  align-items: flex-start;
 }
 
 .hero-line {
   line-height: 1.1;
 }
 .hero-line--accent {
-  color: #262262;
+  color: #2aa1d8;
 }
 
 .hero-subtitle {
   margin-top: 1.5rem;
   font-size: clamp(1rem, 1vw + 0.8rem, 1.5rem);
   color: rgba(255, 255, 255, 0.85);
+  text-align: start;
+  margin-bottom: 61px;
 }
 
 .hero-ornaments {
@@ -284,5 +300,11 @@ export default defineComponent({
     rgba(64, 168, 248, 0.7),
     rgba(64, 168, 248, 0)
   );
+}
+</style>
+<style>
+.hero-content .common_button_default {
+  max-width: 322px;
+  width: 100%;
 }
 </style>

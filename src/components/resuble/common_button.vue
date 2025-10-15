@@ -31,6 +31,11 @@ export default {
       required: false,
       nullable: true,
     },
+    isBlueColor: {
+      type: Boolean,
+      required: false,
+      nullable: true,
+    },
     isSubmitButton: {
       type: Boolean,
       required: false,
@@ -63,6 +68,7 @@ export default {
       common_button_full_width: fullWidth,
       common_button_red: isRedColor,
       disabled: disabled,
+      isBlueColor: isBlueColor,
     }"
     :disabled="disabled"
   >
@@ -147,7 +153,10 @@ export default {
   background-color: var(--color-primary);
   border: 1px solid var(--color-primary);
 }
-
+.isBlueColor {
+  background-color: #2aa1d8;
+  border: 1px solid #2aa1d8;
+}
 .filter_tenure_clicked {
   background-color: var(--colorF9FAFB);
 }

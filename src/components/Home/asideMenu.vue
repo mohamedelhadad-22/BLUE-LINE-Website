@@ -20,6 +20,7 @@ export default defineComponent({
         { id: "services", title: "services" },
         // { id: "routes", title: "routes" },
         { id: "sustainability", title: "sustainability" },
+        { id: "locations", title: "locations" },
         { id: "news", title: "news" },
         { id: "career", title: "career" },
       ],
@@ -132,11 +133,10 @@ export default defineComponent({
   top: 8px;
   bottom: 4px;
   visibility: visible;
-  background-color: #e3e3e3;
-  width: 1px;
   content: "";
   left: unset;
   right: 16px;
+  background: url("@/assets/shield-01.svg");
 }
 
 .asideMenu.transparent .asideMenu__item {
@@ -170,7 +170,8 @@ export default defineComponent({
 }
 
 .asideMenu.active .asideMenu__item.active:after {
-  background-color: #80fd66;
+  /* background-color: #80fd66; */
+  background: url("@/assets/shield-active.svg");
 }
 
 .arabic .asideMenu__item:after {
@@ -179,7 +180,7 @@ export default defineComponent({
 }
 
 .asideMenu__item.active:after {
-  background-color: #80fd66;
+  background: url("@/assets/shield-active.svg");
 }
 
 .asideMenu__item:after {
@@ -189,12 +190,12 @@ export default defineComponent({
   transition: background-url 0.3s;
   visibility: visible;
   background-color: #fff;
-  width: 12px;
-  height: 12px;
+  width: 22px;
+  height: 22px;
   content: "";
-  transform: rotate(45deg);
+  /* transform: rotate(45deg); */
   right: 0;
-  border: 1px solid #e3e3e3;
+  background: url("@/assets/shield-01.svg");
 }
 
 .arabic .asideMenu__item {
