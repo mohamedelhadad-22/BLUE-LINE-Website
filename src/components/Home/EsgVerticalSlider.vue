@@ -173,7 +173,7 @@ function buildThresholds() {
 <style scoped>
 .esg-rail {
   position: relative;
-  background: #e9f1ee;
+  background: rgba(42, 161, 216, 0.19);
   outline: none;
 }
 

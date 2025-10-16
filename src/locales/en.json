@@ -10,7 +10,8 @@
         "routes": "Routes",
         "sustainability": "Sustainability",
         "news": "News",
-        "career": "Career"
+        "career": "Career",
+        "locations":" Locations"
     },
     "missionSection": {
         "kicker": "Our pillars",

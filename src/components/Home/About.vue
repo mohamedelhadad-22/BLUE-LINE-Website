@@ -105,7 +105,7 @@ export default defineComponent({
   position: relative;
   width: 100%;
   /* padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 8vw, 6rem); */
-  background: #eff6f5;
+  background: rgba(42, 161, 216, 0.19);
   overflow: hidden;
   padding-top: clamp(64px, 9.2903225806vw, 144px);
   padding-bottom: clamp(64px, 9.2903225806vw, 144px);
@@ -163,9 +163,9 @@ export default defineComponent({
   height: 36px;
   border-radius: 10px;
   background: linear-gradient(
-    135deg,
-    rgba(128, 82, 255, 0.85),
-    rgba(82, 224, 255, 0.7)
+    155deg,
+    #1D3A8F,
+    #1d3a8f4f
   );
 }
 
