@@ -1,11 +1,11 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import type { ComponentPublicInstance } from "vue";
-import galleryContainers from "@/assets/career-containers.svg";
-import galleryDetail from "@/assets/career-detail.svg";
-import galleryVessel from "@/assets/career-vessel.svg";
-import galleryTeam from "@/assets/career-team.svg";
-import galleryMeeting from "@/assets/career-meeting.svg";
+import galleryContainers from "@/assets/image 8.png";
+import galleryDetail from "@/assets/image 9.png";
+import galleryVessel from "@/assets/image 7.png";
+import galleryTeam from "@/assets/image 6.png";
+import galleryMeeting from "@/assets/image 5.png";
 
 type GalleryKey = "containers" | "detail" | "vessel" | "team" | "meeting";
 
@@ -30,8 +30,8 @@ export default defineComponent({
         { key: "containers", image: galleryContainers },
         { key: "detail", image: galleryDetail },
         { key: "vessel", image: galleryVessel },
-        { key: "team", image: galleryTeam },
-        { key: "meeting", image: galleryMeeting },
+        { key: "team", image: galleryMeeting },
+        { key: "meeting", image: galleryTeam },
       ] as GalleryItem[],
       isVisible: false,
       rootRef: null as HTMLElement | null,
@@ -228,8 +228,8 @@ export default defineComponent({
   height: 72px;
   background: linear-gradient(
     135deg,
-    rgba(21, 66, 90, 0.18),
-    rgba(64, 208, 171, 0.4)
+    rgba(42, 161, 216, 0.19),
+    rgba(0, 174, 255, 1)
   );
   clip-path: polygon(0 0, 100% 0, 0 100%);
   opacity: 0.8;
@@ -351,7 +351,7 @@ export default defineComponent({
   padding: 0.4rem 1.1rem;
   border-radius: 999px;
   background: rgba(42, 161, 216, 0.19);
-  color: #00AEFF;
+  color: #00aeff;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -366,7 +366,7 @@ export default defineComponent({
   justify-content: center;
   border-radius: 12px;
   box-shadow: 0 10px 24px rgba(42, 161, 216, 0.19);
-  background: linear-gradient(135deg, #00AEFF, #1D3A8F);
+  background: linear-gradient(135deg, #00aeff, #1d3a8f);
 }
 
 .careers-label__icon svg {
@@ -401,7 +401,7 @@ export default defineComponent({
   justify-content: center;
   padding: 0.85rem 2.5rem;
   border-radius: 10px;
-  background: linear-gradient(135deg, #00AEFF, #1D3A8F);
+  background: linear-gradient(135deg, #00aeff, #1d3a8f);
   color: #fff;
   font-weight: 600;
   font-size: 1rem;

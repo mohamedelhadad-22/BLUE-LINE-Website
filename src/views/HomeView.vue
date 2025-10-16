@@ -12,9 +12,12 @@ import asideMenu from "@/components/Home/asideMenu.vue";
 import OurLocations from "@/components/Home/OurLocations.vue";
 import { useLinkedScroll } from "@/composables/useLinkedScroll";
 import EsgVerticalSlider from "@/components/Home/EsgVerticalSlider.vue";
+
 import sliderOne from "@/assets/sustainability-03.large.webp";
 import sliderTow from "@/assets/WhatsApp-Image-1446-10-29-at-15-32-47.large.jpg";
 import sliderThree from "@/assets/WhatsApp-Image-1446-10-29-at-14-52-43.large.jpg";
+
+
 type ParallaxInstance = { destroy: () => void } | null;
 import commonButton from "@/components/resuble/common_button.vue";
 export default defineComponent({
@@ -50,7 +53,7 @@ export default defineComponent({
       _unlinkNested: null as null | (() => void),
       slides: [
         {
-          heading: "Folk Maritime Contributes to Global Sustainability Goals",
+          heading: "Blue Line Contributes to Global Sustainability Goals",
           copy: "We are committed to maritime decarbonization and intend to implement sustainable solutions that mitigate the environmental impact of our activity.",
           image: shallowRef(sliderOne),
           alt: "Green valley and river",
@@ -260,7 +263,7 @@ export default defineComponent({
 
 .hero-subtitle {
   margin-top: 1.5rem;
-  font-size: clamp(1rem, 1vw + 0.8rem, 1.5rem);
+  font-size: clamp(1.4rem, 1vw + 0.8rem, 2.5rem);
   color: rgba(255, 255, 255, 0.85);
   text-align: start;
   margin-bottom: 61px;
