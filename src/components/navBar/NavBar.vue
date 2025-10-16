@@ -6,14 +6,28 @@
       { 'header--open': isOpen },
     ]"
   >
-    <div class="container header__row">
+    <div class="header__row">
       <RouterLink class="logo" to="/">
-        <img src="@/assets/logo.png" alt="logo" />
+        <img src="@/assets/svg/BL_Logo Png-03 1.svg" alt="logo" />
       </RouterLink>
 
       <!-- Desktop Navigation -->
       <nav class="desktop-nav">
-        <RouterLink class="nav-link" to="/">Home</RouterLink>
+        <RouterLink class="nav-link active" to="/"
+          >Home
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="29"
+            height="8"
+            viewBox="0 0 29 8"
+            fill="none"
+          >
+            <path
+              d="M14.75 3.25L28.25 0.75L14.75 7.25L0.75 0.75L14.75 3.25Z"
+              fill="white"
+            />
+          </svg>
+        </RouterLink>
         <RouterLink class="nav-link" to="/about">About Us</RouterLink>
         <RouterLink class="nav-link" to="/contact">Contact Us</RouterLink>
         <RouterLink class="nav-link" to="/faq-glossary">FAQ</RouterLink>
@@ -23,9 +37,7 @@
         <!-- <button class="lang" @click="toggleLang">
           {{ currentLang === 'en' ? 'EN' : 'AR' }}
         </button> -->
-        <RouterLink class="contact-btn" to="/contact">
-          Contact Us
-        </RouterLink>
+        <RouterLink class="contact-btn" to="/contact"> Contact Us </RouterLink>
         <button
           class="burger"
           :aria-expanded="isOpen"
@@ -91,7 +103,10 @@ export default defineComponent({
           title: "Business Areas",
           items: [
             { label: "Feeder services", to: "/feeders-services" },
-            { label: "Regional Liner Services", to: "/regional-liner-services" },
+            {
+              label: "Regional Liner Services",
+              to: "/regional-liner-services",
+            },
             { label: "Routes & Agents Contacts", to: "/routes-agents" },
             { label: "Fleet", to: "/fleet" },
             { label: "FAQ & Glossary", to: "/faq-glossary" },
@@ -160,14 +175,14 @@ export default defineComponent({
   align-items: center;
   justify-content: space-between;
   height: 72px;
-  max-width: 1476px;
+  /* max-width: 1476px; */
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 100px;
 }
 
 .logo {
-  height: 64px;
-  width: 140px;
+  width: 66px;
+  height: 66px;
   display: flex;
   align-items: center;
 }
@@ -175,7 +190,9 @@ export default defineComponent({
 .logo img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  flex-shrink: 0;
+  aspect-ratio: 1/1;
 }
 
 /* Desktop Navigation */
@@ -183,13 +200,15 @@ export default defineComponent({
   display: none;
   gap: 32px;
   align-items: center;
-  margin-inline-start: auto;
+  /* margin-inline-start: auto; */
 }
 
 .nav-link {
   color: #fff;
-  text-decoration: none;
-  font-size: 16px;
+  text-align: center;
+  font-family: Lato;
+  font-size: 24px;
+  font-style: normal;
   font-weight: 400;
   transition: opacity 0.2s ease;
   white-space: nowrap;
@@ -198,9 +217,16 @@ export default defineComponent({
 .nav-link:hover {
   opacity: 0.8;
 }
-
+.nav-link.active {
+  color: #2aa1d8;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+}
 .nav-link.router-link-active {
-  font-weight: 500;
+  /* font-weight: 500; */
 }
 
 .header--relative .nav-link {
@@ -236,11 +262,11 @@ export default defineComponent({
 .contact-btn {
   display: none;
   padding: 10px 24px;
-  background: transparent;
-  border: 2px solid #fff;
+  background: #00aeff;
+  border: 2px solid #00aeff;
   color: #fff;
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: 0px;
   font-size: 14px;
   font-weight: 500;
   transition: all 0.2s ease;
@@ -248,8 +274,8 @@ export default defineComponent({
 }
 
 .contact-btn:hover {
-  background: #fff;
-  color: #0d3a34;
+  /* background: transparent; */
+  /* color: #0d3a34; */
 }
 
 .header--relative .contact-btn {

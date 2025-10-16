@@ -1,9 +1,9 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import type { ComponentPublicInstance } from "vue";
-import serviceLogistics from "@/assets/image 1.png";
-import serviceRoutes from "@/assets/image 2.png";
-import serviceTechnology from "@/assets/image 3.png";
+import serviceLogistics from "@/assets/srvice-1.jpg";
+import serviceRoutes from "@/assets/service-2.jpg";
+import serviceTechnology from "@/assets/service-3.jpg";
 
 type ServiceKey = "logistics" | "routes" | "technology";
 type ServiceItem = { key: ServiceKey; image: string };
@@ -13,6 +13,8 @@ type CardState = {
   contentShift: number;
   progress: number;
   isActive: boolean;
+  hasEntered: boolean;
+  entranceDelay: number;
 };
 type ComposerLocale = { value: string };
 type ComposerInstance = { locale: ComposerLocale };
@@ -36,6 +38,11 @@ export default defineComponent({
       activeIndex: 0,
       transitionInProgress: false,
       ro: null as ResizeObserver | null,
+      scrollVelocity: 0,
+      lastScrollTop: 0,
+      lastScrollTime: 0,
+      velocityRafId: null as number | null,
+      magneticSnapTimeout: null as number | null,
     };
   },
   computed: {
@@ -57,13 +64,13 @@ export default defineComponent({
         "--progress": state.progress.toString(),
         "--scale": (0.95 + state.progress * 0.05).toString(),
         "--blur": `${(1 - state.progress) * 2}px`,
+        "--entrance-delay": `${state.entranceDelay}ms`,
+        "--velocity-factor": Math.min(Math.abs(this.scrollVelocity) / 10, 1).toString(),
       }));
     },
   },
   methods: {
-    resolveElement(
-      el: Element | ComponentPublicInstance | null
-    ): HTMLElement | null {
+    resolveElement(el: Element | ComponentPublicInstance | null): HTMLElement | null {
       if (!el) return null;
       if (typeof (el as ComponentPublicInstance).$el !== "undefined") {
         return ((el as ComponentPublicInstance).$el as HTMLElement) ?? null;
@@ -100,7 +107,92 @@ export default defineComponent({
     },
 
     onContentScroll() {
+      this.calculateScrollVelocity();
       this.scheduleParallax();
+      this.scheduleMagneticSnap();
+    },
+
+    calculateScrollVelocity() {
+      if (!this.contentRef) return;
+
+      const now = performance.now();
+      const currentScrollTop = this.contentRef.scrollTop;
+
+      if (this.lastScrollTime !== 0) {
+        const timeDelta = now - this.lastScrollTime;
+        const scrollDelta = currentScrollTop - this.lastScrollTop;
+
+        if (timeDelta > 0) {
+          // Calculate velocity in pixels per millisecond, then convert to px/s
+          const rawVelocity = (scrollDelta / timeDelta) * 1000;
+          // Apply smoothing with exponential moving average
+          this.scrollVelocity = this.scrollVelocity * 0.7 + rawVelocity * 0.3;
+        }
+      }
+
+      this.lastScrollTop = currentScrollTop;
+      this.lastScrollTime = now;
+
+      // Decay velocity when scroll stops
+      this.decayVelocity();
+    },
+
+    decayVelocity() {
+      if (this.velocityRafId !== null) return;
+
+      const decay = () => {
+        this.scrollVelocity *= 0.92; // Smooth decay
+
+        if (Math.abs(this.scrollVelocity) > 0.1) {
+          this.velocityRafId = requestAnimationFrame(decay);
+        } else {
+          this.scrollVelocity = 0;
+          this.velocityRafId = null;
+        }
+      };
+
+      this.velocityRafId = requestAnimationFrame(decay);
+    },
+
+    scheduleMagneticSnap() {
+      if (this.magneticSnapTimeout !== null) {
+        clearTimeout(this.magneticSnapTimeout);
+      }
+
+      // Wait for scroll to settle before applying magnetic snap
+      this.magneticSnapTimeout = window.setTimeout(() => {
+        this.applyMagneticSnap();
+      }, 150);
+    },
+
+    applyMagneticSnap() {
+      if (!this.contentRef || this.transitionInProgress) return;
+
+      const container = this.contentRef;
+      const viewHeight = container.clientHeight;
+      const rect = container.getBoundingClientRect();
+      const containerCenter = rect.top + viewHeight / 2;
+
+      let closestIdx = 0;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      this.cardRefs.forEach((el, index) => {
+        if (!el) return;
+        const r = el.getBoundingClientRect();
+        const cardCenter = r.top + r.height / 2;
+        const distance = Math.abs(containerCenter - cardCenter);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIdx = index;
+        }
+      });
+
+      // If closest card is within snap threshold and not centered, snap to it
+      const snapThreshold = viewHeight * 0.15;
+      if (closestDistance > 20 && closestDistance < snapThreshold) {
+        this.smoothScrollToCard(closestIdx);
+      }
     },
 
     initServicesInteractions() {
@@ -121,6 +213,8 @@ export default defineComponent({
         contentShift: 0,
         progress: idx === 0 ? 1 : 0,
         isActive: idx === 0,
+        hasEntered: false,
+        entranceDelay: idx * 150,
       }));
 
       if (this.observer) {
@@ -190,18 +284,30 @@ export default defineComponent({
           ? Math.max(-1, Math.min(1, distance / (viewHeight / 1.5)))
           : 0;
 
-        const eased =
-          this.easeInOutQuart(Math.abs(normalized)) * Math.sign(normalized);
+        // Enhanced easing with velocity influence
+        const velocityFactor = Math.min(Math.abs(this.scrollVelocity) / 1000, 0.3);
+        const baseEased = this.easeInOutQuart(Math.abs(normalized)) * Math.sign(normalized);
+        const eased = baseEased * (1 + velocityFactor);
 
-        state.imageShift = eased * 60;
-        state.contentShift = eased * 35;
+        // Dynamic parallax based on scroll velocity
+        const parallaxMultiplier = 1 + velocityFactor * 0.5;
+        state.imageShift = eased * 60 * parallaxMultiplier;
+        state.contentShift = eased * 35 * parallaxMultiplier;
 
         const progressRange = viewHeight * 0.4;
-        state.progress = Math.max(
+        const rawProgress = Math.max(
           0,
           Math.min(1, 1 - absDistance / progressRange)
         );
+
+        // Smooth progress with easing
+        state.progress = this.easeOutCubic(rawProgress);
         state.isActive = absDistance < progressRange * 0.5;
+
+        // Mark as entered when it becomes visible
+        if (state.progress > 0.1 && !state.hasEntered) {
+          state.hasEntered = true;
+        }
 
         if (absDistance < closestDistance) {
           closestDistance = absDistance;
@@ -218,6 +324,14 @@ export default defineComponent({
 
     easeInOutQuart(t: number): number {
       return t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t;
+    },
+
+    easeOutCubic(t: number): number {
+      return 1 - Math.pow(1 - t, 3);
+    },
+
+    easeOutQuart(t: number): number {
+      return 1 - Math.pow(1 - t, 4);
     },
 
     handleKeyNavigation(event: KeyboardEvent) {
@@ -318,6 +432,14 @@ export default defineComponent({
       window.cancelAnimationFrame(this.rafId);
       this.rafId = null;
     }
+    if (this.velocityRafId !== null && typeof window !== "undefined") {
+      window.cancelAnimationFrame(this.velocityRafId);
+      this.velocityRafId = null;
+    }
+    if (this.magneticSnapTimeout !== null) {
+      clearTimeout(this.magneticSnapTimeout);
+      this.magneticSnapTimeout = null;
+    }
     if (this.ro) {
       this.ro.disconnect();
       this.ro = null;
@@ -355,18 +477,22 @@ export default defineComponent({
               :class="{
                 'is-active': index === activeIndex,
                 'is-visible': cardStates[index]?.visible,
+                'has-entered': cardStates[index]?.hasEntered,
               }"
               :style="cardStyles[index]"
             >
               <div class="image-container">
-                <img
-                  :src="service.image"
-                  class="accordionSlider__img"
-                  :alt="$t(`servicesSection.items.${service.key}.figureAlt`)"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <div class="image-clip-wrapper">
+                  <img
+                    :src="service.image"
+                    class="accordionSlider__img"
+                    :alt="$t(`servicesSection.items.${service.key}.figureAlt`)"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
                 <div class="image-overlay"></div>
+                <div class="image-glow"></div>
               </div>
             </li>
           </ul>
@@ -389,9 +515,16 @@ export default defineComponent({
               'is-visible': cardStates[index]?.visible,
               'is-active': cardStates[index]?.isActive,
               'is-center': index === activeIndex,
+              'has-entered': cardStates[index]?.hasEntered,
             }"
           >
             <h3 class="services-label">
+              <span class="services-label__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path d="M4 4h16v16H4z" />
+                  <path d="M8 8h8v2H8zm0 4h6v2H8zm0 4h4v2H8z" />
+                </svg>
+              </span>
               {{ $t("servicesSection.label") }}
             </h3>
 
@@ -407,7 +540,33 @@ export default defineComponent({
                 {{ $t(`servicesSection.items.${service.key}.body`) }}
               </p>
             </div>
+
+            <div class="card-progress" aria-hidden="true">
+              <div
+                class="progress-bar"
+                :style="{
+                  width: `${(cardStates[index]?.progress ?? 0) * 100}%`,
+                }"
+              ></div>
+            </div>
           </div>
+
+          <div class="scroll-spacer" aria-hidden="true"></div>
+        </div>
+
+        <!-- Navigation Dots -->
+        <div class="scroll-navigation" aria-label="Service navigation">
+          <button
+            v-for="(service, index) in services"
+            :key="`nav-${service.key}`"
+            class="nav-dot"
+            :class="{ 'is-active': index === activeIndex }"
+            :aria-label="$t(`servicesSection.items.${service.key}.title`)"
+            :aria-current="index === activeIndex ? 'true' : 'false'"
+            @click="smoothScrollToCard(index)"
+          >
+            <span class="nav-dot-inner"></span>
+          </button>
         </div>
       </div>
     </div>
@@ -470,19 +629,35 @@ export default defineComponent({
   inset: 0;
   z-index: 0;
   opacity: 0;
-  transition: all 800ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all calc(800ms - var(--velocity-factor, 0) * 200ms) cubic-bezier(0.23, 1, 0.32, 1);
   transform: translateY(calc(-30px - var(--image-shift, 0px)))
-    scale(var(--scale, 0.95));
-  will-change: opacity, transform;
-  filter: blur(var(--blur, 2px));
+    scale(var(--scale, 0.95)) rotateX(5deg);
+  will-change: opacity, transform, filter;
+  filter: blur(var(--blur, 2px)) brightness(0.8);
+  contain: layout style paint;
 }
 
 .accordionSlider__item.is-active {
   z-index: 2;
   opacity: 1;
   transform: translateY(calc(0px - var(--image-shift, 0px)))
-    scale(var(--scale, 1));
-  filter: blur(0px);
+    scale(var(--scale, 1)) rotateX(0deg);
+  filter: blur(0px) brightness(1);
+}
+
+.accordionSlider__item.has-entered {
+  animation: cardEnter 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  animation-delay: var(--entrance-delay, 0ms);
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9) rotateX(10deg);
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .accordionSlider__item.is-visible {
@@ -495,6 +670,22 @@ export default defineComponent({
   height: 100%;
   overflow: hidden;
   border-radius: inherit;
+  perspective: 1000px;
+}
+
+.image-clip-wrapper {
+  width: 100%;
+  height: 100%;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.accordionSlider__item:not(.has-entered) .image-clip-wrapper {
+  clip-path: inset(0 100% 0 0);
+}
+
+.accordionSlider__item.is-active .image-clip-wrapper {
+  clip-path: inset(0 0 0 0);
 }
 
 .accordionSlider__img {
@@ -502,11 +693,17 @@ export default defineComponent({
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 1200ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 1200ms cubic-bezier(0.23, 1, 0.32, 1),
+              filter 800ms ease;
+  will-change: transform;
 }
 
 .accordionSlider__item.is-active .accordionSlider__img {
-  transform: scale(1.05);
+  transform: scale(1.08) rotate(0.5deg);
+}
+
+.accordionSlider__item:not(.has-entered) .accordionSlider__img {
+  transform: scale(1.3);
 }
 
 .image-overlay {
@@ -514,16 +711,50 @@ export default defineComponent({
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(128, 253, 102, 0.1) 0%,
-    rgba(26, 224, 152, 0.1) 50%,
-    rgba(13, 32, 45, 0.2) 100%
+    rgba(128, 253, 102, 0.15) 0%,
+    rgba(26, 224, 152, 0.15) 50%,
+    rgba(13, 32, 45, 0.25) 100%
   );
   opacity: 0;
   transition: opacity 600ms ease;
+  mix-blend-mode: multiply;
 }
 
 .accordionSlider__item.is-active .image-overlay {
   opacity: 1;
+}
+
+.image-glow {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(38, 224, 152, 0.4) 0%,
+    rgba(128, 253, 102, 0.2) 30%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 800ms ease, transform 1000ms ease;
+  transform: scale(0.8);
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+.accordionSlider__item.is-active .image-glow {
+  opacity: 1;
+  transform: scale(1);
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
 }
 
 /* RIGHT scroll column */
@@ -534,13 +765,20 @@ export default defineComponent({
   flex: 0 0 51.062%;
   margin-block: 20vh;
   padding-inline-start: 8.51%;
-  max-height: 60vh;
+  max-height: 60vh; /* نحافظ على عمود داخلي */
   overflow-y: auto;
-  scroll-behavior: auto;
-  scroll-snap-type: y proximity;
-  scroll-padding-block: 20vh;
+  /* مهم: نخلّي السناب طبيعي بدون مومينتم يدوي */
+  scroll-behavior: auto; /* نمنع تضارب مع سموث JS والسناب */
+  scroll-snap-type: y proximity; /* سناب ناعم فقط */
+  scroll-padding-block: 20vh; /* تحسين التمركز */
   outline: none;
   -webkit-overflow-scrolling: touch;
+}
+
+.accordionSlider__content:focus {
+  outline: 2px solid rgba(128, 253, 102, 0.5);
+  outline-offset: 4px;
+  border-radius: 8px;
 }
 
 .accordionSlider__contentBox {
@@ -550,7 +788,24 @@ export default defineComponent({
   scroll-snap-stop: always;
   position: relative;
   padding: 2rem 0;
-  transition: all 800ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all calc(800ms - var(--velocity-factor, 0) * 200ms) cubic-bezier(0.23, 1, 0.32, 1);
+  contain: layout style;
+}
+
+.accordionSlider__contentBox.has-entered {
+  animation: contentEnter 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  animation-delay: var(--entrance-delay, 0ms);
+}
+
+@keyframes contentEnter {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .service-content {
@@ -581,8 +836,8 @@ export default defineComponent({
   gap: 0.6rem;
   padding: 0.4rem 1.1rem;
   border-radius: 999px;
-  background: rgba(42, 161, 216, 0.19);
-  color: #00aeff;
+  background: rgba(128, 253, 102, 0.18);
+  color: #104235;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -641,15 +896,31 @@ export default defineComponent({
   line-height: 1.2;
   transform: translateY(40px);
   opacity: 0;
-  transition: all 800ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 800ms cubic-bezier(0.23, 1, 0.32, 1),
+              color 400ms ease;
   transition-delay: calc(var(--progress, 0) * 300ms);
+  position: relative;
 }
 .accordionSlider__contentBox.is-visible .service-title {
   transform: translateY(0);
   opacity: 1;
 }
 .accordionSlider__contentBox.is-active .service-title {
-  color: #1d3a8f;
+  color: #26e098;
+  text-shadow: 0 2px 10px rgba(38, 224, 152, 0.2),
+               0 0 40px rgba(38, 224, 152, 0.1);
+  animation: titleGlow 2s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% {
+    text-shadow: 0 2px 10px rgba(38, 224, 152, 0.2),
+                 0 0 40px rgba(38, 224, 152, 0.1);
+  }
+  50% {
+    text-shadow: 0 2px 15px rgba(38, 224, 152, 0.3),
+                 0 0 50px rgba(38, 224, 152, 0.15);
+  }
 }
 
 .service-body {
@@ -667,6 +938,52 @@ export default defineComponent({
   opacity: 1;
 }
 
+/* Progress indicator */
+.card-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(128, 253, 102, 0.1);
+  border-radius: 1.5px;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #8efd6f, #26e098, #8efd6f);
+  background-size: 200% 100%;
+  border-radius: inherit;
+  transition: width 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 0 10px rgba(38, 224, 152, 0.3);
+  position: relative;
+}
+
+.accordionSlider__contentBox.is-active .progress-bar {
+  animation: progressGradient 2s ease infinite, progressPulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(38, 224, 152, 0.5),
+              0 0 40px rgba(38, 224, 152, 0.2);
+}
+
+@keyframes progressGradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes progressPulse {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.3);
+  }
+}
+
+/* إخفاء الاسكرول بار (السكشن والعمود الداخلي) */
 .hide-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -676,9 +993,80 @@ export default defineComponent({
   height: 0;
 }
 
+/* Spacers لتنعيم السناب */
 .scroll-spacer {
   height: 20vh;
   flex: 0 0 auto;
+}
+
+/* Navigation Dots */
+.scroll-navigation {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.nav-dot {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  outline: none;
+}
+
+.nav-dot:hover {
+  transform: scale(1.2);
+}
+
+.nav-dot:focus-visible {
+  outline: 2px solid rgba(38, 224, 152, 0.5);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+.nav-dot-inner {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(128, 253, 102, 0.3);
+  border: 2px solid rgba(128, 253, 102, 0.5);
+  transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.nav-dot:hover .nav-dot-inner {
+  background: rgba(128, 253, 102, 0.5);
+  border-color: rgba(128, 253, 102, 0.8);
+  box-shadow: 0 0 10px rgba(38, 224, 152, 0.3);
+}
+
+.nav-dot.is-active .nav-dot-inner {
+  background: linear-gradient(135deg, #8efd6f, #26e098);
+  border-color: #26e098;
+  box-shadow: 0 0 15px rgba(38, 224, 152, 0.5),
+              0 0 30px rgba(38, 224, 152, 0.2);
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(38, 224, 152, 0.5),
+                0 0 30px rgba(38, 224, 152, 0.2);
+  }
+  50% {
+    transform: scale(1.3);
+    box-shadow: 0 0 20px rgba(38, 224, 152, 0.7),
+                0 0 40px rgba(38, 224, 152, 0.3);
+  }
 }
 
 /* Responsive */
@@ -702,8 +1090,19 @@ export default defineComponent({
     margin-block: 10vh 0;
     gap: clamp(4rem, 8vh, 8rem);
   }
+  /* على الشاشات الصغيرة نخلي سلوك الصفحة هو المسيطر */
   .accordionSlider__content {
     scroll-snap-type: y proximity;
+  }
+
+  .scroll-navigation {
+    right: 1rem;
+    gap: 0.8rem;
+  }
+
+  .nav-dot {
+    width: 10px;
+    height: 10px;
   }
 }
 
@@ -729,6 +1128,16 @@ export default defineComponent({
     width: 1.5rem;
     height: 1.5rem;
   }
+
+  .scroll-navigation {
+    right: 0.5rem;
+    gap: 0.6rem;
+  }
+
+  .nav-dot {
+    width: 8px;
+    height: 8px;
+  }
 }
 
 /* Reduced motion */
@@ -741,7 +1150,12 @@ export default defineComponent({
   .service-body,
   .accordionSlider__img,
   .services-label__icon,
-  .progress-bar {
+  .progress-bar,
+  .image-glow,
+  .image-overlay,
+  .image-clip-wrapper,
+  .nav-dot,
+  .nav-dot-inner {
     transition: none !important;
     transform: none !important;
     animation: none !important;
@@ -749,20 +1163,30 @@ export default defineComponent({
   .accordionSlider__content {
     scroll-behavior: auto;
   }
+  .image-clip-wrapper {
+    clip-path: inset(0 0 0 0) !important;
+  }
 }
 
 /* High contrast */
 @media (prefers-contrast: high) {
   .services-label {
-    background:  rgba(42, 161, 216, 0.19);
+    background: rgba(128, 253, 102, 0.3);
     border: 2px solid #104235;
+  }
+  .services-label__icon {
+    background: #26e098;
+    box-shadow: none;
   }
   .card-progress {
     background: rgba(0, 0, 0, 0.2);
   }
-
+  .progress-bar {
+    background: #26e098;
+    box-shadow: none;
+  }
   .accordionSlider__content:focus {
-    outline: 3px solid  rgba(42, 161, 216, 0.19);
+    outline: 3px solid #26e098;
   }
 }
 
@@ -787,8 +1211,8 @@ export default defineComponent({
   .image-overlay {
     background: linear-gradient(
       135deg,
-      rgba(42, 161, 216, 0.19) 0%,
-      rgba(42, 161, 216, 0.19) 50%,
+      rgba(128, 253, 102, 0.05) 0%,
+      rgba(26, 224, 152, 0.05) 50%,
       rgba(0, 0, 0, 0.3) 100%
     );
   }

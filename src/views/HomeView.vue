@@ -17,7 +17,6 @@ import sliderTow from "@/assets/WhatsApp-Image-1446-10-29-at-15-32-47.large.jpg"
 import sliderThree from "@/assets/WhatsApp-Image-1446-10-29-at-14-52-43.large.jpg";
 type ParallaxInstance = { destroy: () => void } | null;
 import commonButton from "@/components/resuble/common_button.vue";
-
 export default defineComponent({
   name: "HomeView",
   components: {
@@ -161,17 +160,10 @@ export default defineComponent({
       <BackgroundVideo>
         <div class="hero-content">
           <h1 class="hero-title">
-            <span class="hero-line js-parallax" data-rellax-speed="-2">
-              Connecting you to
-            </span>
-            <span
-              class="hero-line hero-line--accent js-parallax"
-              data-rellax-speed="-4"
-            >
-              your customers
-            </span>
+            <span class="hero-line"> Connecting you to </span>
+            <span class="hero-line hero-line--accent"> your customers </span>
           </h1>
-          <p class="hero-subtitle js-parallax" data-rellax-speed="-1">
+          <p class="hero-subtitle">
             Seamless experiences from booking to delivery.
           </p>
           <commonButton
@@ -207,7 +199,6 @@ export default defineComponent({
     <!-- <div class="sustainability_section" id="sustainability">
       {{ $t("sustainability") }}
     </div> -->
-
     <OurLocations id="locations" />
 
     <NewsSection id="news" />
@@ -255,9 +246,16 @@ export default defineComponent({
 
 .hero-line {
   line-height: 1.1;
+  color: #fff;
+  font-family: Lato;
+  font-size: 96px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 99.936%;
 }
 .hero-line--accent {
   color: #2aa1d8;
+  font-weight: 700;
 }
 
 .hero-subtitle {
