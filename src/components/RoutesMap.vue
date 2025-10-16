@@ -210,7 +210,7 @@ export default defineComponent({
       <span class="panel__tag">Routes</span>
       <h2 class="panel__title">Regional Connectivity with Reliable Routes</h2>
       <p class="panel__lead">
-        Select a service to explore Folk Maritime port rotations and transit commitments across the Red Sea, Arabian Gulf, and India.
+        Select a service to explore Blue Line port rotations and transit commitments across the Red Sea, Arabian Gulf, and India.
       </p>
 
       <div class="panel__tabs" role="tablist" aria-label="Shipping routes">

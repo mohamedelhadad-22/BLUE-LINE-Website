@@ -510,7 +510,7 @@ export default defineComponent({
               ></div>
               <h3 class="valuesAccordion__title heading__h3">Our Values</h3>
               <p class="valuesAccordion__text p margin-2-t">
-                Folk Maritime is a dynamic, innovative, and reliable logistics
+                Blue Line is a dynamic, innovative, and reliable logistics
                 company committed to advancing Saudi Arabia’s transportation and
                 logistics ambitions through continuous progress and consistent
                 delivery.

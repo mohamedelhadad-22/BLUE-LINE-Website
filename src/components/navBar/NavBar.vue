@@ -91,7 +91,7 @@ export default defineComponent({
       isOpen: false as boolean,
       groups: [
         {
-          title: "About Folk",
+          title: "About Blue Line",
           items: [
             { label: "About us", to: "/about" },
             { label: "Stakeholders Relations", to: "/stakeholders-relations" },

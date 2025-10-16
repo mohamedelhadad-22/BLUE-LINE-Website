@@ -1,9 +1,9 @@
 <script lang="ts">
 import { defineComponent, type PropType } from "vue";
 import NewsCard from "@/components/Home/NewsCard.vue";
-import newsMalaAwards from "@/assets/news-mala-awards.svg";
-import newsSouthRedSea from "@/assets/news-south-red-sea.svg";
-import newsStudentTour from "@/assets/news-student-tour.svg";
+import newsMalaAwards from "@/assets/image 2.png";
+import newsSouthRedSea from "@/assets/image 3.png";
+import newsStudentTour from "@/assets/image 1.png";
 
 type RawPost = {
   id: string;
@@ -35,10 +35,9 @@ const DEFAULT_FALLBACK_POSTS: RawPost[] = [
     id: "mala-awards",
     type: "Announcement",
     date: "2025-08-01",
-    title:
-      'Folk Maritime Wins "Rising Star Organization" at MALA Awards 2025',
+    title: 'Blue Line Wins "Rising Star Organization" at MALA Awards 2025',
     summary:
-      "Folk Maritime is recognised at the MALA Awards for its rapid progress, innovation, and commitment to elevating regional logistics standards.",
+      "Blue Line is recognised at the MALA Awards for its rapid progress, innovation, and commitment to elevating regional logistics standards.",
     link: "/news-insights#mala-awards",
     image: newsMalaAwards,
   },
@@ -47,9 +46,9 @@ const DEFAULT_FALLBACK_POSTS: RawPost[] = [
     type: "Announcement",
     date: "2025-07-07",
     title:
-      "Folk Maritime Expands South Red Sea Service with Enhanced Jeddah-Centric Rotation",
+      "Blue Line Expands South Red Sea Service with Enhanced Jeddah-Centric Rotation",
     summary:
-      "The strategic extension of Folk Maritime's South Red Sea Service strengthens regional connectivity and amplifies Saudi Arabia's role as a logistics hub.",
+      "The strategic extension of Blue Line's South Red Sea Service strengthens regional connectivity and amplifies Saudi Arabia's role as a logistics hub.",
     link: "/news-insights#south-red-sea",
     image: newsSouthRedSea,
   },
@@ -58,9 +57,9 @@ const DEFAULT_FALLBACK_POSTS: RawPost[] = [
     type: "Community",
     date: "2025-06-03",
     title:
-      'Folk Maritime Organizes Tour for Maritime Students Onboard Container Vessel "Folk Jeddah"',
+      'Blue Line Organizes Tour for Maritime Students Onboard Container Vessel "Blue Line Jeddah"',
     summary:
-      "Students from King Abdulaziz University experience life onboard Folk Jeddah, gaining practical insight into modern vessel operations.",
+      "Students from King Abdulaziz University experience life onboard Blue Line Jeddah, gaining practical insight into modern vessel operations.",
     link: "/news-insights#student-tour",
     image: newsStudentTour,
   },
@@ -136,7 +135,7 @@ export default defineComponent({
       if (this.newsData && Object.keys(this.newsData).length > 0) {
         return this.newsData;
       }
-      
+
       const messages = (
         this.$i18n as unknown as { messages?: Record<string, any> }
       ).messages;
@@ -176,10 +175,7 @@ export default defineComponent({
           title: post.title ?? "",
           summary: post.summary ?? "",
           link: post.link ?? "#",
-          image:
-            post.image ??
-            this.imageMap[post.id] ??
-            this.fallbackImage,
+          image: post.image ?? this.imageMap[post.id] ?? this.fallbackImage,
         };
       });
     },
@@ -201,11 +197,9 @@ export default defineComponent({
       <div class="news-header">
         <span class="news-kicker">
           <span class="news-kicker__icon" aria-hidden="true">✦</span>
-          {{ computedNewsData.kicker }}
+          LATEST NEWS
         </span>
-        <h2 class="news-title">
-          {{ computedNewsData.title }}
-        </h2>
+        <p>Get updated with Blue Line happenings and insights</p>
       </div>
       <div class="news-grid" :class="layoutClass">
         <NewsCard
@@ -260,7 +254,14 @@ export default defineComponent({
 .news-kicker__icon {
   font-size: 0.9rem;
 }
-
+.news-header {
+  color: #000;
+  font-family: Lato;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 99.936%; /* 31.98px */
+}
 .news-title {
   margin: 0;
   font-size: clamp(2.1rem, 3.5vw, 3rem);
