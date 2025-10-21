@@ -196,7 +196,7 @@ html {
 /* Optimize scrolling performance */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(128, 253, 102, 0.3) transparent;
+  scrollbar-color: #00aeff transparent;
 }
 
 /* Enhance touch scrolling */

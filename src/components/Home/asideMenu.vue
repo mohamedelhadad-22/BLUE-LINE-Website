@@ -208,4 +208,9 @@ export default defineComponent({
     padding-inline-start: 10px;
     align-items: flex-start; */
 }
+@media (max-width: 568px) {
+  .asideMenu {
+    display: none;
+  }
+}
 </style>

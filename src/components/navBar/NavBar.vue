@@ -387,4 +387,14 @@ export default defineComponent({
     display: block;
   }
 }
+
+@media (max-width: 568px) {
+  .header__row{
+    padding: 0 16px;
+  }
+  .logo{
+    width: 50px;
+    height: 50px;
+  }
+}
 </style>

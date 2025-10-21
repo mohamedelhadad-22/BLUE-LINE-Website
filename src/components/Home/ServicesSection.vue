@@ -36,6 +36,7 @@ export default defineComponent({
       activeIndex: 0,
       transitionInProgress: false,
       ro: null as ResizeObserver | null,
+      isDesktop: true,
     };
   },
   computed: {
@@ -76,6 +77,11 @@ export default defineComponent({
         this.$nextTick(() => this.initServicesInteractions());
       }
     },
+
+    checkViewport(): boolean {
+      if (typeof window === "undefined") return true;
+      return window.innerWidth > 1024;
+    },
     setContentRef(el: Element | ComponentPublicInstance | null) {
       this.contentRef = this.resolveElement(el);
     },
@@ -85,7 +91,7 @@ export default defineComponent({
 
     attachScrollListeners() {
       if (typeof window === "undefined" || this.listenersAttached) return;
-      window.addEventListener("resize", this.scheduleParallax);
+      if (!this.isDesktop) return; // Skip on mobile/tablet
       this.contentRef?.addEventListener("scroll", this.onContentScroll, {
         passive: true,
       });
@@ -94,16 +100,61 @@ export default defineComponent({
 
     detachScrollListeners() {
       if (typeof window === "undefined" || !this.listenersAttached) return;
-      window.removeEventListener("resize", this.scheduleParallax);
       this.contentRef?.removeEventListener("scroll", this.onContentScroll);
       this.listenersAttached = false;
     },
 
+    handleResize() {
+      const wasDesktop = this.isDesktop;
+      this.isDesktop = this.checkViewport();
+
+      // If viewport changed between mobile/desktop, reinitialize or cleanup
+      if (wasDesktop !== this.isDesktop) {
+        if (this.isDesktop) {
+          // Switching from mobile to desktop
+          this.cleanupObserversOnly();
+          this.$nextTick(() => {
+            this.initServicesInteractions();
+          });
+        } else {
+          // Switching from desktop to mobile
+          this.cleanupObserversOnly();
+          // Initialize simple card states for mobile
+          this.cardStates = this.services.map(() => ({
+            visible: true,
+            imageShift: 0,
+            contentShift: 0,
+            progress: 1,
+            isActive: true,
+          }));
+        }
+      } else if (this.isDesktop) {
+        this.scheduleParallax();
+      }
+    },
+
     onContentScroll() {
+      if (!this.isDesktop) return; // Skip on mobile/tablet
       this.scheduleParallax();
     },
 
     initServicesInteractions() {
+      // Update viewport state
+      this.isDesktop = this.checkViewport();
+
+      // Skip heavy interactions on mobile/tablet
+      if (!this.isDesktop) {
+        // Initialize simple card states for mobile (all visible)
+        this.cardStates = this.services.map(() => ({
+          visible: true,
+          imageShift: 0,
+          contentShift: 0,
+          progress: 1,
+          isActive: true,
+        }));
+        return;
+      }
+
       this.initObserver();
       this.attachScrollListeners();
       this.scheduleParallax();
@@ -112,6 +163,26 @@ export default defineComponent({
         this.ro = new ResizeObserver(() => this.scheduleParallax());
         this.ro.observe(this.contentRef);
       }
+    },
+
+    cleanupObserversOnly() {
+      if (this.observer) {
+        this.observer.disconnect();
+        this.observer = null;
+      }
+      if (this.rafId !== null && typeof window !== "undefined") {
+        window.cancelAnimationFrame(this.rafId);
+        this.rafId = null;
+      }
+      if (this.ro) {
+        this.ro.disconnect();
+        this.ro = null;
+      }
+    },
+
+    cleanup() {
+      this.detachScrollListeners();
+      this.cleanupObserversOnly();
     },
 
     initObserver() {
@@ -162,11 +233,13 @@ export default defineComponent({
 
     scheduleParallax() {
       if (typeof window === "undefined") return;
+      if (!this.isDesktop) return; // Skip on mobile/tablet
       if (this.rafId !== null) return;
       this.rafId = window.requestAnimationFrame(this.updateParallax);
     },
 
     updateParallax() {
+      if (!this.isDesktop) return; // Skip on mobile/tablet
       const container = this.contentRef ?? this.stackRef ?? undefined;
       const fallbackHeight =
         window.innerHeight || document.documentElement.clientHeight || 0;
@@ -221,7 +294,7 @@ export default defineComponent({
     },
 
     handleKeyNavigation(event: KeyboardEvent) {
-      if (!this.contentRef) return;
+      if (!this.contentRef || !this.isDesktop) return; // Skip on mobile/tablet
 
       const { key } = event;
       let targetIndex = this.activeIndex;
@@ -255,7 +328,7 @@ export default defineComponent({
     },
 
     smoothScrollToCard(index: number) {
-      if (!this.contentRef || !this.cardRefs[index]) return;
+      if (!this.contentRef || !this.cardRefs[index] || !this.isDesktop) return;
 
       this.transitionInProgress = true;
       const container = this.contentRef;
@@ -298,10 +371,15 @@ export default defineComponent({
   },
 
   mounted() {
+    // Add global resize listener
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", this.handleResize);
+    }
+
     this.$nextTick(() => {
       this.initServicesInteractions();
 
-      if (this.contentRef) {
+      if (this.contentRef && this.isDesktop) {
         this.contentRef.addEventListener("keydown", this.handleKeyNavigation);
         this.contentRef.setAttribute("tabindex", "0");
       }
@@ -309,19 +387,12 @@ export default defineComponent({
   },
 
   beforeUnmount() {
-    this.detachScrollListeners();
-    if (this.observer) {
-      this.observer.disconnect();
-      this.observer = null;
+    // Remove global resize listener
+    if (typeof window !== "undefined") {
+      window.removeEventListener("resize", this.handleResize);
     }
-    if (this.rafId !== null && typeof window !== "undefined") {
-      window.cancelAnimationFrame(this.rafId);
-      this.rafId = null;
-    }
-    if (this.ro) {
-      this.ro.disconnect();
-      this.ro = null;
-    }
+
+    this.cleanup();
     if (this.contentRef) {
       this.contentRef.removeEventListener("keydown", this.handleKeyNavigation);
     }
@@ -391,6 +462,16 @@ export default defineComponent({
               'is-center': index === activeIndex,
             }"
           >
+            <!-- Inline mobile image (shown only below 1024px) -->
+            <div class="service-media">
+              <img
+                :src="service.image"
+                :alt="$t(`servicesSection.items.${service.key}.figureAlt`)"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+
             <h3 class="services-label">
               {{ $t("servicesSection.label") }}
             </h3>
@@ -681,29 +762,90 @@ export default defineComponent({
   flex: 0 0 auto;
 }
 
-/* Responsive */
+/* Service media - inline mobile images */
+.service-media {
+  display: none; /* Hidden on desktop */
+}
+
+/* Responsive - Tablet & Mobile */
 @media (max-width: 1024px) {
   .accordionSlider__inner {
     flex-direction: column;
     gap: 2rem;
+    padding-inline: 0;
   }
 
+  /* Hide sticky image stack on mobile/tablet */
   .accordionSlider__wrapper {
-    position: relative;
-    top: 0;
-    height: 40vh;
-    flex: none;
+    display: none;
   }
 
+  /* Show inline images on mobile/tablet */
+  .service-media {
+    display: block;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .service-media img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Simplify content layout */
   .accordionSlider__content {
     max-height: none;
     overflow: visible;
     padding-inline-start: 0;
-    margin-block: 10vh 0;
-    gap: clamp(4rem, 8vh, 8rem);
+    margin-block: 0;
+    gap: clamp(3rem, 6vh, 5rem);
+    flex: 1;
   }
-  .accordionSlider__content {
-    scroll-snap-type: y proximity;
+
+  .accordionSlider__contentBox {
+    padding: 1.5rem 0;
+    /* Remove scroll-snap on mobile */
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+  }
+
+  /* Reset transforms and animations for mobile */
+  .service-content {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none;
+  }
+
+  .services-label {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none;
+    margin-bottom: 1rem;
+    width: fit-content;
+  }
+
+  .service-intro {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none;
+  }
+
+  .service-title {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none;
+  }
+
+  .service-body {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none;
   }
 }
 

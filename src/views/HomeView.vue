@@ -17,7 +17,6 @@ import sliderOne from "@/assets/sustainability-03.large.webp";
 import sliderTow from "@/assets/WhatsApp-Image-1446-10-29-at-15-32-47.large.jpg";
 import sliderThree from "@/assets/WhatsApp-Image-1446-10-29-at-14-52-43.large.jpg";
 
-
 type ParallaxInstance = { destroy: () => void } | null;
 import commonButton from "@/components/resuble/common_button.vue";
 export default defineComponent({
@@ -301,6 +300,39 @@ export default defineComponent({
     rgba(64, 168, 248, 0.7),
     rgba(64, 168, 248, 0)
   );
+}
+@media (max-width: 768px) {
+  .hero-content {
+    text-align: start;
+  }
+  .hero-line {
+    font-size: 60px;
+  }
+  .hero-line--accent {
+    font-size: 44px;
+  }
+  .hero-subtitle {
+    font-size: 14px;
+  }
+  .aboutUs__items {
+  }
+}
+@media (max-width: 568px) {
+  .hero-content {
+    padding: 2rem 0rem;
+  }
+  .mission-card {
+    align-items: center;
+  }
+  .hero-line {
+    font-size: 40px;
+  }
+  .hero-line--accent {
+    font-size: 34px;
+  }
+  .hero-subtitle {
+    font-size: 18px;
+  }
 }
 </style>
 <style>

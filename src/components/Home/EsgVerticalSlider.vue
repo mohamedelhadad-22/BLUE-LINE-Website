@@ -309,4 +309,9 @@ function buildThresholds() {
     right: 12px;
   }
 }
+@media (max-width: 768px) {
+  .heading {
+    font-size: 22px;
+  }
+}
 </style>
