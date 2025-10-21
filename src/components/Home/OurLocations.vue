@@ -294,10 +294,11 @@ export default defineComponent({
 }
 
 .map-background {
-  position: absolute;
-  inset: 0;
+  position: relative;
   width: 100%;
   height: 100%;
+  aspect-ratio: 16 / 9; /* Maintain consistent aspect ratio */
+  margin: 0 auto;
 }
 
 .map-world {
@@ -305,7 +306,8 @@ export default defineComponent({
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* Changed from cover to contain to prevent distortion */
+  object-position: center;
   opacity: 0.15;
 }
 
@@ -314,7 +316,8 @@ export default defineComponent({
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* Changed from cover to contain to prevent distortion */
+  object-position: center;
   opacity: 1;
   mix-blend-mode: lighten;
 }
@@ -330,30 +333,50 @@ export default defineComponent({
 .location-marker {
   position: absolute;
   transform: translate(-50%, -50%);
-  width: 75px;
-  height: 75px;
+  width: 44px;
+  height: 44px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Specific marker positions - based on world map geography */
-.location-marker--egypt {
-  left: 71%;
-  top: 40%;
+/* .location-marker--egypt {
+  left: 50rem;
+  top: 30rem;
 }
 
 .location-marker--saudi {
-  left: 82%;
-  top: 47%;
+  left: 56rem;
+  top: 33rem;
 }
 
 .location-marker--brazil {
-  left: 21%;
-  top: 64%;
+  left: 14rem;
+  top: 40rem;
 }
 
 .location-marker--spain {
-  left: 20%;
-  top: 18%;
+  left: 22rem;
+  top: 12rem;
+} */
+
+/* Specific marker positions - based on world map geography */
+.location-marker--egypt {
+  left: 58%;
+  top: 46%;
+}
+
+.location-marker--saudi {
+  left: 62%;
+  top: 48%;
+}
+
+.location-marker--brazil {
+  left: 34%;
+  top: 54%;
+}
+
+.location-marker--spain {
+  left: 39%;
+  top: 30%;
 }
 
 .marker-pulse {
@@ -361,10 +384,10 @@ export default defineComponent({
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 75px;
-  height: 75px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  background: #1d3a8f;
+  background: #000;
   opacity: 0.15;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -374,8 +397,8 @@ export default defineComponent({
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 45px;
-  height: 45px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: white;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -391,7 +414,7 @@ export default defineComponent({
 }
 
 .location-marker.active .marker-dot {
-  background: #8efd6f;
+  background: #fff;
   animation: marker-glow 2s ease-in-out infinite;
 }
 
@@ -422,6 +445,31 @@ export default defineComponent({
   .locations-content {
     grid-template-columns: 580px 1fr;
   }
+
+  .marker-dot {
+    width: 26px;
+    height: 26px;
+  }
+  /* Specific marker positions - based on world map geography */
+  .location-marker--egypt {
+    left: 58%;
+    top: 46%;
+  }
+
+  .location-marker--saudi {
+    left: 62%;
+    top: 49%;
+  }
+
+  .location-marker--brazil {
+    left: 36%;
+    top: 54%;
+  }
+
+  .location-marker--spain {
+    left: 38%;
+    top: 39%;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -439,10 +487,14 @@ export default defineComponent({
     position: relative;
   }
 
+  .map-background {
+    aspect-ratio: 16 / 9;
+  }
+
   /* Adjust marker sizes for tablets */
   .location-marker {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
   }
 
   .marker-pulse {
@@ -451,8 +503,28 @@ export default defineComponent({
   }
 
   .marker-dot {
-    width: 36px;
-    height: 36px;
+    width: 26px;
+    height: 26px;
+  }
+  /* Specific marker positions - based on world map geography */
+  .location-marker--egypt {
+    left: 58%;
+    top: 46%;
+  }
+
+  .location-marker--saudi {
+    left: 62%;
+    top: 48%;
+  }
+
+  .location-marker--brazil {
+    left: 34%;
+    top: 58%;
+  }
+
+  .location-marker--spain {
+    left: 39%;
+    top: 22%;
   }
 }
 
@@ -468,6 +540,10 @@ export default defineComponent({
 
   .locations-map {
     min-height: 400px;
+  }
+
+  .map-background {
+    aspect-ratio: 16 / 9; /* Maintain aspect ratio on mobile */
   }
 
   /* Smaller markers for mobile */
@@ -492,6 +568,10 @@ export default defineComponent({
     min-height: 350px;
   }
 
+  .map-background {
+    aspect-ratio: 16 / 9; /* Maintain aspect ratio on very small screens */
+  }
+
   /* Even smaller markers for very small screens */
   .location-marker {
     width: 35px;
@@ -499,13 +579,33 @@ export default defineComponent({
   }
 
   .marker-pulse {
-    width: 35px;
-    height: 35px;
+    width: 20px;
+    height: 20px;
   }
 
   .marker-dot {
-    width: 21px;
-    height: 21px;
+    width: 16px;
+    height: 16px;
+  }
+  /* Specific marker positions - based on world map geography */
+  .location-marker--egypt {
+    left: 58%;
+    top: 46%;
+  }
+
+  .location-marker--saudi {
+    left: 62%;
+    top: 48%;
+  }
+
+  .location-marker--brazil {
+    left: 34%;
+    top: 58%;
+  }
+
+  .location-marker--spain {
+    left: 39%;
+    top: 22%;
   }
 }
 
