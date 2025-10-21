@@ -162,11 +162,7 @@ export default defineComponent({
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  background: linear-gradient(
-    155deg,
-    #1D3A8F,
-    #1d3a8f4f
-  );
+  background: linear-gradient(155deg, #1d3a8f, #1d3a8f4f);
 }
 
 .about-icon svg {
@@ -269,7 +265,21 @@ export default defineComponent({
     opacity: 0.6;
   }
 }
-
+@media (max-width: 768px) {
+  .about-heading {
+    max-width: 90%;
+    font-size: 42px;
+  }
+  .about-description {
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  .aboutUs__items {
+    flex-direction: column;
+    gap: 1.6rem;
+    padding: 20px;
+  }
+}
 @media (max-width: 640px) {
   .about-section {
     padding-block: clamp(2.5rem, 10vw, 4rem);
@@ -282,6 +292,23 @@ export default defineComponent({
 
   .pattern-block:nth-child(5) {
     background: rgba(220, 235, 235, 0.9);
+  }
+}
+
+@media (max-width: 568px) {
+  .about-heading {
+    max-width: 100%;
+    font-size: 28px;
+  }
+  .aboutUs__item {
+    align-items: center;
+    padding: 1.2rem 1rem;
+  }
+  .about-description {
+    font-size: 14px;
+  }
+  .aboutUs__itemText {
+    font-size: 1rem;
   }
 }
 </style>

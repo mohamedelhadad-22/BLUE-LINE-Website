@@ -10,10 +10,10 @@
             <nav v-if="modelValue" ref="panel" class="mm-panel" role="dialog" aria-modal="true" aria-label="Main menu"
                 @keydown.esc.prevent.stop="close" @keydown.tab="handleTab">
 
-                <div class="mm-header">
+                <!-- <div class="mm-header">
                     <h2 class="sr-only">Menu</h2>
                     <button class="mm-close" @click="close" aria-label="Close menu">×</button>
-                </div>
+                </div> -->
 
                 <div class="mm-grid" :class="[{ rtl: isRtl }]">
                     <section v-for="(group, gi) in groups" :key="gi" class="mm-col">
@@ -238,7 +238,7 @@ export default defineComponent({
     max-width: 1200px;
     margin: 0 auto;
     padding: 8px 12px 12px;
-    border-top: 1px solid #d9e7e2;
+    /* border-top: 1px solid #d9e7e2; */
 }
 
 .mm-grid.rtl {

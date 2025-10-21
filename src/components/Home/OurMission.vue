@@ -205,7 +205,9 @@ const sectionDirection = computed(() => (isArabic.value ? "rtl" : "ltr"));
   line-height: 1.2;
   margin: 0 0 1rem;
   margin-top: clamp(6rem, 12vw, 10rem);
-  transition: color 0.3s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    color 0.3s ease,
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .mission-card:hover .mission-card__title {
@@ -223,7 +225,9 @@ const sectionDirection = computed(() => (isArabic.value ? "rtl" : "ltr"));
   font-size: clamp(1rem, 2vw, 1.5rem);
   font-weight: 400;
   line-height: 1.5;
-  transition: color 0.3s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    color 0.3s ease,
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transition-delay: 0.05s;
 }
 
@@ -314,6 +318,16 @@ const sectionDirection = computed(() => (isArabic.value ? "rtl" : "ltr"));
   .mission-card:hover .mission-card__title,
   .mission-card:hover .mission-card__body {
     transform: none;
+  }
+}
+
+@media (max-width: 568px) {
+  .mission-card {
+    align-items: center;
+    text-align: center
+  }
+  .mission-card__body{
+    text-align: center !important;
   }
 }
 </style>
