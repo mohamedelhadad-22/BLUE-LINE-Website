@@ -12,6 +12,7 @@ import asideMenu from "@/components/Home/asideMenu.vue";
 import OurLocations from "@/components/Home/OurLocations.vue";
 import { useLinkedScroll } from "@/composables/useLinkedScroll";
 import EsgVerticalSlider from "@/components/Home/EsgVerticalSlider.vue";
+import NumbersBox from "@/components/common/NumbersBox.vue";
 
 import sliderOne from "@/assets/sustainability-03.large.webp";
 import sliderTow from "@/assets/WhatsApp-Image-1446-10-29-at-15-32-47.large.jpg";
@@ -19,6 +20,8 @@ import sliderThree from "@/assets/WhatsApp-Image-1446-10-29-at-14-52-43.large.jp
 
 type ParallaxInstance = { destroy: () => void } | null;
 import commonButton from "@/components/resuble/common_button.vue";
+
+
 export default defineComponent({
   name: "HomeView",
   components: {
@@ -33,6 +36,7 @@ export default defineComponent({
     OurLocations,
     EsgVerticalSlider,
     commonButton,
+    NumbersBox
   },
   data() {
     return {

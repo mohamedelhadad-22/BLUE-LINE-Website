@@ -27,18 +27,70 @@
           <img src="@/assets/about_image.png" alt="about blue line" />
         </div>
       </div>
+
+      <div class="about_numbers">
+
+        <NumbersBox v-for="box in aboutNumbers" :key="box.id" :icon="box.icon" :number="box.number" :text="box.text"
+          suffix="+" iconType="component" />
+
+      </div>
     </div>
   </section>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import NumbersBox from "@/components/common/NumbersBox.vue";
+
+// Numbers Icons
+import yearsAward from "@/assets/svg/yearsAward.vue";
+import ConectionsIcon from "@/assets/svg/ConectionsIcon.vue";
+import handsIcons from "@/assets/svg/handsIcons.vue";
+import BuldingIcon from "@/assets/svg/BuldingIcon.vue";
+
 export default defineComponent({
   name: "OurMission",
-  components: {},
+  components: {
+    NumbersBox,
+    yearsAward,
+    ConectionsIcon,
+    handsIcons,
+    BuldingIcon
+  },
   props: {},
   data() {
-    return {};
+    return {
+      aboutNumbers: [
+        {
+          id: 1,
+          icon: yearsAward,
+          number: 50,
+          text: "Global Partners",
+          suffix: "+",
+        },
+        {
+          id: 2,
+          icon: ConectionsIcon,
+          number: 120,
+          text: "Successful Projects",
+          suffix: "+",
+        },
+        {
+          id: 3,
+          icon: handsIcons,
+          number: 500,
+          text: "Satisfied Clients",
+          suffix: "+",
+        },
+        {
+          id: 4,
+          icon: BuldingIcon,
+          number: 10,
+          text: "Years of Experience",
+          suffix: "+",
+        },
+      ],
+    };
   },
   computed: {},
   methods: {},
@@ -94,5 +146,13 @@ export default defineComponent({
   max-width: 584px;
   max-height: 389px;
   aspect-ratio: 584/389;
+}
+
+
+.about_numbers {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
 }
 </style>
