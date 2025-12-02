@@ -17,6 +17,10 @@ export default {
       required: false,
       nullable: true,
     },
+    isRadius: {
+      type: Boolean,
+      required: false,
+    },
     icon: {
       type: Object as PropType<Component>,
       required: false,
@@ -55,29 +59,21 @@ export default {
 };
 </script>
 <template>
-  <button
-    :type="isSubmitButton ? 'submit' : 'button'"
-    class="common_button_default"
-    :class="{
-      common_button_white: isWhiteButton,
-      common_button_extra_small: buttonType === 'XS',
-      common_button_default: buttonType === 'S',
-      common_button_medium: buttonType === 'M',
-      common_button_large: buttonType === 'L',
-      common_button_extra_large: buttonType === 'XL',
-      common_button_full_width: fullWidth,
-      common_button_red: isRedColor,
-      disabled: disabled,
-      isBlueColor: isBlueColor,
-    }"
-    :disabled="disabled"
-  >
+  <button :type="isSubmitButton ? 'submit' : 'button'" class="common_button_default" :class="{
+    common_button_white: isWhiteButton,
+    common_button_extra_small: buttonType === 'XS',
+    common_button_default: buttonType === 'S',
+    common_button_medium: buttonType === 'M',
+    common_button_large: buttonType === 'L',
+    common_button_extra_large: buttonType === 'XL',
+    common_button_full_width: fullWidth,
+    common_button_red: isRedColor,
+    disabled: disabled,
+    isBlueColor: isBlueColor,
+    common_button_border_radius: isRadius,
+  }" :disabled="disabled">
     {{ text }}
-    <component
-      :class="{ icon: iconFirst, icon_black: isWhiteButton }"
-      v-show="icon != null"
-      :is="icon"
-    ></component>
+    <component :class="{ icon: iconFirst, icon_black: isWhiteButton }" v-show="icon != null" :is="icon"></component>
   </button>
 </template>
 
@@ -141,7 +137,7 @@ export default {
 }
 
 .common_button_extra_large {
-  font-size: 16px;
+  font-size: 18px;
   padding: 12px 20px;
 }
 
@@ -153,10 +149,12 @@ export default {
   background-color: var(--color-primary);
   border: 1px solid var(--color-primary);
 }
+
 .isBlueColor {
   background-color: #2aa1d8;
   border: 1px solid #2aa1d8;
 }
+
 .filter_tenure_clicked {
   background-color: var(--colorF9FAFB);
 }
@@ -176,10 +174,16 @@ export default {
 }
 
 @media (max-width: 768px) {
+
   .common_button_default,
   .common_button_large {
     font-size: 12px;
   }
+}
+
+.common_button_border_radius {
+  border-radius: 0 0 0 32px;
+  background: #0084FF;
 }
 
 .disabled {

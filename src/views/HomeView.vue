@@ -168,12 +168,8 @@ export default defineComponent({
           <p class="hero-subtitle">
             Seamless experiences from booking to delivery.
           </p>
-          <commonButton
-            :text="$t('Discover More')"
-            buttonType="XL"
-            :click="scrollToSection('mission')"
-            :isBlueColor="true"
-          />
+          <commonButton :text="$t('Discover More')" buttonType="XL" :click="scrollToSection('mission')"
+            :isBlueColor="true" :isRadius="true" />
           <!-- <div class="hero-ornaments">
             <span
               class="hero-ornament hero-ornament--primary js-parallax"
@@ -188,7 +184,7 @@ export default defineComponent({
       </BackgroundVideo>
     </div>
 
-    <asideMenu :activeSection="activeSection" @navigate="scrollToSection" />
+    <!-- <asideMenu :activeSection="activeSection" @navigate="scrollToSection" /> -->
 
     <OurMission id="mission" />
     <AboutSection id="about" />
@@ -234,6 +230,10 @@ export default defineComponent({
   text-align: center;
   color: #fff;
   padding: 3rem 1.5rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%
 }
 
 .hero-title {
@@ -243,7 +243,7 @@ export default defineComponent({
   font-size: clamp(2.5rem, 4vw + 1rem, 4.5rem);
   font-weight: 700;
   margin: 0;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .hero-line {
@@ -252,19 +252,22 @@ export default defineComponent({
   font-family: Lato;
   font-size: 96px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 99.936%;
 }
+
 .hero-line--accent {
-  color: #2aa1d8;
-  font-weight: 700;
+  /* color: #2aa1d8; */
+  /* font-weight: 700; */
 }
 
 .hero-subtitle {
   margin-top: 1.5rem;
-  font-size: clamp(1.4rem, 1vw + 0.8rem, 2.5rem);
-  color: rgba(255, 255, 255, 0.85);
-  text-align: start;
+  color: #FFF;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 99.936%;
   margin-bottom: 61px;
 }
 
@@ -273,63 +276,71 @@ export default defineComponent({
   inset: 0;
   pointer-events: none;
 }
+
 .hero-ornament {
   position: absolute;
   border-radius: 9999px;
-  background: radial-gradient(
-    circle at 30% 30%,
-    rgba(128, 253, 102, 0.8),
-    rgba(128, 253, 102, 0)
-  );
+  background: radial-gradient(circle at 30% 30%,
+      rgba(128, 253, 102, 0.8),
+      rgba(128, 253, 102, 0));
   filter: blur(0.5px);
   transform: translate(-50%, -50%);
 }
+
 .hero-ornament--primary {
   width: 18rem;
   height: 18rem;
   top: 25%;
   left: 20%;
 }
+
 .hero-ornament--secondary {
   width: 12rem;
   height: 12rem;
   bottom: 10%;
   right: 15%;
-  background: radial-gradient(
-    circle at 30% 30%,
-    rgba(64, 168, 248, 0.7),
-    rgba(64, 168, 248, 0)
-  );
+  background: radial-gradient(circle at 30% 30%,
+      rgba(64, 168, 248, 0.7),
+      rgba(64, 168, 248, 0));
 }
+
 @media (max-width: 768px) {
   .hero-content {
     text-align: start;
   }
+
   .hero-line {
     font-size: 60px;
   }
+
   .hero-line--accent {
     font-size: 44px;
   }
+
   .hero-subtitle {
     font-size: 14px;
   }
-  .aboutUs__items {
-  }
+
+  .aboutUs__items {}
 }
+
 @media (max-width: 568px) {
   .hero-content {
     padding: 2rem 0rem;
   }
+
   .mission-card {
     align-items: center;
   }
+
   .hero-line {
     font-size: 40px;
   }
+
   .hero-line--accent {
     font-size: 34px;
   }
+
   .hero-subtitle {
     font-size: 18px;
   }
