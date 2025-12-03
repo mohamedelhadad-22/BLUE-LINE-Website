@@ -1,333 +1,236 @@
-<script setup lang="ts">
-import { computed } from "vue";
-import { useI18n } from "vue-i18n";
-
-// Types
-type MissionKey = "mission" | "vision" | "purpose";
-
-interface MissionCard {
-  key: MissionKey;
-  icon: string;
-  alt: string;
-}
-
-// Composables
-const { locale } = useI18n();
-
-// Data
-const cards: MissionCard[] = [
-  {
-    key: "mission",
-    icon: new URL("@/assets/Frame 15.svg", import.meta.url).href,
-    alt: "Mission Icon",
-  },
-  {
-    key: "vision",
-    icon: new URL("@/assets/Frame 14.svg", import.meta.url).href,
-    alt: "Vision Icon",
-  },
-  {
-    key: "purpose",
-    icon: new URL("@/assets/Frame 16.svg", import.meta.url).href,
-    alt: "Purpose Icon",
-  },
-];
-
-// Computed
-const isArabic = computed(() => locale.value.startsWith("ar"));
-const sectionDirection = computed(() => (isArabic.value ? "rtl" : "ltr"));
-</script>
-
 <template>
-  <section id="mission" class="mission-section" :dir="sectionDirection">
-    <div class="mission-shell">
-      <!-- <header class="mission-header">
-                <span class="mission-kicker">
-                    {{ $t('missionSection.kicker') }}
-                </span>
-                <h2 class="mission-title">
-                    {{ $t('missionSection.title') }}
-                </h2>
-                <p class="mission-subtitle">
-                    {{ $t('missionSection.subtitle') }}
-                </p>
-            </header> -->
-
-      <div class="mission-grid" :class="{ 'is-rtl': isArabic }">
-        <article
-          v-for="card in cards"
-          :key="card.key"
-          :class="card.key"
-          class="mission-card"
-        >
-          <div class="mission-icon">
-            <img :src="card.icon" :alt="card.alt" />
-          </div>
-
-          <h3 class="mission-card__title">
-            {{ $t(`missionSection.items.${card.key}.title`) }}
-          </h3>
-          <p class="mission-card__body">
-            {{ $t(`missionSection.items.${card.key}.body`) }}
+  <section class="about_blue">
+    <div class="container">
+      <div class="about_container">
+        <div class="text_box">
+          <h2>About Blue Line</h2>
+          <p>
+            Blue Line is a Saudi-owned logistics service provider, established in 2011, with a strong presence across
+            Saudi Arabia, Egypt, Oman, and Dubai.
           </p>
-        </article>
+
+          <p>
+            We specialize in air and ocean freight forwarding, customs brokerage, and international courier services,
+            offering seamless, reliable, and professional logistics solutions tailored to our clients' needs.
+          </p>
+          <p>
+            Backed by over 25 years of combined industry experience, our team ensures operational excellence through
+            efficiency, transparency, and personalized service.
+          </p>
+          <p>
+            With a global network of partners and a proven reputation for credibility, integrity, and reliability, Blue
+            Line has become a trusted leader in regional and international logistics.
+          </p>
+
+        </div>
+        <div class="img_box">
+          <img src="@/assets/about_image.png" alt="about blue line" />
+        </div>
+      </div>
+
+      <div class="about_numbers">
+
+        <NumbersBox v-for="box in aboutNumbers" :key="box.id" :icon="box.icon" :number="box.number" :text="box.text"
+          suffix="+" iconType="component" :desc="box?.desc" />
+
       </div>
     </div>
   </section>
 </template>
 
+<script lang="ts">
+import { defineComponent } from "vue";
+import NumbersBox from "@/components/common/IconBox.vue";
+
+// Numbers Icons
+import yearsAward from "@/assets/svg/yearsAward.vue";
+import ConectionsIcon from "@/assets/svg/ConectionsIcon.vue";
+import handsIcons from "@/assets/svg/handsIcons.vue";
+import BuldingIcon from "@/assets/svg/BuldingIcon.vue";
+
+export default defineComponent({
+  name: "OurMission",
+  components: {
+    NumbersBox,
+    yearsAward,
+    ConectionsIcon,
+    handsIcons,
+    BuldingIcon
+  },
+  props: {},
+  data() {
+    return {
+      aboutNumbers: [
+        {
+          id: 1,
+          icon: yearsAward,
+          number: 50,
+          text: "Years of Experience",
+          suffix: "+",
+        },
+        {
+          id: 2,
+          icon: ConectionsIcon,
+          number: 120,
+          text: "Satisfied Clients",
+          suffix: "+",
+        },
+        {
+          id: 3,
+          icon: handsIcons,
+          number: 500,
+          text: "Global Partners",
+          suffix: "+",
+        },
+        {
+          id: 4,
+          icon: BuldingIcon,
+          number: 10,
+          text: "Active Offices",
+          desc: 'KSA, Egypt, Oman, Dubai',
+          suffix: "+",
+        },
+      ],
+    };
+  },
+  computed: {},
+  methods: {},
+});
+</script>
+
 <style scoped>
-/* Section Styles */
-.mission-section {
-  position: relative;
-  width: 100%;
-  background: #ffffff;
-  color: #172235;
-  overflow: hidden;
-}
-
-.mission-shell {
-  margin: 0 auto;
-  max-width: 100%;
-}
-
-/* Grid Layout */
-.mission-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0;
-}
-
-.mission-grid.is-rtl {
-  direction: rtl;
-}
-
-/* Card Styles */
-.mission-card {
-  position: relative;
+.about_blue {
   display: flex;
-  flex-direction: column;
+  padding-top: 64px;
+  padding-bottom: 26px;
+}
+
+.about_container {
+  display: flex;
   justify-content: center;
   align-items: flex-start;
-  min-height: 100dvh;
-  padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
-  border-inline-start: 1px solid #ecf0f8;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  overflow: hidden;
+  gap: 32px;
+  align-self: stretch;
 }
 
-/* Card Background Colors */
-.mission-card.mission {
-  background: rgba(46, 90, 222, 0.08);
-}
-
-.mission-card.vision {
-  background: rgba(29, 58, 144, 0.08);
-}
-
-.mission-card.purpose {
-  background: rgba(0, 174, 255, 0.08);
-}
-
-/* Remove border from first card */
-.mission-grid .mission-card:first-child {
-  border-inline-start: none;
-}
-
-/* Hover Effects */
-.mission-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
-  opacity: 0;
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-}
-
-.mission-card:hover::before {
-  opacity: 1;
-}
-
-.mission-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-}
-
-.mission-card.mission:hover {
-  background: rgba(46, 90, 222, 0.12);
-}
-
-.mission-card.vision:hover {
-  background: rgba(29, 58, 144, 0.12);
-}
-
-.mission-card.purpose:hover {
-  background: rgba(0, 174, 255, 0.12);
-}
-
-/* Icon Styles */
-.mission-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 12px;
+.text_box {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-direction: column;
+  gap: 16px;
+  max-width: 50%;
 }
 
-.mission-card:hover .mission-icon {
-  transform: scale(1.1) rotate(5deg);
+.text_box h2 {
+  color: #1E2225;
+  font-size: 30px;
+  font-weight: 600;
 }
 
-.mission-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  transition: filter 0.3s ease;
-}
-
-.mission-card:hover .mission-icon img {
-  filter: brightness(1.1);
-}
-
-/* Typography */
-.mission-card__title {
-  color: #000000;
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 700;
-  line-height: 1.2;
-  margin: 0 0 1rem;
-  margin-top: clamp(6rem, 12vw, 10rem);
-  transition:
-    color 0.3s ease,
-    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.mission-card:hover .mission-card__title {
-  color: #172235;
-  transform: translateX(4px);
-}
-
-.mission-grid.is-rtl .mission-card:hover .mission-card__title {
-  transform: translateX(-4px);
-}
-
-.mission-card__body {
-  margin: 0;
-  color: #4d5558;
-  font-size: clamp(1rem, 2vw, 1.5rem);
+.text_box p {
+  color: #71717A;
+  font-size: 18px;
   font-weight: 400;
-  line-height: 1.5;
-  transition:
-    color 0.3s ease,
-    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transition-delay: 0.05s;
+  line-height: 24px;
 }
 
-.mission-card:hover .mission-card__body {
-  color: #172235;
-  transform: translateX(4px);
+.img_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 50%;
 }
 
-.mission-grid.is-rtl .mission-card:hover .mission-card__body {
-  transform: translateX(-4px);
+.img_box img {
+  width: 100%;
+  border-radius: 0 0 0 103px;
+  background: url(<path-to-image>) lightgray 50% / cover no-repeat;
+  max-width: 584px;
+  max-height: 389px;
+  aspect-ratio: 584/389;
 }
 
-/* Text Alignment */
-.mission-grid.is-rtl .mission-card__title,
-.mission-grid.is-rtl .mission-card__body {
-  text-align: right;
+
+.about_numbers {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
 }
 
-.mission-grid:not(.is-rtl) .mission-card__title,
-.mission-grid:not(.is-rtl) .mission-card__body {
-  text-align: left;
-}
-
-/* Responsive Styles */
-@media (max-width: 1024px) {
-  .mission-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+/* Tablet and below */
+@media (max-width: 768px) {
+  .about_blue {
+    padding-top: 48px;
+    padding-bottom: 20px;
   }
 
-  .mission-card {
-    min-height: 60vh;
+  .about_container {
+    flex-direction: column;
+    gap: 24px;
   }
 
-  .mission-card__title {
-    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-    margin-top: clamp(4rem, 8vw, 6rem);
+  .text_box {
+    max-width: 100%;
   }
 
-  .mission-card__body {
-    font-size: clamp(0.9rem, 1.8vw, 1.25rem);
-  }
-}
-
-@media (max-width: 720px) {
-  .mission-grid {
-    grid-template-columns: 1fr;
+  .text_box h2 {
+    font-size: 24px;
   }
 
-  .mission-card {
-    min-height: auto;
-    padding: clamp(2rem, 5vw, 3rem) clamp(1.25rem, 4vw, 2rem);
-    border-inline-start: none;
-    border-top: 1px solid #ecf0f8;
+  .text_box p {
+    font-size: 16px;
+    line-height: 22px;
   }
 
-  .mission-card:first-child {
-    border-top: none;
+  .img_box {
+    max-width: 100%;
+    width: 100%;
   }
 
-  .mission-card:hover {
-    transform: translateY(-4px);
+  .img_box img {
+    max-width: 100%;
+    border-radius: 0 0 0 60px;
   }
 
-  .mission-card__title {
-    margin-top: clamp(2rem, 4vw, 3rem);
+  .about_numbers {
+    margin-top: 48px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
   }
 }
 
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-  .mission-card,
-  .mission-card::before,
-  .mission-icon,
-  .mission-icon img,
-  .mission-card__title,
-  .mission-card__body {
-    transition: none;
+/* Mobile */
+@media (max-width: 640px) {
+  .about_blue {
+    padding-top: 32px;
+    padding-bottom: 16px;
   }
 
-  .mission-card:hover {
-    transform: none;
+  .about_container {
+    gap: 20px;
   }
 
-  .mission-card:hover .mission-icon {
-    transform: none;
+  .text_box {
+    gap: 12px;
   }
 
-  .mission-card:hover .mission-card__title,
-  .mission-card:hover .mission-card__body {
-    transform: none;
+  .text_box h2 {
+    font-size: 22px;
   }
-}
 
-@media (max-width: 568px) {
-  .mission-card {
-    align-items: center;
-    text-align: center
+  .text_box p {
+    font-size: 14px;
+    line-height: 20px;
   }
-  .mission-card__body{
-    text-align: center !important;
+
+  .img_box img {
+    border-radius: 0 0 0 40px;
+  }
+
+  .about_numbers {
+    margin-top: 32px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
   }
 }
 </style>
