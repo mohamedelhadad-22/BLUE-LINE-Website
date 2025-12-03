@@ -1,32 +1,37 @@
 <template>
     <div ref="cardRef" class="stat-card">
-        <div class="stat-card__icon">
-            <img v-if="iconType === 'image'" :src="icon" :alt="text" />
+        <div class="stat-card__icon" :class="{FlatIcon: isFlatIcon}">
+            <img v-if="iconType === 'image'" :src="icon as string" :alt="text" />
             <component v-else-if="iconType === 'component'" :is="icon" />
-            <div v-else v-html="icon"></div>
+            <div v-else v-html="icon as string"></div>
         </div>
 
-        <div class="stat-card__number">
+        <div v-if="number !== undefined" class="stat-card__number">
             {{ displayNumber }}{{ suffix }}
         </div>
 
         <div class="stat-card__text">
             {{ text }}
         </div>
+        <p class="stat-card__desc">
+            {{ desc }}
+        </p>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 interface Props {
     icon: string | object;
-    number: number;
+    number?: number;
     text: string;
+    desc?: string;
     suffix?: string;
     duration?: number;
     iconType?: 'image' | 'component' | 'svg';
     delay?: number;
+    isFlatIcon?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -41,7 +46,7 @@ const displayNumber = ref(0);
 const hasAnimated = ref(false);
 
 const animateNumber = () => {
-    if (hasAnimated.value) return;
+    if (hasAnimated.value || props.number === undefined) return;
 
     hasAnimated.value = true;
     const start = 0;
@@ -134,24 +139,29 @@ onUnmounted(() => {
 
 .stat-card__icon {
     display: flex;
-    width: 64px;
-    height: 64px;
+    width: 56px;
+    height: 56px;
     padding: 16px 17px;
     justify-content: center;
     align-items: center;
     border-radius: 1440px;
     background: #F4EBFF;
 }
-
+.stat-card__icon.FlatIcon {
+    background: transparent;
+    padding: 0;
+}
 .stat-card__icon img {
     width: 100%;
     height: 100%;
+    max-width: 24px;
+    max-height: 24px;
     object-fit: contain;
     filter: brightness(0) invert(1);
 }
 
 .stat-card__icon :deep(svg) {
-    width: 30px;
+    width: 24px;
     height: 24px;
 }
 
@@ -168,6 +178,16 @@ onUnmounted(() => {
     font-weight: 500;
     color: #718096;
     text-transform: capitalize;
+}
+
+.stat-card__desc {
+    color: #71717A;
+    text-align: center;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
 /* Responsive */
@@ -187,6 +207,7 @@ onUnmounted(() => {
 
     .stat-card__text {
         font-size: 0.875rem;
+        text-align: center;
     }
 }
 </style>

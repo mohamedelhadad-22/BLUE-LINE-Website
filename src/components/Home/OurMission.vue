@@ -31,7 +31,7 @@
       <div class="about_numbers">
 
         <NumbersBox v-for="box in aboutNumbers" :key="box.id" :icon="box.icon" :number="box.number" :text="box.text"
-          suffix="+" iconType="component" />
+          suffix="+" iconType="component" :desc="box?.desc" />
 
       </div>
     </div>
@@ -40,7 +40,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import NumbersBox from "@/components/common/NumbersBox.vue";
+import NumbersBox from "@/components/common/IconBox.vue";
 
 // Numbers Icons
 import yearsAward from "@/assets/svg/yearsAward.vue";
@@ -65,28 +65,29 @@ export default defineComponent({
           id: 1,
           icon: yearsAward,
           number: 50,
-          text: "Global Partners",
+          text: "Years of Experience",
           suffix: "+",
         },
         {
           id: 2,
           icon: ConectionsIcon,
           number: 120,
-          text: "Successful Projects",
+          text: "Satisfied Clients",
           suffix: "+",
         },
         {
           id: 3,
           icon: handsIcons,
           number: 500,
-          text: "Satisfied Clients",
+          text: "Global Partners",
           suffix: "+",
         },
         {
           id: 4,
           icon: BuldingIcon,
           number: 10,
-          text: "Years of Experience",
+          text: "Active Offices",
+          desc: 'KSA, Egypt, Oman, Dubai',
           suffix: "+",
         },
       ],
@@ -107,7 +108,7 @@ export default defineComponent({
 .about_container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 32px;
   align-self: stretch;
 }
@@ -154,5 +155,82 @@ export default defineComponent({
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 24px;
+}
+
+/* Tablet and below */
+@media (max-width: 768px) {
+  .about_blue {
+    padding-top: 48px;
+    padding-bottom: 20px;
+  }
+
+  .about_container {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .text_box {
+    max-width: 100%;
+  }
+
+  .text_box h2 {
+    font-size: 24px;
+  }
+
+  .text_box p {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .img_box {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .img_box img {
+    max-width: 100%;
+    border-radius: 0 0 0 60px;
+  }
+
+  .about_numbers {
+    margin-top: 48px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .about_blue {
+    padding-top: 32px;
+    padding-bottom: 16px;
+  }
+
+  .about_container {
+    gap: 20px;
+  }
+
+  .text_box {
+    gap: 12px;
+  }
+
+  .text_box h2 {
+    font-size: 22px;
+  }
+
+  .text_box p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .img_box img {
+    border-radius: 0 0 0 40px;
+  }
+
+  .about_numbers {
+    margin-top: 32px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+  }
 }
 </style>

@@ -12,7 +12,9 @@ import asideMenu from "@/components/Home/asideMenu.vue";
 import OurLocations from "@/components/Home/OurLocations.vue";
 import { useLinkedScroll } from "@/composables/useLinkedScroll";
 import EsgVerticalSlider from "@/components/Home/EsgVerticalSlider.vue";
-import NumbersBox from "@/components/common/NumbersBox.vue";
+import NumbersBox from "@/components/common/IconBox.vue";
+import OurServices from "@/components/Home/OurServices.vue";
+import WhyChooseBlueLine from "@/components/Home/WhyChooseBlueLine.vue";
 
 import sliderOne from "@/assets/sustainability-03.large.webp";
 import sliderTow from "@/assets/WhatsApp-Image-1446-10-29-at-15-32-47.large.jpg";
@@ -28,6 +30,8 @@ export default defineComponent({
     BackgroundVideo,
     OurMission,
     CeoSection,
+    OurServices,
+    WhyChooseBlueLine,
     ServicesSection,
     NewsSection,
     CareersSection,
@@ -191,13 +195,18 @@ export default defineComponent({
     <!-- <asideMenu :activeSection="activeSection" @navigate="scrollToSection" /> -->
 
     <OurMission id="mission" />
-    <AboutSection id="about" />
+    <!-- <AboutSection id="about" /> -->
     <!-- <CeoSection id="ceo" /> -->
 
     <!-- Services section -->
-    <ServicesSection ref="servicesSectionRef" />
+    <OurServices />
 
-    <EsgVerticalSlider :slides="slides" id="sustainability" />
+    <!-- Why Choose Blue Line -->
+    <WhyChooseBlueLine />
+
+    <!-- <ServicesSection ref="servicesSectionRef" /> -->
+
+    <!-- <EsgVerticalSlider :slides="slides" id="sustainability" /> -->
     <!-- <div class="sustainability_section" id="sustainability">
       {{ $t("sustainability") }}
     </div> -->
