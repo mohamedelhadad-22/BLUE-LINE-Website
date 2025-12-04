@@ -2,12 +2,12 @@
 import { defineComponent, shallowRef } from "vue";
 import Rellax from "rellax";
 import BackgroundVideo from "@/components/Home/BackgroundVideo.vue";
-import OurMission from "@/components/Home/OurMission.vue";
+import AboutSection from "@/components/Home/AboutSection.vue";
 import CeoSection from "@/components/Home/CeoSection.vue";
 import ServicesSection from "@/components/Home/ServicesSection.vue";
 import NewsSection from "@/components/Home/NewsSection.vue";
 import CareersSection from "@/components/Home/CareersSection.vue";
-import AboutSection from "@/components/Home/About.vue";
+// import AboutSection from "@/components/Home/About.vue";
 import asideMenu from "@/components/Home/asideMenu.vue";
 import OurLocations from "@/components/Home/OurLocations.vue";
 import { useLinkedScroll } from "@/composables/useLinkedScroll";
@@ -15,6 +15,7 @@ import EsgVerticalSlider from "@/components/Home/EsgVerticalSlider.vue";
 import NumbersBox from "@/components/common/IconBox.vue";
 import OurServices from "@/components/Home/OurServices.vue";
 import WhyChooseBlueLine from "@/components/Home/WhyChooseBlueLine.vue";
+import MissionVision from "@/components/Home/MissionVision.vue";
 
 import sliderOne from "@/assets/sustainability-03.large.webp";
 import sliderTow from "@/assets/WhatsApp-Image-1446-10-29-at-15-32-47.large.jpg";
@@ -28,19 +29,20 @@ export default defineComponent({
   name: "HomeView",
   components: {
     BackgroundVideo,
-    OurMission,
+    AboutSection,
     CeoSection,
     OurServices,
     WhyChooseBlueLine,
     ServicesSection,
     NewsSection,
     CareersSection,
-    AboutSection,
+    // AboutSection,
     asideMenu,
     OurLocations,
     EsgVerticalSlider,
     commonButton,
-    NumbersBox
+    NumbersBox,
+    MissionVision
   },
   data() {
     return {
@@ -194,8 +196,7 @@ export default defineComponent({
 
     <!-- <asideMenu :activeSection="activeSection" @navigate="scrollToSection" /> -->
 
-    <OurMission id="mission" />
-    <!-- <AboutSection id="about" /> -->
+    <AboutSection id="about" />
     <!-- <CeoSection id="ceo" /> -->
 
     <!-- Services section -->
@@ -203,6 +204,7 @@ export default defineComponent({
 
     <!-- Why Choose Blue Line -->
     <WhyChooseBlueLine />
+    <MissionVision />
 
     <!-- <ServicesSection ref="servicesSectionRef" /> -->
 
