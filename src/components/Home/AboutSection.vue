@@ -49,7 +49,7 @@ import handsIcons from "@/assets/svg/handsIcons.vue";
 import BuldingIcon from "@/assets/svg/BuldingIcon.vue";
 
 export default defineComponent({
-  name: "OurMission",
+  name: "AboutSection",
   components: {
     NumbersBox,
     yearsAward,

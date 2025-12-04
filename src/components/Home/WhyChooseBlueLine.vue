@@ -264,7 +264,7 @@ export default defineComponent({
     }
 
     .why_images img {
-        max-height: 400px;
+        max-height: 600px;
     }
 
     .why_blue_line_left .why_images img {
@@ -315,7 +315,9 @@ export default defineComponent({
         max-width: 100%;
         width: 100%;
     }
-
+    .why_blue_line_right .why_boxs{
+        order: 2;
+    }
     .why_images img {
         max-height: 300px;
         border-radius: 0 0 40px 0 !important;
