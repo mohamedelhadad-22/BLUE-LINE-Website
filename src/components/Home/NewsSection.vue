@@ -128,6 +128,7 @@ export default defineComponent({
   font-weight: 700;
   line-height: 99.936%;
 }
+
 .news-header p {
   color: #71717A;
   font-size: 16px;
@@ -144,6 +145,7 @@ export default defineComponent({
 @media (max-width: 1024px) {
   .news-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-items: center;
   }
 }
 
