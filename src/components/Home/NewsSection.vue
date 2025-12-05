@@ -1,83 +1,19 @@
 <script lang="ts">
-import { defineComponent, type PropType } from "vue";
+import { defineComponent, } from "vue";
 import NewsCard from "@/components/Home/NewsCard.vue";
-import newsMalaAwards from "@/assets/image 2.png";
-import newsSouthRedSea from "@/assets/image 3.png";
-import newsStudentTour from "@/assets/image 1.png";
+import ConstructionMaterials from "@/assets/Construction-Materials_bg.jpg";
+import Automotive from "@/assets/Automotive_bg.jpg";
+import FurnitureHouseware from "@/assets/Furniture-Houseware._bgpng.png";
+import Packaging from "@/assets/Packaging_bg.png";
+import packageIcon from "@/assets/pscksge.svg";
 
-type RawPost = {
-  id: string;
-  type?: string;
-  date?: string;
+interface Post {
+  id?: number;
   title?: string;
-  summary?: string;
-  link?: string;
+  summary?: String;
+  link?: String;
   image?: string;
-};
-
-type ImageMap = Record<string, string>;
-
-type FormattedPost = Required<Pick<RawPost, "id" | "title" | "summary">> & {
-  type: string;
-  dateLabel: string;
-  link: string;
-  image: string;
-};
-
-const DEFAULT_IMAGE_MAP: ImageMap = {
-  "mala-awards": newsMalaAwards,
-  "south-red-sea": newsSouthRedSea,
-  "student-tour": newsStudentTour,
-};
-
-const DEFAULT_FALLBACK_POSTS: RawPost[] = [
-  {
-    id: "mala-awards",
-    type: "Announcement",
-    date: "2025-08-01",
-    title: 'Blue Line Wins "Rising Star Organization" at MALA Awards 2025',
-    summary:
-      "Blue Line is recognised at the MALA Awards for its rapid progress, innovation, and commitment to elevating regional logistics standards.",
-    link: "/news-insights#mala-awards",
-    image: newsMalaAwards,
-  },
-  {
-    id: "south-red-sea",
-    type: "Announcement",
-    date: "2025-07-07",
-    title:
-      "Blue Line Expands South Red Sea Service with Enhanced Jeddah-Centric Rotation",
-    summary:
-      "The strategic extension of Blue Line's South Red Sea Service strengthens regional connectivity and amplifies Saudi Arabia's role as a logistics hub.",
-    link: "/news-insights#south-red-sea",
-    image: newsSouthRedSea,
-  },
-  {
-    id: "student-tour",
-    type: "Community",
-    date: "2025-06-03",
-    title:
-      'Blue Line Organizes Tour for Maritime Students Onboard Container Vessel "Blue Line Jeddah"',
-    summary:
-      "Students from King Abdulaziz University experience life onboard Blue Line Jeddah, gaining practical insight into modern vessel operations.",
-    link: "/news-insights#student-tour",
-    image: newsStudentTour,
-  },
-];
-
-const DEFAULT_FALLBACK_IMAGE = newsMalaAwards;
-
-const getNestedValue = <T,>(
-  source: Record<string, any> | undefined,
-  path: string
-): T | undefined => {
-  if (!source || !path) return undefined;
-  return path.split(".").reduce<any>((acc, key) => {
-    if (acc && typeof acc === "object" && key in acc) {
-      return acc[key];
-    }
-    return undefined;
-  }, source);
+  icon?: string;
 };
 
 export default defineComponent({
@@ -85,130 +21,67 @@ export default defineComponent({
   components: {
     NewsCard,
   },
-  props: {
-    newsData: {
-      type: Object as PropType<{
-        kicker?: string;
-        title?: string;
-        cta?: string;
-        posts?: RawPost[];
-      }>,
-      default: () => ({}),
-    },
-    translationsKey: {
-      type: String,
-      default: "homeNews",
-    },
-    imageMap: {
-      type: Object as PropType<ImageMap>,
-      default: () => ({ ...DEFAULT_IMAGE_MAP }),
-    },
-    fallbackPosts: {
-      type: Array as PropType<RawPost[]>,
-      default: () =>
-        DEFAULT_FALLBACK_POSTS.map((post) => ({
-          ...post,
-        })),
-    },
-    fallbackImage: {
-      type: String,
-      default: DEFAULT_FALLBACK_IMAGE,
-    },
+  data() {
+    return {
+      posts: [
+        {
+          id: 1,
+          title: 'Automotive',
+          summary:
+            "The automotive industry relies on precision logistics to maintain seamless production and meet market demands. BlueLine delivers specialised solutions to securely transport parts and components, ensuring efficiency, compliance, and reliability across your supply chain.",
+          link: "/news-insights#mala-awards",
+          image: Automotive,
+          icon: packageIcon,
+        },
+        {
+          id: 2,
+          title:
+            "Furniture & Houseware",
+          summary:
+            "The furniture and housewares industry requires expert logistics to ensure safe and timely delivery. At BlueLine, we provide tailored solutions for bulky furniture and delicate goods, combining precision handling, customs expertise, and flexible freight options to safeguard your",
+          link: "/news-insights#south-red-sea",
+          image: FurnitureHouseware,
+          icon: packageIcon,
+        },
+        {
+          id: 3,
+          title:
+            'Packaging',
+          summary:
+            "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way.",
+          link: "/news-insights#student-tour",
+          image: Packaging,
+          icon: packageIcon,
+        },
+        {
+          id: 4,
+          title:
+            'Construction Materials',
+          summary:
+            "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way.",
+          link: "/news-insights#student-tour",
+          image: ConstructionMaterials,
+          icon: packageIcon,
+        },
+      ] as Post[],
+    };
   },
-  computed: {
-    composerLocale(): string {
-      return this.$i18n.locale;
-    },
-    isArabic(): boolean {
-      return this.composerLocale.startsWith("ar");
-    },
-    direction(): "rtl" | "ltr" {
-      return this.isArabic ? "rtl" : "ltr";
-    },
-    computedNewsData(): {
-      kicker?: string;
-      title?: string;
-      cta?: string;
-      posts?: RawPost[];
-    } {
-      // Use prop data if provided, otherwise fallback to i18n
-      if (this.newsData && Object.keys(this.newsData).length > 0) {
-        return this.newsData;
-      }
 
-      const messages = (
-        this.$i18n as unknown as { messages?: Record<string, any> }
-      ).messages;
-      const localeMessages = messages?.[this.composerLocale] ?? {};
-      const fallbackFromLocale = getNestedValue<{
-        kicker?: string;
-        title?: string;
-        cta?: string;
-        posts?: RawPost[];
-      }>(localeMessages, this.translationsKey);
-      return (fallbackFromLocale ?? {}) as {
-        kicker?: string;
-        title?: string;
-        cta?: string;
-        posts?: RawPost[];
-      };
-    },
-    posts(): FormattedPost[] {
-      const locale = this.isArabic ? "ar-SA" : "en-GB";
-      const dateFormatter = new Intl.DateTimeFormat(locale, {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-      });
-
-      const sourcePosts =
-        (this.computedNewsData.posts?.length
-          ? this.computedNewsData.posts
-          : this.fallbackPosts) ?? [];
-
-      return sourcePosts.map((post) => {
-        const date = post.date ? new Date(post.date) : new Date();
-        return {
-          id: post.id,
-          type: post.type ?? "",
-          dateLabel: dateFormatter.format(date),
-          title: post.title ?? "",
-          summary: post.summary ?? "",
-          link: post.link ?? "#",
-          image: post.image ?? this.imageMap[post.id] ?? this.fallbackImage,
-        };
-      });
-    },
-    layoutClass(): Record<string, boolean> {
-      return {
-        "news-section--rtl": this.isArabic,
-      };
-    },
-    ctaLabel(): string {
-      return this.computedNewsData.cta ?? "";
-    },
-  },
 });
 </script>
 
 <template>
-  <section class="news-section" id="news" :dir="direction">
+  <section class="news-section" id="news">
     <div class="news-shell">
       <div class="news-header">
-        <span class="news-kicker">
-          <span class="news-kicker__icon" aria-hidden="true">✦</span>
-          LATEST NEWS
+        <span class="news-title_badge">
+          Industries
         </span>
-        <p>Get updated with Blue Line happenings and insights</p>
+        <h2>The Industries We Can Provide Services To</h2>
+        <p>Consistent, effective, and economical shipping options for enterprises across the globe.</p>
       </div>
-      <div class="news-grid" :class="layoutClass">
-        <NewsCard
-          v-for="post in posts"
-          :key="post.id"
-          :post="post"
-          :cta-label="ctaLabel"
-          :is-rtl="isArabic"
-        />
+      <div class="news-grid">
+        <NewsCard v-for="post in posts" :key="post.id" :data="post" />
       </div>
     </div>
   </section>
@@ -227,52 +100,45 @@ export default defineComponent({
   max-width: 1200px;
   display: flex;
   flex-direction: column;
-  gap: clamp(2rem, 4vw, 3rem);
+  gap: 37px;
 }
 
 .news-header {
   display: flex;
+  align-items: flex-start;
   flex-direction: column;
   gap: 1rem;
 }
 
-.news-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 1rem;
-  border-radius: 999px;
-  background: rgba(124, 97, 255, 0.12);
-  color: #5e4ff9;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 0.8rem;
-  width: fit-content;
+.news-title_badge {
+  display: flex;
+  padding: 7px 10.5px;
+  align-items: flex-start;
+  background: #2970FF;
+  color: #FFF;
+  font-weight: 500;
+  font-size: 14px;
 }
 
-.news-kicker__icon {
-  font-size: 0.9rem;
-}
-.news-header {
+.news-header h2 {
   color: #000;
   font-family: Lato;
-  font-size: 32px;
+  font-size: 48px;
   font-style: normal;
   font-weight: 700;
-  line-height: 99.936%; /* 31.98px */
+  line-height: 99.936%;
 }
-.news-title {
-  margin: 0;
-  font-size: clamp(2.1rem, 3.5vw, 3rem);
-  font-weight: 700;
-  color: #081829;
+.news-header p {
+  color: #71717A;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
 }
 
 .news-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.5rem, 3vw, 2.5rem);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
 }
 
 @media (max-width: 1024px) {
