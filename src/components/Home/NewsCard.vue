@@ -1,23 +1,18 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-
+interface Post {
+  id?: number;
+  title?: string;
+  summary?: String;
+  link?: String;
+  image?: string;
+  icon?: string;
+};
 export default defineComponent({
   name: "NewsCard",
   props: {
-    bgImage: {
-      type: String,
-      required: true,
-    },
-    icon: {
-      type: String,
-      required: true,
-    },
-    title: {
-      type: String,
-      required: true,
-    },
-    description: {
-      type: String,
+    data: {
+      type: Object as () => Post,
       required: true,
     },
   },
@@ -25,17 +20,17 @@ export default defineComponent({
 </script>
 
 <template>
-  <article class="news-card" :style="{ backgroundImage: `url(${bgImage})` }">
+  <article class="news-card" :style="{ backgroundImage: `url(${data.image})` }">
     <div class="news-card__overlay"></div>
     <div class="news-card__content">
       <div class="news-card__icon">
-        <img :src="icon" :alt="title" />
+        <img :src="data.icon || ''" :alt="data.title ? data.title : ''" />
       </div>
       <h3 class="news-card__title">
-        {{ title }}
+        {{ data.title }}
       </h3>
       <p class="news-card__description">
-        {{ description }}
+        {{ data.summary }}
       </p>
     </div>
   </article>

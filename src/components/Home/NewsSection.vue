@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, type PropType } from "vue";
+import { defineComponent, } from "vue";
 import NewsCard from "@/components/Home/NewsCard.vue";
 import ConstructionMaterials from "@/assets/Construction-Materials_bg.jpg";
 import Automotive from "@/assets/Automotive_bg.jpg";
@@ -7,11 +7,11 @@ import FurnitureHouseware from "@/assets/Furniture-Houseware._bgpng.png";
 import Packaging from "@/assets/Packaging_bg.png";
 import packageIcon from "@/assets/pscksge.svg";
 
-type Post = {
-  id: string;
+interface Post {
+  id?: number;
   title?: string;
-  summary?: string;
-  link?: string;
+  summary?: String;
+  link?: String;
   image?: string;
   icon?: string;
 };
@@ -20,12 +20,6 @@ export default defineComponent({
   name: "NewsSection",
   components: {
     NewsCard,
-  },
-  props: {
-    ctaLabel: {
-      type: String as PropType<string>,
-      default: "Read More",
-    },
   },
   data() {
     return {
@@ -69,7 +63,7 @@ export default defineComponent({
           image: ConstructionMaterials,
           icon: packageIcon,
         },
-      ],
+      ] as Post[],
     };
   },
 
@@ -87,8 +81,7 @@ export default defineComponent({
         <p>Consistent, effective, and economical shipping options for enterprises across the globe.</p>
       </div>
       <div class="news-grid">
-        <NewsCard v-for="post in posts" :key="post.id" :title="post.title" :bgImage="post.image" :icon="post.icon"
-          :description="post.summary" :link="post.link" />
+        <NewsCard v-for="post in posts" :key="post.id" :data="post" />
       </div>
     </div>
   </section>
