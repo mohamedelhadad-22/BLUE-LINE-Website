@@ -122,6 +122,7 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  gap: 24px;
 }
 
 .footer_columns {
@@ -129,6 +130,8 @@ export default defineComponent({
   flex-direction: column;
   gap: 8px;
   max-width: 20%;
+  flex: 1 1 auto;
+  min-width: 200px;
 }
 
 .footer_columns a {
@@ -262,5 +265,128 @@ export default defineComponent({
   font-weight: 500;
   line-height: 18.9px;
   letter-spacing: -0.32px;
+}
+
+/* Tablet styles (768px - 1024px) */
+@media (max-width: 1024px) {
+  .footer {
+    padding: 40px 32px 24px 32px;
+  }
+
+  .footer-content {
+    gap: 32px;
+  }
+
+  .footer_columns {
+    max-width: 45%;
+    min-width: 45%;
+  }
+
+  .logo_column {
+    max-width: 100%;
+    min-width: 100%;
+  }
+
+  .contact_us {
+    max-width: 45%;
+  }
+}
+
+/* Mobile styles (below 768px) */
+@media (max-width: 768px) {
+  .footer {
+    padding: 32px 20px 20px 20px;
+  }
+
+  .footer-container {
+    gap: 24px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .footer_columns {
+    max-width: 100%;
+    min-width: 100%;
+  }
+
+  .logo_column {
+    max-width: 100%;
+  }
+
+  .contact_us {
+    max-width: 100%;
+  }
+
+  .contacts li {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .footer_columns a {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .footer_columns .hours p {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .footer-bottom span {
+    font-size: 11px;
+    line-height: 16px;
+    text-align: center;
+  }
+}
+
+/* Small mobile styles (below 480px) */
+@media (max-width: 480px) {
+  .footer {
+    padding: 24px 16px 16px 16px;
+  }
+
+  .logo_text h1 {
+    font-size: 17px;
+    line-height: 16px;
+  }
+
+  .logo_text span {
+    font-size: 7px;
+    line-height: 7px;
+  }
+
+  .logo_svg img {
+    width: 26px;
+    height: 21px;
+  }
+
+  .contacts li {
+    gap: 8px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .footer_columns a {
+    font-size: 12px;
+    line-height: 16px;
+    padding: 6px 0;
+  }
+
+  .footer_columns .hours p {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .footer_columns .title_footer {
+    font-size: 14px;
+  }
+
+  .footer-bottom span {
+    font-size: 10px;
+    line-height: 14px;
+  }
 }
 </style>
