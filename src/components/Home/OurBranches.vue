@@ -185,4 +185,144 @@ export default defineComponent({
     max-width: 342px;
     max-height: 368px;
 }
+
+/* Tablet Styles (641px - 1024px) */
+@media (max-width: 1024px) {
+    .our-branches {
+        padding: 50px 0 100px 0;
+    }
+
+    .news-header h2 {
+        font-size: 36px;
+    }
+
+    .news-header p {
+        font-size: 15px;
+        line-height: 22px;
+    }
+
+    .branches_wrapper {
+        gap: 40px;
+    }
+
+    .branche_content {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .branche_row.location h2 {
+        font-size: 28px;
+    }
+
+    .branche_row h3 {
+        font-size: 18px;
+    }
+
+    .branche_image {
+        max-width: 100%;
+        max-height: 100%;
+        width: 100%;
+    }
+
+    .branche_image img {
+        min-width: 100%;
+        min-height: 300px;
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+/* Mobile Styles (up to 640px) */
+@media (max-width: 640px) {
+    .our-branches {
+        padding: 40px 0 80px 0;
+    }
+
+    .branches_container {
+        gap: 24px;
+    }
+
+    .news-header {
+        gap: 12px;
+    }
+
+    .news-header h2 {
+        font-size: 28px;
+    }
+
+    .news-header p {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .news-title_badge {
+        padding: 6px 9px;
+        font-size: 12px;
+        line-height: 12px;
+        margin-bottom: 6px;
+    }
+
+    .branches_wrapper {
+        gap: 32px;
+        flex-direction: column;
+    }
+
+    .branche_content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .branche_text {
+        gap: 16px;
+    }
+
+    .branche_row {
+        gap: 3px;
+    }
+
+    .branche_row.location h2 {
+        font-size: 24px;
+    }
+
+    .branche_row span {
+        font-size: 13px;
+    }
+
+    .branche_row h3 {
+        font-size: 16px;
+        word-break: break-word;
+    }
+
+    .branche_image {
+        max-width: 100%;
+        max-height: 100%;
+        width: 100%;
+    }
+
+    .branche_image img {
+        min-width: 100%;
+        min-height: auto;
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+/* Extra Small Mobile (up to 375px) */
+@media (max-width: 375px) {
+    .our-branches {
+        padding: 30px 0 60px 0;
+    }
+
+    .news-header h2 {
+        font-size: 24px;
+    }
+
+    .branche_row.location h2 {
+        font-size: 20px;
+    }
+
+    .branche_row h3 {
+        font-size: 14px;
+    }
+}
 </style>
