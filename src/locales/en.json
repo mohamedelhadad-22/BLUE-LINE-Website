@@ -138,54 +138,21 @@
         }
     },
     "footer": {
-        "feedback": {
-            "text": "What you think matters. Please share your suggestions.",
-            "link": "Share your suggestions"
-        },
-        "sections": {
-            "about": {
-                "title": "About Blue Line",
-                "links": {
-                    "about": "About us",
-                    "stakeholders": "Stakeholders Relations",
-                    "careers": "Careers",
-                    "contact": "Contact us"
-                }
-            },
-            "business": {
-                "title": "Business areas",
-                "links": {
-                    "feeders": "Feeders services",
-                    "liner": "Regional Liner Services",
-                    "routes": "Routes & Agents Contacts",
-                    "faq": "FAQ & Glossary",
-                    "fleet": "Fleet"
-                }
-            },
-            "media": {
-                "title": "Media center",
-                "links": {
-                    "news": "News & Insights",
-                    "downloads": "Downloads"
-                }
-            }
-        },
-        "follow": "Follow us",
-        "legal": {
-            "copyright": "© Blue Line. All Rights Reserved 2025",
-            "privacy": "Privacy Policy",
-            "terms": "Terms & Conditions"
-        },
-        "backToTop": "Back to top",
-        "pifLabel": "A PIF COMPANY",
-        "modal": {
-            "title": "Comments & Suggestions",
-            "placeholder": "Enter your comments or suggestions",
-            "submit": "Submit",
-            "cancel": "Cancel",
-            "success": "Thanks for sharing your feedback!",
-            "error": "Please enter a message before submitting."
-        }
+        "copyright": "© Blue Line. All Rights Reserved 2025",
+        "privacy": "Privacy Policy",
+        "terms": "Terms & Conditions",
+        "about": "About Us",
+        "contact":"Contact Us",
+        "FooterDescription":"We shrink the world into a single step. We don’t just move cargo—we connect suppliers to their clients across the globe,",
+        "BusinessMedia":"Business & Media",
+        "Contactus":"Contact Us",
+        "WorkingHours":"Working Hours",
+        "Legal":"Legal",
+        "OurServices":"Our Services",
+        "BlueLine": "BlueLine",
+        "BlueLineDesc":"For Ocean Freight Services",
+        "WorkingDays":"From Saturday to Thursday",
+        "WorkingDaysHours":"From 8:30 AM to 4:30 PM"
     },
     "pages": {
         "stakeholders": {
