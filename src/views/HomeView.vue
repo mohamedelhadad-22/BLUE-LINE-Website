@@ -16,6 +16,8 @@ import NumbersBox from "@/components/common/IconBox.vue";
 import OurServices from "@/components/Home/OurServices.vue";
 import WhyChooseBlueLine from "@/components/Home/WhyChooseBlueLine.vue";
 import MissionVision from "@/components/Home/MissionVision.vue";
+import Destinations from "@/components/Home/Destinations.vue";
+import OurBranches from "@/components/Home/OurBranches.vue";
 
 import sliderOne from "@/assets/sustainability-03.large.webp";
 import sliderTow from "@/assets/WhatsApp-Image-1446-10-29-at-15-32-47.large.jpg";
@@ -42,7 +44,9 @@ export default defineComponent({
     EsgVerticalSlider,
     commonButton,
     NumbersBox,
-    MissionVision
+    MissionVision,
+    OurBranches,
+    Destinations
   },
   data() {
     return {
@@ -205,6 +209,8 @@ export default defineComponent({
     <!-- Why Choose Blue Line -->
     <WhyChooseBlueLine />
     <MissionVision />
+    <Destinations />
+
 
     <!-- <ServicesSection ref="servicesSectionRef" /> -->
 
@@ -215,7 +221,8 @@ export default defineComponent({
     <OurLocations id="locations" />
 
     <NewsSection id="news" />
-    <CareersSection id="career" />
+        <OurBranches />
+    <!-- <CareersSection id="career" /> -->
   </div>
 </template>
 
