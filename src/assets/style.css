@@ -29,7 +29,7 @@ body {
 .content {
   min-height: 100dvh;
   min-width: 100dvw;
-  font-family: 'Lato', tahoma, sans-serif;
+  font-family: "Inter Tight";
   font-style: normal;
   font-weight: 400;
   overflow-y: auto;
@@ -167,7 +167,7 @@ input {
   margin: 0;
   padding: 0;
   border: 0;
-  font-family: inherit;
+  font-family: inherit; /* "Inter Tight" */
   font-size: 100%;
   text-decoration: none;
   vertical-align: baseline;
@@ -232,5 +232,5 @@ html {
 }
 
 .english {
-  font-family: 'Lato', tahoma, arial, sans-serif;
+  font-family: "Inter Tight";
 }
