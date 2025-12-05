@@ -209,7 +209,7 @@ export default defineComponent({
     <!-- Why Choose Blue Line -->
     <WhyChooseBlueLine />
     <MissionVision />
-    <Destinations />
+    <!-- <Destinations /> -->
 
 
     <!-- <ServicesSection ref="servicesSectionRef" /> -->
@@ -218,7 +218,7 @@ export default defineComponent({
     <!-- <div class="sustainability_section" id="sustainability">
       {{ $t("sustainability") }}
     </div> -->
-    <OurLocations id="locations" />
+    <!-- <OurLocations id="locations" /> -->
 
     <NewsSection id="news" />
         <OurBranches />
