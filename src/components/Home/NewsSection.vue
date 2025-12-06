@@ -72,7 +72,7 @@ export default defineComponent({
 
 <template>
   <section class="news-section" id="news">
-    <div class="news-shell">
+    <div class="container news-shell">
       <div class="news-header">
         <span class="news-title_badge">
           Industries
@@ -89,15 +89,15 @@ export default defineComponent({
 
 <style scoped>
 .news-section {
-  padding: clamp(3.5rem, 8vw, 6rem) clamp(1.5rem, 6vw, 3.5rem);
-  background: #f9fbff;
-  color: #0f1f2f;
+  padding: 52px 0 100px 0;
+  /* background: #f9fbff; */
+  /* color: #0f1f2f; */
 }
 
 .news-shell {
-  margin: 0 auto;
+  /* margin: 0 auto; */
   width: 100%;
-  max-width: 1200px;
+  /* max-width: 1200px; */
   display: flex;
   flex-direction: column;
   gap: 37px;

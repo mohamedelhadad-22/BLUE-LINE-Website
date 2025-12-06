@@ -11,7 +11,11 @@
         "sustainability": "Sustainability",
         "news": "News",
         "career": "Career",
-        "locations":" Locations"
+        "locations":" Locations",
+        "destinationTitle":"Destinations",
+        "destinationTitle2":"we serve",
+        "destinationDesc":"Discover where we can take you",
+        "map":"Map"
     },
     "missionSection": {
         "kicker": "Our pillars",
