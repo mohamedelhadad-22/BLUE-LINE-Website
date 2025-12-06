@@ -11,7 +11,11 @@
         "sustainability": "الاستدامة",
         "news": "الأخبار",
         "career": "الوظائف",
-        "locations": "المواقع"
+        "locations": "المواقع",
+        "destinationTitle":"الوجهات",
+        "destinationTitle2":" التي نخدمها",
+        "destinationDesc":"اكتشف أين يمكننا أن نأخذك",
+        "map":"خريطة"
     },
     "missionSection": {
         "kicker": "مرتكزاتنا",

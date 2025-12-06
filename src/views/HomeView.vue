@@ -209,7 +209,7 @@ export default defineComponent({
     <!-- Why Choose Blue Line -->
     <WhyChooseBlueLine />
     <MissionVision />
-    <!-- <Destinations /> -->
+    <Destinations />
 
 
     <!-- <ServicesSection ref="servicesSectionRef" /> -->
