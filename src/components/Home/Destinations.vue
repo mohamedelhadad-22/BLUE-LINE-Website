@@ -27,11 +27,38 @@
 
                             <!-- Tooltip -->
                             <div class="tooltip" v-show="activeTooltip === 'egypt'">
+
                                 <div class="tooltip-content">
-                                    <div class="tooltip-header">Egypt</div>
-                                    <div class="tooltip-text">
-                                        5 Nouh Effendi, Wabour Al Meyah,<br>
-                                        Alexandria Governorate 5423003
+                                    <div class="flag">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 20 20" fill="none">
+                                            <g clip-path="url(#clip0_112_94)">
+                                                <path
+                                                    d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20Z"
+                                                    fill="#F0F0F0" />
+                                                <path
+                                                    d="M10.0001 -0.000488281C5.70043 -0.000488281 2.035 2.71326 0.62207 6.52127H19.3781C17.9652 2.71326 14.2997 -0.000488281 10.0001 -0.000488281Z"
+                                                    fill="#D80027" />
+                                                <path
+                                                    d="M10.0001 20.0003C14.2997 20.0003 17.9652 17.2865 19.3781 13.4785H0.62207C2.035 17.2865 5.70043 20.0003 10.0001 20.0003Z"
+                                                    fill="black" />
+                                                <path
+                                                    d="M13.4783 8.91303H10.8696C10.8696 8.43279 10.4802 8.04346 10 8.04346C9.51977 8.04346 9.13044 8.43279 9.13044 8.91303H6.52173C6.52173 9.3933 6.94005 9.7826 7.42028 9.7826H7.3913C7.3913 10.2629 7.78059 10.6522 8.26087 10.6522C8.26087 11.1324 8.65016 11.5217 9.13044 11.5217H10.8696C11.3499 11.5217 11.7391 11.1324 11.7391 10.6522C12.2194 10.6522 12.6087 10.2629 12.6087 9.7826H12.5798C13.06 9.7826 13.4783 9.3933 13.4783 8.91303Z"
+                                                    fill="#FF9811" />
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_112_94">
+                                                    <rect width="20" height="20" fill="white" />
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+                                    </div>
+                                    <div class="text">
+                                        <div class="tooltip-header">Egypt</div>
+                                        <div class="tooltip-text">
+                                            5 Nouh Effendi, Wabour Al Meyah,<br>
+                                            Alexandria Governorate 5423003
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="tooltip-arrow"></div>
@@ -48,6 +75,9 @@
                             <!-- Tooltip -->
                             <div class="tooltip" v-show="activeTooltip === 'saudi'">
                                 <div class="tooltip-content">
+                                    <div class="flag">
+                                        <img src="@/assets/Saudi-arabia-flag.png" alt="Saudi Arabia Flag" />
+                                    </div>
                                     <div class="tooltip-header">Saudi Arabia</div>
                                     <div class="tooltip-text">
                                         23441 Al-Madina Al-Munawarah Branch Rd,<br>
@@ -290,8 +320,26 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 8px;
     z-index: 10;
     filter: drop-shadow(0px 12px 16px rgba(16, 24, 40, 0.08)) drop-shadow(0px 4px 6px rgba(16, 24, 40, 0.03));
+    border-radius: 8px;
+    background: #FFF;
+    min-width: 300px;
+}
+
+.tooltip .flag {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.tooltip .flag img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    border-radius: 100%;
 }
 
 .tooltip-content {
@@ -302,6 +350,7 @@ export default defineComponent({
     flex-direction: column;
     gap: 4px;
     text-align: center;
+    justify-content: center;
 }
 
 .tooltip-header {

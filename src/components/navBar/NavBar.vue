@@ -8,14 +8,14 @@
   >
     <div class="header__row">
       <RouterLink class="logo" to="/">
-        <img src="@/assets/svg/BL_Logo Png-03 1.svg" alt="logo" />
+        <img src="@/assets/BlueLine-Logo.svg" alt="logo" />
       </RouterLink>
 
       <!-- Desktop Navigation -->
       <nav class="desktop-nav">
         <RouterLink class="nav-link active" to="/"
           >Home
-          <svg
+          <!-- <svg
             xmlns="http://www.w3.org/2000/svg"
             width="29"
             height="8"
@@ -26,7 +26,7 @@
               d="M14.75 3.25L28.25 0.75L14.75 7.25L0.75 0.75L14.75 3.25Z"
               fill="white"
             />
-          </svg>
+          </svg> -->
         </RouterLink>
         <RouterLink class="nav-link" to="/about">About Us</RouterLink>
         <RouterLink class="nav-link" to="/contact">Contact Us</RouterLink>
@@ -177,12 +177,12 @@ export default defineComponent({
   height: 72px;
   /* max-width: 1476px; */
   margin: 0 auto;
-  padding: 0 100px;
+  padding: 40px 100px 0
 }
 
 .logo {
-  width: 66px;
-  height: 66px;
+  width: 266px;
+  height: 60px;
   display: flex;
   align-items: center;
 }
@@ -198,7 +198,7 @@ export default defineComponent({
 /* Desktop Navigation */
 .desktop-nav {
   display: none;
-  gap: 32px;
+  gap: 42px;
   align-items: center;
   /* margin-inline-start: auto; */
 }
@@ -207,7 +207,7 @@ export default defineComponent({
   color: #fff;
   text-align: center;
   font-family: Lato;
-  font-size: 24px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   transition: opacity 0.2s ease;

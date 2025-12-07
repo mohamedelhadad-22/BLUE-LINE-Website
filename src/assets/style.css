@@ -28,11 +28,12 @@ body {
 
 .content {
   min-height: 100dvh;
-  min-width: 100dvw;
+  width: 100%;
   font-family: "Inter Tight";
   font-style: normal;
   font-weight: 400;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .container {
