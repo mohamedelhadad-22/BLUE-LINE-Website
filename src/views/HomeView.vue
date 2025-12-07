@@ -184,7 +184,7 @@ export default defineComponent({
           </p>
           <commonButton :text="$t('Discover More')" buttonType="XL" :click="scrollToSection('mission')"
             :isBlueColor="true" :isRadius="true" />
-          <!-- <div class="hero-ornaments">
+          <!--   <div class="hero-ornaments">
             <span
               class="hero-ornament hero-ornament--primary js-parallax"
               data-rellax-speed="3"
@@ -221,7 +221,7 @@ export default defineComponent({
     <!-- <OurLocations id="locations" /> -->
 
     <NewsSection id="news" />
-        <OurBranches />
+    <OurBranches />
     <!-- <CareersSection id="career" /> -->
   </div>
 </template>
@@ -234,8 +234,8 @@ export default defineComponent({
 .homeView {
   position: relative;
   width: 100%;
-  overflow: hidden;
   max-width: 100%;
+  overflow-x: hidden;
 }
 
 .hero_section {

@@ -25,14 +25,17 @@ export default defineComponent({
 .content {
   position: relative;
   width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 .router_content {
   position: relative;
   width: 100%;
+  max-width: 100%;
   flex: 1 1 auto;
-  overflow: hidden;
+  overflow-x: hidden;
   min-height: 90dvh;
 }
 </style>

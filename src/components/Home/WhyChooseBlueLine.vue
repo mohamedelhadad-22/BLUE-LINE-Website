@@ -104,7 +104,7 @@ export default defineComponent({
 .why_blue_line {
     display: flex;
     width: 100%;
-    max-width: 1440px;
+    /* max-width: 1440px; */
     max-height: 1798px;
     padding: 128px 0;
     flex-direction: column;
