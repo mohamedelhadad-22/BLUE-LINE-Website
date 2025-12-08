@@ -1,6 +1,39 @@
 {
     "Home": "Home",
     "langSwitch": "English",
+    "navbar": {
+        "home": "Home",
+        "aboutUs": "About Us",
+        "contactUs": "Contact Us",
+        "faq": "FAQ",
+        "logo": {
+            "alt": "BlueLine Logo",
+            "tagline": "For Ocean Freight Services"
+        },
+        "menu": {
+            "aboutBlueLine": {
+                "title": "About Blue Line",
+                "aboutUs": "About us",
+                "stakeholders": "Stakeholders Relations",
+                "career": "Career",
+                "contact": "Contact us"
+            },
+            "businessAreas": {
+                "title": "Business Areas",
+                "feederServices": "Feeder services",
+                "regionalLiner": "Regional Liner Services",
+                "routesAgents": "Routes & Agents Contacts",
+                "fleet": "Fleet",
+                "faqGlossary": "FAQ & Glossary"
+            },
+            "mediaCenter": {
+                "title": "Media center",
+                "newsInsights": "News & Insights",
+                "downloads": "Downloads",
+                "ecommerce": "E-commerce"
+            }
+        }
+    },
     "homeSection": {
         "home": "Home",
         "mission": "Mission",
@@ -268,6 +301,98 @@
                 "submitting": "Sending...",
                 "success": "Thank you! We'll get back to you shortly.",
                 "error": "Something went wrong. Please try again."
+            },
+            "hero": {
+                "title": "Talk to Our Team",
+                "subtitle": "We're here to support your logistics needs — anytime, anywhere."
+            },
+            "formSection": {
+                "title": "Send Us a Message",
+                "subtitle": "Fill out the form below and we'll get back to you shortly",
+                "fullName": "Full Name *",
+                "fullNamePlaceholder": "John Doe",
+                "companyName": "Company Name",
+                "companyNamePlaceholder": "ABC Corporation",
+                "email": "Email Address *",
+                "emailPlaceholder": "john@example.com",
+                "phone": "Phone Number",
+                "phonePlaceholder": "+1 (555) 123-4567",
+                "message": "Message *",
+                "messagePlaceholder": "Tell us about your logistics needs...",
+                "submitButton": "Submit Message"
+            },
+            "formValidation": {
+                "fullNameRequired": "Full name is required.",
+                "fullNameMinLength": "Full name must be at least 2 characters.",
+                "emailRequired": "Email address is required.",
+                "emailInvalid": "Please enter a valid email address.",
+                "messageRequired": "Message is required.",
+                "messageMinLength": "Message must be at least 10 characters.",
+                "submitting": "Submitting..."
+            },
+            "formMessages": {
+                "success": "Thank you! We'll get back to you shortly.",
+                "error": "Something went wrong. Please try again."
+            },
+            "support": {
+                "title": "Quick Support",
+                "subtitle": "Common questions about our services",
+                "faq1": {
+                    "question": "What are your business hours?",
+                    "answer": "Our customer support team is available 24/7 to assist you. Our office hours are Monday to Friday, 9 AM to 6 PM EST."
+                },
+                "faq2": {
+                    "question": "How can I track my shipment?",
+                    "answer": "Use your tracking number on our website or contact our support team for real-time updates on your shipment status."
+                },
+                "faq3": {
+                    "question": "How do I request a quote?",
+                    "answer": "Fill out our contact form above or call us directly. We'll provide a customized quote within 24 hours."
+                },
+                "faq4": {
+                    "question": "Do you ship internationally?",
+                    "answer": "Yes, we offer comprehensive international shipping services to over 150 countries worldwide with full tracking."
+                }
+            },
+            "branches": {
+                "title": "Our Branches",
+                "saudi": {
+                    "label": "Head Office",
+                    "name": "Saudi Branch",
+                    "addressLabel": "Address Branch",
+                    "address": "23441 Al-Madina Al-Munawarah Branch Rd,<br />Al Faisaliyah, Kanoo Building, Jeddah",
+                    "phoneLabel": "Phone:",
+                    "phone": "054 757 5530",
+                    "mailLabel": "Mail:",
+                    "mail": "info@blueline-sa.net",
+                    "hoursLabel": "Working Hours",
+                    "hours": "From Saturday to Thursday<br />From 8:30 AM to 4:30 PM",
+                    "finance": "Finance",
+                    "financePhone": "Mobile: 0 547576076",
+                    "financeEmail": "Finance@blueline-sa.net",
+                    "manager": "Operation Manager",
+                    "managerPhone": "Mobile: 0530957713",
+                    "managerEmail": "Email: umar.farooq@blueline-sa.net"
+                },
+                "egypt": {
+                    "name": "Egypt Branch",
+                    "addressLabel": "Address Branch",
+                    "address": "Property No. 6, Sector H, First Floor<br />Service Center, First Settlement - New Cairo",
+                    "phoneLabel": "Phone:",
+                    "phone": "0 122 3693800",
+                    "mobileLabel": "Mobile:",
+                    "mobile": "0223555525",
+                    "mailLabel": "Mail:",
+                    "mail": "info@blueline-sa.net",
+                    "hoursLabel": "Working Hours",
+                    "hours": "From Saturday to Thursday<br />From 8:30 AM to 4:30 PM",
+                    "finance": "Finance",
+                    "financePhone": "Mobile: 01201374000",
+                    "financeEmail": "Finance@blueline-sa.net",
+                    "manager": "Branch Manager",
+                    "managerPhone": "Mobile: 01223693800",
+                    "managerEmail": "mohamed.abdulaziz@blueline-sa.net"
+                }
             }
         },
         "feeders": {

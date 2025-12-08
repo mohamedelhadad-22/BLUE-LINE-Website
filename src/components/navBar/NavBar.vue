@@ -1,20 +1,24 @@
 <template>
-  <header
-    :class="[
-      'header',
-      route.path === '/' ? 'header--absolute' : 'header--relative',
-      { 'header--open': isOpen },
-    ]"
-  >
+  <header :class="[
+    'header',
+    isHomePage ? 'header--absolute' : 'header--relative',
+    { 'header--open': isOpen },
+  ]">
     <div class="header__row">
       <RouterLink class="logo" to="/">
-        <img src="@/assets/BlueLine-Logo.svg" alt="logo" />
+        <img v-if="isHomePage" src="@/assets/BlueLine-Logo.svg" :alt="t('navbar.logo.alt')" />
+        <div v-else class="colorfull-logo">
+          <img src="@/assets/color-logo.svg" :alt="t('navbar.logo.alt')" />
+          <div class="logo_text">
+            <h1>BlueLine</h1>
+            <p>{{ t('navbar.logo.tagline') }}</p>
+          </div>
+        </div>
       </RouterLink>
 
       <!-- Desktop Navigation -->
       <nav class="desktop-nav">
-        <RouterLink class="nav-link active" to="/"
-          >Home
+        <RouterLink class="nav-link active" to="/">{{ t('navbar.home') }}
           <!-- <svg
             xmlns="http://www.w3.org/2000/svg"
             width="29"
@@ -28,41 +32,31 @@
             />
           </svg> -->
         </RouterLink>
-        <RouterLink class="nav-link" to="/about">About Us</RouterLink>
-        <RouterLink class="nav-link" to="/contact">Contact Us</RouterLink>
-        <RouterLink class="nav-link" to="/faq-glossary">FAQ</RouterLink>
+        <RouterLink class="nav-link" to="/">{{ t('navbar.aboutUs') }}</RouterLink>
+        <RouterLink class="nav-link" to="/contact">{{ t('navbar.contactUs') }}</RouterLink>
+        <RouterLink class="nav-link" to="/">{{ t('navbar.faq') }}</RouterLink>
       </nav>
 
       <div class="actions">
         <!-- <button class="lang" @click="toggleLang">
           {{ currentLang === 'en' ? 'EN' : 'AR' }}
         </button> -->
-        <RouterLink class="contact-btn" to="/contact"> Contact Us </RouterLink>
-        <button
-          class="burger"
-          :aria-expanded="isOpen"
-          aria-controls="mega-menu"
-          @click.stop="isOpen = !isOpen"
-          data-mega-toggle
-        >
+        <RouterLink class="contact-btn" to="/contact">{{ t('navbar.contactUs') }}</RouterLink>
+        <button class="burger" :aria-expanded="isOpen" aria-controls="mega-menu" @click.stop="isOpen = !isOpen"
+          data-mega-toggle>
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
-    <MegaMenu
-      id="mega-menu"
-      v-model="isOpen"
-      :groups="groups"
-      :lang="currentLang"
-      @navigate="onNavigate"
-    />
+    <MegaMenu id="mega-menu" v-model="isOpen" :groups="groups" :lang="currentLang" @navigate="onNavigate" />
   </header>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed, ref } from "vue";
 import MegaMenu from "./BurgerMenue.vue";
 import { useRoute } from "vue-router";
+import { useI18n } from "vue-i18n";
 
 type LinkItem = {
   label: string;
@@ -84,67 +78,106 @@ export default defineComponent({
   components: { MegaMenu },
   setup() {
     const route = useRoute();
-    return { route };
-  },
-  data() {
-    return {
-      isOpen: false as boolean,
-      groups: [
-        {
-          title: "About Blue Line",
-          items: [
-            { label: "About us", to: "/about" },
-            { label: "Stakeholders Relations", to: "/stakeholders-relations" },
-            { label: "Career", to: "/careers" },
-            { label: "Contact us", to: "/contact" },
-          ],
-        },
-        {
-          title: "Business Areas",
-          items: [
-            { label: "Feeder services", to: "/feeders-services" },
-            {
-              label: "Regional Liner Services",
-              to: "/regional-liner-services",
-            },
-            { label: "Routes & Agents Contacts", to: "/routes-agents" },
-            { label: "Fleet", to: "/fleet" },
-            { label: "FAQ & Glossary", to: "/faq-glossary" },
-          ],
-        },
-        {
-          title: "Media center",
-          items: [
-            { label: "News & Insights", to: "/news-insights" },
-            { label: "Downloads", to: "/downloads" },
-          ],
-          extras: [{ label: "E-commerce", href: "#shop", chevron: true }],
-          social: [
-            { href: "https://linkedin.com", iconText: "in" },
-            { href: "https://x.com", iconText: "x" },
-            { href: "https://instagram.com", iconText: "◎" },
-            { href: "https://facebook.com", iconText: "f" },
-          ],
-        },
-      ] as Group[],
+    const { t, locale } = useI18n();
+    const isOpen = ref(false);
+
+    const currentLang = computed<"en" | "ar">(() => {
+      return locale.value === "ar" ? "ar" : "en";
+    });
+
+    const isHomePage = computed(() => {
+      return route.path === "/";
+    });
+
+    // Computed groups with i18n
+    const groups = computed<Group[]>(() => [
+      {
+        title: t("navbar.menu.aboutBlueLine.title"),
+        items: [
+          {
+            label: t("navbar.menu.aboutBlueLine.aboutUs"),
+            //  to: "/about"
+          },
+          {
+            label: t("navbar.menu.aboutBlueLine.stakeholders"),
+            // to: "/stakeholders-relations"
+          },
+          {
+            label: t("navbar.menu.aboutBlueLine.career"),
+            //  to: "/careers"
+          },
+          {
+            label: t("navbar.menu.aboutBlueLine.contact"),
+            // to: "/contact"
+          },
+        ],
+      },
+      {
+        title: t("navbar.menu.businessAreas.title"),
+        items: [
+          {
+            label: t("navbar.menu.businessAreas.feederServices"),
+            //  to: "/feeders-services"
+          },
+          {
+            label: t("navbar.menu.businessAreas.regionalLiner"),
+            // to: "/regional-liner-services",
+          },
+          {
+            label: t("navbar.menu.businessAreas.routesAgents"),
+            // to: "/routes-agents"
+          },
+          {
+            label: t("navbar.menu.businessAreas.fleet"),
+            // to: "/fleet"
+          },
+          {
+            label: t("navbar.menu.businessAreas.faqGlossary"),
+            //  to: "/faq-glossary"
+          },
+        ],
+      },
+      {
+        title: t("navbar.menu.mediaCenter.title"),
+        items: [
+          {
+            label: t("navbar.menu.mediaCenter.newsInsights"),
+            //  to: "/news-insights"
+          },
+          {
+            label: t("navbar.menu.mediaCenter.downloads"),
+            // to: "/downloads"
+          },
+        ],
+        extras: [{ label: t("navbar.menu.mediaCenter.ecommerce"), href: "#shop", chevron: true }],
+        social: [
+          { href: "https://linkedin.com", iconText: "in" },
+          { href: "https://x.com", iconText: "x" },
+          { href: "https://instagram.com", iconText: "◎" },
+          { href: "https://facebook.com", iconText: "f" },
+        ],
+      },
+    ]);
+
+    const toggleLang = () => {
+      locale.value = locale.value === "en" ? "ar" : "en";
+      document.documentElement.dir = locale.value === "ar" ? "rtl" : "ltr";
     };
-  },
-  computed: {
-    currentLang(): "en" | "ar" {
-      const loc = (this as any).$i18n?.locale ?? "en";
-      return loc === "ar" ? "ar" : "en";
-    },
-  },
-  methods: {
-    toggleLang() {
-      const i18n = (this as any).$i18n;
-      if (!i18n) return;
-      i18n.locale = i18n.locale === "en" ? "ar" : "en";
-      document.documentElement.dir = i18n.locale === "ar" ? "rtl" : "ltr";
-    },
-    onNavigate() {
+
+    const onNavigate = () => {
       // example: analytics, etc.
-    },
+    };
+
+    return {
+      t,
+      route,
+      isOpen,
+      currentLang,
+      isHomePage,
+      groups,
+      toggleLang,
+      onNavigate,
+    };
   },
 });
 </script>
@@ -195,6 +228,51 @@ export default defineComponent({
   aspect-ratio: 1/1;
 }
 
+.colorfull-logo {
+  display: flex;
+  padding-left: 12px;
+  align-items: center;
+  gap: 6.975px;
+}
+
+.colorfull-logo img {
+  width: 30.793px;
+  height: 25px;
+  aspect-ratio: 30.79/25.00;
+  object-fit: cover;
+}
+
+.colorfull-logo .logo_text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.641px;
+}
+
+.colorfull-logo .logo_text h1 {
+  color: #1E1443;
+  font-family: "Inter Tight";
+  font-size: 19.694px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 18.463px;
+  /* 93.75% */
+}
+
+.colorfull-logo .logo_text p {
+  color: #0A0F33;
+  font-family: "Inter Tight";
+  font-size: 8.206px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 8.206px;
+  /* 100% */
+}
+
+.header--relative .header__row {
+  padding: 0px 100px 0
+}
+
 /* Desktop Navigation */
 .desktop-nav {
   display: none;
@@ -217,6 +295,7 @@ export default defineComponent({
 .nav-link:hover {
   opacity: 0.8;
 }
+
 .nav-link.active {
   color: #2aa1d8;
   font-weight: bold;
@@ -225,6 +304,7 @@ export default defineComponent({
   gap: 2px;
   align-items: center;
 }
+
 .nav-link.router-link-active {
   /* font-weight: 500; */
 }
@@ -279,12 +359,19 @@ export default defineComponent({
 }
 
 .header--relative .contact-btn {
-  border-color: #0d3a34;
-  color: #0d3a34;
+  border-color: #00aeff;
+  color: #FFF;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16.8px;
 }
 
 .header--relative .contact-btn:hover {
-  background: #0d3a34;
+  background: #00aeffc0;
+  border-color: #00aeffc0;
   color: #fff;
 }
 
@@ -305,9 +392,11 @@ export default defineComponent({
   background: #fff;
   transition: 0.2s;
 }
+
 .header--relative .burger span {
   background: #000;
 }
+
 .burger span:nth-child(1) {
   top: 12px;
 }
@@ -389,10 +478,11 @@ export default defineComponent({
 }
 
 @media (max-width: 568px) {
-  .header__row{
+  .header__row {
     padding: 0 16px;
   }
-  .logo{
+
+  .logo {
     width: 50px;
     height: 50px;
   }

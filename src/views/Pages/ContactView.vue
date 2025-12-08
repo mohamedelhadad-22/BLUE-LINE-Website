@@ -1,1096 +1,744 @@
 <script setup lang="ts">
-import { reactive, computed, ref } from "vue";
+import { ref, reactive, computed } from "vue";
 import { useI18n } from "vue-i18n";
-import useVuelidate from "@vuelidate/core";
-import {
-  helpers,
-  required,
-  email,
-  minLength,
-  maxLength,
-} from "@vuelidate/validators";
-import HeroBanner from "@/components/resuble/HeroBanner.vue";
-import heroImg from "@/assets/contactHero.jpg";
+import { useVuelidate } from "@vuelidate/core";
+import { required, email, minLength, helpers } from "@vuelidate/validators";
+
 const { t } = useI18n();
 
-interface FormState {
+interface FormData {
   fullName: string;
   companyName: string;
   email: string;
-  subject: string;
-  country: string;
-  message: string;
-  agree: boolean;
   phone: string;
+  message: string;
 }
 
-interface PhoneMeta {
-  isValid: boolean;
-  number: string;
-  country: string;
-}
-
-const DEFAULT_COUNTRY = "Saudi Arabia";
-
-const COUNTRIES = [
-  "Saudi Arabia",
-  "United Arab Emirates",
-  "Bahrain",
-  "Qatar",
-  "Kuwait",
-  "Oman",
-  "Egypt",
-  "Jordan",
-  "Lebanon",
-  "Turkey",
-  "United Kingdom",
-  "United States",
-] as const;
-
-// Form state
-const form = reactive<FormState>({
+const formData = reactive<FormData>({
   fullName: "",
   companyName: "",
   email: "",
-  subject: "",
-  country: DEFAULT_COUNTRY,
-  message: "",
-  agree: false,
   phone: "",
+  message: "",
 });
 
-const phoneMeta = reactive<PhoneMeta>({
-  isValid: false,
-  number: "",
-  country: "",
-});
-
-const submitting = ref(false);
+const isSubmitting = ref(false);
 const submitSuccess = ref(false);
-const submitError = ref("");
+const submitError = ref(false);
 
 // Validation rules
-const phoneValid = helpers.withMessage(
-  () => t("pages.contact.form.validation.phoneInvalid"),
-  () => phoneMeta.isValid
-);
-
 const rules = computed(() => ({
-  form: {
-    fullName: {
-      required: helpers.withMessage(
-        () => t("pages.contact.form.validation.fullNameRequired"),
-        required
-      ),
-    },
-    companyName: {},
-    email: {
-      required: helpers.withMessage(
-        () => t("pages.contact.form.validation.emailRequired"),
-        required
-      ),
-      email: helpers.withMessage(
-        () => t("pages.contact.form.validation.emailInvalid"),
-        email
-      ),
-    },
-    subject: {
-      required: helpers.withMessage(
-        () => t("pages.contact.form.validation.subjectRequired"),
-        required
-      ),
-      minLength: helpers.withMessage(
-        () => t("pages.contact.form.validation.subjectMinLength"),
-        minLength(3)
-      ),
-      maxLength: helpers.withMessage(
-        () => t("pages.contact.form.validation.subjectMaxLength"),
-        maxLength(120)
-      ),
-    },
-    country: {
-      required: helpers.withMessage(
-        () => t("pages.contact.form.validation.countryRequired"),
-        required
-      ),
-    },
-    message: {
-      required: helpers.withMessage(
-        () => t("pages.contact.form.validation.messageRequired"),
-        required
-      ),
-      minLength: helpers.withMessage(
-        () => t("pages.contact.form.validation.messageMinLength"),
-        minLength(10)
-      ),
-    },
-    agree: {
-      required: helpers.withMessage(
-        () => t("pages.contact.form.validation.privacyRequired"),
-        required
-      ),
-    },
-    phone: {
-      required: helpers.withMessage(
-        () => t("pages.contact.form.validation.phoneRequired"),
-        required
-      ),
-      phoneValid,
-    },
+  fullName: {
+    required: helpers.withMessage(
+      t("pages.contact.formValidation.fullNameRequired"),
+      required
+    ),
+    minLength: helpers.withMessage(
+      t("pages.contact.formValidation.fullNameMinLength"),
+      minLength(2)
+    ),
+  },
+  email: {
+    required: helpers.withMessage(
+      t("pages.contact.formValidation.emailRequired"),
+      required
+    ),
+    email: helpers.withMessage(
+      t("pages.contact.formValidation.emailInvalid"),
+      email
+    ),
+  },
+  phone: {},
+  companyName: {},
+  message: {
+    required: helpers.withMessage(
+      t("pages.contact.formValidation.messageRequired"),
+      required
+    ),
+    minLength: helpers.withMessage(
+      t("pages.contact.formValidation.messageMinLength"),
+      minLength(10)
+    ),
   },
 }));
 
-const v$ = useVuelidate(rules, { form });
-const isValid = computed(() => !v$.value.form.$invalid);
+const v$ = useVuelidate(rules, formData);
 
-// Phone handlers
-const onPhoneValidate = (payload: any) => {
-  phoneMeta.isValid = payload?.valid || false;
-  phoneMeta.number = payload?.e164 || payload?.number || "";
-  phoneMeta.country = payload?.country?.iso2 || "SA";
-  form.phone = payload?.number || form.phone;
-  v$.value.form.phone.$touch();
-};
+const handleSubmit = async () => {
+  // Validate form
+  const isValid = await v$.value.$validate();
 
-const onPhoneInput = (value: string) => {
-  form.phone = value;
-};
+  if (!isValid) {
+    return;
+  }
 
-// Form submission
-const resetForm = () => {
-  const currentCountry = form.country;
-  Object.assign(form, {
-    fullName: "",
-    companyName: "",
-    email: "",
-    subject: "",
-    country: currentCountry,
-    message: "",
-    agree: false,
-    phone: "",
-  });
-  Object.assign(phoneMeta, {
-    isValid: false,
-    number: "",
-    country: "",
-  });
-  v$.value.$reset();
-};
-
-const onSubmit = async () => {
-  v$.value.$touch();
-  if (v$.value.$invalid) return;
-
-  submitting.value = true;
+  isSubmitting.value = true;
   submitSuccess.value = false;
-  submitError.value = "";
+  submitError.value = false;
 
   try {
-    // TODO: Replace with real API call
-    // const payload = {
-    //   ...form,
-    //   phone_e164: phoneMeta.number,
-    //   phone_country: phoneMeta.country,
-    // };
-    await new Promise((resolve) => setTimeout(resolve, 900));
-    // await fetch("/api/contact", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(payload),
-    // });
+    // TODO: Implement actual form submission to backend
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
+    // Success
     submitSuccess.value = true;
-    resetForm();
+
+    // Reset form after success
+    setTimeout(() => {
+      Object.assign(formData, {
+        fullName: "",
+        companyName: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+      v$.value.$reset();
+      submitSuccess.value = false;
+    }, 3000);
   } catch (error) {
-    submitError.value = t("pages.contact.form.error");
+    submitError.value = true;
+    setTimeout(() => {
+      submitError.value = false;
+    }, 5000);
   } finally {
-    submitting.value = false;
+    isSubmitting.value = false;
   }
 };
+
+// FAQ items with i18n
+const faqItems = computed(() => [
+  {
+    icon: "clock",
+    question: t("pages.contact.support.faq1.question"),
+    answer: t("pages.contact.support.faq1.answer"),
+  },
+  {
+    icon: "tracking",
+    question: t("pages.contact.support.faq2.question"),
+    answer: t("pages.contact.support.faq2.answer"),
+  },
+  {
+    icon: "quote",
+    question: t("pages.contact.support.faq3.question"),
+    answer: t("pages.contact.support.faq3.answer"),
+  },
+  {
+    icon: "international",
+    question: t("pages.contact.support.faq4.question"),
+    answer: t("pages.contact.support.faq4.answer"),
+  },
+]);
 </script>
 
 <template>
-  <section class="contact-page">
-    <div class="container">
-      <HeroBanner
-        :title="$t('pages.contact.form.title')"
-        :subtitle="$t('pages.contact.form.subtitle')"
-        :media-src="heroImg"
-        :with-img="true"
-      ></HeroBanner>
-    </div>
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-      <div class="container">
-        <a href="/" class="breadcrumb-link">{{
-          t("pages.contact.form.breadcrumb.home")
-        }}</a>
-        <span class="breadcrumb-separator">/</span>
-        <span class="breadcrumb-current">{{
-          t("pages.contact.form.breadcrumb.contact")
-        }}</span>
+  <div class="contact-page">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-background">
+        <img src="@/assets/contacts-hero.jpg" alt="Ocean freight" class="hero-image" />
+        <div class="hero-overlay"></div>
       </div>
-    </div>
-
-    <div class="container">
-      <div class="contact-header">
-        <h1 class="page-title">{{ t("pages.contact.form.whytitle") }}</h1>
-        <!-- <p class="page-subtitle">
-          {{ t("pages.contact.form.subtitle") }}
-        </p> -->
+      <div class="hero-content">
+        <h1 class="hero-title">{{ t('pages.contact.hero.title') }}</h1>
+        <p class="hero-subtitle">
+          {{ t('pages.contact.hero.subtitle') }}
+        </p>
       </div>
+    </section>
 
-      <div class="contact-grid">
-        <!-- Contact Information Sidebar -->
-        <aside class="contact-info">
-          <div class="info-section">
-            <h3 class="info-title">
-              {{ t("pages.contact.form.info.headOffice") }}
-            </h3>
-            <div class="info-content">
-              <p
-                class="info-address"
-                v-html="t('pages.contact.form.info.address')"
-              ></p>
-              <p
-                class="info-postal"
-                v-html="t('pages.contact.form.info.postal')"
-              ></p>
+    <!-- Contact Form Section -->
+    <section class="form-section">
+      <div class="form-container">
+        <div class="form-header">
+          <h2 class="form-title">{{ t('pages.contact.formSection.title') }}</h2>
+          <p class="form-subtitle">
+            {{ t('pages.contact.formSection.subtitle') }}
+          </p>
+        </div>
+
+        <!-- Success Message -->
+        <div v-if="submitSuccess" class="alert alert-success">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7 10L9 12L13 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>{{ t('pages.contact.formMessages.success') }}</span>
+        </div>
+
+        <!-- Error Message -->
+        <div v-if="submitError" class="alert alert-error">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 6V10M10 14H10.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>{{ t('pages.contact.formMessages.error') }}</span>
+        </div>
+
+        <form @submit.prevent="handleSubmit" class="contact-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="fullName" class="field-label">{{ t('pages.contact.formSection.fullName') }}</label>
+              <input
+                id="fullName"
+                v-model="formData.fullName"
+                type="text"
+                class="field-input"
+                :class="{ 'field-error': v$.fullName.$error }"
+                :placeholder="t('pages.contact.formSection.fullNamePlaceholder')"
+                @blur="v$.fullName.$touch()" />
+              <span v-if="v$.fullName.$error" class="error-message">
+                {{ v$.fullName.$errors[0]?.$message }}
+              </span>
+            </div>
+            <div class="form-field">
+              <label for="companyName" class="field-label">{{ t('pages.contact.formSection.companyName') }}</label>
+              <input
+                id="companyName"
+                v-model="formData.companyName"
+                type="text"
+                class="field-input"
+                :placeholder="t('pages.contact.formSection.companyNamePlaceholder')" />
             </div>
           </div>
 
-          <div class="info-section">
-            <h3 class="info-title">
-              {{ t("pages.contact.form.info.getInTouch") }}
-            </h3>
-            <div class="info-contact">
-              <div class="contact-item">
-                <svg
-                  class="contact-icon"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
-                <a href="mailto:info@folkmaritime.com" class="contact-link">
-                  info@folkmaritime.com
-                </a>
-              </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="email" class="field-label">{{ t('pages.contact.formSection.email') }}</label>
+              <input
+                id="email"
+                v-model="formData.email"
+                type="email"
+                class="field-input"
+                :class="{ 'field-error': v$.email.$error }"
+                :placeholder="t('pages.contact.formSection.emailPlaceholder')"
+                @blur="v$.email.$touch()" />
+              <span v-if="v$.email.$error" class="error-message">
+                {{ v$.email.$errors[0]?.$message }}
+              </span>
+            </div>
+            <div class="form-field">
+              <label for="phone" class="field-label">{{ t('pages.contact.formSection.phone') }}</label>
+              <input
+                id="phone"
+                v-model="formData.phone"
+                type="tel"
+                class="field-input"
+                :placeholder="t('pages.contact.formSection.phonePlaceholder')" />
             </div>
           </div>
 
-          <div class="info-section">
-            <h3 class="info-title">
-              {{ t("pages.contact.form.info.followUs") }}
-            </h3>
-            <nav class="social-links" aria-label="Social media">
-              <a href="#" class="social-link" aria-label="LinkedIn">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"
-                  />
-                </svg>
-              </a>
-              <a href="#" class="social-link" aria-label="Twitter/X">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-                  />
-                </svg>
-              </a>
-              <a href="#" class="social-link" aria-label="Instagram">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"
-                  />
-                </svg>
-              </a>
-              <a href="#" class="social-link" aria-label="Facebook">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"
-                  />
-                </svg>
-              </a>
-            </nav>
+          <div class="form-field">
+            <label for="message" class="field-label">{{ t('pages.contact.formSection.message') }}</label>
+            <textarea
+              id="message"
+              v-model="formData.message"
+              class="field-textarea"
+              :class="{ 'field-error': v$.message.$error }"
+              :placeholder="t('pages.contact.formSection.messagePlaceholder')"
+              rows="6"
+              @blur="v$.message.$touch()"></textarea>
+            <span v-if="v$.message.$error" class="error-message">
+              {{ v$.message.$errors[0]?.$message }}
+            </span>
           </div>
-        </aside>
 
-        <!-- Contact Form -->
-        <div class="contact-form-wrapper">
-          <form class="contact-form" @submit.prevent="onSubmit" novalidate>
-            <div class="form-grid">
-              <!-- Full Name -->
-              <div class="form-field">
-                <input
-                  id="fullName"
-                  type="text"
-                  v-model.trim="form.fullName"
-                  @blur="v$.form?.fullName.$touch()"
-                  :class="[
-                    'form-input',
-                    { 'has-error': v$.form?.fullName.$error },
-                  ]"
-                  :aria-invalid="v$.form?.fullName.$error ? 'true' : 'false'"
-                  autocomplete="name"
-                  placeholder=" "
-                />
-                <label for="fullName" class="form-label">
-                  {{ t("pages.contact.form.fields.fullName") }}
-                  <span class="required">{{
-                    t("pages.contact.form.fields.required")
-                  }}</span>
-                </label>
-                <p v-if="v$.form?.fullName.$error" class="error-message">
-                  {{ v$.form?.fullName.$errors?.[0]?.$message }}
-                </p>
-              </div>
+          <button type="submit" class="submit-button" :disabled="isSubmitting">
+            <span v-if="!isSubmitting">{{ t('pages.contact.formSection.submitButton') }}</span>
+            <span v-else>{{ t('pages.contact.formValidation.submitting', 'Submitting...') }}</span>
+            <svg v-if="!isSubmitting" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.5 4.5L15 9M15 9L10.5 13.5M15 9H3" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <svg v-else class="spinner" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 2V5M9 13V16M16 9H13M5 9H2M14.364 14.364L12.243 12.243M5.757 5.757L3.636 3.636M14.364 3.636L12.243 5.757M5.757 12.243L3.636 14.364" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </section>
 
-              <!-- Company Name -->
-              <div class="form-field">
-                <input
-                  id="companyName"
-                  type="text"
-                  v-model.trim="form.companyName"
-                  class="form-input"
-                  autocomplete="organization"
-                  placeholder=" "
-                />
-                <label for="companyName" class="form-label">{{
-                  t("pages.contact.form.fields.companyName")
-                }}</label>
-              </div>
+    <!-- Quick Support Section -->
+    <section class="support-section">
+      <div class="support-container">
+        <div class="support-header">
+          <h2 class="support-title">{{ t('pages.contact.support.title') }}</h2>
+          <p class="support-subtitle">{{ t('pages.contact.support.subtitle') }}</p>
+        </div>
 
-              <!-- Email -->
-              <div class="form-field">
-                <input
-                  id="email"
-                  type="email"
-                  v-model.trim="form.email"
-                  @blur="v$.form?.email.$touch()"
-                  :class="[
-                    'form-input',
-                    { 'has-error': v$.form?.email.$error },
-                  ]"
-                  :aria-invalid="v$.form?.email.$error ? 'true' : 'false'"
-                  autocomplete="email"
-                  placeholder=" "
-                />
-                <label for="email" class="form-label">
-                  {{ t("pages.contact.form.fields.email") }}
-                  <span class="required">{{
-                    t("pages.contact.form.fields.required")
-                  }}</span>
-                </label>
-                <p v-if="v$.form?.email.$error" class="error-message">
-                  {{ v$.form?.email.$errors?.[0]?.$message }}
-                </p>
-              </div>
-
-              <!-- Phone -->
-              <div class="form-field">
-                <label for="phone" class="form-label">
-                  {{ t("pages.contact.form.fields.phone") }}
-                  <span class="required">{{
-                    t("pages.contact.form.fields.required")
-                  }}</span>
-                </label>
-                <vue-tel-input
-                  id="phone"
-                  v-model="form.phone"
-                  @validate="onPhoneValidate"
-                  @input="onPhoneInput"
-                  defaultCountry="SA"
-                  @blur="v$.form?.phone.$touch()"
-                  :class="{ 'has-error': v$.form?.phone.$error }"
-                  :aria-invalid="v$.form?.phone.$error ? 'true' : 'false'"
-                  :placeholder="t('pages.contact.form.placeholders.phone')"
-                />
-                <p v-if="v$.form?.phone.$error" class="error-message">
-                  {{ v$.form?.phone.$errors?.[0]?.$message }}
-                </p>
-              </div>
-
-              <!-- Subject -->
-              <div class="form-field form-field--full">
-                <input
-                  id="subject"
-                  type="text"
-                  v-model.trim="form.subject"
-                  @blur="v$.form?.subject.$touch()"
-                  :class="[
-                    'form-input',
-                    { 'has-error': v$.form?.subject.$error },
-                  ]"
-                  :aria-invalid="v$.form?.subject.$error ? 'true' : 'false'"
-                  placeholder=" "
-                />
-                <label for="subject" class="form-label">
-                  {{ t("pages.contact.form.fields.subject") }}
-                  <span class="required">{{
-                    t("pages.contact.form.fields.required")
-                  }}</span>
-                </label>
-                <p v-if="v$.form?.subject.$error" class="error-message">
-                  {{ v$.form?.subject.$errors?.[0]?.$message }}
-                </p>
-              </div>
-
-              <!-- Country -->
-              <div class="form-field form-field--full select-field">
-                <div class="select-wrapper">
-                  <select
-                    id="country"
-                    v-model="form.country"
-                    @change="v$.form?.country.$touch()"
-                    :class="[
-                      'form-select',
-                      { 'has-error': v$.form?.country.$error },
-                    ]"
-                    :aria-invalid="v$.form?.country.$error ? 'true' : 'false'"
-                  >
-                    <option v-for="c in COUNTRIES" :key="c" :value="c">
-                      {{ c }}
-                    </option>
-                  </select>
-                  <svg
-                    class="select-icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </div>
-                <label for="country" class="form-label">
-                  {{ t("pages.contact.form.fields.country") }}
-                  <span class="required">{{
-                    t("pages.contact.form.fields.required")
-                  }}</span>
-                </label>
-                <p v-if="v$.form?.country.$error" class="error-message">
-                  {{ v$.form?.country.$errors?.[0]?.$message }}
-                </p>
-              </div>
-
-              <!-- Message -->
-              <div class="form-field form-field--full">
-                <textarea
-                  id="message"
-                  v-model.trim="form.message"
-                  @blur="v$.form?.message.$touch()"
-                  :class="[
-                    'form-textarea',
-                    { 'has-error': v$.form?.message.$error },
-                  ]"
-                  :aria-invalid="v$.form?.message.$error ? 'true' : 'false'"
-                  placeholder=" "
-                  rows="5"
-                ></textarea>
-                <label for="message" class="form-label">
-                  {{ t("pages.contact.form.fields.message") }}
-                  <span class="required">{{
-                    t("pages.contact.form.fields.required")
-                  }}</span>
-                </label>
-                <p v-if="v$.form?.message.$error" class="error-message">
-                  {{ v$.form?.message.$errors?.[0]?.$message }}
-                </p>
-              </div>
-
-              <!-- Privacy Checkbox -->
-              <div class="form-field form-field--full">
-                <div class="checkbox-wrapper">
-                  <input
-                    id="agree"
-                    type="checkbox"
-                    v-model="form.agree"
-                    @change="v$.form?.agree.$touch()"
-                    class="form-checkbox"
-                    :aria-invalid="v$.form?.agree.$error ? 'true' : 'false'"
-                  />
-                  <label for="agree" class="checkbox-label">
-                    {{ t("pages.contact.form.fields.privacyLabel") }}
-                    <a
-                      href="/privacy"
-                      target="_blank"
-                      rel="noopener"
-                      class="privacy-link"
-                      >{{ t("pages.contact.form.fields.privacyLink") }}</a
-                    >
-                    <span class="required">{{
-                      t("pages.contact.form.fields.required")
-                    }}</span>
-                  </label>
-                </div>
-                <p v-if="v$.form?.agree.$error" class="error-message">
-                  {{ v$.form?.agree.$errors?.[0]?.$message }}
-                </p>
+        <div class="faq-grid">
+          <div v-for="(item, index) in faqItems" :key="index" class="faq-card">
+            <div class="faq-icon-wrapper">
+              <div class="faq-icon">
+                <svg v-if="item.icon === 'clock'" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z"
+                    stroke="#2970FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M10 6V10L13 13" stroke="#2970FF" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+                <svg v-else-if="item.icon === 'tracking'" width="25" height="20" viewBox="0 0 25 20" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 10H24M24 10L18 4M24 10L18 16" stroke="#2970FF" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+                <svg v-else-if="item.icon === 'quote'" width="15" height="20" viewBox="0 0 15 20" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M13 2H2C1.44772 2 1 2.44772 1 3V17C1 17.5523 1.44772 18 2 18H13C13.5523 18 14 17.5523 14 17V3C14 2.44772 13.5523 2 13 2Z"
+                    stroke="#2970FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M4 6H11M4 10H11M4 14H8" stroke="#2970FF" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+                <svg v-else-if="item.icon === 'international'" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z"
+                    stroke="#2970FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path
+                    d="M2 10H18M10 2C12 4.5 13 7.5 13 10C13 12.5 12 15.5 10 18M10 2C8 4.5 7 7.5 7 10C7 12.5 8 15.5 10 18"
+                    stroke="#2970FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
               </div>
             </div>
-
-            <!-- Submit Button -->
-            <div class="form-actions">
-              <button
-                type="submit"
-                class="submit-btn"
-                :disabled="submitting || !isValid"
-                :aria-busy="submitting ? 'true' : 'false'"
-              >
-                <span v-if="!submitting">{{
-                  t("pages.contact.form.submit")
-                }}</span>
-                <span v-else class="btn-loading">
-                  <svg
-                    class="spinner"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      class="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      stroke-width="4"
-                    ></circle>
-                    <path
-                      class="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                  </svg>
-                  {{ t("pages.contact.form.submitting") }}
-                </span>
-              </button>
-
-              <transition name="fade">
-                <p
-                  v-if="submitSuccess"
-                  class="status-message success"
-                  role="status"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  {{ t("pages.contact.form.success") }}
-                </p>
-              </transition>
-
-              <transition name="fade">
-                <p v-if="submitError" class="status-message error" role="alert">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  {{ submitError }}
-                </p>
-              </transition>
+            <div class="faq-content">
+              <h3 class="faq-question">{{ item.question }}</h3>
+              <p class="faq-answer">{{ item.answer }}</p>
             </div>
-          </form>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- Branches Section -->
+    <section class="branches-section">
+      <div class="branches-container">
+        <h2 class="branches-title">{{ t('pages.contact.branches.title') }}</h2>
+
+        <!-- Saudi Branch -->
+        <div class="branch-card">
+          <div class="branch-info">
+            <div class="branch-label">{{ t('pages.contact.branches.saudi.label') }}</div>
+            <h3 class="branch-name">{{ t('pages.contact.branches.saudi.name') }}</h3>
+
+            <div class="branch-details">
+              <div class="detail-group">
+                <label class="detail-label">{{ t('pages.contact.branches.saudi.addressLabel') }}</label>
+                <p class="detail-text" v-html="t('pages.contact.branches.saudi.address')"></p>
+              </div>
+
+              <div class="detail-group">
+                <label class="detail-label">{{ t('pages.contact.branches.saudi.phoneLabel') }}</label>
+                <p class="detail-value">{{ t('pages.contact.branches.saudi.phone') }}</p>
+              </div>
+
+              <div class="detail-group">
+                <label class="detail-label">{{ t('pages.contact.branches.saudi.mailLabel') }}</label>
+                <p class="detail-value">{{ t('pages.contact.branches.saudi.mail') }}</p>
+              </div>
+
+              <div class="detail-group">
+                <label class="detail-label">{{ t('pages.contact.branches.saudi.hoursLabel') }}</label>
+                <p class="detail-value" v-html="t('pages.contact.branches.saudi.hours')"></p>
+              </div>
+
+              <div class="contact-persons">
+                <div class="contact-person">
+                  <strong>{{ t('pages.contact.branches.saudi.finance') }}</strong>
+                  <p>{{ t('pages.contact.branches.saudi.financePhone') }}</p>
+                  <p>{{ t('pages.contact.branches.saudi.financeEmail') }}</p>
+                </div>
+
+                <div class="contact-person">
+                  <strong>{{ t('pages.contact.branches.saudi.manager') }}</strong>
+                  <p>{{ t('pages.contact.branches.saudi.managerPhone') }}</p>
+                  <p>{{ t('pages.contact.branches.saudi.managerEmail') }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="branch-image">
+            <img src="@/assets/saudiBranche_image.png" :alt="t('pages.contact.branches.saudi.name')" />
+          </div>
+        </div>
+
+        <!-- Egypt Branch -->
+        <div class="branch-card">
+          <div class="branch-info">
+            <h3 class="branch-name">{{ t('pages.contact.branches.egypt.name') }}</h3>
+
+            <div class="branch-details">
+              <div class="detail-group">
+                <label class="detail-label">{{ t('pages.contact.branches.egypt.addressLabel') }}</label>
+                <p class="detail-text" v-html="t('pages.contact.branches.egypt.address')"></p>
+              </div>
+
+              <div class="detail-group">
+                <label class="detail-label">{{ t('pages.contact.branches.egypt.phoneLabel') }}</label>
+                <p class="detail-value">{{ t('pages.contact.branches.egypt.phone') }}</p>
+              </div>
+
+              <div class="detail-group">
+                <label class="detail-label">{{ t('pages.contact.branches.egypt.mobileLabel') }}</label>
+                <p class="detail-value">{{ t('pages.contact.branches.egypt.mobile') }}</p>
+              </div>
+
+              <div class="detail-group">
+                <label class="detail-label">{{ t('pages.contact.branches.egypt.mailLabel') }}</label>
+                <p class="detail-value">{{ t('pages.contact.branches.egypt.mail') }}</p>
+              </div>
+
+              <div class="detail-group">
+                <label class="detail-label">{{ t('pages.contact.branches.egypt.hoursLabel') }}</label>
+                <p class="detail-value" v-html="t('pages.contact.branches.egypt.hours')"></p>
+              </div>
+
+              <div class="contact-persons">
+                <div class="contact-person">
+                  <strong>{{ t('pages.contact.branches.egypt.finance') }}</strong>
+                  <p>{{ t('pages.contact.branches.egypt.financePhone') }}</p>
+                  <p>{{ t('pages.contact.branches.egypt.financeEmail') }}</p>
+                </div>
+
+                <div class="contact-person">
+                  <strong>{{ t('pages.contact.branches.egypt.manager') }}</strong>
+                  <p>{{ t('pages.contact.branches.egypt.managerPhone') }}</p>
+                  <p>{{ t('pages.contact.branches.egypt.managerEmail') }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="branch-image">
+            <img src="@/assets/EgyptBranche_image.png" :alt="t('pages.contact.branches.egypt.name')" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <style scoped>
-/* CSS Variables - Using Brand Colors from style.css */
+/* Root Variables */
 .contact-page {
-  --color-accent: #27aae1;
-  --color-success: #10b981;
-  --color-error: #ef4444;
-  --color-text-primary: #0b1020;
-  --color-text-secondary: #606b85;
-  --color-text-muted: #9ca3af;
-  --color-border: #2a3569;
-  --color-border-light: #e5e7eb;
-  --color-border-focus: #27aae1;
-  --color-bg: #ffffff;
-  --color-bg-secondary: #f9fafb;
-  --color-bg-info: #f0f4ff;
-  --border-radius: 8px;
-  --transition: all 0.2s ease;
+  --primary-blue: #2970ff;
+  --dark-blue: #0a0f33;
+  --text-primary: #1e2225;
+  --text-secondary: #71717a;
+  --border-color: #e5e7eb;
+  --bg-light: #f8f9fc;
+  --blue-light: #dbeafe;
+  width: 100%;
+  overflow-x: hidden;
 }
 
-/* Breadcrumb */
-.breadcrumb {
-  /* background: var(--color-bg-secondary); */
-  padding: 16px 0;
-  /* border-bottom: 1px solid var(--color-border); */
-}
-
-.breadcrumb-link {
-  color: var(--color-text-secondary);
-  text-decoration: none;
-  font-size: 14px;
-  transition: color 0.2s;
-}
-
-.breadcrumb-link:hover {
-  color: var(--color-primary);
-}
-
-.breadcrumb-separator {
-  margin: 0 8px;
-  color: var(--color-text-muted);
-}
-
-.breadcrumb-current {
-  color: var(--color-text-primary);
-  font-size: 14px;
-  font-weight: 500;
-}
-
-/* Header */
-.contact-header {
-  text-align: center;
-  padding: 48px 0 40px;
-}
-
-.page-title {
-  font-size: clamp(32px, 5vw, 48px);
-  font-weight: 700;
-  color: var(--color-text-primary);
-  margin: 0 0 12px;
-  line-height: 1.2;
-}
-
-.page-subtitle {
-  font-size: 18px;
-  color: var(--color-text-secondary);
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-/* Contact Grid Layout */
-.contact-grid {
-  display: grid;
-  grid-template-columns: 350px 1fr;
-  gap: 48px;
-  padding-bottom: 80px;
-}
-
-@media (max-width: 1024px) {
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .contact-info {
-    order: 2;
-  }
-
-  .contact-form-wrapper {
-    order: 1;
-  }
-}
-
-/* Contact Info Sidebar */
-.contact-info {
+/* Hero Section */
+.hero-section {
+  position: relative;
+  height: 521px;
   display: flex;
-  flex-direction: column;
-  gap: 32px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.info-section {
-  background: var(--color-bg-info);
-  border-radius: var(--border-radius);
-  padding: 24px;
-  border: 1px solid rgba(39, 170, 225, 0.2);
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.info-title {
-  font-size: 18px;
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  max-width: 896px;
+  padding: 0 24px;
+}
+
+.hero-title {
+  font-family: "Inter Tight", sans-serif;
+  font-size: 56px;
   font-weight: 600;
-  color: var(--color-primary);
-  margin: 0 0 16px;
+  line-height: 60px;
+  letter-spacing: -1.12px;
+  margin: 0 0 12px 0;
 }
 
-.info-content {
-  color: var(--color-text-primary);
+.hero-subtitle {
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 33px;
+  letter-spacing: -0.32px;
+  margin: 0;
 }
 
-.info-address,
-.info-postal {
-  font-size: 14px;
-  line-height: 1.6;
-  margin: 0 0 12px;
+/* Form Section with Blue Background */
+.form-section {
+  position: relative;
+  background: var(--dark-blue);
+  padding-top: 64px;
+  padding-bottom: 80px;
+  background-image: url("@/assets/Framesvg.svg");
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: contain;
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.info-postal {
-  margin-bottom: 0;
+.blue-content {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 64px;
+  color: white;
 }
 
-.contact-item {
+.blue-title {
+  font-family: "Inter Tight", sans-serif;
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 48px;
+  letter-spacing: -0.88px;
+  margin: 0 0 8px 0;
+}
+
+.blue-subtitle {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: -0.32px;
+  margin: 0;
+}
+
+/* Form Container */
+.form-container {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  width: calc(100% - 48px);
+  margin: 0 auto;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  padding: 58px 47px;
+  margin-top: -9rem;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.form-title {
+  font-family: "Inter Tight", sans-serif;
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 48px;
+  letter-spacing: -0.88px;
+  color: var(--dark-blue);
+  margin: 0 0 6px 0;
+}
+
+.form-subtitle {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.32px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Alert Messages */
+.alert {
   display: flex;
   align-items: center;
   gap: 12px;
+  padding: 14px 16px;
+  border-radius: 6px;
+  margin-bottom: 24px;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 22px;
+  animation: slideDown 0.3s ease-out;
 }
 
-.contact-icon {
-  width: 20px;
-  height: 20px;
-  color: var(--color-primary);
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-success {
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  color: #166534;
+}
+
+.alert-success svg {
+  stroke: #16a34a;
   flex-shrink: 0;
 }
 
-.contact-link {
-  color: var(--color-primary);
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 500;
-  transition: var(--transition);
+.alert-error {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  color: #991b1b;
 }
 
-.contact-link:hover {
-  color: var(--color-primary-hover);
-  text-decoration: underline;
+.alert-error svg {
+  stroke: #dc2626;
+  flex-shrink: 0;
 }
 
-/* Social Links */
-.social-links {
+/* Form Styles */
+.contact-form {
   display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.social-link {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--color-bg);
-  border: 1px solid var(--color-border-light);
-  border-radius: 8px;
-  color: var(--color-primary);
-  transition: var(--transition);
-}
-
-.social-link svg {
-  width: 20px;
-  height: 20px;
-}
-
-.social-link:hover {
-  background: var(--color-primary);
-  color: white;
-  border-color: var(--color-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 2px 8px rgba(38, 34, 98, 0.2);
-}
-
-/* Contact Form */
-.contact-form-wrapper {
-  /* background: var(--color-bg);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--border-radius); */
-  padding: 40px;
-  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); */
-}
-
-@media (max-width: 640px) {
-  .contact-form-wrapper {
-    padding: 24px;
-  }
-}
-
-.form-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  flex-direction: column;
   gap: 24px;
 }
 
-@media (max-width: 640px) {
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
 }
 
-/* Form Fields */
 .form-field {
   display: flex;
   flex-direction: column;
-  position: relative;
+  gap: 8px;
 }
 
-.form-field--full {
-  grid-column: 1 / -1;
-}
-
-.form-label {
-  position: absolute;
-  left: 16px;
-  top: 14px;
-  font-size: 15px;
+.field-label {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
   font-weight: 400;
-  color: var(--color-text-secondary);
-  background: var(--color-bg);
-  padding: 0 4px;
-  pointer-events: none;
-  transition: all 0.2s ease;
-  transform-origin: left center;
+  line-height: 20px;
+  color: var(--text-primary);
 }
 
-.required {
-  color: var(--color-error);
-  margin-left: 2px;
-}
-
-.form-input,
-.form-select,
-.form-textarea {
+.field-input,
+.field-textarea {
   width: 100%;
-  padding: 12px 16px;
-  font-size: 15px;
-  font-family: inherit;
-  color: var(--color-text-primary);
-  background: var(--color-bg);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--border-radius);
+  padding: 13px 15px;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--text-primary);
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
   outline: none;
-  transition: var(--transition);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.form-input::placeholder,
-.form-textarea::placeholder {
-  color: var(--color-text-muted);
+.field-input::placeholder,
+.field-textarea::placeholder {
+  color: #adaebc;
 }
 
-/* Floating label when focused or has value */
-.form-input:focus + .form-label,
-.form-input:not(:placeholder-shown) + .form-label,
-.form-select:focus + .form-label,
-.form-select:valid + .form-label,
-.form-textarea:focus + .form-label,
-.form-textarea:not(:placeholder-shown) + .form-label {
-  top: -10px;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--color-primary);
+.field-input:focus,
+.field-textarea:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(41, 112, 255, 0.1);
 }
 
-.form-input:focus,
-.form-select:focus,
-.form-textarea:focus {
-  border-color: var(--color-border-focus);
-  box-shadow: 0 0 0 3px rgba(39, 170, 225, 0.15);
+/* Validation Error Styles */
+.field-error {
+  border-color: #ef4444 !important;
 }
 
-.form-input:focus + .form-label,
-.form-select:focus + .form-label,
-.form-textarea:focus + .form-label {
-  color: var(--color-border-focus);
+.field-error:focus {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
 }
 
-.form-input.has-error,
-.form-select.has-error,
-.form-textarea.has-error {
-  border-color: var(--color-error);
-}
-
-.form-input.has-error:focus,
-.form-select.has-error:focus,
-.form-textarea.has-error:focus {
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-}
-
-.form-textarea {
-  resize: vertical;
-  min-height: 120px;
-  line-height: 1.6;
-  padding-top: 16px;
-}
-
-/* Textarea label positioning */
-.form-field:has(textarea) .form-label {
-  top: 16px;
-}
-
-/* Select Wrapper */
-.select-wrapper {
-  position: relative;
-}
-
-.form-select {
-  appearance: none;
-  padding-right: 40px;
-  cursor: pointer;
-}
-
-.select-icon {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  color: var(--color-text-muted);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Special handling for select field label */
-.select-field .form-label {
-  left: 16px;
-  top: -10px;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--color-primary);
-}
-
-.select-field .form-select:focus ~ .form-label {
-  color: var(--color-border-focus);
-}
-
-/* Phone field - keep label above */
-.form-field:has(#phone) .form-label {
-  position: static;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-text-primary);
-  margin-bottom: 8px;
-  padding: 0;
-  transform: none;
-}
-
-/* Checkbox */
-.checkbox-wrapper {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.form-checkbox {
-  width: 18px;
-  height: 18px;
-  margin-top: 2px;
-  cursor: pointer;
-  accent-color: var(--color-primary);
-}
-
-.checkbox-label {
-  font-size: 14px;
-  color: var(--color-text-secondary);
-  line-height: 1.5;
-  cursor: pointer;
-  margin: 0;
-  font-weight: 400;
-}
-
-.privacy-link {
-  color: var(--color-primary);
-  text-decoration: underline;
-  transition: var(--transition);
-}
-
-.privacy-link:hover {
-  color: var(--color-primary-hover);
-}
-
-/* Error Message */
 .error-message {
-  margin-top: 6px;
+  font-family: "Inter", sans-serif;
   font-size: 13px;
-  color: var(--color-error);
+  font-weight: 400;
+  line-height: 18px;
+  color: #dc2626;
+  margin-top: -4px;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
 }
 
-/* Form Actions */
-.form-actions {
-  margin-top: 32px;
+.field-textarea {
+  resize: vertical;
+  min-height: 170px;
+}
+
+/* Submit Button */
+.submit-button {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.submit-btn {
-  background: var(--color-primary);
-  color: white;
-  border: none;
-  padding: 14px 32px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  transition: var(--transition);
-  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: fit-content;
+  padding: 16px 32px;
+  background: var(--primary-blue);
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-.submit-btn:hover:not(:disabled) {
-  background: var(--color-primary-hover);
+.submit-button:hover:not(:disabled) {
+  background: #2563eb;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(38, 34, 98, 0.25);
 }
 
-.submit-btn:active:not(:disabled) {
+.submit-button:active:not(:disabled) {
   transform: translateY(0);
 }
 
-.submit-btn:disabled {
-  background: var(--color-text-muted);
-  cursor: not-allowed;
+.submit-button:disabled {
   opacity: 0.6;
+  cursor: not-allowed;
 }
 
-.btn-loading {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
+/* Spinner Animation */
 .spinner {
-  width: 20px;
-  height: 20px;
   animation: spin 1s linear infinite;
 }
 
@@ -1103,58 +751,609 @@ const onSubmit = async () => {
   }
 }
 
-/* Status Messages */
-.status-message {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  border-radius: var(--border-radius);
-  font-size: 14px;
-  font-weight: 500;
+/* Support Section */
+.support-section {
+  background: var(--bg-light);
+  padding: 64px 80px;
 }
 
-.status-message svg {
-  width: 20px;
-  height: 20px;
+.support-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.support-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.support-title {
+  font-family: "Inter Tight", sans-serif;
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 48px;
+  letter-spacing: -0.88px;
+  color: var(--text-primary);
+  margin: 0 0 12px 0;
+}
+
+.support-subtitle {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.32px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* FAQ Grid */
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.faq-card {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  display: flex;
+  gap: 16px;
+  transition: box-shadow 0.2s;
+}
+
+.faq-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+}
+
+.faq-icon-wrapper {
   flex-shrink: 0;
 }
 
-.status-message.success {
-  background: #d1fae5;
-  color: #065f46;
-  border: 1px solid #6ee7b7;
+.faq-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 99px;
+  background: var(--blue-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.status-message.error {
-  background: #fee2e2;
-  color: #991b1b;
-  border: 1px solid #fca5a5;
+.faq-content {
+  flex: 1;
 }
 
-/* Fade Transition */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
+.faq-question {
+  font-family: "Inter Tight", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: -0.4px;
+  color: var(--text-primary);
+  margin: 0 0 12px 0;
 }
 
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+.faq-answer {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: -0.32px;
+  color: var(--text-secondary);
+  margin: 0;
 }
 
-/* RTL Support */
-:dir(rtl) .select-icon {
-  right: auto;
-  left: 12px;
+/* Branches Section */
+.branches-section {
+  padding: 60px 80px;
+  background: white;
 }
 
-:dir(rtl) .form-select {
-  padding-right: 16px;
-  padding-left: 40px;
+.branches-container {
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
-:dir(rtl) .breadcrumb-separator {
-  transform: scaleX(-1);
+.branches-title {
+  font-family: "Inter Tight", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  color: var(--text-primary);
+  margin: 0 0 72px 0;
+}
+
+.branch-card {
+  display: flex;
+  gap: 19px;
+  margin-bottom: 72px;
+  background: white;
+}
+
+.branch-card:last-child {
+  margin-bottom: 0;
+}
+
+.branch-info {
+  flex: 0 0 385px;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+
+.branch-label {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.32px;
+  color: var(--text-secondary);
+}
+
+.branch-name {
+  font-family: "Inter Tight", sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.4px;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.branch-details {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.detail-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-label {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.32px;
+  color: var(--text-secondary);
+}
+
+.detail-text {
+  font-family: "Inter Tight", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.4px;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.detail-value {
+  font-family: "Inter Tight", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.4px;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.contact-persons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.contact-person {
+  font-family: "Inter Tight", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.4px;
+  color: var(--text-primary);
+}
+
+.contact-person strong {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+.contact-person p {
+  font-family: "Inter Tight", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.4px;
+  margin: 4px 0;
+}
+
+.branch-image {
+  flex: 1;
+  min-height: 616px;
+  overflow: hidden;
+}
+
+.branch-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .hero-title {
+    font-size: 48px;
+    line-height: 52px;
+  }
+
+  .form-container {
+    padding: 40px 32px;
+    width: calc(100% - 40px);
+  }
+
+  .support-section {
+    padding: 64px 40px;
+  }
+
+  .branches-section {
+    padding: 60px 40px;
+  }
+
+  .branch-info {
+    flex: 0 0 340px;
+  }
+}
+
+@media (max-width: 992px) {
+  .form-section {
+    min-height: auto;
+    padding-bottom: 60px;
+  }
+
+  .form-container {
+    margin-top: 0;
+    width: calc(100% - 32px);
+  }
+
+  .support-section {
+    padding: 56px 32px;
+  }
+
+  .branches-section {
+    padding: 56px 32px;
+  }
+
+  .branch-card {
+    flex-direction: column;
+  }
+
+  .branch-info {
+    flex: 1;
+  }
+
+  .branch-image {
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 400px;
+  }
+
+  .hero-title {
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .form-section {
+    padding-top: 48px;
+    padding-bottom: 48px;
+    background-size: cover;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-container {
+    padding: 32px 24px;
+    width: calc(100% - 32px);
+  }
+
+  .form-title {
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  .form-subtitle {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .support-section {
+    padding: 48px 24px;
+  }
+
+  .support-title,
+  .branches-title {
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  .support-subtitle {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .faq-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .branches-section {
+    padding: 48px 24px;
+  }
+
+  .branches-title {
+    margin-bottom: 48px;
+  }
+
+  .branch-card {
+    margin-bottom: 48px;
+  }
+
+  .branch-image {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-section {
+    height: 350px;
+  }
+
+  .hero-content {
+    padding: 0 20px;
+  }
+
+  .hero-title {
+    font-size: 32px;
+    line-height: 36px;
+    letter-spacing: -0.64px;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .form-section {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  .form-container {
+    padding: 28px 20px;
+    width: calc(100% - 24px);
+  }
+
+  .form-title {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .form-subtitle {
+    font-size: 14px;
+  }
+
+  .field-label {
+    font-size: 13px;
+  }
+
+  .field-input,
+  .field-textarea {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+
+  .submit-button {
+    padding: 14px 28px;
+    font-size: 16px;
+  }
+
+  .support-section {
+    padding: 40px 20px;
+  }
+
+  .support-title {
+    font-size: 28px;
+    line-height: 32px;
+    margin-bottom: 8px;
+  }
+
+  .support-subtitle {
+    font-size: 14px;
+  }
+
+  .faq-card {
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .faq-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .faq-question {
+    font-size: 18px;
+    line-height: 26px;
+    margin-bottom: 10px;
+  }
+
+  .faq-answer {
+    font-size: 15px;
+    line-height: 24px;
+  }
+
+  .branches-section {
+    padding: 40px 20px;
+  }
+
+  .branches-title {
+    font-size: 28px;
+    line-height: 32px;
+    margin-bottom: 40px;
+  }
+
+  .branch-card {
+    margin-bottom: 40px;
+    gap: 16px;
+  }
+
+  .branch-info {
+    gap: 16px;
+  }
+
+  .branch-name {
+    font-size: 24px;
+  }
+
+  .detail-label {
+    font-size: 13px;
+  }
+
+  .detail-text,
+  .detail-value {
+    font-size: 16px;
+  }
+
+  .contact-person {
+    font-size: 16px;
+  }
+
+  .contact-person p {
+    font-size: 16px;
+  }
+
+  .branch-image {
+    min-height: 250px;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    height: 300px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .form-container {
+    padding: 24px 16px;
+    width: calc(100% - 20px);
+  }
+
+  .form-title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .support-title,
+  .branches-title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .faq-card {
+    padding: 18px;
+  }
+
+  .faq-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .faq-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .faq-question {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .faq-answer {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .branch-name {
+    font-size: 20px;
+  }
+
+  .detail-text,
+  .detail-value,
+  .contact-person,
+  .contact-person p {
+    font-size: 15px;
+  }
+
+  .branch-image {
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 375px) {
+  .hero-title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .form-container {
+    padding: 20px 14px;
+  }
+
+  .form-title {
+    font-size: 22px;
+    line-height: 26px;
+  }
+
+  .support-title,
+  .branches-title {
+    font-size: 22px;
+    line-height: 26px;
+  }
+
+  .branch-name {
+    font-size: 18px;
+  }
 }
 </style>
