@@ -1,6 +1,39 @@
 {
     "Home": "الصفحة الرئيسية",
     "langSwitch": "العربية",
+    "navbar": {
+        "home": "الصفحة الرئيسية",
+        "aboutUs": "من نحن",
+        "contactUs": "اتصل بنا",
+        "faq": "الأسئلة الشائعة",
+        "logo": {
+            "alt": "شعار بلو لاين",
+            "tagline": "لخدمات الشحن البحري"
+        },
+        "menu": {
+            "aboutBlueLine": {
+                "title": "عن بلو لاين",
+                "aboutUs": "من نحن",
+                "stakeholders": "علاقات أصحاب المصلحة",
+                "career": "الوظائف",
+                "contact": "اتصل بنا"
+            },
+            "businessAreas": {
+                "title": "مجالات الأعمال",
+                "feederServices": "خدمات السفن المغذية",
+                "regionalLiner": "خدمات الخطوط الإقليمية",
+                "routesAgents": "المسارات وجهات الاتصال",
+                "fleet": "الأسطول",
+                "faqGlossary": "الأسئلة الشائعة والمصطلحات"
+            },
+            "mediaCenter": {
+                "title": "المركز الإعلامي",
+                "newsInsights": "الأخبار والرؤى",
+                "downloads": "التحميلات",
+                "ecommerce": "التجارة الإلكترونية"
+            }
+        }
+    },
     "homeSection": {
         "home": "الصفحة الرئيسية",
         "mission": "مهمتنا",

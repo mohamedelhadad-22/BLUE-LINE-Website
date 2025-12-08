@@ -1,6 +1,39 @@
 {
     "Home": "Home",
     "langSwitch": "English",
+    "navbar": {
+        "home": "Home",
+        "aboutUs": "About Us",
+        "contactUs": "Contact Us",
+        "faq": "FAQ",
+        "logo": {
+            "alt": "BlueLine Logo",
+            "tagline": "For Ocean Freight Services"
+        },
+        "menu": {
+            "aboutBlueLine": {
+                "title": "About Blue Line",
+                "aboutUs": "About us",
+                "stakeholders": "Stakeholders Relations",
+                "career": "Career",
+                "contact": "Contact us"
+            },
+            "businessAreas": {
+                "title": "Business Areas",
+                "feederServices": "Feeder services",
+                "regionalLiner": "Regional Liner Services",
+                "routesAgents": "Routes & Agents Contacts",
+                "fleet": "Fleet",
+                "faqGlossary": "FAQ & Glossary"
+            },
+            "mediaCenter": {
+                "title": "Media center",
+                "newsInsights": "News & Insights",
+                "downloads": "Downloads",
+                "ecommerce": "E-commerce"
+            }
+        }
+    },
     "homeSection": {
         "home": "Home",
         "mission": "Mission",
