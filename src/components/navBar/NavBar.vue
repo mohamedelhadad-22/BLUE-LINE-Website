@@ -1,20 +1,24 @@
 <template>
-  <header
-    :class="[
-      'header',
-      route.path === '/' ? 'header--absolute' : 'header--relative',
-      { 'header--open': isOpen },
-    ]"
-  >
+  <header :class="[
+    'header',
+    isHomePage ? 'header--absolute' : 'header--relative',
+    { 'header--open': isOpen },
+  ]">
     <div class="header__row">
       <RouterLink class="logo" to="/">
-        <img src="@/assets/BlueLine-Logo.svg" alt="logo" />
+        <img v-if="isHomePage" src="@/assets/BlueLine-Logo.svg" alt="logo" />
+        <div v-else class="colorfull-logo">
+          <img src="@/assets/color-logo.svg" alt="logo" />
+          <div class="logo_text">
+            <h1>BlueLine</h1>
+            <p>For Ocean Freight Services</p>
+          </div>
+        </div>
       </RouterLink>
 
       <!-- Desktop Navigation -->
       <nav class="desktop-nav">
-        <RouterLink class="nav-link active" to="/"
-          >Home
+        <RouterLink class="nav-link active" to="/">Home
           <!-- <svg
             xmlns="http://www.w3.org/2000/svg"
             width="29"
@@ -38,24 +42,13 @@
           {{ currentLang === 'en' ? 'EN' : 'AR' }}
         </button> -->
         <RouterLink class="contact-btn" to="/contact"> Contact Us </RouterLink>
-        <button
-          class="burger"
-          :aria-expanded="isOpen"
-          aria-controls="mega-menu"
-          @click.stop="isOpen = !isOpen"
-          data-mega-toggle
-        >
+        <button class="burger" :aria-expanded="isOpen" aria-controls="mega-menu" @click.stop="isOpen = !isOpen"
+          data-mega-toggle>
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
-    <MegaMenu
-      id="mega-menu"
-      v-model="isOpen"
-      :groups="groups"
-      :lang="currentLang"
-      @navigate="onNavigate"
-    />
+    <MegaMenu id="mega-menu" v-model="isOpen" :groups="groups" :lang="currentLang" @navigate="onNavigate" />
   </header>
 </template>
 
@@ -134,6 +127,10 @@ export default defineComponent({
       const loc = (this as any).$i18n?.locale ?? "en";
       return loc === "ar" ? "ar" : "en";
     },
+    // check if the user is on the home page
+    isHomePage(): boolean {
+      return this.route.path === "/";
+    },
   },
   methods: {
     toggleLang() {
@@ -195,6 +192,51 @@ export default defineComponent({
   aspect-ratio: 1/1;
 }
 
+.colorfull-logo {
+  display: flex;
+  padding-left: 12px;
+  align-items: center;
+  gap: 6.975px;
+}
+
+.colorfull-logo img {
+  width: 30.793px;
+  height: 25px;
+  aspect-ratio: 30.79/25.00;
+  object-fit: cover;
+}
+
+.colorfull-logo .logo_text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.641px;
+}
+
+.colorfull-logo .logo_text h1 {
+  color: #1E1443;
+  font-family: "Inter Tight";
+  font-size: 19.694px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 18.463px;
+  /* 93.75% */
+}
+
+.colorfull-logo .logo_text p {
+  color: #0A0F33;
+  font-family: "Inter Tight";
+  font-size: 8.206px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 8.206px;
+  /* 100% */
+}
+
+.header--relative .header__row {
+  padding: 0px 100px 0
+}
+
 /* Desktop Navigation */
 .desktop-nav {
   display: none;
@@ -217,6 +259,7 @@ export default defineComponent({
 .nav-link:hover {
   opacity: 0.8;
 }
+
 .nav-link.active {
   color: #2aa1d8;
   font-weight: bold;
@@ -225,6 +268,7 @@ export default defineComponent({
   gap: 2px;
   align-items: center;
 }
+
 .nav-link.router-link-active {
   /* font-weight: 500; */
 }
@@ -305,9 +349,11 @@ export default defineComponent({
   background: #fff;
   transition: 0.2s;
 }
+
 .header--relative .burger span {
   background: #000;
 }
+
 .burger span:nth-child(1) {
   top: 12px;
 }
@@ -389,10 +435,11 @@ export default defineComponent({
 }
 
 @media (max-width: 568px) {
-  .header__row{
+  .header__row {
     padding: 0 16px;
   }
-  .logo{
+
+  .logo {
     width: 50px;
     height: 50px;
   }
