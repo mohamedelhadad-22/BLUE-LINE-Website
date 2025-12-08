@@ -50,6 +50,7 @@ export default defineComponent({
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
+  justify-content: flex-end
 }
 
 .news-card:hover {

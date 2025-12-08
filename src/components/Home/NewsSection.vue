@@ -1,11 +1,16 @@
 <script lang="ts">
 import { defineComponent, } from "vue";
+import 'vue3-carousel/carousel.css'
+import { Carousel, Slide, Navigation, Pagination } from 'vue3-carousel'
+
 import NewsCard from "@/components/Home/NewsCard.vue";
 import ConstructionMaterials from "@/assets/Construction-Materials_bg.jpg";
 import Automotive from "@/assets/Automotive_bg.jpg";
 import FurnitureHouseware from "@/assets/Furniture-Houseware._bgpng.png";
 import Packaging from "@/assets/Packaging_bg.png";
 import packageIcon from "@/assets/pscksge.svg";
+import Electronics from "@/assets/slider123.jpg";
+import Automotive2 from "@/assets/Automotive.jpg";
 
 interface Post {
   id?: number;
@@ -20,6 +25,10 @@ export default defineComponent({
   name: "NewsSection",
   components: {
     NewsCard,
+    Carousel,
+    Slide,
+    Navigation,
+    Pagination,
   },
   data() {
     return {
@@ -63,10 +72,57 @@ export default defineComponent({
           image: ConstructionMaterials,
           icon: packageIcon,
         },
+        {
+          id: 5,
+          title:
+            'Automotive',
+          summary:
+            "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way.",
+          link: "/news-insights#student-tour",
+          image: Automotive2,
+          icon: packageIcon,
+        },
+        {
+          id: 6,
+          title:
+            'Electronics',
+          summary:
+            "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way.",
+          link: "/news-insights#student-tour",
+          image: Electronics,
+          icon: packageIcon,
+        },
       ] as Post[],
-    };
-  },
 
+      test: "",
+      carouselSettings: {
+        itemsToShow: 4,
+        snapAlign: 'start' as const,
+        wrapAround: true,
+        autoplay: 3000, // Auto-slide every 4 seconds
+        pauseAutoplayOnHover: false,
+        gap: 20, // Gap between slides in pixels
+        breakpoints: {
+          320: {
+            itemsToShow: 1,
+            snapAlign: 'start' as const
+          },
+          768: {
+            itemsToShow: 2,
+            snapAlign: 'start' as const
+          },
+          1024: {
+            itemsToShow: 3,
+            snapAlign: 'start' as const
+          },
+          1280: {
+            itemsToShow: 4,
+            snapAlign: 'start' as const
+          }
+        }
+      },
+    }
+  }
 });
 </script>
 
@@ -80,9 +136,16 @@ export default defineComponent({
         <h2>The Industries We Can Provide Services To</h2>
         <p>Consistent, effective, and economical shipping options for enterprises across the globe.</p>
       </div>
-      <div class="news-grid">
-        <NewsCard v-for="post in posts" :key="post.id" :data="post" />
-      </div>
+      <Carousel v-bind="carouselSettings" class="news-carousel">
+        <Slide v-for="post in posts" :key="post.id">
+          <NewsCard :data="post" />
+        </Slide>
+        <!--
+        <template #addons>
+          <Navigation />
+          <Pagination />
+        </template> -->
+      </Carousel>
     </div>
   </section>
 </template>
@@ -153,5 +216,28 @@ export default defineComponent({
   .news-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Carousel custom styles */
+.news-carousel :deep(.carousel__slide) {
+  /* padding: 0 !important; */
+  /* margin: 0 !important; */
+  /* width: 100% !important; */
+  overflow: hidden;
+}
+.news-carousel.carousel {
+  /* overflow: hidden; */
+}
+.news-carousel :deep(.carousel__track) {
+  /* gap: 20px !important; */
+}
+
+.news-carousel :deep(.carousel__viewport) {
+  /* overflow: visible; */
+}
+
+.news-carousel :deep(.carousel__slide) > * {
+  width: 100%;
+  max-width: 100%;
 }
 </style>
