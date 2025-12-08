@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, reactive, computed } from "vue";
 import { useI18n } from "vue-i18n";
+import { useVuelidate } from "@vuelidate/core";
+import { required, email, minLength, helpers } from "@vuelidate/validators";
 
 const { t } = useI18n();
 
@@ -21,21 +23,86 @@ const formData = reactive<FormData>({
 });
 
 const isSubmitting = ref(false);
+const submitSuccess = ref(false);
+const submitError = ref(false);
+
+// Validation rules
+const rules = computed(() => ({
+  fullName: {
+    required: helpers.withMessage(
+      t("pages.contact.formValidation.fullNameRequired"),
+      required
+    ),
+    minLength: helpers.withMessage(
+      t("pages.contact.formValidation.fullNameMinLength"),
+      minLength(2)
+    ),
+  },
+  email: {
+    required: helpers.withMessage(
+      t("pages.contact.formValidation.emailRequired"),
+      required
+    ),
+    email: helpers.withMessage(
+      t("pages.contact.formValidation.emailInvalid"),
+      email
+    ),
+  },
+  phone: {},
+  companyName: {},
+  message: {
+    required: helpers.withMessage(
+      t("pages.contact.formValidation.messageRequired"),
+      required
+    ),
+    minLength: helpers.withMessage(
+      t("pages.contact.formValidation.messageMinLength"),
+      minLength(10)
+    ),
+  },
+}));
+
+const v$ = useVuelidate(rules, formData);
 
 const handleSubmit = async () => {
+  // Validate form
+  const isValid = await v$.value.$validate();
+
+  if (!isValid) {
+    return;
+  }
+
   isSubmitting.value = true;
-  // TODO: Implement form submission
-  setTimeout(() => {
+  submitSuccess.value = false;
+  submitError.value = false;
+
+  try {
+    // TODO: Implement actual form submission to backend
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    // Success
+    submitSuccess.value = true;
+
+    // Reset form after success
+    setTimeout(() => {
+      Object.assign(formData, {
+        fullName: "",
+        companyName: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+      v$.value.$reset();
+      submitSuccess.value = false;
+    }, 3000);
+  } catch (error) {
+    submitError.value = true;
+    setTimeout(() => {
+      submitError.value = false;
+    }, 5000);
+  } finally {
     isSubmitting.value = false;
-    // Reset form
-    Object.assign(formData, {
-      fullName: "",
-      companyName: "",
-      email: "",
-      phone: "",
-      message: "",
-    });
-  }, 1000);
+  }
 };
 
 // FAQ items with i18n
@@ -89,16 +156,47 @@ const faqItems = computed(() => [
           </p>
         </div>
 
+        <!-- Success Message -->
+        <div v-if="submitSuccess" class="alert alert-success">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7 10L9 12L13 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>{{ t('pages.contact.formMessages.success') }}</span>
+        </div>
+
+        <!-- Error Message -->
+        <div v-if="submitError" class="alert alert-error">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 6V10M10 14H10.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>{{ t('pages.contact.formMessages.error') }}</span>
+        </div>
+
         <form @submit.prevent="handleSubmit" class="contact-form">
           <div class="form-row">
             <div class="form-field">
               <label for="fullName" class="field-label">{{ t('pages.contact.formSection.fullName') }}</label>
-              <input id="fullName" v-model="formData.fullName" type="text" class="field-input"
-                :placeholder="t('pages.contact.formSection.fullNamePlaceholder')" required />
+              <input
+                id="fullName"
+                v-model="formData.fullName"
+                type="text"
+                class="field-input"
+                :class="{ 'field-error': v$.fullName.$error }"
+                :placeholder="t('pages.contact.formSection.fullNamePlaceholder')"
+                @blur="v$.fullName.$touch()" />
+              <span v-if="v$.fullName.$error" class="error-message">
+                {{ v$.fullName.$errors[0]?.$message }}
+              </span>
             </div>
             <div class="form-field">
               <label for="companyName" class="field-label">{{ t('pages.contact.formSection.companyName') }}</label>
-              <input id="companyName" v-model="formData.companyName" type="text" class="field-input"
+              <input
+                id="companyName"
+                v-model="formData.companyName"
+                type="text"
+                class="field-input"
                 :placeholder="t('pages.contact.formSection.companyNamePlaceholder')" />
             </div>
           </div>
@@ -106,27 +204,53 @@ const faqItems = computed(() => [
           <div class="form-row">
             <div class="form-field">
               <label for="email" class="field-label">{{ t('pages.contact.formSection.email') }}</label>
-              <input id="email" v-model="formData.email" type="email" class="field-input"
-                :placeholder="t('pages.contact.formSection.emailPlaceholder')" required />
+              <input
+                id="email"
+                v-model="formData.email"
+                type="email"
+                class="field-input"
+                :class="{ 'field-error': v$.email.$error }"
+                :placeholder="t('pages.contact.formSection.emailPlaceholder')"
+                @blur="v$.email.$touch()" />
+              <span v-if="v$.email.$error" class="error-message">
+                {{ v$.email.$errors[0]?.$message }}
+              </span>
             </div>
             <div class="form-field">
               <label for="phone" class="field-label">{{ t('pages.contact.formSection.phone') }}</label>
-              <input id="phone" v-model="formData.phone" type="tel" class="field-input"
+              <input
+                id="phone"
+                v-model="formData.phone"
+                type="tel"
+                class="field-input"
                 :placeholder="t('pages.contact.formSection.phonePlaceholder')" />
             </div>
           </div>
 
           <div class="form-field">
             <label for="message" class="field-label">{{ t('pages.contact.formSection.message') }}</label>
-            <textarea id="message" v-model="formData.message" class="field-textarea"
-              :placeholder="t('pages.contact.formSection.messagePlaceholder')" rows="6" required></textarea>
+            <textarea
+              id="message"
+              v-model="formData.message"
+              class="field-textarea"
+              :class="{ 'field-error': v$.message.$error }"
+              :placeholder="t('pages.contact.formSection.messagePlaceholder')"
+              rows="6"
+              @blur="v$.message.$touch()"></textarea>
+            <span v-if="v$.message.$error" class="error-message">
+              {{ v$.message.$errors[0]?.$message }}
+            </span>
           </div>
 
           <button type="submit" class="submit-button" :disabled="isSubmitting">
-            <span>{{ t('pages.contact.formSection.submitButton') }}</span>
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <span v-if="!isSubmitting">{{ t('pages.contact.formSection.submitButton') }}</span>
+            <span v-else>{{ t('pages.contact.formValidation.submitting', 'Submitting...') }}</span>
+            <svg v-if="!isSubmitting" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10.5 4.5L15 9M15 9L10.5 13.5M15 9H3" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <svg v-else class="spinner" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 2V5M9 13V16M16 9H13M5 9H2M14.364 14.364L12.243 12.243M5.757 5.757L3.636 3.636M14.364 3.636L12.243 5.757M5.757 12.243L3.636 14.364" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
         </form>
@@ -372,14 +496,15 @@ const faqItems = computed(() => [
   position: relative;
   background: var(--dark-blue);
   padding-top: 64px;
-  padding-bottom: 0;
+  padding-bottom: 80px;
   background-image: url("@/assets/Framesvg.svg");
   background-position: left bottom;
   background-repeat: no-repeat;
   background-size: contain;
   min-height: 640px;
-  max-height: 640px;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .blue-content {
@@ -410,19 +535,17 @@ const faqItems = computed(() => [
 
 /* Form Container */
 .form-container {
-  position: absolute;
-  top: -9rem;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   z-index: 1;
   max-width: 960px;
+  width: calc(100% - 48px);
   margin: 0 auto;
   background: white;
   border: 1px solid var(--border-color);
   border-radius: 8px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   padding: 58px 47px;
-  width: 100%;
+  margin-top: -9rem;
 }
 
 .form-header {
@@ -448,6 +571,54 @@ const faqItems = computed(() => [
   letter-spacing: -0.32px;
   color: var(--text-secondary);
   margin: 0;
+}
+
+/* Alert Messages */
+.alert {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 6px;
+  margin-bottom: 24px;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 22px;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-success {
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  color: #166534;
+}
+
+.alert-success svg {
+  stroke: #16a34a;
+  flex-shrink: 0;
+}
+
+.alert-error {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  color: #991b1b;
+}
+
+.alert-error svg {
+  stroke: #dc2626;
+  flex-shrink: 0;
 }
 
 /* Form Styles */
@@ -489,7 +660,7 @@ const faqItems = computed(() => [
   border: 1px solid var(--border-color);
   border-radius: 4px;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .field-input::placeholder,
@@ -500,6 +671,29 @@ const faqItems = computed(() => [
 .field-input:focus,
 .field-textarea:focus {
   border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(41, 112, 255, 0.1);
+}
+
+/* Validation Error Styles */
+.field-error {
+  border-color: #ef4444 !important;
+}
+
+.field-error:focus {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+.error-message {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #dc2626;
+  margin-top: -4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .field-textarea {
@@ -524,18 +718,37 @@ const faqItems = computed(() => [
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.2s, box-shadow 0.2s;
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .submit-button:hover:not(:disabled) {
   background: #2563eb;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.submit-button:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 .submit-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+/* Spinner Animation */
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Support Section */
@@ -786,11 +999,51 @@ const faqItems = computed(() => [
 
   .form-container {
     padding: 40px 32px;
+    width: calc(100% - 40px);
   }
 
-  .support-section,
+  .support-section {
+    padding: 64px 40px;
+  }
+
   .branches-section {
-    padding: 48px 40px;
+    padding: 60px 40px;
+  }
+
+  .branch-info {
+    flex: 0 0 340px;
+  }
+}
+
+@media (max-width: 992px) {
+  .form-section {
+    min-height: auto;
+    padding-bottom: 60px;
+  }
+
+  .form-container {
+    margin-top: 0;
+    width: calc(100% - 32px);
+  }
+
+  .support-section {
+    padding: 56px 32px;
+  }
+
+  .branches-section {
+    padding: 56px 32px;
+  }
+
+  .branch-card {
+    flex-direction: column;
+  }
+
+  .branch-info {
+    flex: 1;
+  }
+
+  .branch-image {
+    min-height: 400px;
   }
 }
 
@@ -809,19 +1062,44 @@ const faqItems = computed(() => [
     line-height: 28px;
   }
 
+  .form-section {
+    padding-top: 48px;
+    padding-bottom: 48px;
+    background-size: cover;
+  }
+
   .form-row {
     grid-template-columns: 1fr;
   }
 
   .form-container {
     padding: 32px 24px;
+    width: calc(100% - 32px);
   }
 
-  .form-title,
+  .form-title {
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  .form-subtitle {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .support-section {
+    padding: 48px 24px;
+  }
+
   .support-title,
   .branches-title {
     font-size: 32px;
     line-height: 36px;
+  }
+
+  .support-subtitle {
+    font-size: 14px;
+    line-height: 22px;
   }
 
   .faq-grid {
@@ -829,28 +1107,36 @@ const faqItems = computed(() => [
     gap: 24px;
   }
 
-  .branch-card {
-    flex-direction: column;
+  .branches-section {
+    padding: 48px 24px;
   }
 
-  .branch-info {
-    flex: 1;
+  .branches-title {
+    margin-bottom: 48px;
+  }
+
+  .branch-card {
+    margin-bottom: 48px;
   }
 
   .branch-image {
-    min-height: 400px;
-  }
-
-  .support-section,
-  .branches-section {
-    padding: 40px 24px;
+    min-height: 300px;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
+  .hero-section {
+    height: 350px;
+  }
+
+  .hero-content {
+    padding: 0 20px;
+  }
+
   .hero-title {
-    font-size: 28px;
-    line-height: 32px;
+    font-size: 32px;
+    line-height: 36px;
+    letter-spacing: -0.64px;
   }
 
   .hero-subtitle {
@@ -858,30 +1144,216 @@ const faqItems = computed(() => [
     line-height: 24px;
   }
 
-  .form-title,
-  .support-title,
-  .branches-title {
+  .form-section {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  .form-container {
+    padding: 28px 20px;
+    width: calc(100% - 24px);
+  }
+
+  .form-title {
     font-size: 28px;
     line-height: 32px;
   }
 
-  .form-container {
-    padding: 24px 16px;
+  .form-subtitle {
+    font-size: 14px;
+  }
+
+  .field-label {
+    font-size: 13px;
+  }
+
+  .field-input,
+  .field-textarea {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+
+  .submit-button {
+    padding: 14px 28px;
+    font-size: 16px;
+  }
+
+  .support-section {
+    padding: 40px 20px;
+  }
+
+  .support-title {
+    font-size: 28px;
+    line-height: 32px;
+    margin-bottom: 8px;
+  }
+
+  .support-subtitle {
+    font-size: 14px;
   }
 
   .faq-card {
+    padding: 20px;
     flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .faq-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .faq-question {
+    font-size: 18px;
+    line-height: 26px;
+    margin-bottom: 10px;
+  }
+
+  .faq-answer {
+    font-size: 15px;
+    line-height: 24px;
+  }
+
+  .branches-section {
+    padding: 40px 20px;
+  }
+
+  .branches-title {
+    font-size: 28px;
+    line-height: 32px;
+    margin-bottom: 40px;
+  }
+
+  .branch-card {
+    margin-bottom: 40px;
+    gap: 16px;
+  }
+
+  .branch-info {
+    gap: 16px;
   }
 
   .branch-name {
     font-size: 24px;
   }
 
+  .detail-label {
+    font-size: 13px;
+  }
+
+  .detail-text,
+  .detail-value {
+    font-size: 16px;
+  }
+
+  .contact-person {
+    font-size: 16px;
+  }
+
+  .contact-person p {
+    font-size: 16px;
+  }
+
+  .branch-image {
+    min-height: 250px;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    height: 300px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .form-container {
+    padding: 24px 16px;
+    width: calc(100% - 20px);
+  }
+
+  .form-title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .support-title,
+  .branches-title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .faq-card {
+    padding: 18px;
+  }
+
+  .faq-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .faq-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .faq-question {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .faq-answer {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .branch-name {
+    font-size: 20px;
+  }
+
   .detail-text,
   .detail-value,
   .contact-person,
   .contact-person p {
-    font-size: 16px;
+    font-size: 15px;
+  }
+
+  .branch-image {
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 375px) {
+  .hero-title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .form-container {
+    padding: 20px 14px;
+  }
+
+  .form-title {
+    font-size: 22px;
+    line-height: 26px;
+  }
+
+  .support-title,
+  .branches-title {
+    font-size: 22px;
+    line-height: 26px;
+  }
+
+  .branch-name {
+    font-size: 18px;
   }
 }
 </style>

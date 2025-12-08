@@ -287,6 +287,19 @@
                 "messagePlaceholder": "أخبرنا عن احتياجاتك اللوجستية...",
                 "submitButton": "إرسال الرسالة"
             },
+            "formValidation": {
+                "fullNameRequired": "الاسم الكامل مطلوب.",
+                "fullNameMinLength": "يجب أن يحتوي الاسم الكامل على حرفين على الأقل.",
+                "emailRequired": "البريد الإلكتروني مطلوب.",
+                "emailInvalid": "يرجى إدخال بريد إلكتروني صالح.",
+                "messageRequired": "الرسالة مطلوبة.",
+                "messageMinLength": "يجب أن تحتوي الرسالة على 10 أحرف على الأقل.",
+                "submitting": "جارٍ الإرسال..."
+            },
+            "formMessages": {
+                "success": "شكراً لك! سنتواصل معك قريباً.",
+                "error": "حدث خطأ ما. يُرجى المحاولة مرة أخرى."
+            },
             "support": {
                 "title": "الدعم السريع",
                 "subtitle": "أسئلة شائعة حول خدماتنا",

@@ -288,6 +288,19 @@
                 "messagePlaceholder": "Tell us about your logistics needs...",
                 "submitButton": "Submit Message"
             },
+            "formValidation": {
+                "fullNameRequired": "Full name is required.",
+                "fullNameMinLength": "Full name must be at least 2 characters.",
+                "emailRequired": "Email address is required.",
+                "emailInvalid": "Please enter a valid email address.",
+                "messageRequired": "Message is required.",
+                "messageMinLength": "Message must be at least 10 characters.",
+                "submitting": "Submitting..."
+            },
+            "formMessages": {
+                "success": "Thank you! We'll get back to you shortly.",
+                "error": "Something went wrong. Please try again."
+            },
             "support": {
                 "title": "Quick Support",
                 "subtitle": "Common questions about our services",

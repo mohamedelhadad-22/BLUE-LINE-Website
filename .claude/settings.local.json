@@ -6,7 +6,8 @@
       "Bash(npm run build:*)",
       "Bash(claude mcp remove:*)",
       "Bash(claude mcp add:*)",
-      "Bash(claude mcp list:*)"
+      "Bash(claude mcp list:*)",
+      "Bash(npm install:*)"
     ],
     "deny": [],
     "ask": []
