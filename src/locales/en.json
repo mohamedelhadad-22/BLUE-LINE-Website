@@ -956,5 +956,32 @@
     "ourOffer": {
         "ourOffer_title": "Our Offer",
         "ourOffer_Desc": "Simplifying Operations with Our Logistics Offerings"
+    },
+    "industriesSection": {
+        "kicker": "Industries",
+        "title": "The Industries We Can Provide Services To",
+        "subtitle": "Consistent, effective, and economical shipping options for enterprises across the globe.",
+        "industries": {
+            "automotive": {
+                "title": "Automotive",
+                "summary": "The automotive industry relies on precision logistics to maintain seamless production and meet market demands. BlueLine delivers specialised solutions to securely transport parts and components, ensuring efficiency, compliance, and reliability across your supply chain."
+            },
+            "furnitureHouseware": {
+                "title": "Furniture & Houseware",
+                "summary": "The furniture and housewares industry requires expert logistics to ensure safe and timely delivery. At BlueLine, we provide tailored solutions for bulky furniture and delicate goods, combining precision handling, customs expertise, and flexible freight options to safeguard your"
+            },
+            "packaging": {
+                "title": "Packaging",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "constructionMaterials": {
+                "title": "Construction Materials",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "electronics": {
+                "title": "Electronics",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            }
+        }
     }
 }

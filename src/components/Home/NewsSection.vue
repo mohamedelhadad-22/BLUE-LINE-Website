@@ -1,5 +1,6 @@
 <script lang="ts">
-import { defineComponent, } from "vue";
+import { defineComponent, computed } from "vue";
+import { useI18n } from 'vue-i18n';
 import 'vue3-carousel/carousel.css'
 import { Carousel, Slide, Navigation, Pagination } from 'vue3-carousel'
 
@@ -30,71 +31,67 @@ export default defineComponent({
     Navigation,
     Pagination,
   },
+  setup() {
+    const { t } = useI18n();
+
+    const posts = computed(() => [
+      {
+        id: 1,
+        title: t('industriesSection.industries.automotive.title'),
+        summary: t('industriesSection.industries.automotive.summary'),
+        link: "/news-insights#mala-awards",
+        image: Automotive,
+        icon: packageIcon,
+      },
+      {
+        id: 2,
+        title: t('industriesSection.industries.furnitureHouseware.title'),
+        summary: t('industriesSection.industries.furnitureHouseware.summary'),
+        link: "/news-insights#south-red-sea",
+        image: FurnitureHouseware,
+        icon: packageIcon,
+      },
+      {
+        id: 3,
+        title: t('industriesSection.industries.packaging.title'),
+        summary: t('industriesSection.industries.packaging.summary'),
+        link: "/news-insights#student-tour",
+        image: Packaging,
+        icon: packageIcon,
+      },
+      {
+        id: 4,
+        title: t('industriesSection.industries.constructionMaterials.title'),
+        summary: t('industriesSection.industries.constructionMaterials.summary'),
+        link: "/news-insights#student-tour",
+        image: ConstructionMaterials,
+        icon: packageIcon,
+      },
+      {
+        id: 5,
+        title: t('industriesSection.industries.automotive.title'),
+        summary: t('industriesSection.industries.automotive.summary'),
+        link: "/news-insights#student-tour",
+        image: Automotive2,
+        icon: packageIcon,
+      },
+      {
+        id: 6,
+        title: t('industriesSection.industries.electronics.title'),
+        summary: t('industriesSection.industries.electronics.summary'),
+        link: "/news-insights#student-tour",
+        image: Electronics,
+        icon: packageIcon,
+      },
+    ]);
+
+    return {
+      posts,
+      t,
+    };
+  },
   data() {
     return {
-      posts: [
-        {
-          id: 1,
-          title: 'Automotive',
-          summary:
-            "The automotive industry relies on precision logistics to maintain seamless production and meet market demands. BlueLine delivers specialised solutions to securely transport parts and components, ensuring efficiency, compliance, and reliability across your supply chain.",
-          link: "/news-insights#mala-awards",
-          image: Automotive,
-          icon: packageIcon,
-        },
-        {
-          id: 2,
-          title:
-            "Furniture & Houseware",
-          summary:
-            "The furniture and housewares industry requires expert logistics to ensure safe and timely delivery. At BlueLine, we provide tailored solutions for bulky furniture and delicate goods, combining precision handling, customs expertise, and flexible freight options to safeguard your",
-          link: "/news-insights#south-red-sea",
-          image: FurnitureHouseware,
-          icon: packageIcon,
-        },
-        {
-          id: 3,
-          title:
-            'Packaging',
-          summary:
-            "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way.",
-          link: "/news-insights#student-tour",
-          image: Packaging,
-          icon: packageIcon,
-        },
-        {
-          id: 4,
-          title:
-            'Construction Materials',
-          summary:
-            "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way.",
-          link: "/news-insights#student-tour",
-          image: ConstructionMaterials,
-          icon: packageIcon,
-        },
-        {
-          id: 5,
-          title:
-            'Automotive',
-          summary:
-            "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way.",
-          link: "/news-insights#student-tour",
-          image: Automotive2,
-          icon: packageIcon,
-        },
-        {
-          id: 6,
-          title:
-            'Electronics',
-          summary:
-            "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way.",
-          link: "/news-insights#student-tour",
-          image: Electronics,
-          icon: packageIcon,
-        },
-      ] as Post[],
-
-      test: "",
       carouselSettings: {
         itemsToShow: 4,
         snapAlign: 'start' as const,
@@ -131,10 +128,10 @@ export default defineComponent({
     <div class="container news-shell">
       <div class="news-header">
         <span class="news-title_badge">
-          Industries
+          {{ t('industriesSection.kicker') }}
         </span>
-        <h2>The Industries We Can Provide Services To</h2>
-        <p>Consistent, effective, and economical shipping options for enterprises across the globe.</p>
+        <h2>{{ t('industriesSection.title') }}</h2>
+        <p>{{ t('industriesSection.subtitle') }}</p>
       </div>
       <Carousel v-bind="carouselSettings" class="news-carousel">
         <Slide v-for="post in posts" :key="post.id">
