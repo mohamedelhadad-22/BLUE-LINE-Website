@@ -32,9 +32,9 @@
             />
           </svg> -->
         </RouterLink>
-        <RouterLink class="nav-link" to="/about">{{ t('navbar.aboutUs') }}</RouterLink>
+        <RouterLink class="nav-link" to="/">{{ t('navbar.aboutUs') }}</RouterLink>
         <RouterLink class="nav-link" to="/contact">{{ t('navbar.contactUs') }}</RouterLink>
-        <RouterLink class="nav-link" to="/faq-glossary">{{ t('navbar.faq') }}</RouterLink>
+        <RouterLink class="nav-link" to="/">{{ t('navbar.faq') }}</RouterLink>
       </nav>
 
       <div class="actions">
@@ -94,30 +94,60 @@ export default defineComponent({
       {
         title: t("navbar.menu.aboutBlueLine.title"),
         items: [
-          { label: t("navbar.menu.aboutBlueLine.aboutUs"), to: "/about" },
-          { label: t("navbar.menu.aboutBlueLine.stakeholders"), to: "/stakeholders-relations" },
-          { label: t("navbar.menu.aboutBlueLine.career"), to: "/careers" },
-          { label: t("navbar.menu.aboutBlueLine.contact"), to: "/contact" },
+          {
+            label: t("navbar.menu.aboutBlueLine.aboutUs"),
+            //  to: "/about"
+          },
+          {
+            label: t("navbar.menu.aboutBlueLine.stakeholders"),
+            // to: "/stakeholders-relations"
+          },
+          {
+            label: t("navbar.menu.aboutBlueLine.career"),
+            //  to: "/careers"
+          },
+          {
+            label: t("navbar.menu.aboutBlueLine.contact"),
+            // to: "/contact"
+          },
         ],
       },
       {
         title: t("navbar.menu.businessAreas.title"),
         items: [
-          { label: t("navbar.menu.businessAreas.feederServices"), to: "/feeders-services" },
+          {
+            label: t("navbar.menu.businessAreas.feederServices"),
+            //  to: "/feeders-services"
+          },
           {
             label: t("navbar.menu.businessAreas.regionalLiner"),
-            to: "/regional-liner-services",
+            // to: "/regional-liner-services",
           },
-          { label: t("navbar.menu.businessAreas.routesAgents"), to: "/routes-agents" },
-          { label: t("navbar.menu.businessAreas.fleet"), to: "/fleet" },
-          { label: t("navbar.menu.businessAreas.faqGlossary"), to: "/faq-glossary" },
+          {
+            label: t("navbar.menu.businessAreas.routesAgents"),
+            // to: "/routes-agents"
+          },
+          {
+            label: t("navbar.menu.businessAreas.fleet"),
+            // to: "/fleet"
+          },
+          {
+            label: t("navbar.menu.businessAreas.faqGlossary"),
+            //  to: "/faq-glossary"
+          },
         ],
       },
       {
         title: t("navbar.menu.mediaCenter.title"),
         items: [
-          { label: t("navbar.menu.mediaCenter.newsInsights"), to: "/news-insights" },
-          { label: t("navbar.menu.mediaCenter.downloads"), to: "/downloads" },
+          {
+            label: t("navbar.menu.mediaCenter.newsInsights"),
+            //  to: "/news-insights"
+          },
+          {
+            label: t("navbar.menu.mediaCenter.downloads"),
+            // to: "/downloads"
+          },
         ],
         extras: [{ label: t("navbar.menu.mediaCenter.ecommerce"), href: "#shop", chevron: true }],
         social: [
@@ -340,7 +370,8 @@ export default defineComponent({
 }
 
 .header--relative .contact-btn:hover {
-  background: #0d3a34;
+  background: #00aeffc0;
+  border-color: #00aeffc0;
   color: #fff;
 }
 
