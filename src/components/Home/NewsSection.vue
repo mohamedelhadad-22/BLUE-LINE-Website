@@ -16,11 +16,11 @@ import Automotive2 from "@/assets/Automotive.jpg";
 interface Post {
   id?: number;
   title?: string;
-  summary?: String;
-  link?: String;
+  summary?: string;
+  link?: string;
   image?: string;
   icon?: string;
-};
+}
 
 export default defineComponent({
   name: "NewsSection",
@@ -34,7 +34,7 @@ export default defineComponent({
   setup() {
     const { t } = useI18n();
 
-    const posts = computed(() => [
+    const posts = computed<Post[]>(() => [
       {
         id: 1,
         title: t('industriesSection.industries.automotive.title'),
