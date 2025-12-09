@@ -1106,7 +1106,43 @@
             "electronics": {
                 "title": "Electronics",
                 "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
-            }
+            },
+            "PlasticGranules": {
+                "title": "Plastic Granules",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "PVCPipes": {
+                "title": "PVC Pipes",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "GypsumBoard": {
+                "title": "Gypsum Board",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "Chemicals": {
+                "title": "Chemicals ",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "CeramicPorcelainTiles": {
+                "title": "Ceramic & Porcelain Tiles",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "GraniteMarble": {
+                "title": "Granite & Marble",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "FrozenCargo": {
+                "title": "Frozen Cargo",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "ElectronicGoods": {
+                "title": "Electronic Goods",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "CeramicsTiles": {
+                "title": "Ceramics Tiles",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+                }
         }
     }
 }
