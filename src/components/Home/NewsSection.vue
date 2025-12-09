@@ -12,6 +12,16 @@ import Packaging from "@/assets/Packaging_bg.png";
 import packageIcon from "@/assets/pscksge.svg";
 import Electronics from "@/assets/slider123.jpg";
 import Automotive2 from "@/assets/Automotive.jpg";
+import slider6 from "@/assets/015ee64d5f01317c3f4db77b7da0edc095d91035.jpg";
+import PVCPipes from "@/assets/PVCPipes.png";
+import GypsumBoard from "@/assets/GypsumBoard.jpg";
+import Chemicals from "@/assets/Chemicals .jpg";
+import CeramicPorcelainTiles from "@/assets/Ceramic-Porcelain-Tiles.jpg";
+import GraniteMarble from "@/assets/Granite-Marble.jpg";
+import FrozenCargo from "@/assets/Frozen-Cargo.jpg";
+import ElectronicGoods from "@/assets/Electronic-Goods.jpg";
+import CeramicsTiles from "@/assets/Ceramics-Tiles.jpg";
+
 
 interface Post {
   id?: number;
@@ -53,6 +63,14 @@ export default defineComponent({
       },
       {
         id: 3,
+        title: t('industriesSection.industries.PlasticGranules.title'),
+        summary: t('industriesSection.industries.PlasticGranules.summary'),
+        link: "/news-insights#student-tour",
+        image: slider6,
+        icon: packageIcon,
+      },
+      {
+        id: 4,
         title: t('industriesSection.industries.packaging.title'),
         summary: t('industriesSection.industries.packaging.summary'),
         link: "/news-insights#student-tour",
@@ -60,7 +78,7 @@ export default defineComponent({
         icon: packageIcon,
       },
       {
-        id: 4,
+        id: 5,
         title: t('industriesSection.industries.constructionMaterials.title'),
         summary: t('industriesSection.industries.constructionMaterials.summary'),
         link: "/news-insights#student-tour",
@@ -68,7 +86,7 @@ export default defineComponent({
         icon: packageIcon,
       },
       {
-        id: 5,
+        id: 6,
         title: t('industriesSection.industries.automotive.title'),
         summary: t('industriesSection.industries.automotive.summary'),
         link: "/news-insights#student-tour",
@@ -76,11 +94,75 @@ export default defineComponent({
         icon: packageIcon,
       },
       {
-        id: 6,
+        id: 7,
         title: t('industriesSection.industries.electronics.title'),
         summary: t('industriesSection.industries.electronics.summary'),
         link: "/news-insights#student-tour",
         image: Electronics,
+        icon: packageIcon,
+      },
+      {
+        id: 8,
+        title: t('industriesSection.industries.PVCPipes.title'),
+        summary: t('industriesSection.industries.PVCPipes.summary'),
+        link: "/news-insights#student-tour",
+        image: PVCPipes,
+        icon: packageIcon,
+      },
+      {
+        id: 9,
+        title: t('industriesSection.industries.GypsumBoard.title'),
+        summary: t('industriesSection.industries.GypsumBoard.summary'),
+        link: "/news-insights#student-tour",
+        image: GypsumBoard,
+        icon: packageIcon,
+      },
+      {
+        id: 10,
+        title: t('industriesSection.industries.Chemicals.title'),
+        summary: t('industriesSection.industries.Chemicals.summary'),
+        link: "/news-insights#student-tour",
+        image: Chemicals,
+        icon: packageIcon,
+      },
+      {
+        id: 11,
+        title: t('industriesSection.industries.CeramicPorcelainTiles.title'),
+        summary: t('industriesSection.industries.CeramicPorcelainTiles.summary'),
+        link: "/news-insights#student-tour",
+        image: CeramicPorcelainTiles,
+        icon: packageIcon,
+      },
+      {
+        id: 12,
+        title: t('industriesSection.industries.GraniteMarble.title'),
+        summary: t('industriesSection.industries.GraniteMarble.summary'),
+        link: "/news-insights#student-tour",
+        image: GraniteMarble,
+        icon: packageIcon,
+      },
+      {
+        id: 13,
+        title: t('industriesSection.industries.FrozenCargo.title'),
+        summary: t('industriesSection.industries.FrozenCargo.summary'),
+        link: "/news-insights#student-tour",
+        image: FrozenCargo,
+        icon: packageIcon,
+      },
+      {
+        id: 14,
+        title: t('industriesSection.industries.ElectronicGoods.title'),
+        summary: t('industriesSection.industries.ElectronicGoods.summary'),
+        link: "/news-insights#student-tour",
+        image: ElectronicGoods,
+        icon: packageIcon,
+      },
+      {
+        id: 15,
+        title: t('industriesSection.industries.CeramicsTiles.title'),
+        summary: t('industriesSection.industries.CeramicsTiles.summary'),
+        link: "/news-insights#student-tour",
+        image: CeramicsTiles,
         icon: packageIcon,
       },
     ]);
@@ -222,9 +304,11 @@ export default defineComponent({
   /* width: 100% !important; */
   overflow: hidden;
 }
+
 .news-carousel.carousel {
   /* overflow: hidden; */
 }
+
 .news-carousel :deep(.carousel__track) {
   /* gap: 20px !important; */
 }
@@ -233,7 +317,7 @@ export default defineComponent({
   /* overflow: visible; */
 }
 
-.news-carousel :deep(.carousel__slide) > * {
+.news-carousel :deep(.carousel__slide)>* {
   width: 100%;
   max-width: 100%;
 }
