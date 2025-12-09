@@ -214,7 +214,7 @@ export default defineComponent({
 }
 
 .logo {
-  width: 266px;
+  width: 200px;
   height: 60px;
   display: flex;
   align-items: center;
@@ -223,7 +223,7 @@ export default defineComponent({
 .logo img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   flex-shrink: 0;
   aspect-ratio: 1/1;
 }
@@ -483,8 +483,11 @@ export default defineComponent({
   }
 
   .logo {
-    width: 50px;
-    height: 50px;
+    width: 180px;
+    height: 60px;
+  }
+  .logo img{
+    object-fit: contain;
   }
 }
 </style>
