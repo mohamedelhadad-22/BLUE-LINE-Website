@@ -251,7 +251,8 @@ export default defineComponent({
   z-index: 2;
   text-align: center;
   color: #fff;
-  padding: 3rem 1.5rem;
+  /* padding: 3rem 1.5rem; */
+  gap:24px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -261,14 +262,17 @@ export default defineComponent({
 .hero-title {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  font-size: clamp(2.5rem, 4vw + 1rem, 4.5rem);
-  font-weight: 700;
-  margin: 0;
+  /* gap: 0.75rem; */
+  color: #FFF;
+  text-align: center;
+  font-family: "Helvetica Neue";
+  font-size: 64px;
+  font-weight: 500;
+  line-height: 90%;
   align-items: center;
 }
 
-.hero-line {
+/* .hero-line {
   line-height: 1.1;
   color: #fff;
   font-family: Lato;
@@ -276,14 +280,14 @@ export default defineComponent({
   font-style: normal;
   font-weight: 500;
   line-height: 99.936%;
-}
+} */
 
 .hero-line--accent {
   /* color: #2aa1d8; */
   /* font-weight: 700; */
 }
 
-.hero-subtitle {
+/* .hero-subtitle {
   margin-top: 1.5rem;
   color: #FFF;
   text-align: center;
@@ -291,7 +295,7 @@ export default defineComponent({
   font-weight: 400;
   line-height: 99.936%;
   margin-bottom: 61px;
-}
+} */
 
 .hero-ornaments {
   position: absolute;
@@ -326,6 +330,12 @@ export default defineComponent({
       rgba(64, 168, 248, 0));
 }
 
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 64px;
+  }
+}
+
 @media (max-width: 768px) {
   .hero-content {
     text-align: start;
@@ -348,9 +358,12 @@ export default defineComponent({
 
 @media (max-width: 568px) {
   .hero-content {
-    padding: 2rem 0rem;
+    /* padding: 2rem 0rem; */
   }
-
+  .hero-title{
+    line-height: 40px;
+    font-size: 40px;
+  }
   .mission-card {
     align-items: center;
   }
@@ -365,6 +378,7 @@ export default defineComponent({
 
   .hero-subtitle {
     font-size: 18px;
+    text-align: center;
   }
 }
 </style>
