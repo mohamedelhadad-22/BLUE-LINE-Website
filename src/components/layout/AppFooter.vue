@@ -34,17 +34,18 @@ export default defineComponent({
             {{ $t("footer.FooterDescription") }}
           </p>
         </div>
-        <div class="footer_columns">
+        <!-- <div class="footer_columns">
           <h2 class="title_footer">
             {{ $t("footer.BusinessMedia") }}
           </h2>
-          <!-- privacy-policy -->
-           <!-- terms-conditions -->
-            <!-- terms-conditions -->
+          
           <RouterLink to="/">{{ $t("footer.about") }}</RouterLink>
           <RouterLink to="/">{{ $t("footer.contact") }}</RouterLink>
           <RouterLink to="/">{{ $t("footer.OurServices") }}</RouterLink>
-        </div>
+      </div> -->
+        <!-- privacy-policy -->
+        <!-- terms-conditions -->
+        <!-- terms-conditions -->
         <div class="footer_columns contact_us">
           <h2 class="title_footer">
             {{ $t("footer.contact") }}
@@ -70,7 +71,7 @@ export default defineComponent({
             </li>
           </ul>
         </div>
-        <div class="footer_columns">
+        <!-- <div class="footer_columns">
           <h2 class="title_footer">
             {{ $t("footer.WorkingHours") }}
           </h2>
@@ -86,7 +87,7 @@ export default defineComponent({
               <img src="@/assets/LinkedIn.svg" alt="Facebook" />
             </a>
           </div>
-        </div>
+        </div> -->
         <div class="footer_columns">
           <h2 class="title_footer">
             {{ $t("footer.Legal") }}

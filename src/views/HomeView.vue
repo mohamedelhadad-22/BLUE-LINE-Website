@@ -272,7 +272,6 @@ export default defineComponent({
   /* gap: 0.75rem; */
   color: #FFF;
   text-align: center;
-  font-family: "Helvetica Neue";
   font-size: 64px;
   font-weight: 500;
   line-height: 90%;
@@ -282,7 +281,6 @@ export default defineComponent({
 /* .hero-line {
   line-height: 1.1;
   color: #fff;
-  font-family: Lato;
   font-size: 96px;
   font-style: normal;
   font-weight: 500;
@@ -303,6 +301,16 @@ export default defineComponent({
   line-height: 99.936%;
   margin-bottom: 61px;
 } */
+.hero-subtitle {
+  color: #FFF;
+  text-align: center;
+  font-family: "Inter Tight";
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 99.936%;
+  /* 31.98px */
+}
 
 .hero-ornaments {
   position: absolute;
@@ -337,9 +345,26 @@ export default defineComponent({
       rgba(64, 168, 248, 0));
 }
 
+@media (max-width: 1260px) {
+  .hero-title {
+    font-size: 44px;
+  }
+
+  .hero-subtitle {
+    color: #FFF;
+    text-align: center;
+    font-family: "Inter Tight";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 99.936%;
+    /* 31.98px */
+  }
+}
+
 @media (max-width: 1024px) {
   .hero-title {
-    font-size: 64px;
+    font-size: 36px;
   }
 }
 
@@ -395,5 +420,11 @@ export default defineComponent({
 .hero-content .common_button_default {
   max-width: 322px;
   width: 100%;
+}
+
+@media (max-width: 1280px) {
+  .hero-content .common_button_default {
+    font-size: 14px;
+  }
 }
 </style>

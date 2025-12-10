@@ -168,7 +168,7 @@ input {
   margin: 0;
   padding: 0;
   border: 0;
-  font-family: "Inter Tight" !important; /* "Inter Tight" */
+  font-family: "Inter Tight"; /* "Inter Tight" */
   font-size: 100%;
   text-decoration: none;
   vertical-align: baseline;

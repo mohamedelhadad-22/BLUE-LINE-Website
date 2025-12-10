@@ -202,6 +202,7 @@ export default defineComponent({
     background: rgba(0, 0, 0, .25);
     z-index: 999;
 }
+
 /* Panel */
 .mm-panel {
     position: fixed;
@@ -362,7 +363,3 @@ export default defineComponent({
     border: 0;
 }
 </style>
-
-
-
-

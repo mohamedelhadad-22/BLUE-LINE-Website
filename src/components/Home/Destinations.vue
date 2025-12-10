@@ -206,7 +206,7 @@ export default defineComponent({
     align-items: flex-start;
     background: rgba(51, 119, 255, 0.2);
     color: white;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter';
     font-size: 14px;
     font-weight: 500;
     line-height: 14px;

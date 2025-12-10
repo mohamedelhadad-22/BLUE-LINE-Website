@@ -264,7 +264,7 @@ export default defineComponent({
 
 .news-header h2 {
   color: #000;
-  font-family: Lato;
+  /* font-family: Lato; */
   font-size: 48px;
   font-style: normal;
   font-weight: 700;

@@ -33,8 +33,10 @@
           </svg> -->
         </RouterLink>
         <RouterLink class="nav-link" to="/">{{ t('navbar.aboutUs') }}</RouterLink>
+        <RouterLink class="nav-link" to="/">{{ t('navbar.menu.aboutBlueLine.ouerServices') }}</RouterLink>
         <RouterLink class="nav-link" to="/contact">{{ t('navbar.contactUs') }}</RouterLink>
-        <RouterLink class="nav-link" to="/">{{ t('navbar.faq') }}</RouterLink>
+        <!-- <RouterLink class="nav-link" to="/">{{ t('navbar.faq') }}</RouterLink> -->
+
       </nav>
 
       <div class="actions">
@@ -98,58 +100,63 @@ export default defineComponent({
             label: t("navbar.menu.aboutBlueLine.aboutUs"),
             //  to: "/about"
           },
-          {
-            label: t("navbar.menu.aboutBlueLine.stakeholders"),
-            // to: "/stakeholders-relations"
-          },
-          {
-            label: t("navbar.menu.aboutBlueLine.career"),
-            //  to: "/careers"
-          },
+          // {
+          //   label: t("navbar.menu.aboutBlueLine.stakeholders"),
+          //    to: "/stakeholders-relations"
+          // },
+          // {
+          //   label: t("navbar.menu.aboutBlueLine.career"),
+          //   //  to: "/careers"
+          // },
           {
             label: t("navbar.menu.aboutBlueLine.contact"),
             // to: "/contact"
           },
-        ],
-      },
-      {
-        title: t("navbar.menu.businessAreas.title"),
-        items: [
           {
-            label: t("navbar.menu.businessAreas.feederServices"),
-            //  to: "/feeders-services"
-          },
-          {
-            label: t("navbar.menu.businessAreas.regionalLiner"),
-            // to: "/regional-liner-services",
-          },
-          {
-            label: t("navbar.menu.businessAreas.routesAgents"),
-            // to: "/routes-agents"
-          },
-          {
-            label: t("navbar.menu.businessAreas.fleet"),
-            // to: "/fleet"
-          },
-          {
-            label: t("navbar.menu.businessAreas.faqGlossary"),
-            //  to: "/faq-glossary"
+            label: t("navbar.menu.aboutBlueLine.ouerServices"),
+            // to: "/contact"
           },
         ],
       },
+      // {
+      //   title: t("navbar.menu.businessAreas.title"),
+      //   items: [
+      //     {
+      //       label: t("navbar.menu.businessAreas.feederServices"),
+      //       //  to: "/feeders-services"
+      //     },
+      //     {
+      //       label: t("navbar.menu.businessAreas.regionalLiner"),
+      //       // to: "/regional-liner-services",
+      //     },
+      //     {
+      //       label: t("navbar.menu.businessAreas.routesAgents"),
+      //       // to: "/routes-agents"
+      //     },
+      //     {
+      //       label: t("navbar.menu.businessAreas.fleet"),
+      //       // to: "/fleet"
+      //     },
+      //     {
+      //       label: t("navbar.menu.businessAreas.faqGlossary"),
+      //       //  to: "/faq-glossary"
+      //     },
+      //   ],
+      // },
       {
         title: t("navbar.menu.mediaCenter.title"),
-        items: [
-          {
-            label: t("navbar.menu.mediaCenter.newsInsights"),
-            //  to: "/news-insights"
-          },
-          {
-            label: t("navbar.menu.mediaCenter.downloads"),
-            // to: "/downloads"
-          },
-        ],
-        extras: [{ label: t("navbar.menu.mediaCenter.ecommerce"), href: "#shop", chevron: true }],
+        // items: [
+        //   {
+        //     label: t("navbar.menu.mediaCenter.newsInsights"),
+        //     //  to: "/news-insights"
+        //   },
+        //   {
+        //     label: t("navbar.menu.mediaCenter.downloads"),
+        //     // to: "/downloads"
+        //   },
+        // ],
+        // extras: [{ label: t("navbar.menu.mediaCenter.ecommerce"), href: "#shop", chevron: true }],
+
         social: [
           { href: "https://linkedin.com", iconText: "in" },
           { href: "https://x.com", iconText: "x" },
@@ -284,7 +291,6 @@ export default defineComponent({
 .nav-link {
   color: #fff;
   text-align: center;
-  font-family: Lato;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -351,6 +357,11 @@ export default defineComponent({
   font-weight: 500;
   transition: all 0.2s ease;
   white-space: nowrap;
+}
+
+.header--absolute .contact-btn {
+  border-radius: 12px;
+  background: #00AEFF;
 }
 
 .contact-btn:hover {
@@ -444,6 +455,19 @@ export default defineComponent({
 
 /* Responsive Styles */
 /* Desktop: Show horizontal nav, hide burger */
+@media (min-width: 1200px) {
+  .nav-link {
+    font-size: 16px;
+  }
+  .logo{
+    width: 170px
+  }
+  .header--absolute .contact-btn {
+  font-weight: bold;
+  font-size: 12px;
+}
+}
+
 @media (min-width: 1024px) {
   .desktop-nav {
     display: flex;
@@ -455,6 +479,10 @@ export default defineComponent({
 
   .burger {
     display: none;
+  }
+
+  .nav-link {
+    font-size: 14px;
   }
 
   .actions {
@@ -486,7 +514,12 @@ export default defineComponent({
     width: 180px;
     height: 60px;
   }
-  .logo img{
+
+  .header--relative .header__row {
+    padding: 0 16px
+  }
+
+  .logo img {
     object-fit: contain;
   }
 }
