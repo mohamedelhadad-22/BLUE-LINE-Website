@@ -48,7 +48,29 @@
         "destinationTitle":"Destinations",
         "destinationTitle2":"we serve",
         "destinationDesc":"Discover where we can take you",
-        "map":"Map"
+        "map":"Map",
+        "hero": {
+            "connectingLine1": "Connecting you to",
+            "connectingLine2": "your customers",
+            "subtitle": "Seamless experiences from booking to delivery."
+        },
+        "sustainabilitySlides": {
+            "slide1": {
+                "heading": "Blue Line Contributes to Global Sustainability Goals",
+                "copy": "We are committed to maritime decarbonization and intend to implement sustainable solutions that mitigate the environmental impact of our activity.",
+                "alt": "Green valley and river"
+            },
+            "slide2": {
+                "heading": "Leading Regional Liner and Feeder Operator Providing Flexible and Sustainable Solutions and Creating Value for Our Stakeholders",
+                "copy": "Complying with IMO regulations, we uphold high sustainability standards, incorporating innovation into product development and fostering a workforce-centric approach.",
+                "alt": "Port crane and container vessel"
+            },
+            "slide3": {
+                "heading": "Driving Change through Educational Programs for an Empowered Community",
+                "copy": "We nurture local talent and promote careers in the maritime industry, aligning with our commitment to CSR initiatives.",
+                "alt": "Handshake indoors"
+            }
+        }
     },
     "missionSection": {
         "kicker": "Our pillars",

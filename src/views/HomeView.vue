@@ -64,29 +64,31 @@ export default defineComponent({
       ],
       parallaxInstance: null as ParallaxInstance,
       _unlinkNested: null as null | (() => void),
-      slides: [
-        {
-          heading: "Blue Line Contributes to Global Sustainability Goals",
-          copy: "We are committed to maritime decarbonization and intend to implement sustainable solutions that mitigate the environmental impact of our activity.",
-          image: shallowRef(sliderOne),
-          alt: "Green valley and river",
-        },
-        {
-          heading:
-            "Leading Regional Liner and Feeder Operator Providing Flexible and Sustainable Solutions and Creating Value for Our Stakeholders",
-          copy: "Complying with IMO regulations, we uphold high sustainability standards, incorporating innovation into product development and fostering a workforce-centric approach.",
-          image: shallowRef(sliderTow),
-          alt: "Port crane and container vessel",
-        },
-        {
-          heading:
-            "Driving Change through Educational Programs for an Empowered Community",
-          copy: "We nurture local talent and promote careers in the maritime industry, aligning with our commitment to CSR initiatives.",
-          image: shallowRef(sliderThree),
-          alt: "Handshake indoors",
-        },
-      ],
     };
+  },
+  computed: {
+    slides() {
+      return [
+        {
+          heading: this.$t('homeSection.sustainabilitySlides.slide1.heading'),
+          copy: this.$t('homeSection.sustainabilitySlides.slide1.copy'),
+          image: shallowRef(sliderOne),
+          alt: this.$t('homeSection.sustainabilitySlides.slide1.alt'),
+        },
+        {
+          heading: this.$t('homeSection.sustainabilitySlides.slide2.heading'),
+          copy: this.$t('homeSection.sustainabilitySlides.slide2.copy'),
+          image: shallowRef(sliderTow),
+          alt: this.$t('homeSection.sustainabilitySlides.slide2.alt'),
+        },
+        {
+          heading: this.$t('homeSection.sustainabilitySlides.slide3.heading'),
+          copy: this.$t('homeSection.sustainabilitySlides.slide3.copy'),
+          image: shallowRef(sliderThree),
+          alt: this.$t('homeSection.sustainabilitySlides.slide3.alt'),
+        },
+      ];
+    },
   },
   methods: {
     scrollToSection(id: string) {
@@ -95,6 +97,11 @@ export default defineComponent({
         el.scrollIntoView({ behavior: "smooth" });
         this.activeSection = id;
       }
+    },
+    goToContact() {
+      // go to contact us page
+      this.$router.push('/contact');
+      console.log("test")
     },
     handleScroll() {
       const scrollY = window.scrollY;
@@ -176,14 +183,14 @@ export default defineComponent({
       <BackgroundVideo>
         <div class="hero-content">
           <h1 class="hero-title">
-            <span class="hero-line"> Connecting you to </span>
-            <span class="hero-line hero-line--accent"> your customers </span>
+            <span class="hero-line"> {{ $t('homeSection.hero.connectingLine1') }} </span>
+            <span class="hero-line hero-line--accent"> {{ $t('homeSection.hero.connectingLine2') }} </span>
           </h1>
           <p class="hero-subtitle">
-            Seamless experiences from booking to delivery.
+            {{ $t('homeSection.hero.subtitle') }}
           </p>
-          <commonButton :text="$t('Discover More')" buttonType="XL" :click="scrollToSection('mission')"
-            :isBlueColor="true" :isRadius="true" />
+          <commonButton :text="$t('Contact Us')" buttonType="XL" @click="goToContact" :isBlueColor="true"
+            :isRadius="true" />
           <!--   <div class="hero-ornaments">
             <span
               class="hero-ornament hero-ornament--primary js-parallax"
@@ -252,7 +259,7 @@ export default defineComponent({
   text-align: center;
   color: #fff;
   /* padding: 3rem 1.5rem; */
-  gap:24px;
+  gap: 24px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -360,10 +367,12 @@ export default defineComponent({
   .hero-content {
     /* padding: 2rem 0rem; */
   }
-  .hero-title{
+
+  .hero-title {
     line-height: 40px;
     font-size: 40px;
   }
+
   .mission-card {
     align-items: center;
   }

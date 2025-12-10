@@ -38,9 +38,12 @@ export default defineComponent({
           <h2 class="title_footer">
             {{ $t("footer.BusinessMedia") }}
           </h2>
-          <RouterLink to="/privacy-policy">{{ $t("footer.about") }}</RouterLink>
-          <RouterLink to="/terms-conditions">{{ $t("footer.contact") }}</RouterLink>
-          <RouterLink to="/terms-conditions">{{ $t("footer.OurServices") }}</RouterLink>
+          <!-- privacy-policy -->
+           <!-- terms-conditions -->
+            <!-- terms-conditions -->
+          <RouterLink to="/">{{ $t("footer.about") }}</RouterLink>
+          <RouterLink to="/">{{ $t("footer.contact") }}</RouterLink>
+          <RouterLink to="/">{{ $t("footer.OurServices") }}</RouterLink>
         </div>
         <div class="footer_columns contact_us">
           <h2 class="title_footer">
@@ -88,8 +91,10 @@ export default defineComponent({
           <h2 class="title_footer">
             {{ $t("footer.Legal") }}
           </h2>
-          <RouterLink to="/privacy-policy">About Us</RouterLink>
-          <RouterLink to="/terms-conditions">Contact Us</RouterLink>
+          <!-- privacy-policy -->
+          <RouterLink to="/">{{ $t("footer.about") }}</RouterLink>
+          <!-- terms-conditions -->
+          <RouterLink to="/">{{ $t("footer.contact") }}</RouterLink>
         </div>
       </div>
 
