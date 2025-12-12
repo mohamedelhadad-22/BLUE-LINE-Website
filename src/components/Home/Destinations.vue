@@ -19,7 +19,7 @@
                         <img src="@/assets/_Vector map.svg" alt="Map" />
 
                         <!-- Location markers -->
-                        <div class="location-marker" style="top: 44.88%; left: 53.22%;"
+                        <div class="location-marker" style="top: 46%; left: 56%;"
                             @mouseenter="showTooltip('egypt')" @mouseleave="hideTooltip">
                             <div class="marker-outer"></div>
                             <div class="marker-middle"></div>
@@ -66,7 +66,7 @@
                         </div>
 
                         <!-- Saudi Arabia marker -->
-                        <div class="location-marker" style="top: 48%; left: 60%;" @mouseenter="showTooltip('saudi')"
+                        <div class="location-marker" style="top: 50%; left: 60%;" @mouseenter="showTooltip('saudi')"
                             @mouseleave="hideTooltip">
                             <div class="marker-outer"></div>
                             <div class="marker-middle"></div>
@@ -78,48 +78,154 @@
                                     <div class="flag">
                                         <img src="@/assets/Saudi-arabia-flag.png" alt="Saudi Arabia Flag" />
                                     </div>
-                                    <div class="tooltip-header">Saudi Arabia</div>
-                                    <div class="tooltip-text">
-                                        23441 Al-Madina Al-Munawarah Branch Rd,<br>
-                                        Al Faisaliyah, Kanoo Building, Jeddah
+                                    <div class="text">
+                                        <div class="tooltip-header">Saudi Arabia</div>
+                                        <div class="tooltip-text">
+                                            23441 Al-Madina Al-Munawarah Branch Rd,<br>
+                                            Al Faisaliyah, Kanoo Building, Jeddah
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="tooltip-arrow"></div>
                             </div>
                         </div>
 
-                        <!-- Add more markers as needed -->
-                        <div class="location-marker" style="top: 83.2%; left: 86.43%;"></div>
-                        <div class="location-marker" style="top: 86.89%; left: 93.55%;"></div>
-                        <div class="location-marker" style="top: 32.17%; left: 12.7%;"></div>
-                        <div class="location-marker" style="top: 41.8%; left: 15.43%;"></div>
-                        <div class="location-marker" style="top: 19.88%; left: 50.88%;"></div>
-                        <div class="location-marker" style="top: 45.9%; left: 66.21%;"></div>
-                        <div class="location-marker" style="top: 40.78%; left: 82.32%;"></div>
-                        <div class="location-marker" style="top: 14.96%; left: 56.74%;"></div>
-                        <div class="location-marker" style="top: 36.07%; left: 50.1%;"></div>
-                        <div class="location-marker" style="top: 77.05%; left: 29.49%;"></div>
-                        <div class="location-marker" style="top: 61.07%; left: 29.49%;"></div>
-                        <div class="location-marker" style="top: 27.87%; left: 54.79%;"></div>
-                        <div class="location-marker" style="top: 22.95%; left: 65.43%;"></div>
-                        <div class="location-marker" style="top: 15.78%; left: 75.68%;"></div>
-                        <div class="location-marker" style="top: 34.43%; left: 71.78%;"></div>
-                        <div class="location-marker" style="top: 28.69%; left: 83.59%;"></div>
-                        <div class="location-marker" style="top: 48.36%; left: 76.07%;"></div>
-                        <div class="location-marker" style="top: 4.1%; left: 35.55%;"></div>
-                        <div class="location-marker" style="top: 20.49%; left: 33.59%;"></div>
-                        <div class="location-marker" style="top: 15.78%; left: 16.21%;"></div>
-                        <div class="location-marker" style="top: 31.76%; left: 19.34%;"></div>
-                        <div class="location-marker" style="top: 32.99%; left: 27.93%;"></div>
-                        <div class="location-marker" style="top: 50%; left: 54%;"></div>
-                        <div class="location-marker" style="top: 54.92%; left: 55.96%;"></div>
-                        <div class="location-marker" style="top: 63.52%; left: 55.18%;"></div>
-                        <div class="location-marker" style="top: 62.5%; left: 49.32%;"></div>
-                        <div class="location-marker" style="top: 47.54%; left: 49.32%;"></div>
-                        <div class="location-marker" style="top: 72.34%; left: 53.61%;"></div>
-                        <div class="location-marker" style="top: 54.1%; left: 46.97%;"></div>
-                        <div class="location-marker" style="top: 46.72%; left: 44.63%;"></div>
-                        <div class="location-marker" style="top: 39.96%; left: 47.36%;"></div>
+                        <!-- Morocco -->
+                        <div class="location-marker location-marker--small" style="top: 38%; left: 47.5%;"></div>
+
+                        <!-- Algeria -->
+                        <div class="location-marker location-marker--small" style="top: 41%; left: 50.5%;"></div>
+
+                        <!-- Tunisia -->
+                        <div class="location-marker location-marker--small" style="top: 39%; left: 52%;"></div>
+
+                        <!-- Libya -->
+                        <div class="location-marker location-marker--small" style="top: 43%; left: 53%;"></div>
+
+                        <!-- Mauritania -->
+                        <div class="location-marker location-marker--small" style="top: 49%; left: 47.5%;"></div>
+
+                        <!-- Senegal -->
+                        <div class="location-marker location-marker--small" style="top: 53%; left: 46.5%;"></div>
+
+                        <!-- Gambia -->
+                        <div class="location-marker location-marker--small" style="top: 53.5%; left: 46%;"></div>
+
+                        <!-- Guinea -->
+                        <div class="location-marker location-marker--small" style="top: 55.5%; left: 47%;"></div>
+
+                        <!-- Nigeria -->
+                        <div class="location-marker location-marker--small" style="top: 56%; left: 50.5%;"></div>
+
+                        <!-- Sudan -->
+                        <div class="location-marker location-marker--small" style="top: 51%; left: 54.5%;"></div>
+
+                        <!-- Somalia -->
+                        <div class="location-marker location-marker--small" style="top: 57%; left: 57%;"></div>
+
+                        <!-- Kenya -->
+                        <div class="location-marker location-marker--small" style="top: 62%; left: 56%;"></div>
+
+                        <!-- Tanzania -->
+                        <div class="location-marker location-marker--small" style="top: 66%; left: 55.5%;"></div>
+
+                        <!-- Syria -->
+                        <div class="location-marker location-marker--small" style="top: 38.5%; left: 57.5%;"></div>
+
+                        <!-- Lebanon -->
+                        <div class="location-marker location-marker--small" style="top: 40.5%; left: 57.2%;"></div>
+
+                        <!-- Iraq -->
+                        <div class="location-marker location-marker--small" style="top: 40%; left: 59.5%;"></div>
+
+                        <!-- Bahrain -->
+                        <div class="location-marker location-marker--small" style="top: 45.5%; left: 60%;"></div>
+
+                        <!-- Dubai (Branch) -->
+                        <div class="location-marker" style="top: 46.5%; left: 60.8%;" @mouseenter="showTooltip('dubai')"
+                            @mouseleave="hideTooltip">
+                            <div class="marker-outer"></div>
+                            <div class="marker-middle"></div>
+                            <div class="marker-inner"></div>
+                            <!-- <div class="tooltip" v-show="activeTooltip === 'dubai'">
+                                <div class="tooltip-content">
+                                    <div class="flag">
+                                        <img src="@/assets/Dubai-flag.png" alt="Dubai Flag" /> 
+                                    </div>
+                                    <div class="text">
+                                        <div class="tooltip-header">Dubai (Branch)</div>
+                                        <div class="tooltip-text">
+                                            Dubai Branch Office
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tooltip-arrow"></div>
+                            </div> -->
+                        </div>
+
+                        <!-- Oman (Branch) -->
+                        <div class="location-marker" style="top: 49%; left: 61.5%;" @mouseenter="showTooltip('oman')"
+                            @mouseleave="hideTooltip">
+                            <div class="marker-outer"></div>
+                            <div class="marker-middle"></div>
+                            <div class="marker-inner"></div>
+                            <!-- <div class="tooltip" v-show="activeTooltip === 'oman'">
+                                <div class="tooltip-content">
+                                    <div class="flag">
+                                        <img src="@/assets/Oman-flag.png" alt="Oman Flag" />
+                                    </div>
+                                    <div class="text">
+                                        <div class="tooltip-header">Oman (Branch)</div>
+                                        <div class="tooltip-text">
+                                            Oman Branch Office
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tooltip-arrow"></div>
+                            </div> -->
+                        </div>
+
+                        <!-- Yemen -->
+                        <div class="location-marker location-marker--small" style="top: 54%; left: 61%;"></div>
+
+                        <!-- Turkey -->
+                        <div class="location-marker location-marker--small" style="top: 37%; left: 56.5%;"></div>
+
+                        <!-- Italy -->
+                        <div class="location-marker location-marker--small" style="top: 35%; left: 52.5%;"></div>
+
+                        <!-- England -->
+                        <div class="location-marker location-marker--small" style="top: 28%; left: 49%;"></div>
+
+                        <!-- Sweden -->
+                        <div class="location-marker location-marker--small" style="top: 22%; left: 53%;"></div>
+
+                        <!-- Russia -->
+                        <div class="location-marker location-marker--small" style="top: 24%; left: 68%;"></div>
+
+                        <!-- India -->
+                        <div class="location-marker location-marker--small" style="top: 49%; left: 69%;"></div>
+
+                        <!-- China -->
+                        <div class="location-marker location-marker--small" style="top: 38%; left: 78%;"></div>
+
+                        <!-- Thailand -->
+                        <div class="location-marker location-marker--small" style="top: 54%; left: 78%;"></div>
+
+                        <!-- Malaysia -->
+                        <div class="location-marker location-marker--small" style="top: 60%; left: 79.5%;"></div>
+
+                        <!-- Indonesia -->
+                        <div class="location-marker location-marker--small" style="top: 64%; left: 81%;"></div>
+
+                        <!-- South Korea -->
+                        <div class="location-marker location-marker--small" style="top: 39%; left: 85%;"></div>
+
+                        <!-- Taiwan -->
+                        <div class="location-marker location-marker--small" style="top: 47%; left: 84%;"></div>
+
+                        <!-- Brazil -->
+                        <div class="location-marker location-marker--small" style="top: 69%; left: 31%;"></div>
                     </div>
                 </div>
             </div>
@@ -206,7 +312,7 @@ export default defineComponent({
     align-items: flex-start;
     background: rgba(51, 119, 255, 0.2);
     color: white;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter';
     font-size: 14px;
     font-weight: 500;
     line-height: 14px;
@@ -271,6 +377,11 @@ export default defineComponent({
     transform: translate(-50%, -50%);
     cursor: pointer;
     transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.location-marker:hover {
+    z-index: 100;
 }
 
 .marker-outer {
@@ -309,6 +420,7 @@ export default defineComponent({
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
 }
 
 /* Tooltip */
@@ -321,7 +433,7 @@ export default defineComponent({
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    z-index: 10;
+    z-index: 200;
     filter: drop-shadow(0px 12px 16px rgba(16, 24, 40, 0.08)) drop-shadow(0px 4px 6px rgba(16, 24, 40, 0.03));
     border-radius: 8px;
     background: #FFF;
@@ -392,11 +504,19 @@ export default defineComponent({
 .location-marker:hover .marker-outer {
     width: 48px;
     height: 48px;
+    opacity: 0.15;
 }
 
 .location-marker:hover .marker-middle {
     width: 28px;
     height: 28px;
+    opacity: 0.3;
+}
+
+.location-marker:hover .marker-inner {
+    width: 10px;
+    height: 10px;
+    transform: translate(-50%, -50%) scale(1.2);
 }
 
 /* Responsive Styles */
@@ -796,6 +916,125 @@ export default defineComponent({
         border-left: 6px solid transparent;
         border-right: 6px solid transparent;
         border-top: 5px solid #ffffff;
+    }
+}
+
+/* Small destination markers (non-branch locations) */
+.location-marker--small {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.location-marker--small:hover {
+    z-index: 50;
+}
+
+.location-marker--small::before {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-color: #84adff;
+    opacity: 0.15;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+
+.location-marker--small::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: #84adff;
+    opacity: 1;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+
+.location-marker--small:hover::before {
+    width: 28px;
+    height: 28px;
+    opacity: 0.25;
+}
+
+.location-marker--small:hover::after {
+    width: 8px;
+    height: 8px;
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+/* Responsive adjustments for small markers */
+@media (max-width: 1023px) {
+    .location-marker--small {
+        width: 20px;
+        height: 20px;
+    }
+
+    .location-marker--small::before {
+        width: 20px;
+        height: 20px;
+    }
+
+    .location-marker--small::after {
+        width: 5px;
+        height: 5px;
+    }
+
+    .location-marker--small:hover::before {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media (max-width: 767px) {
+    .location-marker--small {
+        width: 16px;
+        height: 16px;
+    }
+
+    .location-marker--small::before {
+        width: 16px;
+        height: 16px;
+    }
+
+    .location-marker--small::after {
+        width: 4px;
+        height: 4px;
+    }
+
+    .location-marker--small:hover::before {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 479px) {
+    .location-marker--small {
+        width: 14px;
+        height: 14px;
+    }
+
+    .location-marker--small::before {
+        width: 14px;
+        height: 14px;
+    }
+
+    .location-marker--small::after {
+        width: 3px;
+        height: 3px;
+    }
+
+    .location-marker--small:hover::before {
+        width: 16px;
+        height: 16px;
     }
 }
 </style>

@@ -124,11 +124,33 @@ export default defineComponent({
     gap: 24px;
     justify-content: center;
 }
+@media (max-width:1200px){
+    .stat-card{
+        min-width: 401px;
+    }
+}
 </style>
 <style>
 .services_boxs .stat-card__icon svg {
     height: 52px;
     width: 52px;
     flex: 1 0 0;
+}
+
+.services_box .stat-card__text {
+    color: #1E2225;
+    text-align: center;
+    font-family: "Inter Tight";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 28px;
+    /* 140% */
+    letter-spacing: -0.4px;
+}
+@media (max-width: 1024px) {
+    .services_box .stat-card{
+        min-width: 340px;
+    }
 }
 </style>

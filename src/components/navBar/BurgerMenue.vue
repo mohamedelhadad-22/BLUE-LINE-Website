@@ -18,7 +18,7 @@
                 <div class="mm-grid" :class="[{ rtl: isRtl }]">
                     <section v-for="(group, gi) in groups" :key="gi" class="mm-col">
                         <h3 class="mm-col-title">{{ group.title }}</h3>
-                        <ul class="mm-links">
+                        <ul v-if="group.items && group.items.length" class="mm-links">
                             <li v-for="(item, ii) in group.items" :key="ii">
                                 <RouterLink v-if="item.to && !item.external" :to="item.to" class="mm-link"
                                     @click="onNavigate(item)" ref="focusable">
@@ -97,7 +97,7 @@ type SocialItem = {
 
 type Group = {
     title: string;
-    items: LinkItem[];
+    items?: LinkItem[];
     extras?: LinkItem[];
     social?: SocialItem[];
 };
@@ -202,6 +202,7 @@ export default defineComponent({
     background: rgba(0, 0, 0, .25);
     z-index: 999;
 }
+
 /* Panel */
 .mm-panel {
     position: fixed;
@@ -362,7 +363,3 @@ export default defineComponent({
     border: 0;
 }
 </style>
-
-
-
-

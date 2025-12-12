@@ -202,7 +202,7 @@ export default defineComponent({
 }
 
 .locations-title {
-  font-family: "Lato", sans-serif;
+  /* font-family: "Lato", sans-serif; */
   font-weight: 700;
   font-size: clamp(24px, 3vw, 32px);
   line-height: 1.2;
@@ -267,7 +267,6 @@ export default defineComponent({
 }
 
 .location-country {
-  font-family: "Lato", sans-serif;
   font-weight: 700;
   font-size: clamp(18px, 2vw, 24px);
   line-height: 1.2;
@@ -276,7 +275,6 @@ export default defineComponent({
 }
 
 .location-description {
-  font-family: "Lato", sans-serif;
   font-weight: 300;
   font-size: clamp(16px, 1.5vw, 20px);
   line-height: 1.45;
