@@ -1,7 +1,8 @@
 <template>
     <section class="our_services">
         <div class="container">
-            <div class="services_max_width">
+            <!-- .services_max_width -->
+            <div class="container services_max_width">
                 <div class="row">
                     <h1>Our Freight Services</h1>
                     <p>Comprehensive freight forwarding solutions tailored to your business needs.</p>
@@ -86,7 +87,7 @@ export default defineComponent({
 .services_max_width {
     display: flex;
     width: 100%;
-    max-width: 960px;
+    /* max-width: 960px; */
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -124,11 +125,6 @@ export default defineComponent({
     gap: 24px;
     justify-content: center;
 }
-@media (max-width:1200px){
-    .stat-card{
-        min-width: 401px;
-    }
-}
 </style>
 <style>
 .services_boxs .stat-card__icon svg {
@@ -148,8 +144,15 @@ export default defineComponent({
     /* 140% */
     letter-spacing: -0.4px;
 }
+
+@media (min-width:1400px) {
+   .services_box .stat-card {
+        min-width: 401px;
+    }
+}
+
 @media (max-width: 1024px) {
-    .services_box .stat-card{
+    .services_box .stat-card {
         min-width: 340px;
     }
 }
