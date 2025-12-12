@@ -148,4 +148,9 @@ export default defineComponent({
     /* 140% */
     letter-spacing: -0.4px;
 }
+@media (max-width: 1024px) {
+    .services_box .stat-card{
+        min-width: 340px;
+    }
+}
 </style>
