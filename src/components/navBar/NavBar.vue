@@ -70,7 +70,7 @@ type LinkItem = {
 type SocialItem = { href?: string; iconText?: string };
 type Group = {
   title: string;
-  items: LinkItem[];
+  items?: LinkItem[];
   extras?: LinkItem[];
   social?: SocialItem[];
 };
