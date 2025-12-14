@@ -15,7 +15,7 @@ export default defineComponent({
   <div class="content" :class="$i18n.locale == 'ar' ? 'arabic' : 'english'">
     <div class="router_content">
       <NavBar />
-      <RouterView />
+      <RouterView></RouterView>
     </div>
     <AppFooter />
   </div>
@@ -30,6 +30,7 @@ export default defineComponent({
   flex-direction: column;
   overflow-x: hidden;
 }
+
 .router_content {
   position: relative;
   width: 100%;
