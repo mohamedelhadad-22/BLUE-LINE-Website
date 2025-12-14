@@ -7,7 +7,8 @@
       "Bash(claude mcp remove:*)",
       "Bash(claude mcp add:*)",
       "Bash(claude mcp list:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfix: correct home route to use HomeView instead of ContactView\n\n- Fixed router configuration where home route (/) was incorrectly pointing to ContactView\n- Now correctly points to HomeView.vue\n- This was causing all pages to appear empty on Netlify\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
     ],
     "deny": [],
     "ask": []
