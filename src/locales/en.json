@@ -1,14 +1,1171 @@
 {
-    "Home":"Home",
-      "langSwitch": "English",
-      "homeSection":{
-        "home":"Home",
-        "about":"About",
-        "ceo":"CEO",
-        "services":"Services",
-        "routes":"Routes",
-        "sustainability":"Sustainability",
-        "news":"News",
-        "career":"Career"
-      }
+    "Home": "Home",
+    "langSwitch": "English",
+    "navbar": {
+        "home": "Home",
+        "aboutUs": "About Us",
+        "contactUs": "Contact Us",
+        "faq": "FAQ",
+        "logo": {
+            "alt": "BlueLine Logo",
+            "tagline": "For Ocean Freight Services"
+        },
+        "menu": {
+            "aboutBlueLine": {
+                "title": "About Blue Line",
+                "aboutUs": "About us",
+                "stakeholders": "Stakeholders Relations",
+                "career": "Career",
+                "contact": "Contact us",
+                "ouerServices":"Our Services"
+            },
+            "businessAreas": {
+                "title": "Business Areas",
+                "feederServices": "Feeder services",
+                "regionalLiner": "Regional Liner Services",
+                "routesAgents": "Routes & Agents Contacts",
+                "fleet": "Fleet",
+                "faqGlossary": "FAQ & Glossary"
+            },
+            "mediaCenter": {
+                "title": "Media center",
+                "newsInsights": "News & Insights",
+                "downloads": "Downloads",
+                "ecommerce": "E-commerce"
+            }
+        }
+    },
+    "homeSection": {
+        "home": "Home",
+        "mission": "Mission",
+        "about": "About",
+        "ceo": "CEO",
+        "services": "Services",
+        "routes": "Routes",
+        "sustainability": "Sustainability",
+        "news": "News",
+        "career": "Career",
+        "locations":" Locations",
+        "destinationTitle":"Destinations",
+        "destinationTitle2":"we serve",
+        "destinationDesc":"Discover where we can take you",
+        "map":"Map",
+        "hero": {
+            "connectingLine1": "Connecting you to",
+            "connectingLine2": "your customers",
+            "subtitle": "Seamless experiences from booking to delivery."
+        },
+        "sustainabilitySlides": {
+            "slide1": {
+                "heading": "Blue Line Contributes to Global Sustainability Goals",
+                "copy": "We are committed to maritime decarbonization and intend to implement sustainable solutions that mitigate the environmental impact of our activity.",
+                "alt": "Green valley and river"
+            },
+            "slide2": {
+                "heading": "Leading Regional Liner and Feeder Operator Providing Flexible and Sustainable Solutions and Creating Value for Our Stakeholders",
+                "copy": "Complying with IMO regulations, we uphold high sustainability standards, incorporating innovation into product development and fostering a workforce-centric approach.",
+                "alt": "Port crane and container vessel"
+            },
+            "slide3": {
+                "heading": "Driving Change through Educational Programs for an Empowered Community",
+                "copy": "We nurture local talent and promote careers in the maritime industry, aligning with our commitment to CSR initiatives.",
+                "alt": "Handshake indoors"
+            }
+        }
+    },
+    "missionSection": {
+        "kicker": "Our pillars",
+        "title": "Mission. Vision. Purpose.",
+        "subtitle": "We are building a resilient logistics network that anticipates the needs of trade partners across the region and beyond.",
+        "items": {
+            "mission": {
+                "title": "Our Mission",
+                "body": "Deliver flexible and reliable solutions that create measurable value for every customer and stakeholder we serve."
+            },
+            "vision": {
+                "title": "Our Vision",
+                "body": "Lead regional liner and feeder operations throughout the Middle East while elevating the Kingdom of Saudi Arabia as a global logistics hub."
+            },
+            "purpose": {
+                "title": "Our Purpose",
+                "body": "Connect cultures and economies by facilitating sustainable, future-proof trade."
+            }
+        }
+    },
+    "homeNews": {
+        "kicker": "Latest news",
+        "title": "Get updated with Blue Line happenings and insights",
+        "cta": "Read more",
+        "posts": [
+            {
+                "id": "mala-awards",
+                "type": "Announcement",
+                "date": "2025-08-01",
+                "title": "Blue Line Wins \"Rising Star Organization\" at MALA Awards 2025",
+                "summary": "Blue Line is recognised at the MALA Awards for its rapid progress, innovation, and commitment to elevating regional logistics standards.",
+                "link": "/news-insights#mala-awards"
+            },
+            {
+                "id": "south-red-sea",
+                "type": "Announcement",
+                "date": "2025-07-07",
+                "title": "Blue Line Expands South Red Sea Service with Enhanced Jeddah-Centric Rotation",
+                "summary": "The strategic extension of Blue Line's South Red Sea Service strengthens regional connectivity and amplifies Saudi Arabia's role as a logistics hub.",
+                "link": "/news-insights#south-red-sea"
+            },
+            {
+                "id": "student-tour",
+                "type": "Community",
+                "date": "2025-06-03",
+                "title": "Blue Line Organizes Tour for Maritime Students Onboard Container Vessel \"Blue Line Jeddah\"",
+                "summary": "Students from King Abdulaziz University experience life onboard Blue Line Jeddah, gaining practical insight into modern vessel operations.",
+                "link": "/news-insights#student-tour"
+            }
+        ]
+    },
+    "aboutSection": {
+        "tag": "About us",
+        "headline": "Blue Line Services Company (Blue Line) leads as the foremost regional liner and feeder operator across the Middle East and beyond",
+        "headDescription": "Blue Line Services company was established in 2023 with the mission to connect regional ports seamlessly and catalyze trade across the Middle East, India, and East Africa. Our strategic goal aligns with Saudi Arabia's vision to become a global logistics hub, underlining the Kingdom's premier position in leading multiple high-growth industrial sectors. We are addressing the 'white space' in the region's maritime sector by offering the first-of-its-kind feeder and regional liner shipping services.\n\nBlue Line is creating new trade lanes and delivering end-to-end shipping solutions, connecting key transshipment routes in the Arabian Gulf, Red Sea, and beyond by delivering cost-effective and efficient logistics services that drive transformational trade growth.\n\nThe word \"Blue Line\" in Arabic evokes a deep maritime legacy, symbolizing a large sea vessel traditionally used for transporting cargo and conducting trade voyages, embodying strength, forward movement, and clear purpose, qualities central to our company's vision. Our visual identity draws inspiration from traditional Najdi geometric patterns and maritime signal flags, blending cultural authenticity with themes of communication, navigation, and purposeful progress.",
+        "descOne": "Blue Line Services company, was established in 2023, with the mission to connect regional ports seamlessly, and catalyze trade across the Middle East, India, and East Africa.",
+        "descTow": "Our strategic goal is aligned with Saudi Arabia's vision to become a global logistics hub, underlining the Kingdom’s premier position in leading multiple high-growth industrial sectors.We are addressing the ‘white space’ in the region’s maritime sector by offering the first-of-its-kind feeder and regional liner shipping services.",
+        "descThree": "Blue Line is creating new trade lanes and delivering end-to-end shipping solutions, connecting key transshipment routes in the Arabian Gulf, Red Sea, and beyond, by delivering cost-effective and efficient logistics services that will drive transformational trade growth.",
+        "descFour": " in Arabic evokes a deep maritime legacy, symbolizing a large sea vessel traditionally used for transporting cargo and conducting trade voyages, embodying strength, forward movement, and clear purpose, qualities central to our company's vision. Our visual identity draws inspiration from traditional Najdi geometric patterns and maritime signal flags, blending cultural authenticity with themes of communication, navigation, and purposeful progress.",
+        "aboutStrong": "The word “Blue Line”",
+        "Customer-centric": "Customer-centric approach for mainline shippers",
+        "Digitalinnovation": "Digital innovation to elevate logistical standards",
+        "Innovativesolutions": "Innovative solutions to drive sustainability",
+        "esg": {
+            "slide1": {
+                "title": "Blue Line Contributes to Global Sustainability Goals",
+                "desc": "We minimize our footprint and implement sustainable solutions that mitigate environmental impact."
+            },
+            "slide2": {
+                "title": "Leading Regional Liner & Feeder Operator",
+                "desc": "Flexible solutions, stakeholder value, and compliance with IMO regulations."
+            },
+            "slide3": {
+                "title": "Driving Change through Educational Programs",
+                "desc": "Developing local talent and promoting maritime careers as part of CSR."
+            }
+        }
+    },
+    "ceoSection": {
+        "label": "Foreword from the CEO",
+        "headline": "Saudi Arabia has a strong ambition to harness its strategic geographical position to become a globally connected logistics hub, establishing itself at the heart of multiple industries, including shipping.",
+        "body": {
+            "first": "Blue Line was born out of this ambition and will play a critical role in making it a reality. The company fills a void in the regional maritime shipping market – offering the first feeder and liner services from Saudi Arabia, with a fleet of ships, including the first-Saudi flag container vessel owned by Blue Line.",
+            "second": "Harnessing essential connections with key transshipment routes across the region and beyond, Blue Line's liner services catalyze regional trade and create new opportunities for businesses to connect with fast-growing markets in India, the Arabian Gulf and along the Red Sea.",
+            "third": "Our commitment is to provide reliable, future-ready shipping solutions that strengthen the Kingdom's position at the forefront of global logistics."
+        },
+        "name": "Poul Hestbaek",
+        "role": "Chief Executive Officer",
+        "photoAlt": "Portrait of Poul Hestbaek"
+    },
+    "servicesSection": {
+        "label": "Services",
+        "subtitle": "Independent feeder operations seamlessly link smaller ports to larger hubs while our end-to-end shipping solutions create new trade opportunities across the region.",
+        "items": {
+            "logistics": {
+                "title": "Freight and Shipping Logistics",
+                "body": "Our coastal and regional liner services synchronize schedules, consolidate cargo, and manage customs documentation so partners stay focused on their supply chain priorities.",
+                "figureAlt": "Logistics specialists collaborating during a planning session"
+            },
+            "routes": {
+                "title": "New Trade Routes from the Kingdom of Saudi Arabia",
+                "body": "Dedicated feeder routes extend the Kingdom's ports to global networks, accelerating time-to-market for export goods while ensuring reliable connectivity for inbound cargo.",
+                "figureAlt": "Stacked Blue Line containers positioned at a port"
+            },
+            "technology": {
+                "title": "Integration of World-class Technology",
+                "body": "Smart port technologies, paperless processes, and real-time visibility tools streamline operations, enabling data-driven decisions across every voyage.",
+                "figureAlt": "Blue Line vessel underway viewed from the bow"
+            }
+        }
+    },
+    "careersSection": {
+        "label": "Careers at Blue Line",
+        "title": "Join Us and Set Sail Towards a Common Goal",
+        "body": "Discover a career path in an environment where diversity is the strength and inclusivity the compass. We empower individuals, embracing varied perspectives to drive innovation and collective success.",
+        "cta": "Explore Opportunities",
+        "ctaAria": "Explore open career opportunities at Blue Line",
+        "galleryAlt": {
+            "containers": "Stacked Blue Line containers under a clear sky",
+            "team": "Team members placing their hands together in unity",
+            "meeting": "Colleagues collaborating during a meeting",
+            "vessel": "Blue Line vessel departing pier",
+            "detail": "Uniform lapel pin with Blue Line branding"
+        }
+    },
+    "footer": {
+        "copyright": "© Blue Line. All Rights Reserved 2025",
+        "privacy": "Privacy Policy",
+        "terms": "Terms & Conditions",
+        "about": "About Us",
+        "contact":"Contact Us",
+        "FooterDescription":"We shrink the world into a single step. We don’t just move cargo—we connect suppliers to their clients across the globe,",
+        "BusinessMedia":"Business & Media",
+        "Contactus":"Contact Us",
+        "WorkingHours":"Working Hours",
+        "Legal":"Legal",
+        "OurServices":"Our Services",
+        "BlueLine": "BlueLine",
+        "BlueLineDesc":"For Ocean Freight Services",
+        "WorkingDays":"From Saturday to Thursday",
+        "WorkingDaysHours":"From 8:30 AM to 4:30 PM"
+    },
+    "pages": {
+        "stakeholders": {
+            "headline": "Stakeholders Relations",
+            "body": "We collaborate closely with regulators, investors, and community partners to keep dialogue transparent and accountable across every port we serve. A detailed stakeholder engagement framework will be published here soon.",
+            "highlights": {
+                "engagement": {
+                    "title": "Engagement pathways",
+                    "body": "Regular roundtables, digital forums, and quarterly reports keep every stakeholder group informed and aligned."
+                },
+                "governance": {
+                    "title": "Governance toolkit",
+                    "body": "Templates and policies supporting ESG commitments, risk registers, and disclosure expectations."
+                }
+            },
+            "cta": {
+                "label": "Download stakeholder handbook",
+                "description": "Toolkit release scheduled for Q3 2025.",
+                "link": "mailto:partnerships@folkmaritime.com"
+            }
+        },
+        "careers": {
+            "headline": "Careers",
+            "body": "Explore future openings and growth opportunities at Blue Line. This portal will soon provide role listings, hiring timelines, and talent development resources.",
+            "highlights": {
+                "culture": {
+                    "title": "Culture & values",
+                    "body": "Collaborative teams, continuous learning, and shared ownership of bold maritime goals."
+                },
+                "growth": {
+                    "title": "Growth journeys",
+                    "body": "Structured onboarding, mentorship, and mobility programmes across regional hubs."
+                }
+            },
+            "cta": {
+                "label": "Join our talent network",
+                "description": "Sign up to receive the first wave of openings.",
+                "link": "mailto:talent@folkmaritime.com"
+            }
+        },
+        "contact": {
+            "headline": "Contact Us",
+            "body": "We're finalizing our regional offices and support channels. A full directory and enquiry form will be available shortly.",
+            "highlights": {
+                "hq": {
+                    "title": "Head office",
+                    "body": "Kingdom Tower, Riyadh – dedicated client reception opening soon."
+                },
+                "support": {
+                    "title": "24/7 support",
+                    "body": "Logistics command centre to provide shipment tracking and incident response."
+                }
+            },
+            "cta": {
+                "label": "Email interim support",
+                "description": "Reach us at support@folkmaritime.com",
+                "link": "mailto:support@folkmaritime.com"
+            },
+            "form": {
+                "breadcrumb": {
+                    "home": "Home",
+                    "contact": "Contact Us"
+                },
+                "title": "Contact Us",
+                "whytitle": "How can we help you?",
+                "subtitle": "At Blue Line, fostering open communication is our priority. Our dedicated team is ready to assist you with whatever you may need, so please use the contact form below to get in touch.",
+                "info": {
+                    "headOffice": "Head Office",
+                    "address": "North Yard Complex from Oud, Building No. 456,<br />Prince Turki Bin Abdulaziz AlAwwal Road,<br />Al-Malqa District",
+                    "postal": "Postal Code: 13524 - 6790<br />Riyadh, Kingdom of Saudi Arabia",
+                    "getInTouch": "Get in Touch",
+                    "followUs": "Follow Us"
+                },
+                "fields": {
+                    "fullName": "Full Name",
+                    "companyName": "Company Name",
+                    "email": "Email Address",
+                    "phone": "Phone Number",
+                    "subject": "Subject",
+                    "country": "Country",
+                    "message": "Message",
+                    "privacyLabel": "I have read and agree to the",
+                    "privacyLink": "Privacy Policy",
+                    "required": "*"
+                },
+                "placeholders": {
+                    "fullName": "Enter your full name",
+                    "companyName": "Enter your company name",
+                    "email": "you@company.com",
+                    "phone": "5 1234 5678",
+                    "subject": "How can we help you?",
+                    "message": "Tell us more about your inquiry..."
+                },
+                "validation": {
+                    "fullNameRequired": "Full name is required.",
+                    "emailRequired": "Email is required.",
+                    "emailInvalid": "Enter a valid email address.",
+                    "phoneRequired": "Phone number is required.",
+                    "phoneInvalid": "Please enter a valid phone number.",
+                    "subjectRequired": "Subject is required.",
+                    "subjectMinLength": "Subject must be at least 3 characters.",
+                    "subjectMaxLength": "Subject is too long.",
+                    "countryRequired": "Country is required.",
+                    "messageRequired": "Message is required.",
+                    "messageMinLength": "Message must be at least 10 characters.",
+                    "privacyRequired": "You must accept the Privacy Policy."
+                },
+                "submit": "Send Message",
+                "submitting": "Sending...",
+                "success": "Thank you! We'll get back to you shortly.",
+                "error": "Something went wrong. Please try again."
+            },
+            "hero": {
+                "title": "Talk to Our Team",
+                "subtitle": "We're here to support your logistics needs — anytime, anywhere."
+            },
+            "formSection": {
+                "title": "Send Us a Message",
+                "subtitle": "Fill out the form below and we'll get back to you shortly",
+                "fullName": "Full Name *",
+                "fullNamePlaceholder": "John Doe",
+                "companyName": "Company Name",
+                "companyNamePlaceholder": "ABC Corporation",
+                "email": "Email Address *",
+                "emailPlaceholder": "john@example.com",
+                "phone": "Phone Number",
+                "phonePlaceholder": "+1 (555) 123-4567",
+                "message": "Message *",
+                "messagePlaceholder": "Tell us about your logistics needs...",
+                "submitButton": "Submit Message"
+            },
+            "formValidation": {
+                "fullNameRequired": "Full name is required.",
+                "fullNameMinLength": "Full name must be at least 2 characters.",
+                "emailRequired": "Email address is required.",
+                "emailInvalid": "Please enter a valid email address.",
+                "messageRequired": "Message is required.",
+                "messageMinLength": "Message must be at least 10 characters.",
+                "submitting": "Submitting..."
+            },
+            "formMessages": {
+                "success": "Thank you! We'll get back to you shortly.",
+                "error": "Something went wrong. Please try again."
+            },
+            "support": {
+                "title": "Quick Support",
+                "subtitle": "Common questions about our services",
+                "faq1": {
+                    "question": "What are your business hours?",
+                    "answer": "Our customer support team is available 24/7 to assist you. Our office hours are Monday to Friday, 9 AM to 6 PM EST."
+                },
+                "faq2": {
+                    "question": "How can I track my shipment?",
+                    "answer": "Use your tracking number on our website or contact our support team for real-time updates on your shipment status."
+                },
+                "faq3": {
+                    "question": "How do I request a quote?",
+                    "answer": "Fill out our contact form above or call us directly. We'll provide a customized quote within 24 hours."
+                },
+                "faq4": {
+                    "question": "Do you ship internationally?",
+                    "answer": "Yes, we offer comprehensive international shipping services to over 150 countries worldwide with full tracking."
+                }
+            },
+            "branches": {
+                "title": "Our Branches",
+                "saudi": {
+                    "label": "Head Office",
+                    "name": "Saudi Branch",
+                    "addressLabel": "Address Branch",
+                    "address": "23441 Al-Madina Al-Munawarah Branch Rd,<br />Al Faisaliyah, Kanoo Building, Jeddah",
+                    "phoneLabel": "Phone:",
+                    "phone": "054 757 5530",
+                    "mailLabel": "Mail:",
+                    "mail": "info@blueline-sa.net",
+                    "hoursLabel": "Working Hours",
+                    "hours": "From Saturday to Thursday<br />From 8:30 AM to 4:30 PM",
+                    "finance": "Finance",
+                    "financePhone": "Mobile: 0 547576076",
+                    "financeEmail": "Finance@blueline-sa.net",
+                    "manager": "Operation Manager",
+                    "managerPhone": "Mobile: 0530957713",
+                    "managerEmail": "Email: umar.farooq@blueline-sa.net"
+                },
+                "egypt": {
+                    "name": "Egypt Branch",
+                    "addressLabel": "Address Branch",
+                    "address": "Property No. 6, Sector H, First Floor<br />Service Center, First Settlement - New Cairo",
+                    "phoneLabel": "Phone:",
+                    "phone": "0 122 3693800",
+                    "mobileLabel": "Mobile:",
+                    "mobile": "0223555525",
+                    "mailLabel": "Mail:",
+                    "mail": "info@blueline-sa.net",
+                    "hoursLabel": "Working Hours",
+                    "hours": "From Saturday to Thursday<br />From 8:30 AM to 4:30 PM",
+                    "finance": "Finance",
+                    "financePhone": "Mobile: 01201374000",
+                    "financeEmail": "Finance@blueline-sa.net",
+                    "manager": "Branch Manager",
+                    "managerPhone": "Mobile: 01223693800",
+                    "managerEmail": "mohamed.abdulaziz@blueline-sa.net"
+                }
+            }
+        },
+        "feeders": {
+            "headline": "Feeders Services",
+            "body": "Technical specifications, schedules, and service commitments for our feeder network are on the way. Check back to download sailing plans and port guides.",
+            "highlights": {
+                "coverage": {
+                    "title": "Coverage map",
+                    "body": "Serving key ports across the Red Sea, Arabian Gulf, and Indian west coast."
+                },
+                "performance": {
+                    "title": "Performance assurance",
+                    "body": "Guaranteed cut-off windows and on-time reliability backed by service credits."
+                }
+            },
+            "cta": {
+                "label": "Request sailing schedule",
+                "description": "Schedule PDFs will be shared upon launch.",
+                "link": "mailto:schedules@folkmaritime.com"
+            }
+        },
+        "liner": {
+            "headline": "Regional Liner Services",
+            "body": "We're curating detailed route maps and transit times for our liner solutions. Soon you'll be able to review optimized port rotations and booking support.",
+            "highlights": {
+                "network": {
+                    "title": "Balanced rotations",
+                    "body": "Weekly strings designed to connect Saudi gateways with high-growth Asian and African ports."
+                },
+                "digital": {
+                    "title": "Digital booking",
+                    "body": "API-driven bookings with milestone visibility and automated compliance checks."
+                }
+            },
+            "cta": {
+                "label": "Talk to a liner specialist",
+                "description": "Our commercial team will tailor capacity to your lanes.",
+                "link": "mailto:liner@folkmaritime.com"
+            }
+        },
+        "routes": {
+            "headline": "Routes & Agents Contacts",
+            "body": "A comprehensive directory of agents, local representatives, and documentation requirements is coming soon.",
+            "highlights": {
+                "agents": {
+                    "title": "Accredited agents",
+                    "body": "Partner network across 18 countries ready to assist with bookings and port services."
+                },
+                "compliance": {
+                    "title": "Documentation hub",
+                    "body": "Certificates, customs forms, and port-specific advisories in one location."
+                }
+            },
+            "cta": {
+                "label": "Request agent list",
+                "description": "Email network@folkmaritime.com to receive the interim directory.",
+                "link": "mailto:network@folkmaritime.com"
+            }
+        },
+        "faq": {
+            "headline": "FAQ & Glossary",
+            "body": "We're preparing an interactive glossary of maritime terminology along with quick answers to frequently asked questions.",
+            "highlights": {
+                "glossary": {
+                    "title": "Glossary",
+                    "body": "Plain-language definitions covering liner terminology and digital shipping concepts."
+                },
+                "support": {
+                    "title": "Self-service help",
+                    "body": "Guided articles for booking, documentation, and sustainability reporting."
+                }
+            },
+            "cta": {
+                "label": "Ask a question",
+                "description": "Send us topics you would like to see covered.",
+                "link": "/contact"
+            }
+        },
+        "fleet": {
+            "headline": "Fleet",
+            "body": "Discover the capabilities, capacities, and sustainability features of our growing fleet. Fleet specifications will be published shortly.",
+            "highlights": {
+                "specs": {
+                    "title": "Vessel profiles",
+                    "body": "TEU capacity, draft, and fuel technology benchmarked for regional efficiency."
+                },
+                "sustainability": {
+                    "title": "Sustainability",
+                    "body": "Shore-power readiness and alternative fuels roadmap supporting Saudi Green Initiative."
+                }
+            },
+            "cta": {
+                "label": "Download fleet fact sheet",
+                "description": "Specs will be available as soon as fleet commissioning completes.",
+                "link": "mailto:fleet@folkmaritime.com"
+            }
+        },
+        "news": {
+            "headline": "News & Insights",
+            "body": "Stay tuned for press releases, market insights, and leadership commentary. Our newsroom will launch here soon.",
+            "highlights": {
+                "press": {
+                    "title": "Press releases",
+                    "body": "Latest announcements on partnerships, sailings, and milestones."
+                },
+                "analysis": {
+                    "title": "Market analysis",
+                    "body": "Quarterly outlook on regional trade lanes and logistics innovation."
+                }
+            },
+            "cta": {
+                "label": "Subscribe to updates",
+                "description": "Receive newsroom alerts in your inbox.",
+                "link": "mailto:media@folkmaritime.com"
+            }
+        },
+        "downloads": {
+            "headline": "Downloads",
+            "body": "Operational manuals, brand assets, and compliance documents will be housed here for quick reference.",
+            "highlights": {
+                "operations": {
+                    "title": "Operations kit",
+                    "body": "Tariffs, cut-off schedules, and port handling instructions."
+                },
+                "brand": {
+                    "title": "Brand assets",
+                    "body": "Logos, imagery, and guidelines to support media partners."
+                }
+            },
+            "cta": {
+                "label": "Request documents",
+                "description": "Contact documents@folkmaritime.com for interim files.",
+                "link": "mailto:documents@folkmaritime.com"
+            }
+        },
+        "privacy": {
+            "headline": "Privacy Policy",
+            "body": "We're finalizing our privacy governance. The full policy covering data processing and user rights will be published here shortly.",
+            "highlights": {
+                "data": {
+                    "title": "Data stewardship",
+                    "body": "How we collect, process, and retain information across digital platforms."
+                },
+                "rights": {
+                    "title": "Your rights",
+                    "body": "Processes for requesting access, correction, or deletion of personal data."
+                }
+            },
+            "cta": {
+                "label": "Contact data protection officer",
+                "description": "privacy@folkmaritime.com",
+                "link": "mailto:privacy@folkmaritime.com"
+            }
+        },
+        "terms": {
+            "headline": "Terms & Conditions",
+            "body": "Our service terms, contractual provisions, and website usage guidelines are being prepared. Please check back soon.",
+            "highlights": {
+                "services": {
+                    "title": "Service commitments",
+                    "body": "Service-level guarantees, liabilities, and exceptions defined clearly."
+                },
+                "website": {
+                    "title": "Website use",
+                    "body": "Guidelines for using digital tools, trademarks, and shared assets."
+                }
+            },
+            "cta": {
+                "label": "Request draft terms",
+                "description": "legal@folkmaritime.com",
+                "link": "mailto:legal@folkmaritime.com"
+            }
+        },
+        "suggestions": {
+            "headline": "Share Your Suggestions",
+            "body": "We value every idea that helps us deliver better maritime experiences. A full submission form will be live here soon. Meanwhile, please reach us via the channels listed on our contact page.",
+            "highlights": {
+                "channels": {
+                    "title": "Multiple channels",
+                    "body": "Use the footer feedback modal, contact email, or upcoming customer portal."
+                },
+                "response": {
+                    "title": "Response timeline",
+                    "body": "Submissions are acknowledged within 48 hours with next steps."
+                }
+            },
+            "cta": {
+                "label": "Open feedback form",
+                "description": "Scroll to the footer to share your idea instantly.",
+                "link": "#footer-feedback"
+            }
+        }
+    },
+    "glossary": {
+        "hero": {
+            "title": "Glossary",
+            "subtitle": "Maritime shipping terms and definitions"
+        },
+        "A": [
+            {
+                "term": "Affiliate",
+                "definition": "A company or entity that is associated with another through ownership, control, or a business relationship."
+            },
+            {
+                "term": "Automatic Identification System - AIS",
+                "definition": "A tracking system used by ships and vessel traffic services to identify and locate vessels by electronically exchanging data."
+            },
+            {
+                "term": "Agent",
+                "definition": "A representative who acts on behalf of a shipowner, charterer, or operator in a specific port or region."
+            },
+            {
+                "term": "All Risks Coverage",
+                "definition": "An insurance policy that provides the broadest form of protection for cargo during transit."
+            },
+            {
+                "term": "Ad Valorem",
+                "definition": "A tariff or duty based on the value of the goods being shipped, expressed as a percentage of the total value."
+            }
+        ],
+        "B": [
+            {
+                "term": "Ballast",
+                "definition": "Heavy material, such as water, used to provide stability to a vessel."
+            },
+            {
+                "term": "Backhaul",
+                "definition": "The return leg of a liner service voyage, typically from the destination port back to the origin."
+            },
+            {
+                "term": "Base Cargo",
+                "definition": "The minimum amount of cargo a ship should carry to ensure it operates efficiently and economically."
+            },
+            {
+                "term": "Bill of Lading - B/L",
+                "definition": "A legal document issued by a carrier to a shipper, detailing the type, quantity, and destination of the goods being shipped."
+            },
+            {
+                "term": "Bill of Exchange - B/E",
+                "definition": "A written financial document used in international trade where one party orders another party to pay a specified amount."
+            }
+        ],
+        "C": [
+            {
+                "term": "Cabotage",
+                "definition": "Transport of goods between two places in the same country by a vessel from another country."
+            },
+            {
+                "term": "Cargo",
+                "definition": "Goods or merchandise carried by a ship, airplane, truck, or other transportation means."
+            },
+            {
+                "term": "Cargo Manifest",
+                "definition": "A detailed list of all cargo on board a liner vessel for customs clearance and tracking."
+            },
+            {
+                "term": "Certificate of Origin",
+                "definition": "A document certifying goods are produced or manufactured in a particular country."
+            },
+            {
+                "term": "Charter Party",
+                "definition": "A contract between a vessel owner and a charterer who rents the vessel or cargo space."
+            },
+            {
+                "term": "Coastal Shipping",
+                "definition": "Transportation of goods along the coast within a specific regional area."
+            },
+            {
+                "term": "Common Carrier",
+                "definition": "A shipping line offering services to the public, transporting goods on a non-discriminatory basis."
+            },
+            {
+                "term": "Containerization",
+                "definition": "Using standardized containers to transport goods efficiently across transportation modes."
+            }
+        ],
+        "D": [
+            {
+                "term": "Deadweight Tonnage - DWT",
+                "definition": "The total weight a ship can safely carry, including cargo, fuel, crew, and provisions."
+            },
+            {
+                "term": "Demurrage",
+                "definition": "A penalty fee charged for delaying a ship's departure beyond the agreed-upon laytime."
+            },
+            {
+                "term": "Dry Dock",
+                "definition": "A specialized facility for vessel maintenance, repairs, or inspection out of water."
+            }
+        ],
+        "E": [
+            {
+                "term": "E-Navigation",
+                "definition": "Using electronic systems to enhance navigational safety and efficiency."
+            }
+        ],
+        "F": [
+            {
+                "term": "Feeder Service",
+                "definition": "A shipping service transporting containers from smaller ports to larger ports."
+            },
+            {
+                "term": "Freight",
+                "definition": "Goods transported from one place to another, or the cost of transportation."
+            },
+            {
+                "term": "Freight Forwarder",
+                "definition": "A company arranging shipping and handling of goods on behalf of shippers."
+            }
+        ],
+        "G": [
+            {
+                "term": "Gateway Port",
+                "definition": "A port that acts as an entry or exit point for regional maritime trade, often linked to major international shipping routes."
+            },
+            {
+                "term": "Gross Tonnage - GT",
+                "definition": "The total internal volume of a ship, including all enclosed spaces, used to determine its size and capacity."
+            },
+            {
+                "term": "Gross Weight",
+                "definition": "The total weight of a shipment, including the cargo and its packaging or container."
+            }
+        ],
+        "H": [
+            {
+                "term": "Harbor",
+                "definition": "A sheltered coastal area where ships can dock, anchor, and seek protection."
+            }
+        ],
+        "I": [
+            {
+                "term": "Incoterms",
+                "definition": "International Commercial Terms defining buyer and seller responsibilities in goods transportation."
+            }
+        ],
+        "L": [
+            {
+                "term": "Laytime",
+                "definition": "The agreed time for loading and unloading a vessel."
+            },
+            {
+                "term": "Liner Service",
+                "definition": "A regular, scheduled service by shipping companies between specified ports."
+            }
+        ],
+        "M": [
+            {
+                "term": "Manifest",
+                "definition": "A detailed list of a ship's cargo, passengers, and crew."
+            }
+        ],
+        "N": [
+            {
+                "term": "Non-Vessel Operating Common Carrier - NVOCC",
+                "definition": "A company offering shipping services without operating ships."
+            }
+        ],
+        "P": [
+            {
+                "term": "Port Authority",
+                "definition": "The organization responsible for managing and regulating activities within a port, including cargo handling and vessel operations."
+            },
+            {
+                "term": "Port Connectivity",
+                "definition": "The ability of ports within a region to effectively link with each other and with global shipping routes, supported by infrastructure and logistics systems."
+            },
+            {
+                "term": "Port of Call",
+                "definition": "A scheduled stop at a port during a ship's voyage for cargo loading or unloading."
+            },
+            {
+                "term": "Port of Loading",
+                "definition": "The port where cargo is loaded onto a vessel."
+            },
+            {
+                "term": "Port of Discharge",
+                "definition": "The port where cargo is unloaded from a vessel."
+            },
+            {
+                "term": "Port Rotation",
+                "definition": "The sequence of ports that a feeder vessel visits during its scheduled voyage, often linking smaller ports to a central hub."
+            },
+            {
+                "term": "Port Tariff",
+                "definition": "A published schedule of fees and charges for services provided at a port, such as docking, loading, and unloading."
+            },
+            {
+                "term": "Port Community System - PCS",
+                "definition": "An electronic platform that facilitates information exchange and coordination among port stakeholders."
+            },
+            {
+                "term": "Protection and Indemnity - P&I Insurance",
+                "definition": "A type of marine insurance covering third-party liabilities, including injury, loss of life, or damage to cargo."
+            }
+        ],
+        "R": [
+            {
+                "term": "Roll-on/Roll-off - Ro-Ro Ship",
+                "definition": "A type of vessel designed to carry wheeled cargo, such as cars and trucks, that are driven on and off the ship."
+            },
+            {
+                "term": "Reefer",
+                "definition": "A refrigerated container or ship designed to transport perishable goods that require temperature control."
+            },
+            {
+                "term": "Relay Service",
+                "definition": "A service that involves the transfer of cargo between vessels at an intermediate port."
+            },
+            {
+                "term": "Regional Connectivity Index",
+                "definition": "A measure of how well regional ports and shipping routes are integrated and connected."
+            },
+            {
+                "term": "Regional Shipping",
+                "definition": "Shipping services that operate within a specific region or set of ports."
+            },
+            {
+                "term": "Regional Trade Agreement",
+                "definition": "An agreement between countries within a region to facilitate trade and improve maritime connectivity."
+            }
+        ],
+        "S": [
+            {
+                "term": "Safety of Life at Sea - SOLAS",
+                "definition": "An international maritime treaty ensuring that ships comply with minimum safety standards in construction, equipment, and operation."
+            },
+            {
+                "term": "Sailing Schedule",
+                "definition": "The published itinerary of a liner service, detailing the departure and arrival dates and times for each port of call."
+            },
+            {
+                "term": "Sea Freight",
+                "definition": "The movement of goods by sea, often in containers, bulk carriers, or tankers, typically used for international shipments."
+            },
+            {
+                "term": "Shipping",
+                "definition": "The process of transporting goods or cargo from one location to another by sea, air, rail, or road."
+            },
+            {
+                "term": "Shipping line",
+                "definition": "A company that operates ships and provides maritime transportation services."
+            },
+            {
+                "term": "Shipbroker",
+                "definition": "A person or firm that arranges the hiring or sale of ships on behalf of shipowners or charterers."
+            },
+            {
+                "term": "Ship-to-Shore Communication",
+                "definition": "The exchange of information between ships and port facilities or other shore-based entities, including data on cargo, navigation, and safety."
+            },
+            {
+                "term": "Ship's Agent",
+                "definition": "A representative in a port who handles a ship's business and administrative tasks on behalf of the shipowner or charterer."
+            },
+            {
+                "term": "Ship Management System",
+                "definition": "Software used to manage the operational aspects of a vessel, including maintenance, crew management, and compliance."
+            },
+            {
+                "term": "Short Sea Shipping",
+                "definition": "The transportation of goods by sea over relatively short distances, typically within the same continent or region."
+            },
+            {
+                "term": "Slot Charter",
+                "definition": "An agreement where a shipping line leases space (slots) on a feeder vessel operated by another company."
+            },
+            {
+                "term": "Slot Sharing",
+                "definition": "An arrangement where different shipping lines share space on each other's vessels."
+            },
+            {
+                "term": "Spot Market",
+                "definition": "The market for immediate, one-time cargo shipping contracts."
+            }
+        ],
+        "T": [
+            {
+                "term": "Transshipment",
+                "definition": "The transfer of goods from one vessel to another during their journey to the final destination."
+            },
+            {
+                "term": "TEU - Twenty-foot Equivalent Unit",
+                "definition": "A standard unit of measurement for container capacity, based on a 20-foot container."
+            }
+        ],
+        "V": [
+            {
+                "term": "Vessel Traffic Service - VTS",
+                "definition": "A shore-based system that monitors and manages vessel traffic within a designated area to ensure safety and efficiency."
+            },
+            {
+                "term": "Vessel Sharing Agreement - VSA",
+                "definition": "An agreement between shipping lines to share space on each other's vessels to optimize capacity and efficiency."
+            },
+            {
+                "term": "Vessel Rotation",
+                "definition": "The sequence of ports that a liner vessel visits on its scheduled route, crucial for maintaining the fixed schedule of liner services."
+            },
+            {
+                "term": "Vessel Tracking",
+                "definition": "The process of monitoring the location and movement of vessels using GPS and other tracking technologies."
+            }
+        ],
+        "W": [
+            {
+                "term": "Warehousing",
+                "definition": "The storage of goods in a facility before they are transported to their final destination."
+            }
+        ],
+        "Company":"Company",
+        "Booking": "Booking",
+        "PriorBooking": "Prior to Booking",
+        "Documentation": "Documentation"
+    },
+    "aboutPage": {
+        "Aboutus": "About Us",
+        "home": "Home",
+        "Connecting": "Connecting",
+        "ConnectingDesc": "Continents, Cultures, and Cargo",
+        "points": {
+            "point1": "Strategic location at the heart of global trade routes, supporting the Kingdom of Saudi Arabia's ambition to become a global logistics hub",
+            "point2": "Enhanced supply chain transparency and reliability through agile local and regional connectivity",
+            "point3": "Committed to sustainable shipping practices, in alignment with the IMO's target of 40% Greenhouse gas (GHG) reduction by 2030",
+            "point4": "Efficiency steers our endeavors, charting the course for groundbreaking industry standards",
+            "point5": "Our vessels, schedules, and routes are customized to meet the unique preferences of our customers",
+            "point6": "Dedicated to advancing skills, employment, and career growth within the maritime sector of the Kingdom of Saudi Arabia"
+        },
+        "sectionTitle": "Building a Global Logistics Hub through Transformative Shipping Initiatives",
+        "sectionBody": "Blue Line spearheads the journey towards positioning Saudi Arabia as a global logistics hub. Leveraging the country's distinctive geographic advantage on the Red Sea and Arabian Gulf, our strategic endeavors intend to improve connectivity, optimize logistics efficiency, and reinforce sector capabilities. We are committed to maritime sustainability, adhering to the IMO's target of 40% GHG reduction by 2030. We also support transformative technologies and the uptake of alternative zero—and near-zero GHG fuels. As a leading regional player in the maritime feeder and liner services, we actively strive to increase private sector participation in industries reliant on seamless logistics. Aligned with Saudi Arabia's Vision 2030 objectives, our commitment extends to enhancing export, re-export, and domestic cargo volumes, building a prosperous and influential future for the nation.",
+        "values": {
+            "mission": {
+                "title": "Our Mission",
+                "body": "To deliver flexible and reliable solutions for our customers and create value for our shareholders."
+            },
+            "items": {
+                "customer": {
+                    "title": "Customer Focus | Connecting Your Focus to Customer Success",
+                    "body": "We prioritize our customers' needs, ensuring we meet their expectations through a balance of personal attention and efficient technology, striving to build strong, lasting relationships."
+                },
+                "integrity": {
+                    "title": "Integrity | Building Bridges of Trust: Integrity in Every Action",
+                    "body": "We are committed to transparency, honesty, and accountability, striving to make ethical decisions that positively impact our stakeholders, our community, and the world around us."
+                },
+                "innovation": {
+                    "title": "Innovation | Driving Excellence: Innovation, our north star",
+                    "body": "Experience the future of ship management and service with our advanced IoT and technology solutions, delivering cost efficiency and innovative shipping solutions to the benefit of our customers."
+                },
+                "sustainability": {
+                    "title": "Sustainability | Sailing Towards Tomorrow: Sustainability in Action",
+                    "body": "Dedicated to minimizing our environmental impact through fuel-efficient vessels and cleaner operations, extending this commitment to sustainable practices in our workplaces."
+                }
+            }
+        },
+        "leaders": {
+            "title": "Meet our leaders",
+            "body": "Our dedicated and inspiring leaders have charted a transformative path, inviting us to join their shared endeavors."
+        },
+        "board": {
+            "title": "Board of directors"
+        },
+        "team": {
+            "kicker": "Our team",
+            "title": "Executive management team"
+        },
+        "readMore": "Read more",
+        "esg": {
+            "slide1": {
+                "title": "Decarbonization in Motion",
+                "desc": "Investing in fuel‑efficient vessels, voyage optimization, and data‑driven operations to lower emissions across our network."
+            },
+            "slide2": {
+                "title": "People, Safety, Community",
+                "desc": "Embedding a safety‑first culture while supporting talent development and community initiatives across our ports."
+            },
+            "slide3": {
+                "title": "Governance With Purpose",
+                "desc": "Transparent governance and responsible procurement that align with Vision 2030 and international best practices."
+            }
+        }
+    },
+    "careersPage": {
+        "kicker": "Careers",
+        "title": "Join our Team",
+        "intro": "At Blue Line, our pursuit of excellence is steadfast. Whether you're a seasoned professional or just beginning your career, if you have the drive and determination to thrive in the fast-paced world of global shipping and logistics and are excited to collaborate with our exceptional team. Find out more about working and growing with us.",
+        "apply": "Aplly",
+        "sections": {
+            "why": {
+                "title": "Why Blue Line",
+                "points": [
+                    "Meaningful work shaping trade across the Middle East and beyond",
+                    "A culture built on integrity, learning, and collaboration",
+                    "Opportunities to grow your career across functions and regions"
+                ]
+            },
+            "life": {
+                "title": "Life at Blue Line",
+                "body": "We combine maritime heritage with a modern, tech‑enabled mindset. You’ll find supportive teammates, clear goals, and space to innovate."
+            },
+            "openings": {
+                "title": "Open roles",
+                "empty": "We’re preparing our openings. Join our talent network to hear first."
+            }
+        },
+        "cta": {
+            "label": "Join our talent network",
+            "desc": "Send your CV and a brief note about your interests.",
+            "mailto": "mailto:talent@folkmaritime.com"
+        },
+        "LIFEATBLUE": "LIFE AT BLUE LINE",
+        "LIFEATFOLKDesc": "Begin a journey of continuous learning in one of the world’s most crucial industries.",
+        "LIFEATBLUEiNTORO": "Blue Line is not just a workplace; it's a vibrant community where every voice matters, creative freedom thrives, and your career growth is paramount. We are dedicated to creating a dynamic culture that fosters collaboration, cultural diversity, and champions work-life balance.",
+        "valuesTitle": "Our values are rooted in our DNA.",
+        "valuesDesc": "An organization like ours is guided by a steadfast set of values. Here’s what makes Blue Line stand out from the rest:",
+        "SustainableSolutions": "Sustainable Solutions",
+        "SustainableDesc": "Innovating responsibly, we develop sustainable solutions for a thriving future.",
+        "PositiveImpact": "Positive Impact",
+        "ImpactDesc": "We are committed to ensuring that every action contributes to positive societal change.",
+        "Customercentricity": "Customer-centricity",
+        "centricityDesc": "Our relentless pursuit of excellence puts our customers first, centered around tailored solutions and exceptional experiences.",
+        "WorkingTogether": "Working together towards a shared vision.",
+        "WorkingTogetherDesc": "As we look for new candidates to join our growing team, we are mindful of each candidate's unique journey and distinctive skills. Your potential is our focus. We look forward to welcoming you into our dynamic team, where your skills align with our forward-thinking approach to work.",
+        "applicationprocess": "We are here to guide you along the application process."
+    },
+    "stakeholders": {
+        "Stakeholders": "Stakeholders",
+        "StakeholdersRelations": "Stakeholders Relations",
+        "StakeholdersDesc": "At Blue Line, we see our stakeholders as partners in progress and value their insights, feedback, and collaboration. We cultivate deep partnerships underpinned by an ethos of transparency and a drive for a shared future of prosperity. Whether an investor, a customer, or a community member, the involvement of our stakeholders shapes our journey and enables our bold vision.",
+        "ContactUs": "Contact Us",
+        "StrategicObjectives": "Strategic Objectives for a Promising Future",
+        "million": "Million",
+        "Desc1": "Aligning with Saudi Arabia’s NIDLP, supporting the logistics sector’s goal to transport 40 million TEU through Saudi ports by 2030.",
+        "Desc2": "Aiming to enhance Saudi Arabia’s logistics sector by capturing approximately 15-20% of the demand in the MENA region by 2030.",
+        "Desc3": "Launched three services in 2024, aiming to add more regional and global expansion services.",
+        "whyBlueLine": "WHY Blue Line",
+        "whyBlueLineTitle": "The Kingdom of Saudi Arabia’s First and Only Regional Feeder and Liner Operator for Strategic Returns",
+        "whyBlueLineDesc": "Blue Line's efficient shipping services seamlessly support the Kingdom's vision to become a global logistics hub. Leveraging its advantageous geographical location, Blue Line establishes connections to the world's busiest and most critical transshipment routes. The company's operations promise substantial returns, directly contributing to GDP growth and generating lucrative non-oil revenue streams.",
+        "StrategicGlobal": "Strategic Global Connectivity",
+        "StrategicGlobalDesc": "Capitalizing on Saudi Arabia’s ambitions, connecting global trade routes to foster trade growth.",
+        "EnhancedGlobal": "Enhanced Global Supply Chain",
+        "EnhancedGlobalDesc": "First Saudi feeder and regional liner operator, bridging market gaps by servicing existing and new MENA trade routes.",
+        "CompanyName": "Name of the Company",
+        "Industry": "Industry",
+        "CommercialRegistration": "Commercial Registration",
+        "submit": "Submit"
+    },
+    "FeedersServices": {
+        "heroTitle": "Feeder services",
+        "heroDesc": "At the forefront of maritime shipping, our feeder services are setting a new benchmark in the industry by connecting ports, empowering commerce, and optimizing global logistics.",
+        "FeedersServices": "Feeders Services",
+        "FeederservicesTitle": "Blue Line orchestrates the seamless transshipment of merchandise, enhancing regional connectivity and fostering global trade.",
+        "FeederservicesDesc": "Our feeder services enable cost-competitive shipping, ensuring lasting reliability in the global supply chain. Embracing maritime decarbonization, we support transformative technologies and actively promote the uptake of alternative zero—and near-zero Greenhouse gas (GHG) fuels.",
+        "Internationaltrade": "At Blue Line, we recognize the significance of feeder services in expanding international trade.",
+        "InternationaltradeDesc": "Capitalizing on the power of these services, we maximize global trade opportunities by linking small ports to major hubs. By optimizing routes and enhancing connectivity, we are creating a name for ourselves in the dynamic market of international trade.",
+        "Oursolutions": "Our solutions",
+        "OursolutionsDesc": "Integrating Innovative Technology for Operational Excellence",
+        "TransportationTitle": "Advantages of Using Feeder Transportation",
+        "TransportationDesc": "As your trusted third-party provider, we excel in seamlessly transporting container boxes for mainliners from source to freight sub-ports or freight sub-ports to destination ports. We promise reliability, cost-effectiveness, and customer-centric solutions. Our advanced tracking system ensures transparency, while our digital quotation system enhances efficiency, providing you with exceptional service.",
+        "heroOne": "Tailor-Made Feeder Schedules and Automated Transshipment",
+        "heroOneDesc": "We combine customized feeder schedules to connect seamlessly with mainliner services at key hub ports. Our automated transshipment planning at strategic locations also ensures smooth cargo transfers, minimizing delays throughout the feeder journey.",
+        "heroTow": "Variety of Container Options and On-Time Delivery",
+        "heroTowDesc": "Leveraging container types and liner shipping efficiency, our extensive range of containers caters to diverse cargo needs, from perishable goods to oversized equipment. Furthermore, our reliable liner shipping services ensure your cargo arrives at its final destination on time and intact.",
+        "heroThree": "Flexible Capacity and Scalable Solutions",
+        "heroThreeDesc": "We understand cargo volumes can fluctuate. Our feeder services offer flexible capacity to accommodate these variations. We scale our solutions to meet your specific needs, ensuring efficient and cost-effective cargo movement regardless of seasonal peaks or troughs.",
+        "newsKicker": "SUGGESTIONS OF ARTICLES",
+        "newsTitle": "Check out useful information about Feeder services"
+    },
+    "RegionalLiner": {
+        "heroTitle": "Kingdom’s leading liner service provider",
+        "heroDesc": "Blue Line is further strengthening the regional shipping sector as the Kingdom’s first liner service provider. Operating ‘Blue Line Jeddah,’ the first-ever and only Saudi-flagged container ship, Blue Line is strengthening regional maritime connectivity with India and Red Sea markets. Promising reliability and efficiency to cargo owners and freight forwarders at every stage. Blue Line catalyzes regional trade and creates more opportunities for businesses to connect with fast-growing markets in India, the Arabian Gulf and along the Red Sea.",
+        "RegionalLiner": "REGIONAL LINER SERVICES",
+        "services_title": "Empowering Trade, Enhancing Connectivity, and Driving Efficiency",
+        "services_desc": "Blue Line's regional liner services optimize coastal connectivity for efficient container movement. Our dynamic and sustainable solutions strengthen regional trade, adeptly linking ports along the Red Sea, the Arabian Gulf and the Indian Subcontinent, and offer fast and reliable transport contributing to enhanced logistics integration.",
+        "Strategically_situated": "Strategically situated along key maritime routes, Saudi Arabia serves as a pivotal hub for regional short-sea services.",
+        "Strategically_desc": "Its central location facilitates efficient maritime connectivity between the US East Coast, Europe, Africa, and Asia. Moreover, Saudi Arabia’s commitment to developing state-of-the-art infrastructure, exemplified by ports like King Abdullah, located in King Abdullah Economic City (KAEC), and King Fahd Industrial, located in Jubail Industrial City, compliment its vision to elevate its role as a global logistics hub. Proximity to key markets positions Saudi Arabia at an ideal intersection for streamlined, cost-effective, and economically diversified maritime trade within the Middle East and neighboring regions."
+    },
+    "Advantages": {
+        "Advantages": "Advantages",
+        "Advantages_title": "Experience Optimized Regional Trade and Economic Growth through Liner Services",
+        "Advantages_desc": "The emergence of regional liner services from Saudi Arabia through Blue Line promises a transformative era for commerce, particularly in the flourishing maritime landscape of Saudi Arabia. Through its modern ports and terminals, the Kingdom is fostering connectivity, job creation, and investment attraction, marking a progressive chapter in the maritime evolution of the region. Liner services from the Kingdom offer a range of advantages, including cost-effectiveness, environmental sustainability, access to coastal areas, flexibility, and cargo capacity, making it a compelling choice for certain transport needs.",
+        "CostEffective": "Cost-effective and customer-centric solutions",
+        "Consistent": "Consistent, reliable, and timely services with guaranteed transit times",
+        "Competitive": "Competitive alternative to road transport, reducing traffic congestion",
+        "LinerShipping": "Liner shipping boosts regional economic development"
+    },
+    "ourOffer": {
+        "ourOffer_title": "Our Offer",
+        "ourOffer_Desc": "Simplifying Operations with Our Logistics Offerings"
+    },
+    "industriesSection": {
+        "kicker": "Industries",
+        "title": "The Industries We Can Provide Services To",
+        "subtitle": "Consistent, effective, and economical shipping options for enterprises across the globe.",
+        "industries": {
+            "automotive": {
+                "title": "Automotive",
+                "summary": "The automotive industry relies on precision logistics to maintain seamless production and meet market demands. BlueLine delivers specialised solutions to securely transport parts and components, ensuring efficiency, compliance, and reliability across your supply chain."
+            },
+            "furnitureHouseware": {
+                "title": "Furniture & Houseware",
+                "summary": "The furniture and housewares industry requires expert logistics to ensure safe and timely delivery. At BlueLine, we provide tailored solutions for bulky furniture and delicate goods, combining precision handling, customs expertise, and flexible freight options to safeguard your"
+            },
+            "packaging": {
+                "title": "Packaging",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "constructionMaterials": {
+                "title": "Construction Materials",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "electronics": {
+                "title": "Electronics",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "PlasticGranules": {
+                "title": "Plastic Granules",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "PVCPipes": {
+                "title": "PVC Pipes",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "GypsumBoard": {
+                "title": "Gypsum Board",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "Chemicals": {
+                "title": "Chemicals ",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "CeramicPorcelainTiles": {
+                "title": "Ceramic & Porcelain Tiles",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "GraniteMarble": {
+                "title": "Granite & Marble",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "FrozenCargo": {
+                "title": "Frozen Cargo",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "ElectronicGoods": {
+                "title": "Electronic Goods",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+            },
+            "CeramicsTiles": {
+                "title": "Ceramics Tiles",
+                "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
+                }
+        }
+    }
 }

@@ -1,235 +1,430 @@
 <script lang="ts">
-import { defineComponent } from 'vue';
-import Rellax from 'rellax';
-import BackgroundVideo from '@/components/Home/BackgroundVideo.vue';
-import asideMenu from '@/components/Home/asideMenu.vue';
+import { defineComponent, shallowRef } from "vue";
+import Rellax from "rellax";
+import BackgroundVideo from "@/components/Home/BackgroundVideo.vue";
+import AboutSection from "@/components/Home/AboutSection.vue";
+import CeoSection from "@/components/Home/CeoSection.vue";
+import ServicesSection from "@/components/Home/ServicesSection.vue";
+import NewsSection from "@/components/Home/NewsSection.vue";
+import CareersSection from "@/components/Home/CareersSection.vue";
+// import AboutSection from "@/components/Home/About.vue";
+import asideMenu from "@/components/Home/asideMenu.vue";
+import OurLocations from "@/components/Home/OurLocations.vue";
+import { useLinkedScroll } from "@/composables/useLinkedScroll";
+import EsgVerticalSlider from "@/components/Home/EsgVerticalSlider.vue";
+import NumbersBox from "@/components/common/IconBox.vue";
+import OurServices from "@/components/Home/OurServices.vue";
+import WhyChooseBlueLine from "@/components/Home/WhyChooseBlueLine.vue";
+import MissionVision from "@/components/Home/MissionVision.vue";
+import Destinations from "@/components/Home/Destinations.vue";
+import OurBranches from "@/components/Home/OurBranches.vue";
+
+import sliderOne from "@/assets/sustainability-03.large.webp";
+import sliderTow from "@/assets/WhatsApp-Image-1446-10-29-at-15-32-47.large.jpg";
+import sliderThree from "@/assets/WhatsApp-Image-1446-10-29-at-14-52-43.large.jpg";
 
 type ParallaxInstance = { destroy: () => void } | null;
+import commonButton from "@/components/resuble/common_button.vue";
+
 
 export default defineComponent({
-    name: 'HomeView',
-    components: {
-        BackgroundVideo,
-        asideMenu,
-    },
-    data() {
-        return {
-            activeSection: 'home',
-            sectionIds: [
-                'home',
-                'about',
-                'ceo',
-                'services',
-                'routes',
-                'sustainability',
-                'news',
-                'career',
-            ],
-            parallaxInstance: null as ParallaxInstance,
-        };
-    },
-    methods: {
-        scrollToSection(id: string) {
-            const el = document.getElementById(id);
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth' });
-                this.activeSection = id;
-            }
+  name: "HomeView",
+  components: {
+    BackgroundVideo,
+    AboutSection,
+    CeoSection,
+    OurServices,
+    WhyChooseBlueLine,
+    ServicesSection,
+    NewsSection,
+    CareersSection,
+    // AboutSection,
+    asideMenu,
+    OurLocations,
+    EsgVerticalSlider,
+    commonButton,
+    NumbersBox,
+    MissionVision,
+    OurBranches,
+    Destinations
+  },
+  data() {
+    return {
+      activeSection: "home",
+      sectionIds: [
+        "home",
+        "mission",
+        "about",
+        // "ceo",
+        "services",
+        "sustainability",
+        "locations",
+        "news",
+        "career",
+      ],
+      parallaxInstance: null as ParallaxInstance,
+      _unlinkNested: null as null | (() => void),
+    };
+  },
+  computed: {
+    slides() {
+      return [
+        {
+          heading: this.$t('homeSection.sustainabilitySlides.slide1.heading'),
+          copy: this.$t('homeSection.sustainabilitySlides.slide1.copy'),
+          image: shallowRef(sliderOne),
+          alt: this.$t('homeSection.sustainabilitySlides.slide1.alt'),
         },
-        handleScroll() {
-            const scrollY = window.scrollY;
-
-            let current = 'home';
-
-            this.sectionIds.forEach((id) => {
-                const el = document.getElementById(id);
-                if (el) {
-                    const top = el.offsetTop;
-                    if (scrollY >= top - 200) {
-                        current = id;
-                    }
-                }
-            });
-
-            this.activeSection = current;
+        {
+          heading: this.$t('homeSection.sustainabilitySlides.slide2.heading'),
+          copy: this.$t('homeSection.sustainabilitySlides.slide2.copy'),
+          image: shallowRef(sliderTow),
+          alt: this.$t('homeSection.sustainabilitySlides.slide2.alt'),
         },
-        initParallax() {
-            if (this.parallaxInstance) {
-                this.parallaxInstance.destroy();
-                this.parallaxInstance = null;
-            }
-
-            this.$nextTick(() => {
-                if (typeof window === 'undefined') {
-                    return;
-                }
-
-                const parallaxTargets = document.querySelectorAll('.js-parallax');
-                if (!parallaxTargets.length) {
-                    return;
-                }
-
-                const RellaxConstructor = Rellax as unknown as new (
-                    selector: string,
-                    options?: Record<string, unknown>
-                ) => { destroy: () => void };
-
-                this.parallaxInstance = new RellaxConstructor('.js-parallax', {
-                    center: true,
-                    round: true,
-                });
-            });
+        {
+          heading: this.$t('homeSection.sustainabilitySlides.slide3.heading'),
+          copy: this.$t('homeSection.sustainabilitySlides.slide3.copy'),
+          image: shallowRef(sliderThree),
+          alt: this.$t('homeSection.sustainabilitySlides.slide3.alt'),
         },
+      ];
     },
-    mounted() {
-        window.addEventListener('scroll', this.handleScroll);
-        this.handleScroll();
-        this.initParallax();
+  },
+  methods: {
+    scrollToSection(id: string) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        this.activeSection = id;
+      }
     },
-    beforeUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
-        if (this.parallaxInstance) {
-            this.parallaxInstance.destroy();
-            this.parallaxInstance = null;
+    goToContact() {
+      // go to contact us page
+      this.$router.push('/contact');
+      console.log("test")
+    },
+    handleScroll() {
+      const scrollY = window.scrollY;
+      let current = "home";
+      this.sectionIds.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop;
+          if (scrollY >= top - 200) current = id;
         }
+      });
+      this.activeSection = current;
     },
+    initParallax() {
+      if (this.parallaxInstance) {
+        this.parallaxInstance.destroy();
+        this.parallaxInstance = null;
+      }
+      this.$nextTick(() => {
+        if (typeof window === "undefined") return;
+        const targets = document.querySelectorAll(".js-parallax");
+        if (!targets.length) return;
+        const RellaxConstructor = Rellax as unknown as new (
+          selector: string,
+          options?: Record<string, unknown>
+        ) => { destroy: () => void };
+        this.parallaxInstance = new RellaxConstructor(".js-parallax", {
+          center: true,
+          round: true,
+        });
+      });
+    },
+    linkServicesScroll() {
+      const comp: any = this.$refs.servicesSectionRef;
+      const sectionEl: HTMLElement | null = comp?.$el ?? null;
+      const inner: HTMLElement | null =
+        sectionEl?.querySelector(".accordionSlider__content") ?? null;
+      if (!sectionEl || !inner) return;
+
+      inner.setAttribute("tabindex", "0");
+
+      if (this._unlinkNested) {
+        this._unlinkNested();
+        this._unlinkNested = null;
+      }
+      this._unlinkNested = useLinkedScroll({
+        inner,
+        sectionEl,
+        wheelScale: 1.05,
+      });
+    },
+  },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll, { passive: true });
+    this.handleScroll();
+    this.initParallax();
+
+    this.$nextTick(() => {
+      this.linkServicesScroll();
+    });
+  },
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+    if (this.parallaxInstance) {
+      this.parallaxInstance.destroy();
+      this.parallaxInstance = null;
+    }
+    if (this._unlinkNested) {
+      this._unlinkNested();
+      this._unlinkNested = null;
+    }
+  },
 });
 </script>
 
 <template>
-    <div class="homeView">
-        <div class="hero_section" id="home">
-            <BackgroundVideo>
-                <div class="hero-content">
-                    <h1 class="hero-title">
-                        <span class="hero-line js-parallax" data-rellax-speed="-2">
-                            Connecting you to
-                        </span>
-                        <span class="hero-line hero-line--accent js-parallax" data-rellax-speed="-4">
-                            your customers
-                        </span>
-                    </h1>
-                    <p class="hero-subtitle js-parallax" data-rellax-speed="-1">
-                        Seamless experiences from booking to delivery.
-                    </p>
-                    <div class="hero-ornaments">
-                        <span class="hero-ornament hero-ornament--primary js-parallax" data-rellax-speed="3"></span>
-                        <span class="hero-ornament hero-ornament--secondary js-parallax" data-rellax-speed="5"></span>
-                    </div>
-                </div>
-            </BackgroundVideo>
+  <div class="homeView">
+    <div class="hero_section" id="home">
+      <BackgroundVideo>
+        <div class="hero-content">
+          <h1 class="hero-title">
+            <span class="hero-line"> {{ $t('homeSection.hero.connectingLine1') }} </span>
+            <span class="hero-line hero-line--accent"> {{ $t('homeSection.hero.connectingLine2') }} </span>
+          </h1>
+          <p class="hero-subtitle">
+            {{ $t('homeSection.hero.subtitle') }}
+          </p>
+          <commonButton :text="$t('Contact Us')" buttonType="XL" @click="goToContact" :isBlueColor="true"
+            :isRadius="true" />
+          <!--   <div class="hero-ornaments">
+            <span
+              class="hero-ornament hero-ornament--primary js-parallax"
+              data-rellax-speed="3"
+            ></span>
+            <span
+              class="hero-ornament hero-ornament--secondary js-parallax"
+              data-rellax-speed="5"
+            ></span>
+          </div> -->
         </div>
-
-        <asideMenu :activeSection="activeSection" @navigate="scrollToSection" />
-
-        <div class="about_section" id="about">
-            {{ $t('About') }}
-        </div>
-        <div class="ceo_section" id="ceo">
-            {{ $t('ceo') }}
-        </div>
-        <div class="services_section" id="services">
-            {{ $t('services') }}
-        </div>
-        <div class="routes_section" id="routes">
-            {{ $t('routes') }}
-        </div>
-        <div class="sustainability_section" id="sustainability">
-            {{ $t('sustainability') }}
-        </div>
-        <div class="news_section" id="news">
-            {{ $t('news') }}
-        </div>
-        <div class="career_section" id="career">
-            {{ $t('career') }}
-        </div>
+      </BackgroundVideo>
     </div>
+
+    <!-- <asideMenu :activeSection="activeSection" @navigate="scrollToSection" /> -->
+
+    <AboutSection id="about" />
+    <!-- <CeoSection id="ceo" /> -->
+
+    <!-- Services section -->
+    <OurServices />
+
+    <!-- Why Choose Blue Line -->
+    <WhyChooseBlueLine />
+    <MissionVision />
+    <Destinations />
+
+
+    <!-- <ServicesSection ref="servicesSectionRef" /> -->
+
+    <!-- <EsgVerticalSlider :slides="slides" id="sustainability" /> -->
+    <!-- <div class="sustainability_section" id="sustainability">
+      {{ $t("sustainability") }}
+    </div> -->
+    <!-- <OurLocations id="locations" /> -->
+
+    <NewsSection id="news" />
+    <OurBranches />
+    <!-- <CareersSection id="career" /> -->
+  </div>
 </template>
 
 <style scoped>
-.about_section,
-.ceo_section,
-.services_section,
-.routes_section,
-.sustainability_section,
-.news_section,
-.career_section {
-    height: 100vh;
+.sustainability_section {
+  height: 100vh;
 }
 
 .homeView {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    max-width: 100%;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .hero_section {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    color: #fff;
-    padding: 3rem 1.5rem;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  /* padding: 3rem 1.5rem; */
+  gap: 24px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%
 }
 
 .hero-title {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    font-size: clamp(2.5rem, 4vw + 1rem, 4.5rem);
-    font-weight: 700;
-    margin: 0;
+  display: flex;
+  flex-direction: column;
+  /* gap: 0.75rem; */
+  color: #FFF;
+  text-align: center;
+  font-size: 64px;
+  font-weight: 500;
+  line-height: 90%;
+  align-items: center;
 }
 
-.hero-line {
-    display: inline-block;
-    line-height: 1.1;
-}
+/* .hero-line {
+  line-height: 1.1;
+  color: #fff;
+  font-size: 96px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 99.936%;
+} */
 
 .hero-line--accent {
-    color: #80fd66;
+  /* color: #2aa1d8; */
+  /* font-weight: 700; */
 }
 
+/* .hero-subtitle {
+  margin-top: 1.5rem;
+  color: #FFF;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 99.936%;
+  margin-bottom: 61px;
+} */
 .hero-subtitle {
-    margin-top: 1.5rem;
-    font-size: clamp(1rem, 1vw + 0.8rem, 1.5rem);
-    color: rgba(255, 255, 255, 0.85);
+  color: #FFF;
+  text-align: center;
+  font-family: "Inter Tight";
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 99.936%;
+  /* 31.98px */
 }
 
 .hero-ornaments {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
 .hero-ornament {
-    position: absolute;
-    border-radius: 9999px;
-    background: radial-gradient(circle at 30% 30%, rgba(128, 253, 102, 0.8), rgba(128, 253, 102, 0));
-    filter: blur(0.5px);
-    transform: translate(-50%, -50%);
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 30% 30%,
+      rgba(128, 253, 102, 0.8),
+      rgba(128, 253, 102, 0));
+  filter: blur(0.5px);
+  transform: translate(-50%, -50%);
 }
 
 .hero-ornament--primary {
-    width: 18rem;
-    height: 18rem;
-    top: 25%;
-    left: 20%;
+  width: 18rem;
+  height: 18rem;
+  top: 25%;
+  left: 20%;
 }
 
 .hero-ornament--secondary {
-    width: 12rem;
-    height: 12rem;
-    bottom: 10%;
-    right: 15%;
-    background: radial-gradient(circle at 30% 30%, rgba(64, 168, 248, 0.7), rgba(64, 168, 248, 0));
+  width: 12rem;
+  height: 12rem;
+  bottom: 10%;
+  right: 15%;
+  background: radial-gradient(circle at 30% 30%,
+      rgba(64, 168, 248, 0.7),
+      rgba(64, 168, 248, 0));
+}
+
+@media (max-width: 1260px) {
+  .hero-title {
+    font-size: 44px;
+  }
+
+  .hero-subtitle {
+    color: #FFF;
+    text-align: center;
+    font-family: "Inter Tight";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 99.936%;
+    /* 31.98px */
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    text-align: start;
+  }
+
+  .hero-line {
+    font-size: 60px;
+  }
+
+  .hero-line--accent {
+    font-size: 44px;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+  }
+
+  .aboutUs__items {}
+}
+
+@media (max-width: 568px) {
+  .hero-content {
+    /* padding: 2rem 0rem; */
+  }
+
+  .hero-title {
+    line-height: 40px;
+    font-size: 40px;
+  }
+
+  .mission-card {
+    align-items: center;
+  }
+
+  .hero-line {
+    font-size: 40px;
+  }
+
+  .hero-line--accent {
+    font-size: 34px;
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+    text-align: center;
+  }
+}
+</style>
+<style>
+.hero-content .common_button_default {
+  max-width: 322px;
+  width: 100%;
+}
+
+@media (max-width: 1280px) {
+  .hero-content .common_button_default {
+    font-size: 14px;
+  }
 }
 </style>
