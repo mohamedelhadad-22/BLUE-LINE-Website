@@ -19,14 +19,14 @@
                         <img src="@/assets/_Vector map.svg" alt="Map" />
 
                         <!-- Location markers -->
-                        <div class="location-marker" style="top: 46%; left: 56%;"
-                            @mouseenter="showTooltip('egypt')" @mouseleave="hideTooltip">
+                        <div class="location-marker" style="top: 46%; left: 56%;" @mouseenter="showTooltip('egypt')"
+                            @mouseleave="hideTooltip">
                             <div class="marker-outer"></div>
                             <div class="marker-middle"></div>
                             <div class="marker-inner"></div>
 
                             <!-- Tooltip -->
-                            <div class="tooltip" v-show="activeTooltip === 'egypt'">
+                            <div class="tooltip egypt" v-show="activeTooltip === 'egypt'">
 
                                 <div class="tooltip-content">
                                     <div class="flag">
@@ -73,7 +73,7 @@
                             <div class="marker-inner"></div>
 
                             <!-- Tooltip -->
-                            <div class="tooltip" v-show="activeTooltip === 'saudi'">
+                            <div class="tooltip saudi" v-show="activeTooltip === 'saudi'">
                                 <div class="tooltip-content">
                                     <div class="flag">
                                         <img src="@/assets/Saudi-arabia-flag.png" alt="Saudi Arabia Flag" />
@@ -91,55 +91,106 @@
                         </div>
 
                         <!-- Morocco -->
-                        <div class="location-marker location-marker--small" style="top: 38%; left: 47.5%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 38%; left: 47.5%;"
+                            @mouseenter="showTooltip('morocco')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'morocco'">Morocco</div>
+                        </div>
 
                         <!-- Algeria -->
-                        <div class="location-marker location-marker--small" style="top: 41%; left: 50.5%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 41%; left: 50.5%;"
+                            @mouseenter="showTooltip('algeria')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'algeria'">Algeria</div>
+                        </div>
 
                         <!-- Tunisia -->
-                        <div class="location-marker location-marker--small" style="top: 39%; left: 52%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 39%; left: 52%;"
+                            @mouseenter="showTooltip('tunisia')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'tunisia'">Tunisia</div>
+                        </div>
 
                         <!-- Libya -->
-                        <div class="location-marker location-marker--small" style="top: 43%; left: 53%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 43%; left: 53%;"
+                            @mouseenter="showTooltip('libya')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'libya'">Libya</div>
+                        </div>
 
                         <!-- Mauritania -->
-                        <div class="location-marker location-marker--small" style="top: 49%; left: 47.5%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 49%; left: 47.5%;"
+                            @mouseenter="showTooltip('mauritania')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'mauritania'">Mauritania</div>
+                        </div>
 
                         <!-- Senegal -->
-                        <div class="location-marker location-marker--small" style="top: 53%; left: 46.5%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 53%; left: 46.5%;"
+                            @mouseenter="showTooltip('senegal')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'senegal'">Senegal</div>
+                        </div>
 
                         <!-- Gambia -->
-                        <div class="location-marker location-marker--small" style="top: 53.5%; left: 46%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 53.5%; left: 46%;"
+                            @mouseenter="showTooltip('gambia')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'gambia'">Gambia</div>
+                        </div>
 
                         <!-- Guinea -->
-                        <div class="location-marker location-marker--small" style="top: 55.5%; left: 47%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 55.5%; left: 47%;"
+                            @mouseenter="showTooltip('guinea')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'guinea'">Guinea</div>
+                        </div>
 
                         <!-- Nigeria -->
-                        <div class="location-marker location-marker--small" style="top: 56%; left: 50.5%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 56%; left: 50.5%;"
+                            @mouseenter="showTooltip('nigeria')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'nigeria'">Nigeria</div>
+                        </div>
 
                         <!-- Sudan -->
-                        <div class="location-marker location-marker--small" style="top: 51%; left: 54.5%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 51%; left: 54.5%;"
+                            @mouseenter="showTooltip('sudan')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'sudan'">Sudan</div>
+                        </div>
 
                         <!-- Somalia -->
-                        <div class="location-marker location-marker--small" style="top: 57%; left: 57%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 57%; left: 57%;"
+                            @mouseenter="showTooltip('somalia')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'somalia'">Somalia</div>
+                        </div>
 
                         <!-- Kenya -->
-                        <div class="location-marker location-marker--small" style="top: 62%; left: 56%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 62%; left: 56%;"
+                            @mouseenter="showTooltip('kenya')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'kenya'">Kenya</div>
+                        </div>
 
                         <!-- Tanzania -->
-                        <div class="location-marker location-marker--small" style="top: 66%; left: 55.5%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 66%; left: 55.5%;"
+                            @mouseenter="showTooltip('tanzania')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'tanzania'">Tanzania</div>
+                        </div>
 
                         <!-- Syria -->
-                        <div class="location-marker location-marker--small" style="top: 38.5%; left: 57.5%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 38.5%; left: 57.5%;"
+                            @mouseenter="showTooltip('syria')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'syria'">Syria</div>
+                        </div>
 
                         <!-- Lebanon -->
-                        <div class="location-marker location-marker--small" style="top: 40.5%; left: 57.2%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 40.5%; left: 57.2%;"
+                            @mouseenter="showTooltip('lebanon')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'lebanon'">Lebanon</div>
+                        </div>
 
                         <!-- Iraq -->
-                        <div class="location-marker location-marker--small" style="top: 40%; left: 59.5%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 40%; left: 59.5%;"
+                            @mouseenter="showTooltip('iraq')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'iraq'">Iraq</div>
+                        </div>
 
                         <!-- Bahrain -->
-                        <div class="location-marker location-marker--small" style="top: 45.5%; left: 60%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 45.5%; left: 60%;"
+                            @mouseenter="showTooltip('bahrain')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'bahrain'">Bahrain</div>
+                        </div>
 
                         <!-- Dubai (Branch) -->
                         <div class="location-marker" style="top: 46.5%; left: 60.8%;" @mouseenter="showTooltip('dubai')"
@@ -186,46 +237,88 @@
                         </div>
 
                         <!-- Yemen -->
-                        <div class="location-marker location-marker--small" style="top: 54%; left: 61%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 54%; left: 61%;"
+                            @mouseenter="showTooltip('yemen')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'yemen'">Yemen</div>
+                        </div>
 
                         <!-- Turkey -->
-                        <div class="location-marker location-marker--small" style="top: 37%; left: 56.5%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 37%; left: 56.5%;"
+                            @mouseenter="showTooltip('turkey')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'turkey'">Turkey</div>
+                        </div>
 
                         <!-- Italy -->
-                        <div class="location-marker location-marker--small" style="top: 35%; left: 52.5%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 35%; left: 52.5%;"
+                            @mouseenter="showTooltip('italy')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'italy'">Italy</div>
+                        </div>
 
                         <!-- England -->
-                        <div class="location-marker location-marker--small" style="top: 28%; left: 49%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 28%; left: 49%;"
+                            @mouseenter="showTooltip('england')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'england'">England</div>
+                        </div>
 
                         <!-- Sweden -->
-                        <div class="location-marker location-marker--small" style="top: 22%; left: 53%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 22%; left: 53%;"
+                            @mouseenter="showTooltip('sweden')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'sweden'">Sweden</div>
+                        </div>
 
                         <!-- Russia -->
-                        <div class="location-marker location-marker--small" style="top: 24%; left: 68%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 24%; left: 68%;"
+                            @mouseenter="showTooltip('russia')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'russia'">Russia</div>
+                        </div>
 
                         <!-- India -->
-                        <div class="location-marker location-marker--small" style="top: 49%; left: 69%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 49%; left: 69%;"
+                            @mouseenter="showTooltip('india')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'india'">India</div>
+                        </div>
 
                         <!-- China -->
-                        <div class="location-marker location-marker--small" style="top: 38%; left: 78%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 38%; left: 78%;"
+                            @mouseenter="showTooltip('china')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'china'">China</div>
+                        </div>
 
                         <!-- Thailand -->
-                        <div class="location-marker location-marker--small" style="top: 54%; left: 78%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 54%; left: 78%;"
+                            @mouseenter="showTooltip('thailand')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'thailand'">Thailand</div>
+                        </div>
 
                         <!-- Malaysia -->
-                        <div class="location-marker location-marker--small" style="top: 60%; left: 79.5%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 60%; left: 79.5%;"
+                            @mouseenter="showTooltip('malaysia')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'malaysia'">Malaysia</div>
+                        </div>
 
                         <!-- Indonesia -->
-                        <div class="location-marker location-marker--small" style="top: 64%; left: 81%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 64%; left: 81%;"
+                            @mouseenter="showTooltip('indonesia')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'indonesia'">Indonesia</div>
+                        </div>
 
                         <!-- South Korea -->
-                        <div class="location-marker location-marker--small" style="top: 39%; left: 85%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 39%; left: 85%;"
+                            @mouseenter="showTooltip('southkorea')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'southkorea'">South Korea</div>
+                        </div>
 
                         <!-- Taiwan -->
-                        <div class="location-marker location-marker--small" style="top: 47%; left: 84%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 47%; left: 84%;"
+                            @mouseenter="showTooltip('taiwan')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'taiwan'">Taiwan</div>
+                        </div>
 
                         <!-- Brazil -->
-                        <div class="location-marker location-marker--small" style="top: 69%; left: 31%;"></div>
+                        <div class="location-marker location-marker--small" style="top: 69%; left: 31%;"
+                            @mouseenter="showTooltip('brazil')" @mouseleave="hideTooltip">
+                            <div class="tooltip-simple" v-show="activeTooltip === 'brazil'">Brazil</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -437,6 +530,14 @@ export default defineComponent({
     filter: drop-shadow(0px 12px 16px rgba(16, 24, 40, 0.08)) drop-shadow(0px 4px 6px rgba(16, 24, 40, 0.03));
     border-radius: 8px;
     background: #FFF;
+
+}
+
+.tooltip.egypt {
+    min-width: 240px;
+}
+
+.tooltip.saudi {
     min-width: 300px;
 }
 
@@ -497,6 +598,37 @@ export default defineComponent({
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
+    border-top: 6px solid #ffffff;
+}
+
+/* Simple tooltip for small markers */
+.tooltip-simple {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #101828;
+    white-space: nowrap;
+    z-index: 200;
+    filter: drop-shadow(0px 4px 6px rgba(16, 24, 40, 0.1));
+}
+
+.tooltip-simple::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
     border-top: 6px solid #ffffff;
 }
 
@@ -687,6 +819,12 @@ export default defineComponent({
         font-size: 10px;
         line-height: 15px;
     }
+
+    .tooltip-simple {
+        bottom: 25px;
+        font-size: 11px;
+        padding: 5px 10px;
+    }
 }
 
 /* Mobile (480px - 767px) */
@@ -798,6 +936,18 @@ export default defineComponent({
     .tooltip-text {
         font-size: 9px;
         line-height: 13px;
+    }
+
+    .tooltip-simple {
+        bottom: 22px;
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+
+    .tooltip-simple::after {
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #ffffff;
     }
 }
 
@@ -916,6 +1066,18 @@ export default defineComponent({
         border-left: 6px solid transparent;
         border-right: 6px solid transparent;
         border-top: 5px solid #ffffff;
+    }
+
+    .tooltip-simple {
+        bottom: 20px;
+        font-size: 9px;
+        padding: 3px 7px;
+    }
+
+    .tooltip-simple::after {
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 4px solid #ffffff;
     }
 }
 

@@ -87,8 +87,8 @@ export default defineComponent({
       },
       {
         id: 6,
-        title: t('industriesSection.industries.automotive.title'),
-        summary: t('industriesSection.industries.automotive.summary'),
+        title: t('industriesSection.industries.agricultural.title'),
+        summary: t('industriesSection.industries.agricultural.summary'),
         link: "/news-insights#student-tour",
         image: Automotive2,
         icon: packageIcon,
@@ -151,8 +151,8 @@ export default defineComponent({
       },
       {
         id: 14,
-        title: t('industriesSection.industries.ElectronicGoods.title'),
-        summary: t('industriesSection.industries.ElectronicGoods.summary'),
+        title: t('industriesSection.industries.fertilizers.title'),
+        summary: t('industriesSection.industries.fertilizers.summary'),
         link: "/news-insights#student-tour",
         image: ElectronicGoods,
         icon: packageIcon,

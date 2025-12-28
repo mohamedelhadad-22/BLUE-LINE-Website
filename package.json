@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "convert-images": "node scripts/convert-to-webp.js",
+    "optimize-images": "npm run convert-images"
   },
   "dependencies": {
     "@vuelidate/core": "^2.0.3",
@@ -23,8 +25,11 @@
     "@types/node": "^24.5.2",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.8.1",
+    "sharp": "^0.34.5",
+    "svgo": "^4.0.0",
     "typescript": "~5.8.3",
     "vite": "^7.1.6",
+    "vite-plugin-image-optimizer": "^2.0.3",
     "vue-tsc": "^3.0.7"
   }
 }

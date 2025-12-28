@@ -1,10 +1,10 @@
-<script setup lang="ts">
-import { ref, reactive, computed } from "vue";
-import { useI18n } from "vue-i18n";
-import { useVuelidate } from "@vuelidate/core";
+<script lang="ts">
+import { defineComponent, shallowRef } from "vue";
+import useVuelidate from "@vuelidate/core";
 import { required, email, minLength, helpers } from "@vuelidate/validators";
-
-const { t } = useI18n();
+import heroImage from '@/assets/contacts-hero.jpg'
+import saudiImage from '@/assets/saudiBranche_image.png'
+import egyptImage from '@/assets/EgyptBranche_image.png'
 
 interface FormData {
   fullName: string;
@@ -14,120 +14,133 @@ interface FormData {
   message: string;
 }
 
-const formData = reactive<FormData>({
-  fullName: "",
-  companyName: "",
-  email: "",
-  phone: "",
-  message: "",
-});
-
-const isSubmitting = ref(false);
-const submitSuccess = ref(false);
-const submitError = ref(false);
-
-// Validation rules
-const rules = computed(() => ({
-  fullName: {
-    required: helpers.withMessage(
-      t("pages.contact.formValidation.fullNameRequired"),
-      required
-    ),
-    minLength: helpers.withMessage(
-      t("pages.contact.formValidation.fullNameMinLength"),
-      minLength(2)
-    ),
-  },
-  email: {
-    required: helpers.withMessage(
-      t("pages.contact.formValidation.emailRequired"),
-      required
-    ),
-    email: helpers.withMessage(
-      t("pages.contact.formValidation.emailInvalid"),
-      email
-    ),
-  },
-  phone: {},
-  companyName: {},
-  message: {
-    required: helpers.withMessage(
-      t("pages.contact.formValidation.messageRequired"),
-      required
-    ),
-    minLength: helpers.withMessage(
-      t("pages.contact.formValidation.messageMinLength"),
-      minLength(10)
-    ),
-  },
-}));
-
-const v$ = useVuelidate(rules, formData);
-
-const handleSubmit = async () => {
-  // Validate form
-  const isValid = await v$.value.$validate();
-
-  if (!isValid) {
-    return;
-  }
-
-  isSubmitting.value = true;
-  submitSuccess.value = false;
-  submitError.value = false;
-
-  try {
-    // TODO: Implement actual form submission to backend
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    // Success
-    submitSuccess.value = true;
-
-    // Reset form after success
-    setTimeout(() => {
-      Object.assign(formData, {
+export default defineComponent({
+  name: "ContactView",
+  data() {
+    return {
+      v$: useVuelidate(),
+      formData: {
         fullName: "",
         companyName: "",
         email: "",
         phone: "",
         message: "",
-      });
-      v$.value.$reset();
-      submitSuccess.value = false;
-    }, 3000);
-  } catch (error) {
-    submitError.value = true;
-    setTimeout(() => {
-      submitError.value = false;
-    }, 5000);
-  } finally {
-    isSubmitting.value = false;
-  }
-};
+      } as FormData,
+      isSubmitting: false,
+      submitSuccess: false,
+      submitError: false,
+      heroImage: shallowRef(heroImage),
+      saudiImage: shallowRef(saudiImage),
+      egyptImage: shallowRef(egyptImage),
+    };
+  },
+  computed: {
+    faqItems() {
+      return [
+        {
+          icon: "clock",
+          question: this.$t("contact.support.faq1.question"),
+          answer: this.$t("contact.support.faq1.answer"),
+        },
+        {
+          icon: "tracking",
+          question: this.$t("contact.support.faq2.question"),
+          answer: this.$t("contact.support.faq2.answer"),
+        },
+        {
+          icon: "quote",
+          question: this.$t("contact.support.faq3.question"),
+          answer: this.$t("contact.support.faq3.answer"),
+        },
+        {
+          icon: "international",
+          question: this.$t("contact.support.faq4.question"),
+          answer: this.$t("contact.support.faq4.answer"),
+        },
+      ];
+    },
+  },
+  validations() {
+    return {
+      formData: {
+        fullName: {
+          required: helpers.withMessage(
+            this.$t("contact.formValidation.fullNameRequired"),
+            required
+          ),
+          minLength: helpers.withMessage(
+            this.$t("contact.formValidation.fullNameMinLength"),
+            minLength(2)
+          ),
+        },
+        email: {
+          required: helpers.withMessage(
+            this.$t("contact.formValidation.emailRequired"),
+            required
+          ),
+          email: helpers.withMessage(
+            this.$t("contact.formValidation.emailInvalid"),
+            email
+          ),
+        },
+        phone: {},
+        companyName: {},
+        message: {
+          required: helpers.withMessage(
+            this.$t("contact.formValidation.messageRequired"),
+            required
+          ),
+          minLength: helpers.withMessage(
+            this.$t("contact.formValidation.messageMinLength"),
+            minLength(10)
+          ),
+        },
+      },
+    };
+  },
+  methods: {
+    async handleSubmit() {
+      // Validate form
+      const isValid = await this.v$.$validate();
 
-// FAQ items with i18n
-const faqItems = computed(() => [
-  {
-    icon: "clock",
-    question: t("pages.contact.support.faq1.question"),
-    answer: t("pages.contact.support.faq1.answer"),
+      if (!isValid) {
+        return;
+      }
+
+      this.isSubmitting = true;
+      this.submitSuccess = false;
+      this.submitError = false;
+
+      try {
+        // TODO: Implement actual form submission to backend
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+
+        // Success
+        this.submitSuccess = true;
+
+        // Reset form after success
+        setTimeout(() => {
+          this.formData = {
+            fullName: "",
+            companyName: "",
+            email: "",
+            phone: "",
+            message: "",
+          };
+          this.v$.$reset();
+          this.submitSuccess = false;
+        }, 3000);
+      } catch (error) {
+        this.submitError = true;
+        setTimeout(() => {
+          this.submitError = false;
+        }, 5000);
+      } finally {
+        this.isSubmitting = false;
+      }
+    },
   },
-  {
-    icon: "tracking",
-    question: t("pages.contact.support.faq2.question"),
-    answer: t("pages.contact.support.faq2.answer"),
-  },
-  {
-    icon: "quote",
-    question: t("pages.contact.support.faq3.question"),
-    answer: t("pages.contact.support.faq3.answer"),
-  },
-  {
-    icon: "international",
-    question: t("pages.contact.support.faq4.question"),
-    answer: t("pages.contact.support.faq4.answer"),
-  },
-]);
+});
 </script>
 
 <template>
@@ -135,13 +148,13 @@ const faqItems = computed(() => [
     <!-- Hero Section -->
     <section class="hero-section">
       <div class="hero-background">
-        <img src="@/assets/contacts-hero.jpg" alt="Ocean freight" class="hero-image" />
+        <img :src="heroImage" alt="Ocean freight" class="hero-image" />
         <div class="hero-overlay"></div>
       </div>
       <div class="hero-content">
-        <h1 class="hero-title">{{ t('pages.contact.hero.title') }}</h1>
+        <h1 class="hero-title">{{ $t('contact.hero.title') || 'Contact Us' }}</h1>
         <p class="hero-subtitle">
-          {{ t('pages.contact.hero.subtitle') }}
+          {{ $t('contact.hero.subtitle') }}
         </p>
       </div>
     </section>
@@ -150,107 +163,95 @@ const faqItems = computed(() => [
     <section class="form-section">
       <div class="form-container">
         <div class="form-header">
-          <h2 class="form-title">{{ t('pages.contact.formSection.title') }}</h2>
+          <h2 class="form-title">{{ $t('contact.formSection.title') }}</h2>
           <p class="form-subtitle">
-            {{ t('pages.contact.formSection.subtitle') }}
+            {{ $t('contact.formSection.subtitle') }}
           </p>
         </div>
 
         <!-- Success Message -->
         <div v-if="submitSuccess" class="alert alert-success">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M7 10L9 12L13 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+              d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M7 10L9 12L13 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
           </svg>
-          <span>{{ t('pages.contact.formMessages.success') }}</span>
+          <span>{{ $t('contact.formMessages.success') }}</span>
         </div>
 
         <!-- Error Message -->
         <div v-if="submitError" class="alert alert-error">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M10 6V10M10 14H10.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+              d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M10 6V10M10 14H10.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
           </svg>
-          <span>{{ t('pages.contact.formMessages.error') }}</span>
+          <span>{{ $t('contact.formMessages.error') }}</span>
         </div>
 
         <form @submit.prevent="handleSubmit" class="contact-form">
           <div class="form-row">
             <div class="form-field">
-              <label for="fullName" class="field-label">{{ t('pages.contact.formSection.fullName') }}</label>
-              <input
-                id="fullName"
-                v-model="formData.fullName"
-                type="text"
-                class="field-input"
-                :class="{ 'field-error': v$.fullName.$error }"
-                :placeholder="t('pages.contact.formSection.fullNamePlaceholder')"
-                @blur="v$.fullName.$touch()" />
-              <span v-if="v$.fullName.$error" class="error-message">
-                {{ v$.fullName.$errors[0]?.$message }}
+              <label for="fullName" class="field-label">{{ $t('contact.formSection.fullName') }}</label>
+              <input id="fullName" v-model="formData.fullName" type="text" class="field-input"
+                :class="{ 'field-error': v$.formData.fullName.$error }"
+                :placeholder="$t('contact.formSection.fullNamePlaceholder')" @blur="v$.formData.fullName.$touch()" />
+              <span v-if="v$.formData.fullName.$error" class="error-message">
+                {{ v$.formData.fullName.$errors[0]?.$message }}
               </span>
             </div>
             <div class="form-field">
-              <label for="companyName" class="field-label">{{ t('pages.contact.formSection.companyName') }}</label>
-              <input
-                id="companyName"
-                v-model="formData.companyName"
-                type="text"
-                class="field-input"
-                :placeholder="t('pages.contact.formSection.companyNamePlaceholder')" />
+              <label for="companyName" class="field-label">{{ $t('contact.formSection.companyName') }}</label>
+              <input id="companyName" v-model="formData.companyName" type="text" class="field-input"
+                :placeholder="$t('contact.formSection.companyNamePlaceholder')" />
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-field">
-              <label for="email" class="field-label">{{ t('pages.contact.formSection.email') }}</label>
-              <input
-                id="email"
-                v-model="formData.email"
-                type="email"
-                class="field-input"
-                :class="{ 'field-error': v$.email.$error }"
-                :placeholder="t('pages.contact.formSection.emailPlaceholder')"
-                @blur="v$.email.$touch()" />
-              <span v-if="v$.email.$error" class="error-message">
-                {{ v$.email.$errors[0]?.$message }}
+              <label for="email" class="field-label">{{ $t('contact.formSection.email') }}</label>
+              <input id="email" v-model="formData.email" type="email" class="field-input"
+                :class="{ 'field-error': v$.formData.email.$error }"
+                :placeholder="$t('contact.formSection.emailPlaceholder')" @blur="v$.formData.email.$touch()" />
+              <span v-if="v$.formData.email.$error" class="error-message">
+                {{ v$.formData.email.$errors[0]?.$message }}
               </span>
             </div>
             <div class="form-field">
-              <label for="phone" class="field-label">{{ t('pages.contact.formSection.phone') }}</label>
-              <input
-                id="phone"
-                v-model="formData.phone"
-                type="tel"
-                class="field-input"
-                :placeholder="t('pages.contact.formSection.phonePlaceholder')" />
+              <label for="phone" class="field-label">{{ $t('contact.formSection.phone') }}</label>
+              <input id="phone" v-model="formData.phone" type="tel" class="field-input"
+                :placeholder="$t('contact.formSection.phonePlaceholder')" />
             </div>
           </div>
 
           <div class="form-field">
-            <label for="message" class="field-label">{{ t('pages.contact.formSection.message') }}</label>
-            <textarea
-              id="message"
-              v-model="formData.message"
-              class="field-textarea"
-              :class="{ 'field-error': v$.message.$error }"
-              :placeholder="t('pages.contact.formSection.messagePlaceholder')"
-              rows="6"
-              @blur="v$.message.$touch()"></textarea>
-            <span v-if="v$.message.$error" class="error-message">
-              {{ v$.message.$errors[0]?.$message }}
+            <label for="message" class="field-label">{{ $t('contact.formSection.message') }}</label>
+            <textarea id="message" v-model="formData.message" class="field-textarea"
+              :class="{ 'field-error': v$.formData.message.$error }"
+              :placeholder="$t('contact.formSection.messagePlaceholder')" rows="6"
+              @blur="v$.formData.message.$touch()"></textarea>
+            <span v-if="v$.formData.message.$error" class="error-message">
+              {{ v$.formData.message.$errors[0]?.$message }}
             </span>
           </div>
 
           <button type="submit" class="submit-button" :disabled="isSubmitting">
-            <span v-if="!isSubmitting">{{ t('pages.contact.formSection.submitButton') }}</span>
-            <span v-else>{{ t('pages.contact.formValidation.submitting', 'Submitting...') }}</span>
-            <svg v-if="!isSubmitting" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <span v-if="!isSubmitting">{{ $t('contact.formSection.submitButton') }}</span>
+            <span v-else>{{ $t('contact.formValidation.submitting', 'Submitting...') }}</span>
+            <svg v-if="!isSubmitting" width="18" height="18" viewBox="0 0 18 18" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
               <path d="M10.5 4.5L15 9M15 9L10.5 13.5M15 9H3" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-            <svg v-else class="spinner" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 2V5M9 13V16M16 9H13M5 9H2M14.364 14.364L12.243 12.243M5.757 5.757L3.636 3.636M14.364 3.636L12.243 5.757M5.757 12.243L3.636 14.364" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg v-else class="spinner" width="18" height="18" viewBox="0 0 18 18" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M9 2V5M9 13V16M16 9H13M5 9H2M14.364 14.364L12.243 12.243M5.757 5.757L3.636 3.636M14.364 3.636L12.243 5.757M5.757 12.243L3.636 14.364"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </button>
         </form>
@@ -261,8 +262,8 @@ const faqItems = computed(() => [
     <section class="support-section">
       <div class="support-container">
         <div class="support-header">
-          <h2 class="support-title">{{ t('pages.contact.support.title') }}</h2>
-          <p class="support-subtitle">{{ t('pages.contact.support.subtitle') }}</p>
+          <h2 class="support-title">{{ $t('contact.support.title') }}</h2>
+          <p class="support-subtitle">{{ $t('contact.support.subtitle') }}</p>
         </div>
 
         <div class="faq-grid">
@@ -313,103 +314,104 @@ const faqItems = computed(() => [
     <!-- Branches Section -->
     <section class="branches-section">
       <div class="branches-container">
-        <h2 class="branches-title">{{ t('pages.contact.branches.title') }}</h2>
+        <h2 class="branches-title">{{ $t('contact.branches.title') }}</h2>
 
         <!-- Saudi Branch -->
         <div class="branch-card">
           <div class="branch-info">
-            <div class="branch-label">{{ t('pages.contact.branches.saudi.label') }}</div>
-            <h3 class="branch-name">{{ t('pages.contact.branches.saudi.name') }}</h3>
+            <div class="branch-label">{{ $t('contact.branches.saudi.label') }}</div>
+            <h3 class="branch-name">{{ $t('contact.branches.saudi.name') }}</h3>
 
             <div class="branch-details">
               <div class="detail-group">
-                <label class="detail-label">{{ t('pages.contact.branches.saudi.addressLabel') }}</label>
-                <p class="detail-text" v-html="t('pages.contact.branches.saudi.address')"></p>
+                <label class="detail-label">{{ $t('contact.branches.saudi.addressLabel') }}</label>
+                <p class="detail-value">{{ $t('contact.branches.saudi.address') }}</p>
               </div>
 
               <div class="detail-group">
-                <label class="detail-label">{{ t('pages.contact.branches.saudi.phoneLabel') }}</label>
-                <p class="detail-value">{{ t('pages.contact.branches.saudi.phone') }}</p>
+                <label class="detail-label">{{ $t('contact.branches.saudi.phoneLabel') }}</label>
+                <p class="detail-value">{{ $t('contact.branches.saudi.phone') }}</p>
               </div>
 
               <div class="detail-group">
-                <label class="detail-label">{{ t('pages.contact.branches.saudi.mailLabel') }}</label>
-                <p class="detail-value">{{ t('pages.contact.branches.saudi.mail') }}</p>
+                <label class="detail-label">{{ $t('contact.branches.saudi.mailLabel') }}</label>
+                <p class="detail-value">{{ $t('contact.branches.saudi.mail') }}</p>
               </div>
 
               <div class="detail-group">
-                <label class="detail-label">{{ t('pages.contact.branches.saudi.hoursLabel') }}</label>
-                <p class="detail-value" v-html="t('pages.contact.branches.saudi.hours')"></p>
+                <label class="detail-label">{{ $t('contact.branches.saudi.hoursLabel') }}</label>
+                <p class="detail-value">{{ $t('contact.branches.saudi.hours') }}</p>
+                <p class="detail-value">{{ $t('contact.branches.saudi.hours') }}</p>
               </div>
 
               <div class="contact-persons">
                 <div class="contact-person">
-                  <strong>{{ t('pages.contact.branches.saudi.finance') }}</strong>
-                  <p>{{ t('pages.contact.branches.saudi.financePhone') }}</p>
-                  <p>{{ t('pages.contact.branches.saudi.financeEmail') }}</p>
+                  <strong>{{ $t('contact.branches.saudi.finance') }}</strong>
+                  <p>{{ $t('contact.branches.saudi.financePhone') }}</p>
+                  <p> Finance@blueline-sa.net</p>
                 </div>
 
                 <div class="contact-person">
-                  <strong>{{ t('pages.contact.branches.saudi.manager') }}</strong>
-                  <p>{{ t('pages.contact.branches.saudi.managerPhone') }}</p>
-                  <p>{{ t('pages.contact.branches.saudi.managerEmail') }}</p>
+                  <strong>{{ $t('contact.branches.saudi.manager') }}</strong>
+                  <p>Mobile: +20 122 369 3800</p>
+                  <p>mohamed.abdulaziz@blueline-sa.net</p>
                 </div>
               </div>
             </div>
           </div>
           <div class="branch-image">
-            <img src="@/assets/saudiBranche_image.png" :alt="t('pages.contact.branches.saudi.name')" />
+            <img :src="saudiImage" :alt="$t('contact.branches.saudi.name')" />
           </div>
         </div>
 
         <!-- Egypt Branch -->
         <div class="branch-card">
           <div class="branch-info">
-            <h3 class="branch-name">{{ t('pages.contact.branches.egypt.name') }}</h3>
+            <h3 class="branch-name">{{ $t('contact.branches.egypt.name') }}</h3>
 
             <div class="branch-details">
               <div class="detail-group">
-                <label class="detail-label">{{ t('pages.contact.branches.egypt.addressLabel') }}</label>
-                <p class="detail-text" v-html="t('pages.contact.branches.egypt.address')"></p>
+                <label class="detail-label">{{ $t('contact.branches.egypt.addressLabel') }}</label>
+                <p class="detail-text">{{ $t('contact.branches.egypt.address') }}</p>
               </div>
 
               <div class="detail-group">
-                <label class="detail-label">{{ t('pages.contact.branches.egypt.phoneLabel') }}</label>
-                <p class="detail-value">{{ t('pages.contact.branches.egypt.phone') }}</p>
+                <label class="detail-label">{{ $t('contact.branches.egypt.phoneLabel') }}</label>
+                <p class="detail-value">{{ $t('contact.branches.egypt.phone') }}</p>
               </div>
 
               <div class="detail-group">
-                <label class="detail-label">{{ t('pages.contact.branches.egypt.mobileLabel') }}</label>
-                <p class="detail-value">{{ t('pages.contact.branches.egypt.mobile') }}</p>
+                <label class="detail-label">{{ $t('contact.branches.egypt.mobileLabel') }}</label>
+                <p class="detail-value">{{ $t('contact.branches.egypt.mobile') }}</p>
               </div>
 
               <div class="detail-group">
-                <label class="detail-label">{{ t('pages.contact.branches.egypt.mailLabel') }}</label>
-                <p class="detail-value">{{ t('pages.contact.branches.egypt.mail') }}</p>
+                <label class="detail-label">{{ $t('contact.branches.egypt.mailLabel') }}</label>
+                <p class="detail-value"> info@blueline-sa.net</p>
               </div>
 
               <div class="detail-group">
-                <label class="detail-label">{{ t('pages.contact.branches.egypt.hoursLabel') }}</label>
-                <p class="detail-value" v-html="t('pages.contact.branches.egypt.hours')"></p>
+                <label class="detail-label">{{ $t('contact.branches.egypt.hoursLabel') }}</label>
+                <p class="detail-value">{{ $t('contact.branches.egypt.hours') }}</p>
               </div>
 
               <div class="contact-persons">
                 <div class="contact-person">
-                  <strong>{{ t('pages.contact.branches.egypt.finance') }}</strong>
-                  <p>{{ t('pages.contact.branches.egypt.financePhone') }}</p>
-                  <p>{{ t('pages.contact.branches.egypt.financeEmail') }}</p>
+                  <strong>{{ $t('contact.branches.egypt.finance') }}</strong>
+                  <p>{{ $t('contact.branches.egypt.financePhone') }}</p>
+                  <p>Finance@blueline-sa.net </p>
                 </div>
 
                 <div class="contact-person">
-                  <strong>{{ t('pages.contact.branches.egypt.manager') }}</strong>
-                  <p>{{ t('pages.contact.branches.egypt.managerPhone') }}</p>
-                  <p>{{ t('pages.contact.branches.egypt.managerEmail') }}</p>
+                  <strong>{{ $t('contact.branches.egypt.manager') }}</strong>
+                  <p>01223693800</p>
+                  <p>mohamed.abdulaziz@blueline-sa.net</p>
                 </div>
               </div>
             </div>
           </div>
           <div class="branch-image">
-            <img src="@/assets/EgyptBranche_image.png" :alt="t('pages.contact.branches.egypt.name')" />
+            <img :src="egyptImage" :alt="$t('contact.branches.egypt.name')" />
           </div>
         </div>
       </div>
@@ -593,6 +595,7 @@ const faqItems = computed(() => [
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -746,6 +749,7 @@ const faqItems = computed(() => [
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -884,6 +888,7 @@ const faqItems = computed(() => [
   display: flex;
   flex-direction: column;
   gap: 19px;
+  padding : 0 30px 0 0;
 }
 
 .branch-label {

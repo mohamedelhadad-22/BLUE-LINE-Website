@@ -143,10 +143,10 @@ export default defineComponent({
 .img_box img {
   width: 100%;
   border-radius: 0 0 0 103px;
-  background: url(<path-to-image>) lightgray 50% / cover no-repeat;
   max-width: 584px;
   max-height: 389px;
   aspect-ratio: 584/389;
+  object-fit: cover;
 }
 
 

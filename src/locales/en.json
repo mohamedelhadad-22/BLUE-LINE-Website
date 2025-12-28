@@ -17,7 +17,7 @@
                 "stakeholders": "Stakeholders Relations",
                 "career": "Career",
                 "contact": "Contact us",
-                "ouerServices":"Our Services"
+                "ouerServices": "Our Services"
             },
             "businessAreas": {
                 "title": "Business Areas",
@@ -45,11 +45,11 @@
         "sustainability": "Sustainability",
         "news": "News",
         "career": "Career",
-        "locations":" Locations",
-        "destinationTitle":"Destinations",
-        "destinationTitle2":"we serve",
-        "destinationDesc":"Discover where we can take you",
-        "map":"Map",
+        "locations": " Locations",
+        "destinationTitle": "Destinations",
+        "destinationTitle2": "we serve",
+        "destinationDesc": "Discover where we can take you",
+        "map": "Map",
         "hero": {
             "connectingLine1": "Connecting you to",
             "connectingLine2": "your customers",
@@ -91,37 +91,6 @@
                 "body": "Connect cultures and economies by facilitating sustainable, future-proof trade."
             }
         }
-    },
-    "homeNews": {
-        "kicker": "Latest news",
-        "title": "Get updated with Blue Line happenings and insights",
-        "cta": "Read more",
-        "posts": [
-            {
-                "id": "mala-awards",
-                "type": "Announcement",
-                "date": "2025-08-01",
-                "title": "Blue Line Wins \"Rising Star Organization\" at MALA Awards 2025",
-                "summary": "Blue Line is recognised at the MALA Awards for its rapid progress, innovation, and commitment to elevating regional logistics standards.",
-                "link": "/news-insights#mala-awards"
-            },
-            {
-                "id": "south-red-sea",
-                "type": "Announcement",
-                "date": "2025-07-07",
-                "title": "Blue Line Expands South Red Sea Service with Enhanced Jeddah-Centric Rotation",
-                "summary": "The strategic extension of Blue Line's South Red Sea Service strengthens regional connectivity and amplifies Saudi Arabia's role as a logistics hub.",
-                "link": "/news-insights#south-red-sea"
-            },
-            {
-                "id": "student-tour",
-                "type": "Community",
-                "date": "2025-06-03",
-                "title": "Blue Line Organizes Tour for Maritime Students Onboard Container Vessel \"Blue Line Jeddah\"",
-                "summary": "Students from King Abdulaziz University experience life onboard Blue Line Jeddah, gaining practical insight into modern vessel operations.",
-                "link": "/news-insights#student-tour"
-            }
-        ]
     },
     "aboutSection": {
         "tag": "About us",
@@ -202,17 +171,17 @@
         "privacy": "Privacy Policy",
         "terms": "Terms & Conditions",
         "about": "About Us",
-        "contact":"Contact Us",
-        "FooterDescription":"We shrink the world into a single step. We don’t just move cargo—we connect suppliers to their clients across the globe,",
-        "BusinessMedia":"Business & Media",
-        "Contactus":"Contact Us",
-        "WorkingHours":"Working Hours",
-        "Legal":"Legal",
-        "OurServices":"Our Services",
+        "contact": "Contact Us",
+        "FooterDescription": "We shrink the world into a single step. We don’t just move cargo—we connect suppliers to their clients across the globe,",
+        "BusinessMedia": "Business & Media",
+        "Contactus": "Contact Us",
+        "WorkingHours": "Working Hours",
+        "Legal": "Legal",
+        "OurServices": "Our Services",
         "BlueLine": "BlueLine",
-        "BlueLineDesc":"For Ocean Freight Services",
-        "WorkingDays":"From Saturday to Thursday",
-        "WorkingDaysHours":"From 8:30 AM to 4:30 PM"
+        "BlueLineDesc": "For Ocean Freight Services",
+        "WorkingDays": "From Saturday to Thursday",
+        "WorkingDaysHours": "From 8:30 AM to 4:30 PM"
     },
     "pages": {
         "stakeholders": {
@@ -230,8 +199,7 @@
             },
             "cta": {
                 "label": "Download stakeholder handbook",
-                "description": "Toolkit release scheduled for Q3 2025.",
-                "link": "mailto:partnerships@folkmaritime.com"
+                "description": "Toolkit release scheduled for Q3 2025."
             }
         },
         "careers": {
@@ -252,684 +220,7 @@
                 "description": "Sign up to receive the first wave of openings.",
                 "link": "mailto:talent@folkmaritime.com"
             }
-        },
-        "contact": {
-            "headline": "Contact Us",
-            "body": "We're finalizing our regional offices and support channels. A full directory and enquiry form will be available shortly.",
-            "highlights": {
-                "hq": {
-                    "title": "Head office",
-                    "body": "Kingdom Tower, Riyadh – dedicated client reception opening soon."
-                },
-                "support": {
-                    "title": "24/7 support",
-                    "body": "Logistics command centre to provide shipment tracking and incident response."
-                }
-            },
-            "cta": {
-                "label": "Email interim support",
-                "description": "Reach us at support@folkmaritime.com",
-                "link": "mailto:support@folkmaritime.com"
-            },
-            "form": {
-                "breadcrumb": {
-                    "home": "Home",
-                    "contact": "Contact Us"
-                },
-                "title": "Contact Us",
-                "whytitle": "How can we help you?",
-                "subtitle": "At Blue Line, fostering open communication is our priority. Our dedicated team is ready to assist you with whatever you may need, so please use the contact form below to get in touch.",
-                "info": {
-                    "headOffice": "Head Office",
-                    "address": "North Yard Complex from Oud, Building No. 456,<br />Prince Turki Bin Abdulaziz AlAwwal Road,<br />Al-Malqa District",
-                    "postal": "Postal Code: 13524 - 6790<br />Riyadh, Kingdom of Saudi Arabia",
-                    "getInTouch": "Get in Touch",
-                    "followUs": "Follow Us"
-                },
-                "fields": {
-                    "fullName": "Full Name",
-                    "companyName": "Company Name",
-                    "email": "Email Address",
-                    "phone": "Phone Number",
-                    "subject": "Subject",
-                    "country": "Country",
-                    "message": "Message",
-                    "privacyLabel": "I have read and agree to the",
-                    "privacyLink": "Privacy Policy",
-                    "required": "*"
-                },
-                "placeholders": {
-                    "fullName": "Enter your full name",
-                    "companyName": "Enter your company name",
-                    "email": "you@company.com",
-                    "phone": "5 1234 5678",
-                    "subject": "How can we help you?",
-                    "message": "Tell us more about your inquiry..."
-                },
-                "validation": {
-                    "fullNameRequired": "Full name is required.",
-                    "emailRequired": "Email is required.",
-                    "emailInvalid": "Enter a valid email address.",
-                    "phoneRequired": "Phone number is required.",
-                    "phoneInvalid": "Please enter a valid phone number.",
-                    "subjectRequired": "Subject is required.",
-                    "subjectMinLength": "Subject must be at least 3 characters.",
-                    "subjectMaxLength": "Subject is too long.",
-                    "countryRequired": "Country is required.",
-                    "messageRequired": "Message is required.",
-                    "messageMinLength": "Message must be at least 10 characters.",
-                    "privacyRequired": "You must accept the Privacy Policy."
-                },
-                "submit": "Send Message",
-                "submitting": "Sending...",
-                "success": "Thank you! We'll get back to you shortly.",
-                "error": "Something went wrong. Please try again."
-            },
-            "hero": {
-                "title": "Talk to Our Team",
-                "subtitle": "We're here to support your logistics needs — anytime, anywhere."
-            },
-            "formSection": {
-                "title": "Send Us a Message",
-                "subtitle": "Fill out the form below and we'll get back to you shortly",
-                "fullName": "Full Name *",
-                "fullNamePlaceholder": "John Doe",
-                "companyName": "Company Name",
-                "companyNamePlaceholder": "ABC Corporation",
-                "email": "Email Address *",
-                "emailPlaceholder": "john@example.com",
-                "phone": "Phone Number",
-                "phonePlaceholder": "+1 (555) 123-4567",
-                "message": "Message *",
-                "messagePlaceholder": "Tell us about your logistics needs...",
-                "submitButton": "Submit Message"
-            },
-            "formValidation": {
-                "fullNameRequired": "Full name is required.",
-                "fullNameMinLength": "Full name must be at least 2 characters.",
-                "emailRequired": "Email address is required.",
-                "emailInvalid": "Please enter a valid email address.",
-                "messageRequired": "Message is required.",
-                "messageMinLength": "Message must be at least 10 characters.",
-                "submitting": "Submitting..."
-            },
-            "formMessages": {
-                "success": "Thank you! We'll get back to you shortly.",
-                "error": "Something went wrong. Please try again."
-            },
-            "support": {
-                "title": "Quick Support",
-                "subtitle": "Common questions about our services",
-                "faq1": {
-                    "question": "What are your business hours?",
-                    "answer": "Our customer support team is available 24/7 to assist you. Our office hours are Monday to Friday, 9 AM to 6 PM EST."
-                },
-                "faq2": {
-                    "question": "How can I track my shipment?",
-                    "answer": "Use your tracking number on our website or contact our support team for real-time updates on your shipment status."
-                },
-                "faq3": {
-                    "question": "How do I request a quote?",
-                    "answer": "Fill out our contact form above or call us directly. We'll provide a customized quote within 24 hours."
-                },
-                "faq4": {
-                    "question": "Do you ship internationally?",
-                    "answer": "Yes, we offer comprehensive international shipping services to over 150 countries worldwide with full tracking."
-                }
-            },
-            "branches": {
-                "title": "Our Branches",
-                "saudi": {
-                    "label": "Head Office",
-                    "name": "Saudi Branch",
-                    "addressLabel": "Address Branch",
-                    "address": "23441 Al-Madina Al-Munawarah Branch Rd,<br />Al Faisaliyah, Kanoo Building, Jeddah",
-                    "phoneLabel": "Phone:",
-                    "phone": "054 757 5530",
-                    "mailLabel": "Mail:",
-                    "mail": "info@blueline-sa.net",
-                    "hoursLabel": "Working Hours",
-                    "hours": "From Saturday to Thursday<br />From 8:30 AM to 4:30 PM",
-                    "finance": "Finance",
-                    "financePhone": "Mobile: 0 547576076",
-                    "financeEmail": "Finance@blueline-sa.net",
-                    "manager": "Operation Manager",
-                    "managerPhone": "Mobile: 0530957713",
-                    "managerEmail": "Email: umar.farooq@blueline-sa.net"
-                },
-                "egypt": {
-                    "name": "Egypt Branch",
-                    "addressLabel": "Address Branch",
-                    "address": "Property No. 6, Sector H, First Floor<br />Service Center, First Settlement - New Cairo",
-                    "phoneLabel": "Phone:",
-                    "phone": "0 122 3693800",
-                    "mobileLabel": "Mobile:",
-                    "mobile": "0223555525",
-                    "mailLabel": "Mail:",
-                    "mail": "info@blueline-sa.net",
-                    "hoursLabel": "Working Hours",
-                    "hours": "From Saturday to Thursday<br />From 8:30 AM to 4:30 PM",
-                    "finance": "Finance",
-                    "financePhone": "Mobile: 01201374000",
-                    "financeEmail": "Finance@blueline-sa.net",
-                    "manager": "Branch Manager",
-                    "managerPhone": "Mobile: 01223693800",
-                    "managerEmail": "mohamed.abdulaziz@blueline-sa.net"
-                }
-            }
-        },
-        "feeders": {
-            "headline": "Feeders Services",
-            "body": "Technical specifications, schedules, and service commitments for our feeder network are on the way. Check back to download sailing plans and port guides.",
-            "highlights": {
-                "coverage": {
-                    "title": "Coverage map",
-                    "body": "Serving key ports across the Red Sea, Arabian Gulf, and Indian west coast."
-                },
-                "performance": {
-                    "title": "Performance assurance",
-                    "body": "Guaranteed cut-off windows and on-time reliability backed by service credits."
-                }
-            },
-            "cta": {
-                "label": "Request sailing schedule",
-                "description": "Schedule PDFs will be shared upon launch.",
-                "link": "mailto:schedules@folkmaritime.com"
-            }
-        },
-        "liner": {
-            "headline": "Regional Liner Services",
-            "body": "We're curating detailed route maps and transit times for our liner solutions. Soon you'll be able to review optimized port rotations and booking support.",
-            "highlights": {
-                "network": {
-                    "title": "Balanced rotations",
-                    "body": "Weekly strings designed to connect Saudi gateways with high-growth Asian and African ports."
-                },
-                "digital": {
-                    "title": "Digital booking",
-                    "body": "API-driven bookings with milestone visibility and automated compliance checks."
-                }
-            },
-            "cta": {
-                "label": "Talk to a liner specialist",
-                "description": "Our commercial team will tailor capacity to your lanes.",
-                "link": "mailto:liner@folkmaritime.com"
-            }
-        },
-        "routes": {
-            "headline": "Routes & Agents Contacts",
-            "body": "A comprehensive directory of agents, local representatives, and documentation requirements is coming soon.",
-            "highlights": {
-                "agents": {
-                    "title": "Accredited agents",
-                    "body": "Partner network across 18 countries ready to assist with bookings and port services."
-                },
-                "compliance": {
-                    "title": "Documentation hub",
-                    "body": "Certificates, customs forms, and port-specific advisories in one location."
-                }
-            },
-            "cta": {
-                "label": "Request agent list",
-                "description": "Email network@folkmaritime.com to receive the interim directory.",
-                "link": "mailto:network@folkmaritime.com"
-            }
-        },
-        "faq": {
-            "headline": "FAQ & Glossary",
-            "body": "We're preparing an interactive glossary of maritime terminology along with quick answers to frequently asked questions.",
-            "highlights": {
-                "glossary": {
-                    "title": "Glossary",
-                    "body": "Plain-language definitions covering liner terminology and digital shipping concepts."
-                },
-                "support": {
-                    "title": "Self-service help",
-                    "body": "Guided articles for booking, documentation, and sustainability reporting."
-                }
-            },
-            "cta": {
-                "label": "Ask a question",
-                "description": "Send us topics you would like to see covered.",
-                "link": "/contact"
-            }
-        },
-        "fleet": {
-            "headline": "Fleet",
-            "body": "Discover the capabilities, capacities, and sustainability features of our growing fleet. Fleet specifications will be published shortly.",
-            "highlights": {
-                "specs": {
-                    "title": "Vessel profiles",
-                    "body": "TEU capacity, draft, and fuel technology benchmarked for regional efficiency."
-                },
-                "sustainability": {
-                    "title": "Sustainability",
-                    "body": "Shore-power readiness and alternative fuels roadmap supporting Saudi Green Initiative."
-                }
-            },
-            "cta": {
-                "label": "Download fleet fact sheet",
-                "description": "Specs will be available as soon as fleet commissioning completes.",
-                "link": "mailto:fleet@folkmaritime.com"
-            }
-        },
-        "news": {
-            "headline": "News & Insights",
-            "body": "Stay tuned for press releases, market insights, and leadership commentary. Our newsroom will launch here soon.",
-            "highlights": {
-                "press": {
-                    "title": "Press releases",
-                    "body": "Latest announcements on partnerships, sailings, and milestones."
-                },
-                "analysis": {
-                    "title": "Market analysis",
-                    "body": "Quarterly outlook on regional trade lanes and logistics innovation."
-                }
-            },
-            "cta": {
-                "label": "Subscribe to updates",
-                "description": "Receive newsroom alerts in your inbox.",
-                "link": "mailto:media@folkmaritime.com"
-            }
-        },
-        "downloads": {
-            "headline": "Downloads",
-            "body": "Operational manuals, brand assets, and compliance documents will be housed here for quick reference.",
-            "highlights": {
-                "operations": {
-                    "title": "Operations kit",
-                    "body": "Tariffs, cut-off schedules, and port handling instructions."
-                },
-                "brand": {
-                    "title": "Brand assets",
-                    "body": "Logos, imagery, and guidelines to support media partners."
-                }
-            },
-            "cta": {
-                "label": "Request documents",
-                "description": "Contact documents@folkmaritime.com for interim files.",
-                "link": "mailto:documents@folkmaritime.com"
-            }
-        },
-        "privacy": {
-            "headline": "Privacy Policy",
-            "body": "We're finalizing our privacy governance. The full policy covering data processing and user rights will be published here shortly.",
-            "highlights": {
-                "data": {
-                    "title": "Data stewardship",
-                    "body": "How we collect, process, and retain information across digital platforms."
-                },
-                "rights": {
-                    "title": "Your rights",
-                    "body": "Processes for requesting access, correction, or deletion of personal data."
-                }
-            },
-            "cta": {
-                "label": "Contact data protection officer",
-                "description": "privacy@folkmaritime.com",
-                "link": "mailto:privacy@folkmaritime.com"
-            }
-        },
-        "terms": {
-            "headline": "Terms & Conditions",
-            "body": "Our service terms, contractual provisions, and website usage guidelines are being prepared. Please check back soon.",
-            "highlights": {
-                "services": {
-                    "title": "Service commitments",
-                    "body": "Service-level guarantees, liabilities, and exceptions defined clearly."
-                },
-                "website": {
-                    "title": "Website use",
-                    "body": "Guidelines for using digital tools, trademarks, and shared assets."
-                }
-            },
-            "cta": {
-                "label": "Request draft terms",
-                "description": "legal@folkmaritime.com",
-                "link": "mailto:legal@folkmaritime.com"
-            }
-        },
-        "suggestions": {
-            "headline": "Share Your Suggestions",
-            "body": "We value every idea that helps us deliver better maritime experiences. A full submission form will be live here soon. Meanwhile, please reach us via the channels listed on our contact page.",
-            "highlights": {
-                "channels": {
-                    "title": "Multiple channels",
-                    "body": "Use the footer feedback modal, contact email, or upcoming customer portal."
-                },
-                "response": {
-                    "title": "Response timeline",
-                    "body": "Submissions are acknowledged within 48 hours with next steps."
-                }
-            },
-            "cta": {
-                "label": "Open feedback form",
-                "description": "Scroll to the footer to share your idea instantly.",
-                "link": "#footer-feedback"
-            }
         }
-    },
-    "glossary": {
-        "hero": {
-            "title": "Glossary",
-            "subtitle": "Maritime shipping terms and definitions"
-        },
-        "A": [
-            {
-                "term": "Affiliate",
-                "definition": "A company or entity that is associated with another through ownership, control, or a business relationship."
-            },
-            {
-                "term": "Automatic Identification System - AIS",
-                "definition": "A tracking system used by ships and vessel traffic services to identify and locate vessels by electronically exchanging data."
-            },
-            {
-                "term": "Agent",
-                "definition": "A representative who acts on behalf of a shipowner, charterer, or operator in a specific port or region."
-            },
-            {
-                "term": "All Risks Coverage",
-                "definition": "An insurance policy that provides the broadest form of protection for cargo during transit."
-            },
-            {
-                "term": "Ad Valorem",
-                "definition": "A tariff or duty based on the value of the goods being shipped, expressed as a percentage of the total value."
-            }
-        ],
-        "B": [
-            {
-                "term": "Ballast",
-                "definition": "Heavy material, such as water, used to provide stability to a vessel."
-            },
-            {
-                "term": "Backhaul",
-                "definition": "The return leg of a liner service voyage, typically from the destination port back to the origin."
-            },
-            {
-                "term": "Base Cargo",
-                "definition": "The minimum amount of cargo a ship should carry to ensure it operates efficiently and economically."
-            },
-            {
-                "term": "Bill of Lading - B/L",
-                "definition": "A legal document issued by a carrier to a shipper, detailing the type, quantity, and destination of the goods being shipped."
-            },
-            {
-                "term": "Bill of Exchange - B/E",
-                "definition": "A written financial document used in international trade where one party orders another party to pay a specified amount."
-            }
-        ],
-        "C": [
-            {
-                "term": "Cabotage",
-                "definition": "Transport of goods between two places in the same country by a vessel from another country."
-            },
-            {
-                "term": "Cargo",
-                "definition": "Goods or merchandise carried by a ship, airplane, truck, or other transportation means."
-            },
-            {
-                "term": "Cargo Manifest",
-                "definition": "A detailed list of all cargo on board a liner vessel for customs clearance and tracking."
-            },
-            {
-                "term": "Certificate of Origin",
-                "definition": "A document certifying goods are produced or manufactured in a particular country."
-            },
-            {
-                "term": "Charter Party",
-                "definition": "A contract between a vessel owner and a charterer who rents the vessel or cargo space."
-            },
-            {
-                "term": "Coastal Shipping",
-                "definition": "Transportation of goods along the coast within a specific regional area."
-            },
-            {
-                "term": "Common Carrier",
-                "definition": "A shipping line offering services to the public, transporting goods on a non-discriminatory basis."
-            },
-            {
-                "term": "Containerization",
-                "definition": "Using standardized containers to transport goods efficiently across transportation modes."
-            }
-        ],
-        "D": [
-            {
-                "term": "Deadweight Tonnage - DWT",
-                "definition": "The total weight a ship can safely carry, including cargo, fuel, crew, and provisions."
-            },
-            {
-                "term": "Demurrage",
-                "definition": "A penalty fee charged for delaying a ship's departure beyond the agreed-upon laytime."
-            },
-            {
-                "term": "Dry Dock",
-                "definition": "A specialized facility for vessel maintenance, repairs, or inspection out of water."
-            }
-        ],
-        "E": [
-            {
-                "term": "E-Navigation",
-                "definition": "Using electronic systems to enhance navigational safety and efficiency."
-            }
-        ],
-        "F": [
-            {
-                "term": "Feeder Service",
-                "definition": "A shipping service transporting containers from smaller ports to larger ports."
-            },
-            {
-                "term": "Freight",
-                "definition": "Goods transported from one place to another, or the cost of transportation."
-            },
-            {
-                "term": "Freight Forwarder",
-                "definition": "A company arranging shipping and handling of goods on behalf of shippers."
-            }
-        ],
-        "G": [
-            {
-                "term": "Gateway Port",
-                "definition": "A port that acts as an entry or exit point for regional maritime trade, often linked to major international shipping routes."
-            },
-            {
-                "term": "Gross Tonnage - GT",
-                "definition": "The total internal volume of a ship, including all enclosed spaces, used to determine its size and capacity."
-            },
-            {
-                "term": "Gross Weight",
-                "definition": "The total weight of a shipment, including the cargo and its packaging or container."
-            }
-        ],
-        "H": [
-            {
-                "term": "Harbor",
-                "definition": "A sheltered coastal area where ships can dock, anchor, and seek protection."
-            }
-        ],
-        "I": [
-            {
-                "term": "Incoterms",
-                "definition": "International Commercial Terms defining buyer and seller responsibilities in goods transportation."
-            }
-        ],
-        "L": [
-            {
-                "term": "Laytime",
-                "definition": "The agreed time for loading and unloading a vessel."
-            },
-            {
-                "term": "Liner Service",
-                "definition": "A regular, scheduled service by shipping companies between specified ports."
-            }
-        ],
-        "M": [
-            {
-                "term": "Manifest",
-                "definition": "A detailed list of a ship's cargo, passengers, and crew."
-            }
-        ],
-        "N": [
-            {
-                "term": "Non-Vessel Operating Common Carrier - NVOCC",
-                "definition": "A company offering shipping services without operating ships."
-            }
-        ],
-        "P": [
-            {
-                "term": "Port Authority",
-                "definition": "The organization responsible for managing and regulating activities within a port, including cargo handling and vessel operations."
-            },
-            {
-                "term": "Port Connectivity",
-                "definition": "The ability of ports within a region to effectively link with each other and with global shipping routes, supported by infrastructure and logistics systems."
-            },
-            {
-                "term": "Port of Call",
-                "definition": "A scheduled stop at a port during a ship's voyage for cargo loading or unloading."
-            },
-            {
-                "term": "Port of Loading",
-                "definition": "The port where cargo is loaded onto a vessel."
-            },
-            {
-                "term": "Port of Discharge",
-                "definition": "The port where cargo is unloaded from a vessel."
-            },
-            {
-                "term": "Port Rotation",
-                "definition": "The sequence of ports that a feeder vessel visits during its scheduled voyage, often linking smaller ports to a central hub."
-            },
-            {
-                "term": "Port Tariff",
-                "definition": "A published schedule of fees and charges for services provided at a port, such as docking, loading, and unloading."
-            },
-            {
-                "term": "Port Community System - PCS",
-                "definition": "An electronic platform that facilitates information exchange and coordination among port stakeholders."
-            },
-            {
-                "term": "Protection and Indemnity - P&I Insurance",
-                "definition": "A type of marine insurance covering third-party liabilities, including injury, loss of life, or damage to cargo."
-            }
-        ],
-        "R": [
-            {
-                "term": "Roll-on/Roll-off - Ro-Ro Ship",
-                "definition": "A type of vessel designed to carry wheeled cargo, such as cars and trucks, that are driven on and off the ship."
-            },
-            {
-                "term": "Reefer",
-                "definition": "A refrigerated container or ship designed to transport perishable goods that require temperature control."
-            },
-            {
-                "term": "Relay Service",
-                "definition": "A service that involves the transfer of cargo between vessels at an intermediate port."
-            },
-            {
-                "term": "Regional Connectivity Index",
-                "definition": "A measure of how well regional ports and shipping routes are integrated and connected."
-            },
-            {
-                "term": "Regional Shipping",
-                "definition": "Shipping services that operate within a specific region or set of ports."
-            },
-            {
-                "term": "Regional Trade Agreement",
-                "definition": "An agreement between countries within a region to facilitate trade and improve maritime connectivity."
-            }
-        ],
-        "S": [
-            {
-                "term": "Safety of Life at Sea - SOLAS",
-                "definition": "An international maritime treaty ensuring that ships comply with minimum safety standards in construction, equipment, and operation."
-            },
-            {
-                "term": "Sailing Schedule",
-                "definition": "The published itinerary of a liner service, detailing the departure and arrival dates and times for each port of call."
-            },
-            {
-                "term": "Sea Freight",
-                "definition": "The movement of goods by sea, often in containers, bulk carriers, or tankers, typically used for international shipments."
-            },
-            {
-                "term": "Shipping",
-                "definition": "The process of transporting goods or cargo from one location to another by sea, air, rail, or road."
-            },
-            {
-                "term": "Shipping line",
-                "definition": "A company that operates ships and provides maritime transportation services."
-            },
-            {
-                "term": "Shipbroker",
-                "definition": "A person or firm that arranges the hiring or sale of ships on behalf of shipowners or charterers."
-            },
-            {
-                "term": "Ship-to-Shore Communication",
-                "definition": "The exchange of information between ships and port facilities or other shore-based entities, including data on cargo, navigation, and safety."
-            },
-            {
-                "term": "Ship's Agent",
-                "definition": "A representative in a port who handles a ship's business and administrative tasks on behalf of the shipowner or charterer."
-            },
-            {
-                "term": "Ship Management System",
-                "definition": "Software used to manage the operational aspects of a vessel, including maintenance, crew management, and compliance."
-            },
-            {
-                "term": "Short Sea Shipping",
-                "definition": "The transportation of goods by sea over relatively short distances, typically within the same continent or region."
-            },
-            {
-                "term": "Slot Charter",
-                "definition": "An agreement where a shipping line leases space (slots) on a feeder vessel operated by another company."
-            },
-            {
-                "term": "Slot Sharing",
-                "definition": "An arrangement where different shipping lines share space on each other's vessels."
-            },
-            {
-                "term": "Spot Market",
-                "definition": "The market for immediate, one-time cargo shipping contracts."
-            }
-        ],
-        "T": [
-            {
-                "term": "Transshipment",
-                "definition": "The transfer of goods from one vessel to another during their journey to the final destination."
-            },
-            {
-                "term": "TEU - Twenty-foot Equivalent Unit",
-                "definition": "A standard unit of measurement for container capacity, based on a 20-foot container."
-            }
-        ],
-        "V": [
-            {
-                "term": "Vessel Traffic Service - VTS",
-                "definition": "A shore-based system that monitors and manages vessel traffic within a designated area to ensure safety and efficiency."
-            },
-            {
-                "term": "Vessel Sharing Agreement - VSA",
-                "definition": "An agreement between shipping lines to share space on each other's vessels to optimize capacity and efficiency."
-            },
-            {
-                "term": "Vessel Rotation",
-                "definition": "The sequence of ports that a liner vessel visits on its scheduled route, crucial for maintaining the fixed schedule of liner services."
-            },
-            {
-                "term": "Vessel Tracking",
-                "definition": "The process of monitoring the location and movement of vessels using GPS and other tracking technologies."
-            }
-        ],
-        "W": [
-            {
-                "term": "Warehousing",
-                "definition": "The storage of goods in a facility before they are transported to their final destination."
-            }
-        ],
-        "Company":"Company",
-        "Booking": "Booking",
-        "PriorBooking": "Prior to Booking",
-        "Documentation": "Documentation"
     },
     "aboutPage": {
         "Aboutus": "About Us",
@@ -939,13 +230,13 @@
         "points": {
             "point1": "Strategic location at the heart of global trade routes, supporting the Kingdom of Saudi Arabia's ambition to become a global logistics hub",
             "point2": "Enhanced supply chain transparency and reliability through agile local and regional connectivity",
-            "point3": "Committed to sustainable shipping practices, in alignment with the IMO's target of 40% Greenhouse gas (GHG) reduction by 2030",
+            "point3": "Committed to sustainable shipping practices, in alignment with the IMO's target of forty percent Greenhouse gas (GHG) reduction by twenty thirty",
             "point4": "Efficiency steers our endeavors, charting the course for groundbreaking industry standards",
             "point5": "Our vessels, schedules, and routes are customized to meet the unique preferences of our customers",
             "point6": "Dedicated to advancing skills, employment, and career growth within the maritime sector of the Kingdom of Saudi Arabia"
         },
         "sectionTitle": "Building a Global Logistics Hub through Transformative Shipping Initiatives",
-        "sectionBody": "Blue Line spearheads the journey towards positioning Saudi Arabia as a global logistics hub. Leveraging the country's distinctive geographic advantage on the Red Sea and Arabian Gulf, our strategic endeavors intend to improve connectivity, optimize logistics efficiency, and reinforce sector capabilities. We are committed to maritime sustainability, adhering to the IMO's target of 40% GHG reduction by 2030. We also support transformative technologies and the uptake of alternative zero—and near-zero GHG fuels. As a leading regional player in the maritime feeder and liner services, we actively strive to increase private sector participation in industries reliant on seamless logistics. Aligned with Saudi Arabia's Vision 2030 objectives, our commitment extends to enhancing export, re-export, and domestic cargo volumes, building a prosperous and influential future for the nation.",
+        "sectionBody": "Blue Line spearheads the journey towards positioning Saudi Arabia as a global logistics hub. Leveraging the country's distinctive geographic advantage on the Red Sea and Arabian Gulf, our strategic endeavors intend to improve connectivity, optimize logistics efficiency, and reinforce sector capabilities. We are committed to maritime sustainability, adhering to the IMO's target of forty percent GHG reduction by twenty thirty. We also support transformative technologies and the uptake of alternative zero—and near-zero GHG fuels. As a leading regional player in the maritime feeder and liner services, we actively strive to increase private sector participation in industries reliant on seamless logistics. Aligned with Saudi Arabia's Vision twenty thirty objectives, our commitment extends to enhancing export, re-export, and domestic cargo volumes, building a prosperous and influential future for the nation.",
         "values": {
             "mission": {
                 "title": "Our Mission",
@@ -993,7 +284,7 @@
             },
             "slide3": {
                 "title": "Governance With Purpose",
-                "desc": "Transparent governance and responsible procurement that align with Vision 2030 and international best practices."
+                "desc": "Transparent governance and responsible procurement that align with Vision twenty thirty and international best practices."
             }
         }
     },
@@ -1023,7 +314,7 @@
         "cta": {
             "label": "Join our talent network",
             "desc": "Send your CV and a brief note about your interests.",
-            "mailto": "mailto:talent@folkmaritime.com"
+            "mailto": "mailto:talent{'@'}folkmaritime.com"
         },
         "LIFEATBLUE": "LIFE AT BLUE LINE",
         "LIFEATFOLKDesc": "Begin a journey of continuous learning in one of the world’s most crucial industries.",
@@ -1118,6 +409,14 @@
                 "title": "Furniture & Houseware",
                 "summary": "The furniture and housewares industry requires expert logistics to ensure safe and timely delivery. At BlueLine, we provide tailored solutions for bulky furniture and delicate goods, combining precision handling, customs expertise, and flexible freight options to safeguard your"
             },
+            "agricultural": {
+                "title": "agricultural products vegetables",
+                "summary": "The furniture and housewares industry requires expert logistics to ensure safe and timely delivery. At BlueLine, we provide tailored solutions for bulky furniture and delicate goods, combining precision handling, customs expertise, and flexible freight options to safeguard your"
+            },
+            "fertilizers": {
+                "title": " fertilizers",
+                "summary": "The furniture and housewares industry requires expert logistics to ensure safe and timely delivery. At BlueLine, we provide tailored solutions for bulky furniture and delicate goods, combining precision handling, customs expertise, and flexible freight options to safeguard your"
+            },
             "packaging": {
                 "title": "Packaging",
                 "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
@@ -1165,7 +464,94 @@
             "CeramicsTiles": {
                 "title": "Ceramics Tiles",
                 "summary": "Efficient logistics are essential for the packaging industry's success. At BlueLine, we deliver tailored freight solutions to streamline your supply chain, safeguard materials, and support sustainability, ensuring your goods are handled with precision every step of the way."
-                }
+            }
+        }
+    },
+    "contact": {
+        "hero": {
+            "title": "Talk to Our Team",
+            "subtitle": "We're here to support your logistics needs — anytime, anywhere."
+        },
+        "formSection": {
+            "title": "Send Us a Message",
+            "subtitle": "Fill out the form below and we'll get back to you shortly",
+            "fullName": "Full Name *",
+            "fullNamePlaceholder": "John Doe",
+            "companyName": "Company Name",
+            "companyNamePlaceholder": "ABC Corporation",
+            "email": "Email Address *",
+            "emailPlaceholder": "email Address",
+            "phone": "Phone Number",
+            "phonePlaceholder": "+1 (555) 123-4567",
+            "message": "Message *",
+            "messagePlaceholder": "Tell us about your logistics needs...",
+            "submitButton": "Submit Message"
+        },
+        "formValidation": {
+            "fullNameRequired": "Full name is required.",
+            "fullNameMinLength": "Full name must be at least two characters.",
+            "emailRequired": "Email address is required.",
+            "emailInvalid": "Please enter a valid email address.",
+            "messageRequired": "Message is required.",
+            "messageMinLength": "Message must be at least ten characters.",
+            "submitting": "Submitting..."
+        },
+        "formMessages": {
+            "success": "Thank you! We'll get back to you shortly.",
+            "error": "Something went wrong. Please try again."
+        },
+        "support": {
+            "title": "Quick Support",
+            "subtitle": "Common questions about our services",
+            "faq1": {
+                "question": "What are your business hours?",
+                "answer": "Our customer support team is available around the clock to assist you. Our office hours are Monday to Friday, 9 AM to 6 PM EST."
+            },
+            "faq2": {
+                "question": "How can I track my shipment?",
+                "answer": "Use your tracking number on our website or contact our support team for real-time updates on your shipment status."
+            },
+            "faq3": {
+                "question": "How do I request a quote?",
+                "answer": "Fill out our contact form above or call us directly. We'll provide a customized quote within one business day."
+            },
+            "faq4": {
+                "question": "Do you ship internationally?",
+                "answer": "Yes, we offer comprehensive international shipping services to over one hundred and fifty countries worldwide with full tracking."
+            }
+        },
+        "branches": {
+            "title": "Our Branches",
+            "saudi": {
+                "label": "Head Office",
+                "name": "Saudi Branch",
+                "addressLabel": "Address Branch",
+                "address": "23441 Al-Madina Al-Munawarah Branch Rd, Al Faisaliyah, Kanoo Building, Jeddah",
+                "phoneLabel": "Phone:",
+                "phone": "+966 54 757 5530",
+                "mailLabel": "Mail:",
+                "hoursLabel": "Working Hours",
+                "hours": "From Saturday to Thursday From 8:30 AM to 4:30 PM",
+                "finance": "Finance",
+                "financePhone": "Mobile: +966 54 757 6076",
+                "manager": "Operation Manager",
+                "managerPhone": "Mobile: +966 53 095 7713"
+            },
+            "egypt": {
+                "name": "Egypt Branch",
+                "addressLabel": "Address Branch",
+                "address": "Property No. 6, Sector H, First Floor Service Center, First Settlement - New Cairo",
+                "phoneLabel": "Phone:",
+                "phone": "+20 122 369 3800",
+                "mobileLabel": "Mobile:",
+                "mobile": "+20 223 555 525",
+                "mailLabel": "Mail:",
+                "hoursLabel": "Working Hours",
+                "hours": "From Saturday to Thursday From 8:30 AM to 4:30 PM",
+                "finance": "Finance",
+                "financePhone": "Mobile: +20 120 137 4000",
+                "manager": "Branch Manager"
+            }
         }
     }
 }

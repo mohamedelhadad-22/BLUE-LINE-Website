@@ -8,7 +8,15 @@
       "Bash(claude mcp add:*)",
       "Bash(claude mcp list:*)",
       "Bash(npm install:*)",
-      "Bash(git commit -m \"$(cat <<''EOF''\nfix: correct home route to use HomeView instead of ContactView\n\n- Fixed router configuration where home route (/) was incorrectly pointing to ContactView\n- Now correctly points to HomeView.vue\n- This was causing all pages to appear empty on Netlify\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+      "Bash(git commit -m \"$(cat <<''EOF''\nfix: correct home route to use HomeView instead of ContactView\n\n- Fixed router configuration where home route (/) was incorrectly pointing to ContactView\n- Now correctly points to HomeView.vue\n- This was causing all pages to appear empty on Netlify\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(sort:*)",
+      "Bash(npm run convert-images:*)",
+      "Bash(ls:*)",
+      "Bash(timeout 60 bash -c:*)",
+      "Bash(npx sharp-cli:*)",
+      "Bash(echo:*)",
+      "Bash(npm run preview:*)",
+      "Bash(timeout 30 bash:*)"
     ],
     "deny": [],
     "ask": []

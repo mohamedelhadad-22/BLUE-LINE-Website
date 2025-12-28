@@ -168,12 +168,10 @@ export default defineComponent({
 
 .why_blue_line_left .why_images img {
     border-radius: 0 0 103px 0;
-    background: url(<path-to-image>) lightgray 50% / cover no-repeat;
 }
 
 .why_blue_line_right .why_images img {
     border-radius: 0 0 0 103px;
-    background: url(<path-to-image>) lightgray 50% / cover no-repeat;
 }
 
 .why_boxs {
