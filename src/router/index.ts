@@ -10,10 +10,6 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/HomeView.vue"),
   },
   {
-    path: "/test",
-    component: { template: "<div>TEST ROUTE WORKS</div>" },
-  },
-  {
     path: "/about",
     name: "about-us",
     component: () => import("@/views/AboutView.vue"),
